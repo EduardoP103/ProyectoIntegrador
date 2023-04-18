@@ -1,0 +1,24 @@
+{
+  "generator-template-ui5-project": {
+    "projectname": "proyectoIntegrador",
+    "namespaceUI5": "com.pe",
+    "enableFPM": false,
+    "platform": "Application Router @ Cloud Foundry",
+    "viewtype": "XML",
+    "ui5libs": "Content delivery network (SAPUI5)",
+    "newdir": false,
+    "codeassist": true,
+    "initrepo": false,
+    "namespaceURI": "com/pe",
+    "opa5pos": [
+      "Main"
+    ],
+    "opa5Journeys": [
+      "Main"
+    ],
+    "uimodules": [
+      "uimodule"
+    ],
+    "setupCompleted": true
+  }
+}
