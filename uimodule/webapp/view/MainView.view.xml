@@ -1,6 +1,91 @@
-<mvc:View controllerName="com.pe.proyectoIntegrador.controller.MainView" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m">
-    <Page id="page" title="{i18n>title}">
+<mvc:View 
+height="100%"
+xmlns:mvc="sap.ui.core.mvc" 
+displayBlock="true" 
+xmlns="sap.m"
+xmlns:layout="sap.ui.layout"
+xmlns:semantic="sap.f.semantic"
+controllerName="com.pe.proyectoIntegrador.controller.MainView" 
+>
+    <!-- <Page id="page" title="{i18n>hola}">
         <content />
-    </Page>
-    
+    </Page>  -->
+    <semantic:SemanticPage
+    id="mySemanticPage"
+    headerPinnable="true"
+    toggleHeaderOnTitleClick="true"
+    preserveHeaderStateOnScroll="false"
+    titleAreaShrinkRatio="1:1.6:1.6"
+    showFooter="false" 
+    >
+        <!-- Title Heading  -->
+        <semantic:titleHeading>
+            <Title id="_IDGenTitle1" 
+            text="{i18n>title}"/>
+        </semantic:titleHeading>
+
+	<!-- TitleExpanded content-->
+    <semantic:titleSnappedContent>
+        <Text text="{i18n>content}"/>
+    </semantic:titleSnappedContent>
+
+        	<!-- TitleSnapped content-->
+		<semantic:titleExpandedContent>
+			<Text text="{i18n>content}"/>
+		</semantic:titleExpandedContent>
+
+        	<!-- Header Content -->
+            <semantic:headerContent>
+                <layout:HorizontalLayout allowWrapping="true">
+                    <layout:VerticalLayout class="sapUiMediumMarginBeginEnd">
+                    </layout:VerticalLayout>
+
+                    <layout:VerticalLayout>
+                        <ObjectAttribute title="Availability"/>
+                        <ObjectStatus text="In Stock"/>
+                    </layout:VerticalLayout>
+                </layout:HorizontalLayout>
+            </semantic:headerContent>
+
+            <!-- Content of Tables -->
+            <semantic:content>
+                <Table
+                    id="idProductsTable"
+                    inset="false"
+                    
+                    class="sapFSemanticPageAlignContent"
+                    width="auto">
+                    
+                    <columns>
+                        <Column>
+                            <Text text="Nombre"/>
+                        </Column>
+                        <Column  minScreenWidth="Tablet" demandPopin="true">
+                            <Text text="Descripción"/>
+                        </Column>
+                        <Column  minScreenWidth="Tablet" demandPopin="true">
+                            <Text text="Imagen"/>
+                        </Column>
+                        <Column  minScreenWidth="Tablet" demandPopin="true">
+                            <Text text="Precio V."/>
+                        </Column>
+                        <Column  minScreenWidth="Tablet" demandPopin="true">
+                            <Text text="Precio C."/>
+                        </Column>
+                        <Column  minScreenWidth="Tablet" demandPopin="true">
+                            <Text text="Unidad M."/>
+                        </Column>
+                        <Column  minScreenWidth="Tablet" demandPopin="true">
+                            <Text text="Proveedor"/>
+                        </Column>
+                        <Column  minScreenWidth="Tablet" demandPopin="true">
+                            <Text text="Activo"/>
+                        </Column>
+                    </columns>
+                </Table>
+
+            </semantic:content>
+
+    </semantic:SemanticPage>
+
 </mvc:View>
