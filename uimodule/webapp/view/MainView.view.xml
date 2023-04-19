@@ -62,25 +62,33 @@
 						state="Success"
 					/>
 				</layout:VerticalLayout>
-				<IconTabBar
-					id="idIconTabBarFiori2"
-					class="sapUiResponsiveContentPadding"
-				>
-					<items>
-						<IconTabFilter
-							text="Productos"
-							key="producto"
-						/>
-						<IconTabFilter
-							text="Proveedores"
-							key="proveedores"
-						/>
-						<IconTabFilter
-							text="Unidades de Medida"
-							key="unidadesDeMedida"
-						/>
-					</items>
-				</IconTabBar>
+			
+                <IconTabBar
+                id="idIconTabBarFiori2"
+
+                class="sapUiResponsiveContentPadding">
+                <items>
+                    <IconTabFilter
+                        text="Productos"
+                        key="producto"
+                    >
+                       
+                    </IconTabFilter>
+                    <IconTabFilter
+                        text="Proveedores"
+                        key="proveedores"
+                    >
+                        
+                    </IconTabFilter>
+                    <IconTabFilter
+                        text="Unidades de Medida"
+                        key="unidadesDeMedida"
+                    >
+                       
+                    </IconTabFilter>
+
+                </items>
+            </IconTabBar>
 			</layout:HorizontalLayout>
 		</semantic:headerContent>
 		<!-- Content of Tables -->
@@ -88,9 +96,9 @@
 			<Table
 				id="idProductsTable"
 				inset="false"
-				items="{
-					path: 'PintarTabla>/listaTabla'
-				}"
+                items="{
+                    path:'PintarTabla>/listaTabla'
+                }"
 				class="sapFSemanticPageAlignContent"
 				width="auto"
 			>
@@ -109,58 +117,58 @@
 						<Text text="{i18n>descripcionProducto}"/>
 					</Column>
 					<Column
-						id="imagenCol"
+                        id="imagenCol"
 						minScreenWidth="Tablet"
 						demandPopin="true"
 					>
 						<Text text="{i18n>imagen}"/>
 					</Column>
 					<Column
-						id="precioVCol"
+                        id="precioVCol"
 						minScreenWidth="Tablet"
 						demandPopin="true"
 					>
 						<Text text="{i18n>pricioV}"/>
 					</Column>
 					<Column
-						id="precioCCol"
+                        id="precioCCol"
 						minScreenWidth="Tablet"
 						demandPopin="true"
 					>
 						<Text text="{i18n>precioC}"/>
 					</Column>
 					<Column
-						id="unidadMCol"
+                        id="unidadMCol"
 						minScreenWidth="Tablet"
 						demandPopin="true"
 					>
 						<Text text="{unidadM}"/>
 					</Column>
 					<Column
-						id="proveedorCol"
+                        id="proveedorCol"
 						minScreenWidth="Tablet"
 						demandPopin="true"
 					>
 						<Text text="{i18n>proveedor}"/>
 					</Column>
 					<Column
-						id="activoCol"
+                        id="activoCol"
 						minScreenWidth="Tablet"
 						demandPopin="true"
 					>
 						<Text text="{i18n>activo}"/>
 					</Column>
 				</columns>
-				<items>
-					<Text text="{listOfProducts>nombreProducto}"/>
-					<Text text="{listOfProducts>descripcionProducto}"/>
-					<Text text="{listOfProducts>imagen}"/>
-					<Text text="{listOfProducts>precioV}"/>
-					<Text text="{listOfProducts>precioC}"/>
-					<Text text="{listOfProducts>unidadM}"/>
-					<Text text="{listOfProducts>proveedor}"/>
-					<Text text="{listOfProducts>activo}"/>
-				</items>
+                <items>
+                    <Text text="{listOfProducts>nombreProducto}"/>
+                    <Text text="{listOfProducts>descripcionProducto}"/>
+                    <Text text="{listOfProducts>imagen}"/>
+                    <Text text="{listOfProducts>precioV}"/>
+                    <Text text="{listOfProducts>precioC}"/>
+                    <Text text="{listOfProducts>unidadM}"/>
+                    <Text text="{listOfProducts>proveedor}"/>
+                    <Text text="{listOfProducts>activo}"/>
+                </items> 
 			</Table>
 		</semantic:content>
 	</semantic:SemanticPage>
