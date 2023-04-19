@@ -19,11 +19,32 @@ sap.ui.define(
             },
             localModel : function(){
                 const oParam = {
-                    nombre: "",
-                    direccion: "",
-                    selectKeyPais: "0",
-                    selectKeyDistrito : "0",
-                    listaPokemones : [],
+                    selectedRowView : {},
+                    listOfProducts: [
+                        {
+                            "id": 1,
+                            "name": "SSD",
+                            "description": "Disco Sólido",
+                            "image": "https://cyccomputer.pe/44675-large_default/ssd-1tb-wd-green-sata-6gbs-25-pnwds100t3g0a-00na50.jpg",
+                            "fSalePrice": 18,
+                            "salePrice": "18.0",
+                            "fPurchasePrice": 18,
+                            "purchasePrice": "18.0",
+                            "fStock": 30,
+                            "stock": "30.0",
+                            "idUnitOfmeasurment": 1,
+                            "unitOfMeasurementName": "UND",
+                            "idSupplier": 1,
+                            "supplierName": "Pepito",
+                            "idStatus": 1,
+                            "statusName": "Activo",
+                            "statusIcon" : "sap-icon://sys-enter-2",
+                            "statusState" : "Success"
+                    }
+                ],
+                    listOfSuppliers: [],
+                    listOfUnitOfMeasurement: [],
+
                     // listaTabla : [],
                     listaTabla : [
                         {
@@ -182,18 +203,7 @@ sap.ui.define(
                           }
                     ],
 
-                    selectPokemon : {
-                        visible : false,
-                        key : "0",
-                        url : ""
-                    },
-                    addReg : {
-                        "product": "",
-                        "supplier": "",
-                        "dimension": "",
-                        "weight": "",
-                        "price": ""
-                      },
+                    
                       
                 }
                 const oModel = new JSONModel(oParam);
