@@ -17,6 +17,44 @@ sap.ui.define(
                 oModel.setDefaultBindingMode("OneWay");
                 return oModel;
             },
+            PintarTabla: function(){
+                const oParam = [
+                 
+                    {
+                        "nombreProducto": "Poco X5 Pro Black 6GB - 128GB",
+                        "descripcionProducto": "XIAOMI ",
+                        "imagen": "OK",
+                        "precioV": "162,91 ; 76,03 ",
+                        "precioC": "189g",
+                        "unidadM": "S/ 1529.00",
+                        "proveedor": "19",
+                        "activo": "Stock"
+                    },
+                    {
+                        "nombreProducto": "Poco X5 Pro Black 6GB - 128GB",
+                        "descripcionProducto": "XIAOMI ",
+                        "imagen": "OK",
+                        "precioV": "162,91 ; 76,03 ",
+                        "precioC": "189g",
+                        "unidadM": "S/ 1529.00",
+                        "proveedor": "19",
+                        "activo": "Stock"
+                    },
+                    {
+                        "nombreProducto": "Poco X5 Pro Black 6GB - 128GB",
+                        "descripcionProducto": "XIAOMI ",
+                        "imagen": "OK",
+                        "precioV": "162,91 ; 76,03 ",
+                        "precioC": "189g",
+                        "unidadM": "S/ 1529.00",
+                        "proveedor": "19",
+                        "activo": "Stock"
+                    },
+                ];
+                const oModel = new JSONModel(oParam);
+                return oModel;
+            },
+
         };
     }
 );

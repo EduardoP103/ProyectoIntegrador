@@ -1,91 +1,167 @@
-<mvc:View 
-height="100%"
-xmlns:mvc="sap.ui.core.mvc" 
-displayBlock="true" 
-xmlns="sap.m"
-xmlns:layout="sap.ui.layout"
-xmlns:semantic="sap.f.semantic"
-controllerName="com.pe.proyectoIntegrador.controller.MainView" 
+<mvc:View
+	height="100%"
+	xmlns:mvc="sap.ui.core.mvc"
+	displayBlock="true"
+	xmlns="sap.m"
+	xmlns:layout="sap.ui.layout"
+	xmlns:semantic="sap.f.semantic"
+	controllerName="com.pe.proyectoIntegrador.controller.MainView"
 >
-    <!-- <Page id="page" title="{i18n>hola}">
+	<!-- <Page id="page" title="{i18n>hola}">
         <content />
     </Page>  -->
-    <semantic:SemanticPage
-    id="mySemanticPage"
-    headerPinnable="true"
-    toggleHeaderOnTitleClick="true"
-    preserveHeaderStateOnScroll="false"
-    titleAreaShrinkRatio="1:1.6:1.6"
-    showFooter="false" 
-    >
-        <!-- Title Heading  -->
-        <semantic:titleHeading>
-            <Title id="_IDGenTitle1" 
-            text="{i18n>title}"/>
-        </semantic:titleHeading>
-
-	<!-- TitleExpanded content-->
-    <semantic:titleSnappedContent>
-        <Text text="{i18n>content}"/>
-    </semantic:titleSnappedContent>
-
-        	<!-- TitleSnapped content-->
+	<semantic:SemanticPage
+		id="mySemanticPage"
+		headerPinnable="true"
+		toggleHeaderOnTitleClick="true"
+		preserveHeaderStateOnScroll="false"
+		titleAreaShrinkRatio="1:1.6:1.6"
+		showFooter="false"
+	>
+		<!-- Title Heading  -->
+		<semantic:titleHeading>
+			<Title
+				id="_IDGenTitle1"
+				text="{i18n>title}"
+			/>
+		</semantic:titleHeading>
+		<!-- TitleExpanded content-->
+		<semantic:titleSnappedContent>
+		</semantic:titleSnappedContent>
+		<!-- TitleSnapped content-->
 		<semantic:titleExpandedContent>
-			<Text text="{i18n>content}"/>
 		</semantic:titleExpandedContent>
-
-        	<!-- Header Content -->
-            <semantic:headerContent>
-                <layout:HorizontalLayout allowWrapping="true">
-                    <layout:VerticalLayout class="sapUiMediumMarginBeginEnd">
-                    </layout:VerticalLayout>
-
-                    <layout:VerticalLayout>
-                        <ObjectAttribute title="Availability"/>
-                        <ObjectStatus text="In Stock"/>
-                    </layout:VerticalLayout>
-                </layout:HorizontalLayout>
-            </semantic:headerContent>
-
-            <!-- Content of Tables -->
-            <semantic:content>
-                <Table
-                    id="idProductsTable"
-                    inset="false"
-                    
-                    class="sapFSemanticPageAlignContent"
-                    width="auto">
-                    
-                    <columns>
-                        <Column>
-                            <Text text="Nombre"/>
-                        </Column>
-                        <Column  minScreenWidth="Tablet" demandPopin="true">
-                            <Text text="Descripción"/>
-                        </Column>
-                        <Column  minScreenWidth="Tablet" demandPopin="true">
-                            <Text text="Imagen"/>
-                        </Column>
-                        <Column  minScreenWidth="Tablet" demandPopin="true">
-                            <Text text="Precio V."/>
-                        </Column>
-                        <Column  minScreenWidth="Tablet" demandPopin="true">
-                            <Text text="Precio C."/>
-                        </Column>
-                        <Column  minScreenWidth="Tablet" demandPopin="true">
-                            <Text text="Unidad M."/>
-                        </Column>
-                        <Column  minScreenWidth="Tablet" demandPopin="true">
-                            <Text text="Proveedor"/>
-                        </Column>
-                        <Column  minScreenWidth="Tablet" demandPopin="true">
-                            <Text text="Activo"/>
-                        </Column>
-                    </columns>
-                </Table>
-
-            </semantic:content>
-
-    </semantic:SemanticPage>
-
+		<!-- Header Content -->
+		<semantic:headerContent>
+			<layout:HorizontalLayout
+				class="sapUiNoContentPadding"
+				allowWrapping="true"
+			>
+				<layout:VerticalLayout
+					width="auto"
+					class="sapUiLargeMarginEnd"
+				>
+					<Image
+						src="./assets/yoshi.jpg"
+						height="8rem"
+						width="8rem"
+					/>
+				</layout:VerticalLayout>
+				<layout:VerticalLayout
+					width="auto"
+					class="sapUiMediumMarginBeginEnd"
+				>
+					<ObjectAttribute title="{i18n>content}"/>
+					<ObjectStatus
+						text="{i18n>user}"
+						state="Success"
+					/>
+					<ObjectAttribute title="{i18n>post}"/>
+					<ObjectStatus
+						text="{i18n>position}"
+						state="Success"
+					/>
+				</layout:VerticalLayout>
+				<IconTabBar
+					id="idIconTabBarFiori2"
+					class="sapUiResponsiveContentPadding"
+				>
+					<items>
+						<IconTabFilter
+							text="Productos"
+							key="producto"
+						/>
+						<IconTabFilter
+							text="Proveedores"
+							key="proveedores"
+						/>
+						<IconTabFilter
+							text="Unidades de Medida"
+							key="unidadesDeMedida"
+						/>
+					</items>
+				</IconTabBar>
+			</layout:HorizontalLayout>
+		</semantic:headerContent>
+		<!-- Content of Tables -->
+		<semantic:content>
+			<Table
+				id="idProductsTable"
+				inset="false"
+				items="{
+					path: 'PintarTabla>/listaTabla'
+				}"
+				class="sapFSemanticPageAlignContent"
+				width="auto"
+			>
+				<columns>
+					<Column
+						id="nombreCol"
+						width="12em"
+					>
+						<Text text="{i18n>nombreProducto}"/>
+					</Column>
+					<Column
+						id="descripcionCol"
+						minScreenWidth="Tablet"
+						demandPopin="true"
+					>
+						<Text text="{i18n>descripcionProducto}"/>
+					</Column>
+					<Column
+						id="imagenCol"
+						minScreenWidth="Tablet"
+						demandPopin="true"
+					>
+						<Text text="{i18n>imagen}"/>
+					</Column>
+					<Column
+						id="precioVCol"
+						minScreenWidth="Tablet"
+						demandPopin="true"
+					>
+						<Text text="{i18n>pricioV}"/>
+					</Column>
+					<Column
+						id="precioCCol"
+						minScreenWidth="Tablet"
+						demandPopin="true"
+					>
+						<Text text="{i18n>precioC}"/>
+					</Column>
+					<Column
+						id="unidadMCol"
+						minScreenWidth="Tablet"
+						demandPopin="true"
+					>
+						<Text text="{unidadM}"/>
+					</Column>
+					<Column
+						id="proveedorCol"
+						minScreenWidth="Tablet"
+						demandPopin="true"
+					>
+						<Text text="{i18n>proveedor}"/>
+					</Column>
+					<Column
+						id="activoCol"
+						minScreenWidth="Tablet"
+						demandPopin="true"
+					>
+						<Text text="{i18n>activo}"/>
+					</Column>
+				</columns>
+				<items>
+					<Text text="{listOfProducts>nombreProducto}"/>
+					<Text text="{listOfProducts>descripcionProducto}"/>
+					<Text text="{listOfProducts>imagen}"/>
+					<Text text="{listOfProducts>precioV}"/>
+					<Text text="{listOfProducts>precioC}"/>
+					<Text text="{listOfProducts>unidadM}"/>
+					<Text text="{listOfProducts>proveedor}"/>
+					<Text text="{listOfProducts>activo}"/>
+				</items>
+			</Table>
+		</semantic:content>
+	</semantic:SemanticPage>
 </mvc:View>

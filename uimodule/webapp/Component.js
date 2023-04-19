@@ -29,6 +29,10 @@ sap.ui.define([
 
                 // set the device model
                 this.setModel(models.createDeviceModel(), "device");
+
+
+                this.setModel(models.PintarTabla(), "PintarTabla")
+
             }
         });
     }
