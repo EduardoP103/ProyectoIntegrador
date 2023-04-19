@@ -118,7 +118,6 @@ sap.ui.define(
                     util.utilUI.messageBox("No existen registros para descargar", "WARNING", "Alerta");
                 }
             },
-            
         });
     }
 );
