@@ -1,40 +1,23 @@
 sap.ui.define(
-    ["./BaseController",
-    'sap/ui/core/Fragment'],
+    ["./BaseController", "../util/util", "sap/ui/export/library"],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-    function (Controller,Fragment) {
+    function (Controller, util, exportLibrary) {
         "use strict";
-
+        var EdmType = exportLibrary.EdmType;
         return Controller.extend("com.pe.proyectoIntegrador.controller.MainView", {
-            onInit: function() {},
+            onInit: function () {},
 
-
-            onOpenViewImage: function(oEvent) {
+            onOpenViewImage: function (oEvent) {
                 var oButton = oEvent.getSource(),
-				oView = this.getView();
+                    oView = this.getView();
                 debugger;
-                var oProduct = oButton.getParent().getBindingContext("localModel")
-                
-                // create popover
-                // if (!this.pPopover) {
-                //     this.pPopover = Fragment.load({
-                //         id: oView.getId(),
-                //         name: "com.pe.proyectoIntegrador.view.fragment.Popover",
-                //         controller: this
-                //     }).then(function(oPopover) {
-                //         oView.addDependent(oPopover);
-                //         oPopover.bindElement(oProduct.getPath());
-                //         return oPopover;
-                //     });
-                // }
-                // this.pPopover.then(function(oPopover) {
-                //     oPopover.openBy(oButton);
-                // });
+                var oProduct = oButton.getParent().getBindingContext("localModel");
+
                 debugger;
                 var oSelectObj = oProduct.getObject();
-                this.getView().getModel("localModel").setProperty("/selectedRowView",oSelectObj)
+                this.getView().getModel("localModel").setProperty("/selectedRowView", oSelectObj);
                 if (!this.oPopover) {
                     this.oPopover = this.loadFragment({
                         name: "com.pe.proyectoIntegrador.view.fragment.Popover",
@@ -46,12 +29,96 @@ sap.ui.define(
                         oPop.openBy(oButton);
                     }.bind(this)
                 );
+            },
 
-                },
+            onCloseViewImage: function () {
+                this.pPopover.close();
+            },
+            createColumnConfigTableProducts: function () {
+                var aCols = [];
 
-                onCloseViewImage: function () {
-                    this.pPopover.close();
+                aCols.push({
+                    label: "ProductoFinal X Precio",
+                    property: ["product", "price"],
+                    type: EdmType.String,
+                    template: "{0} {1}",
+                });
+
+                aCols.push({
+                    label: "SupplierNombre",
+                    property: ["supplier"],
+                    type: EdmType.String,
+                    template: "{0}",
+                });
+
+                //dimension
+
+                aCols.push({
+                    label: "dimension",
+                    property: ["dimension"],
+                    type: EdmType.String,
+                    template: "{0}",
+                });
+
+                //weight
+
+                aCols.push({
+                    label: "weight",
+                    property: ["weight"],
+                    type: EdmType.String,
+                    template: "{0}",
+                });
+
+                //price
+
+                aCols.push({
+                    label: "price",
+                    property: ["price"],
+                    type: EdmType.String,
+                    template: "{0}",
+                });
+
+                return aCols;
+            },
+            createColumnConfigTableSupplier: function () {
+                var aCols = [];
+                return aCols;
+            },
+            createColumnConfigTableUnitOfMeasurement: function () {
+                var aCols = [];
+                return aCols;
+            },
+            onExportSpreadSheetXLSX: function () {
+                debugger;
+                let aCols;
+                let oSettings;
+                let oTable;
+                let fileName = "";
+                let path = "";
+                const selectedIconTabBar = this.getView().getModel("localModel").getProperty("/selectedIconTabBar");
+                if (selectedIconTabBar === "0") {
+                    oTable = this.getView().byId("idProductsTable");
+                    path = oTable.getBinding("items").getPath();
+                    fileName = "ProductoDataExcel.xlsx";
+                    aCols = this.createColumnConfigTableProducts();
+                } else if (selectedIconTabBar === "1") {
+                    oTable = this.getView().byId("idSupplierTable");
+                    path = oTable.getBinding("items").getPath();
+                    fileName = "ProveedorDataExcel.xlsx";
+                    aCols = this.createColumnConfigTableSupplier();
+                } else if (selectedIconTabBar === "2") {
+                    oTable = this.getView().byId("idUnitOfMeasurementTable");
+                    path = oTable.getBinding("items").getPath();
+                    fileName = "UnidadMedidaDataExcel.xlsx";
+                    aCols = this.createColumnConfigTableUnitOfMeasurement();
                 }
+                if (this.getView().getModel("localModel").getProperty(path).length > 0) {
+                    util.utilController.exportSpreadSheetXLSX(aCols, oSettings, oTable, fileName);
+                } else {
+                    util.utilUI.messageBox("No existen registros para descargar", "WARNING", "Alerta");
+                }
+            },
+            
         });
     }
 );

@@ -20,6 +20,7 @@ sap.ui.define(
             localModel : function(){
                 const oParam = {
                     selectedRowView : {},
+                    selectedIconTabBar : 0,
                     listOfProducts: [
                         {
                             "id": 1,
@@ -42,6 +43,10 @@ sap.ui.define(
                             "statusState" : "Success"
                     }
                 ],
+                listOfSupplier:[],
+                listOfUnitOfMeasurement:[],
+
+
                     listOfSuppliers: [],
                     listOfUnitOfMeasurement: [],
 
