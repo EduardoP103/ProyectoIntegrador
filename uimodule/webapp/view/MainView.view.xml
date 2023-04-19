@@ -31,6 +31,7 @@
 		<!-- TitleSnapped content-->
 		<semantic:titleExpandedContent>
 		</semantic:titleExpandedContent>
+<<<<<<< HEAD
 		<!-- Header Content -->
 		<semantic:headerContent>
 			<layout:HorizontalLayout
@@ -165,3 +166,66 @@
 		</semantic:content>
 	</semantic:SemanticPage>
 </mvc:View>
+=======
+
+        	<!-- Header Content -->
+            <semantic:headerContent>
+                <layout:HorizontalLayout class="sapUiNoContentPadding" allowWrapping="true">
+                    <layout:VerticalLayout width="auto" class="sapUiLargeMarginEnd">
+                        <Image src="./assets/yoshi.jpg" height="8rem" width="8rem"/>
+                    </layout:VerticalLayout>
+                    <layout:VerticalLayout width="auto" class="sapUiMediumMarginBeginEnd">
+                        <ObjectAttribute title="{i18n>content}"/>
+                        <ObjectStatus text="{i18n>user}" 
+                        state="Success"/>
+                        <ObjectAttribute title="{i18n>post}"/>
+                        <ObjectStatus text="{i18n>position}"
+                        state="Success"/>
+                    </layout:VerticalLayout>
+                </layout:HorizontalLayout>
+            </semantic:headerContent>
+            
+
+            <!-- Content of Tables -->
+            <semantic:content>
+                <Table
+                    id="idProductsTable"
+                    inset="false"
+                    
+                    class="sapFSemanticPageAlignContent"
+                    width="auto">
+                    
+                    <columns>
+                        <Column>
+                            <Text text="Nombre"/>
+                        </Column>
+                        <Column  minScreenWidth="Tablet" demandPopin="true">
+                            <Text text="Descripción"/>
+                        </Column>
+                        <Column  minScreenWidth="Tablet" demandPopin="true">
+                            <Text text="Imagen"/>
+                        </Column>
+                        <Column  minScreenWidth="Tablet" demandPopin="true">
+                            <Text text="Precio V."/>
+                        </Column>
+                        <Column  minScreenWidth="Tablet" demandPopin="true">
+                            <Text text="Precio C."/>
+                        </Column>
+                        <Column  minScreenWidth="Tablet" demandPopin="true">
+                            <Text text="Unidad M."/>
+                        </Column>
+                        <Column  minScreenWidth="Tablet" demandPopin="true">
+                            <Text text="Proveedor"/>
+                        </Column>
+                        <Column  minScreenWidth="Tablet" demandPopin="true">
+                            <Text text="Activo"/>
+                        </Column>
+                    </columns>
+                </Table>
+
+            </semantic:content>
+
+    </semantic:SemanticPage>
+
+</mvc:View>
+>>>>>>> 26e56cfd2e2bb29e4475b7a2b047f907ee85a4b2
