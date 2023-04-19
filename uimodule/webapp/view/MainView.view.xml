@@ -36,16 +36,21 @@ controllerName="com.pe.proyectoIntegrador.controller.MainView"
 
         	<!-- Header Content -->
             <semantic:headerContent>
-                <layout:HorizontalLayout allowWrapping="true">
-                    <layout:VerticalLayout class="sapUiMediumMarginBeginEnd">
+                <layout:HorizontalLayout class="sapUiNoContentPadding" allowWrapping="true">
+                    <layout:VerticalLayout width="auto" class="sapUiLargeMarginEnd">
+                        <Image src="./assets/yoshi.jpg" height="8rem" width="8rem"/>
                     </layout:VerticalLayout>
-
-                    <layout:VerticalLayout>
-                        <ObjectAttribute title="Availability"/>
-                        <ObjectStatus text="In Stock"/>
+                    <layout:VerticalLayout width="auto" class="sapUiMediumMarginBeginEnd">
+                        <ObjectAttribute title="{i18n>content}"/>
+                        <ObjectStatus text="{i18n>user}" 
+                        state="Success"/>
+                        <ObjectAttribute title="{i18n>post}"/>
+                        <ObjectStatus text="{i18n>position}"
+                        state="Success"/>
                     </layout:VerticalLayout>
                 </layout:HorizontalLayout>
             </semantic:headerContent>
+            
 
             <!-- Content of Tables -->
             <semantic:content>
