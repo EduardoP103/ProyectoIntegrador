@@ -17,6 +17,194 @@ sap.ui.define(
                 oModel.setDefaultBindingMode("OneWay");
                 return oModel;
             },
+            formModel: function () {
+                const oParam = {
+                    productList: [
+                        {
+                            "productName" : "SSD",
+                            "productDescription" : "Disco Sólido",
+                            "productImage" : "Carro",
+                            "productPriceV" : "18.0",
+                            "productPriceC" : "18.0",
+                            "productStock" : "30.0",
+                            "productUnitM" : "UND",
+                            "productProvider" : "Pepito",
+                            "productActive" : "Activo",
+
+                        },
+                        {
+                            "productName" : "SSD",
+                            "productDescription" : "Disco Sólido",
+                            "productImage" : "Carro",
+                            "productPriceV" : "18.0",
+                            "productPriceC" : "18.0",
+                            "productStock" : "30.0",
+                            "productUnitM" : "UND",
+                            "productProvider" : "Pepito",
+                            "productActive" : "Activo",
+
+                        },
+                        {
+                            "productName" : "SSD",
+                            "productDescription" : "Disco Sólido",
+                            "productImage" : "Carro",
+                            "productPriceV" : "18.0",
+                            "productPriceC" : "18.0",
+                            "productStock" : "30.0",
+                            "productUnitM" : "UND",
+                            "productProvider" : "Pepito",
+                            "productActive" : "Activo",
+
+                        },
+                        {
+                            "productName" : "SSD",
+                            "productDescription" : "Disco Sólido",
+                            "productImage" : "Carro",
+                            "productPriceV" : "18.0",
+                            "productPriceC" : "18.0",
+                            "productStock" : "30.0",
+                            "productUnitM" : "UND",
+                            "productProvider" : "Pepito",
+                            "productActive" : "Activo",
+
+                        },
+                        {
+                            "productName" : "SSD",
+                            "productDescription" : "Disco Sólido",
+                            "productImage" : "Carro",
+                            "productPriceV" : "18.0",
+                            "productPriceC" : "18.0",
+                            "productStock" : "30.0",
+                            "productUnitM" : "UND",
+                            "productProvider" : "Pepito",
+                            "productActive" : "Activo",
+
+                        },
+                        {
+                            "productName" : "SSD",
+                            "productDescription" : "Disco Sólido",
+                            "productImage" : "Carro",
+                            "productPriceV" : "18.0",
+                            "productPriceC" : "18.0",
+                            "productStock" : "30.0",
+                            "productUnitM" : "UND",
+                            "productProvider" : "Pepito",
+                            "productActive" : "Activo",
+
+                        },
+                        {
+                            "productName" : "SSD",
+                            "productDescription" : "Disco Sólido",
+                            "productImage" : "Carro",
+                            "productPriceV" : "18.0",
+                            "productPriceC" : "18.0",
+                            "productStock" : "30.0",
+                            "productUnitM" : "UND",
+                            "productProvider" : "Pepito",
+                            "productActive" : "Activo",
+
+                        },
+                        {
+                            "productName" : "SSD",
+                            "productDescription" : "Disco Sólido",
+                            "productImage" : "Carro",
+                            "productPriceV" : "18.0",
+                            "productPriceC" : "18.0",
+                            "productStock" : "30.0",
+                            "productUnitM" : "UND",
+                            "productProvider" : "Pepito",
+                            "productActive" : "Activo",
+
+                        },
+                        {
+                            "productName" : "SSD",
+                            "productDescription" : "Disco Sólido",
+                            "productImage" : "Carro",
+                            "productPriceV" : "18.0",
+                            "productPriceC" : "18.0",
+                            "productStock" : "30.0",
+                            "productUnitM" : "UND",
+                            "productProvider" : "Pepito",
+                            "productActive" : "Activo",
+
+                        },
+                        {
+                            "productName" : "SSD",
+                            "productDescription" : "Disco Sólido",
+                            "productImage" : "Carro",
+                            "productPriceV" : "18.0",
+                            "productPriceC" : "18.0",
+                            "productStock" : "30.0",
+                            "productUnitM" : "UND",
+                            "productProvider" : "Pepito",
+                            "productActive" : "Activo",
+
+                        },
+                        {
+                            "productName" : "SSD",
+                            "productDescription" : "Disco Sólido",
+                            "productImage" : "Carro",
+                            "productPriceV" : "18.0",
+                            "productPriceC" : "18.0",
+                            "productStock" : "30.0",
+                            "productUnitM" : "UND",
+                            "productProvider" : "Pepito",
+                            "productActive" : "Activo",
+
+                        },
+                        {
+                            "productName" : "SSD",
+                            "productDescription" : "Disco Sólido",
+                            "productImage" : "Carro",
+                            "productPriceV" : "18.0",
+                            "productPriceC" : "18.0",
+                            "productStock" : "30.0",
+                            "productUnitM" : "UND",
+                            "productProvider" : "Pepito",
+                            "productActive" : "Activo",
+
+                        },
+                        {
+                            "productName" : "SSD",
+                            "productDescription" : "Disco Sólido",
+                            "productImage" : "Carro",
+                            "productPriceV" : "18.0",
+                            "productPriceC" : "18.0",
+                            "productStock" : "30.0",
+                            "productUnitM" : "UND",
+                            "productProvider" : "Pepito",
+                            "productActive" : "Activo",
+
+                        },
+                        {
+                            "productName" : "SSD",
+                            "productDescription" : "Disco Sólido",
+                            "productImage" : "Carro",
+                            "productPriceV" : "18.0",
+                            "productPriceC" : "18.0",
+                            "productStock" : "30.0",
+                            "productUnitM" : "UND",
+                            "productProvider" : "Pepito",
+                            "productActive" : "Activo",
+
+                        },
+                        {
+                            "productName" : "SSD",
+                            "productDescription" : "Disco Sólido",
+                            "productImage" : "Carro",
+                            "productPriceV" : "18.0",
+                            "productPriceC" : "18.0",
+                            "productStock" : "30.0",
+                            "productUnitM" : "UND",
+                            "productProvider" : "Pepito",
+                            "productActive" : "Activo",
+
+                        },
+                    ],
+                }
+                const oModel = new JSONModel(oParam);
+                return oModel;
+            },
         };
     }
 );

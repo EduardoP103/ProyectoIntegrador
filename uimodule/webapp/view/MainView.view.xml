@@ -1,5 +1,188 @@
-<mvc:View controllerName="com.pe.proyectoIntegrador.controller.MainView" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m">
-    <Page id="page" title="{i18n>title}">
-        <content />
-    </Page>
+<mvc:View controllerName="com.pe.proyectoIntegrador.controller.MainView" 
+xmlns:mvc="sap.ui.core.mvc"
+xmlns="sap.m"
+xmlns:f="sap.f"
+xmlns:layout="sap.ui.layout"
+height="100%">
+<f:DynamicPage id="dynamicPageId"
+    stickySubheaderProvider="iconTabBar"
+    class="sapUiNoContentPadding"
+    toggleHeaderOnTitleClick="{/titleClickable}">
+    <!-- DynamicPage Title -->
+    <f:title>
+        <f:DynamicPageTitle>
+            <f:heading>
+                <Title text="{i18n>mainTitle}"/>
+            </f:heading>
+            <!--
+            <f:expandedContent>
+                <Label text="This is a subheading"/>
+            </f:expandedContent>
+            <f:snappedContent>
+                <Label text="This is a subheading"/>
+            </f:snappedContent>
+            <f:snappedTitleOnMobile>
+                <Title text="This is a subheading"/>
+            </f:snappedTitleOnMobile>
+            -->
+            <f:content>
+                <!--
+                <OverflowToolbar>
+                    <GenericTag text="SR"
+                        status="Error"
+                        press="onGenericTagPress"
+                        design="StatusIconHidden">
+                        <ObjectNumber number="2"
+                            unit="M"
+                            emphasized="false"
+                            state="Error"/>
+                    </GenericTag>
+                </OverflowToolbar>
+                -->
+            </f:content>
+            <f:actions>
+                <!--
+                <Button text="Edit" type="Emphasized"/>
+                <Button text="Delete" type="Transparent"/>
+                <Button text="Copy" type="Transparent"/>
+                <Button text="Toggle Footer" type="Transparent" press="onToggleFooter"/>
+                <Button icon="sap-icon://action" type="Transparent"/>
+                -->
+            </f:actions>
+            <f:navigationActions>
+                <!--
+                <Button icon="sap-icon://full-screen" type="Transparent" />
+                <Button icon="sap-icon://exit-full-screen" type="Transparent" />
+                <Button icon="sap-icon://decline" type="Transparent" />
+                -->
+            </f:navigationActions>
+        </f:DynamicPageTitle>
+    </f:title>
+    <!-- DynamicPage Header -->
+    <f:header>
+        <f:DynamicPageHeader pinnable="true">
+            <layout:HorizontalLayout allowWrapping="true">
+                <layout:VerticalLayout class="sapUiMediumMarginEnd">
+                    <Image src="./assets/goku.jpg" width="8em" height="8em" />
+                </layout:VerticalLayout>
+
+                <layout:VerticalLayout>
+                    <ObjectAttribute title="Consultor"/>
+                    <ObjectStatus text="Eyner Mesones" state="Success" />
+                    <ObjectAttribute title="Cargo"/>
+                    <ObjectStatus text="Analista del sistema" state="Success" />
+                </layout:VerticalLayout>
+            </layout:HorizontalLayout>
+        </f:DynamicPageHeader>
+    </f:header>
+    <f:content>
+        <IconTabBar id="iconTabBar" class="sapUiResponsiveContentPadding">
+            <items>
+                <IconTabFilter text="{i18n>tab1Title}">
+                    <Table id="idProductsTable"
+                        inset="false"
+                        sticky="HeaderToolbar,ColumnHeaders"
+                        items="{
+                                path: 'formModel>/productList'
+                            }"
+                        class="sapUiSmallNegativeMarginBeginEnd"
+                        width="auto">
+                        <headerToolbar>
+                            <Toolbar>
+                                <Label text="{i18n>tab1TableTitle}"></Label>
+                            </Toolbar>
+                            <OverflowToolbar>
+                                <Title text="Products" level="H2"/>
+                                <ToolbarSpacer></ToolbarSpacer>
+                                <Button	icon="sap-icon://add" text="{i18n>addButtonText}" press="onAddButton" />
+                                <Button	icon="sap-icon://settings" text="{i18n>settingsButtonText}" press="onSettingsButton" />
+                            </OverflowToolbar>
+                        </headerToolbar>
+                        <columns>
+                            <Column width="12em">
+                                <Text text="{i18n>tab1TableC1}" />
+                            </Column>
+                            <Column minScreenWidth="Tablet" demandPopin="true">
+                                <Text text="{i18n>tab1TableC2}" />
+                            </Column>
+                            <Column minScreenWidth="Tablet" demandPopin="true" hAlign="End">
+                                <Text text="{i18n>tab1TableC3}" />
+                            </Column>
+                            <Column hAlign="Center">
+                                <Text text="{i18n>tab1TableC4}" />
+                            </Column>
+                            <Column hAlign="Center">
+                                <Text text="{i18n>tab1TableC5}" />
+                            </Column>
+                            <Column hAlign="Center">
+                                <Text text="{i18n>tab1TableC6}" />
+                            </Column>
+                            <Column hAlign="Center">
+                                <Text text="{i18n>tab1TableC7}" />
+                            </Column>
+                            <Column hAlign="Center">
+                                <Text text="{i18n>tab1TableC8}" />
+                            </Column>
+                            <Column hAlign="Center">
+                                <Text text="{i18n>tab1TableC9}" />
+                            </Column>
+                        </columns>
+                        <items>
+                            <ColumnListItem>
+                                <cells>
+                                    <!--<ObjectIdentifier title="{Name}" text="{ProductId}"/>
+                                    <Text text="{SupplierName}" />
+                                    <Text text="{Width} x {Depth} x {Height} {DimUnit}" />
+                                    <ObjectNumber
+                                        number="{
+                                            parts:[{path:'Price'},{path:'CurrencyCode'}],
+                                            type: 'sap.ui.model.type.Currency',
+                                            formatOptions: {showMeasure: false}
+                                        }"
+                                        unit="{CurrencyCode}" /> -->
+                                    <Text text="{formModel>productName}" />
+
+                                    <Text text="{formModel>productDescription}" />
+            
+                                    <Text text="{formModel>productImage}" />
+            
+                                    <Text text="{formModel>productPriceV}" />
+            
+                                    <Text text="{formModel>productPriceC}" />
+                                    
+                                    <Text text="{formModel>productStock}" />
+            
+                                    <Text text="{formModel>productUnitM}" />
+                    
+                                    <Text text="{formModel>productProvider}" />
+                    
+                                    <Text text="{formModel>productActive}" />
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
+                </IconTabFilter>
+                <IconTabFilter text="{i18n>tab2Title}">
+                    <Text text="Attachments go here ..." />
+                </IconTabFilter>
+                <IconTabFilter text="{i18n>tab3Title}">
+                    <Text text="Notes go here ..." />
+                </IconTabFilter>
+            </items>
+        </IconTabBar>
+    </f:content>
+    <!-- DynamicPage Footer -->
+    <f:footer>
+        <OverflowToolbar>
+            <Button icon="sap-icon://message-popup"
+                text="{/messagesLength}"
+                type="Emphasized"
+                press="onMessageButtonPress"
+                visible="{= !!${/messagesLength}}"/>
+            <ToolbarSpacer/>
+            <Button type="Accept" text="Accept"/>
+            <Button type="Reject" text="Reject"/>
+        </OverflowToolbar>
+    </f:footer>
+</f:DynamicPage>
 </mvc:View>
