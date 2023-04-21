@@ -32,7 +32,7 @@
 						/>
 					</layout:VerticalLayout>
 					<layout:VerticalLayout>
-						<ObjectAttribute title="{i18n>content}"/>
+						<ObjectAttribute title="{i18n>name}"/>
 						<ObjectStatus
 							text="{i18n>user}"
 							state="Success"
@@ -78,7 +78,7 @@
 										/>
 										<ToolbarSpacer/>
 										<Button
-											text="Agregar"
+											text="{i18n>add}"
 											icon="sap-icon://add"
 											type="Transparent"
 										/>
@@ -202,12 +202,13 @@
 								<OverflowToolbar>
 									<content>
 										<Title
-											text="{i18n>titleSupplierNameCount}"
+											text="Proveedores (X)
+												: "
 											level="H2"
 										/>
 										<ToolbarSpacer/>
 										<Button
-											text="{i18n>add}"
+											text="Agregar"
 											icon="sap-icon://add"
 											type="Emphasized"
 										/>
