@@ -59,10 +59,10 @@ sap.ui.define(
                         }
                     ],
                     listOfUnitOfMeasurement: [
-                        {   id:1,
-                            name:"Unidades",
-                            description:"Unidades",
-                            abbrevation:"UND"
+                        {   id: 1,
+                            name: "Unidades",
+                            description: "Unidades",
+                            abbrevation: "UND"
                         }
                     ],
                     listOfSuppliers: [],
