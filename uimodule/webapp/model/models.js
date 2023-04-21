@@ -46,8 +46,25 @@ sap.ui.define(
                             statusState: "Success",
                         },
                     ],
-                    listOfSupplier: [],
-                    listOfUnitOfMeasurement: [],
+                    listOfSupplier: [
+                        {
+                            id: 1,
+                            name: "Pepito",
+                            phone: "980545386",
+                            address: "Av. Manuel Gonzales parda",
+                            idStatus: 1,
+                            statusName: "Activo",
+                            statusIcon: "sap-icon://sys-enter-2",
+                            statusState: "Success",
+                        }
+                    ],
+                    listOfUnitOfMeasurement: [
+                        {   id:1,
+                            name:"Unidades",
+                            description:"Unidades",
+                            abbrevation:"UND"
+                        }
+                    ],
                     listOfSuppliers: [],
                     // listaTabla : [],
                     listaTabla: [

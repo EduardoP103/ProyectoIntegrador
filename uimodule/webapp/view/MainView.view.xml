@@ -145,7 +145,7 @@
                             <headerToolbar>
                                 <OverflowToolbar>
                                     <content>
-                                        <Title text="Proveedores (X): " level="H2"/>
+                                        <Title text="Proveedores ({= ${localModel>/listOfSupplier}.length })" level="H2"/>
                                         <ToolbarSpacer />
                                         <Button text="Agregar" icon="sap-icon://add" type="Emphasized"/>
                                     </content>
@@ -155,23 +155,31 @@
                                 <Column width="150px">
                                     <Text text="Nombre" />
                                 </Column>
-                                <Column minScreenWidth="Tablet" demandPopin="true">
-                                    <Text text="Telefono" />
+                                <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+                                    <Text text="Teléfono" />
                                 </Column>
-                                <Column minScreenWidth="Desktop" demandPopin="true" hAlign="End">
+                                <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
                                     <Text text="Dirección" />
                                 </Column>
                                 <Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">
                                     <Text text="Estado" />
                                 </Column>
+
+                                <Column hAlign="Center">
+                                    <Text text="" />
+                                </Column>
                             </columns>
                             <items>
                                 <ColumnListItem vAlign="Middle">
                                     <cells>
-                                        <Text text="{localModel>product}" />
-                                        <Text text="{localModel>product}" />
-                                        <Text text="{localModel>product}" />
-                                        <ObjectStatus class="sapUiSmallMarginBottom" text="Activo" icon="sap-icon://sys-enter-2" state="Success" />
+                                        <Text text="{localModel>name}" />
+                                        <Text text="{localModel>phone}" />
+                                        <Text text="{localModel>address}" />
+                                        <ObjectStatus text="{localModel>statusName}" icon="{localModel>statusIcon}" state="{localModel>statusState}" />
+                                        <HBox class="contenRowIconTable">
+                                            <Button icon="sap-icon://edit" type="Ghost"/>
+                                            <Button icon="sap-icon://delete" type="Ghost"/>
+                                        </HBox>
                                     </cells>
                                 </ColumnListItem>
                             </items>
@@ -182,7 +190,7 @@
                          <headerToolbar>
                                 <OverflowToolbar>
                                     <content>
-                                        <Title text="Unidades de Medida (X): " level="H2"/>
+                                        <Title text="Unidades de Medida ({= ${localModel>/listOfUnitOfMeasurement}.length })" level="H2"/>
                                         <ToolbarSpacer />
                                         <Button text="Agregar" icon="sap-icon://add" type="Transparent"/>
                                         <Button text="Configuración" icon="sap-icon://action-settings" type="Transparent"/>
@@ -206,9 +214,9 @@
                             <items>
                                 <ColumnListItem vAlign="Middle">
                                     <cells>
-                                        <Text text="{localModel>product}" />
-                                        <Text text="{localModel>product}" />
-                                        <Text text="{localModel>product}" />
+                                        <Text text="{localModel>name}" />
+                                        <Text text="{localModel>description}" />
+                                        <Text text="{localModel>abbrevation}" />
                                         <ObjectStatus class="sapUiSmallMarginBottom" text="Activo" icon="sap-icon://sys-enter-2" state="Success" />
                                     </cells>
                                 </ColumnListItem>
