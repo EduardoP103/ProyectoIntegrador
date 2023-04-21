@@ -5,7 +5,6 @@ sap.ui.define([
        "use strict";
 	   return {
 		   console: function (msg) {
-			
 		   },
 		   messageBox: function (msg, icon, title) {
 			   MessageBox.show(msg, {
@@ -15,6 +14,5 @@ sap.ui.define([
 				   emphasizedAction: MessageBox.Action.OK
 			   });
 		   }
-		   
 	   };
    });

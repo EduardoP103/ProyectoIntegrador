@@ -5,7 +5,6 @@ sap.ui.define(
      */
     function (Opa5) {
         "use strict";
-
         return Opa5.extend("com.pe.proyectoIntegrador.test.integration.arrangements.Startup", {
             iStartMyApp: function () {
                 this.iStartMyUIComponent({

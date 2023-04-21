@@ -3,13 +3,10 @@ sap.ui.require([
   "sap/ui/test/actions/Press"
 ], function (Opa5, Press) {
   "use strict";
-
   var sViewName = "com.pe.proyectoIntegrador.view.MainView";
-
   Opa5.createPageObjects({
     onTheMainPage: {
       viewName: sViewName,
-
       actions: {
         // add action functions here
         iPressTheButton: function () {
@@ -20,7 +17,6 @@ sap.ui.require([
           });
         }
       },
-
       assertions: {
           // add assertion functions here
           iShouldSeeTheTitle: function () {
@@ -36,8 +32,6 @@ sap.ui.require([
             });
         }
       }
-
     }
   });
-
 });

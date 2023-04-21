@@ -26,7 +26,6 @@ sap.ui.define([
 				fileName: fileName,
 				worker: false, // We need to disable worker because we are using a MockServer as OData Service
 			};
-
 			oSheet = new Spreadsheet(oSettings);
 			oSheet.build().finally(function () {
 				oSheet.destroy();

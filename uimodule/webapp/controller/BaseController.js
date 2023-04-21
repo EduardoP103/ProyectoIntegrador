@@ -7,10 +7,8 @@ sap.ui.define(
      */
     function (Controller, History, UIComponent, formatter) {
         "use strict";
-
         return Controller.extend("com.pe.proyectoIntegrador.controller.BaseController", {
             formatter: formatter,
-
             /**
              * Convenience method for getting the view model by name in every controller of the application.
              * @public
@@ -20,7 +18,6 @@ sap.ui.define(
             getModel: function (sName) {
                 return this.getView().getModel(sName);
             },
-
             /**
              * Convenience method for setting the view model in every controller of the application.
              * @public
@@ -31,7 +28,6 @@ sap.ui.define(
             setModel: function (oModel, sName) {
                 return this.getView().setModel(oModel, sName);
             },
-
             /**
              * Convenience method for getting the resource bundle.
              * @public
@@ -40,7 +36,6 @@ sap.ui.define(
             getResourceBundle: function () {
                 return this.getOwnerComponent().getModel("i18n").getResourceBundle();
             },
-
             /**
              * Method for navigation to specific view
              * @public
@@ -51,14 +46,11 @@ sap.ui.define(
             navTo: function (psTarget, pmParameters, pbReplace) {
                 this.getRouter().navTo(psTarget, pmParameters, pbReplace);
             },
-
             getRouter: function () {
                 return UIComponent.getRouterFor(this);
             },
-
             onNavBack: function () {
                 const sPreviousHash = History.getInstance().getPreviousHash();
-
                 if (sPreviousHash !== undefined) {
                     window.history.back();
                 } else {

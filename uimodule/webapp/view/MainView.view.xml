@@ -58,14 +58,11 @@
                         <Image src="https://upload.wikimedia.org/wikipedia/en/9/92/Bowser_Stock_Art_2021.png" width="100px" />
                         <!-- <Image src="https://sdk.openui5.org/test-resources/sap/ui/documentation/sdk/images/bigimgs/273303_low_jpg_srgb.jpg" width="100px" /> -->
                     </layout:VerticalLayout>
-
                     <layout:VerticalLayout>
                         <ObjectAttribute title="Consultor"/>
                         <ObjectStatus text="Guillermo Eduardo" state="Success" />
-
                         <ObjectAttribute title="Cargo"/>
                         <ObjectStatus text="Analista de Sistemas" state="Success" />
-
                     </layout:VerticalLayout>
                 </layout:HorizontalLayout>
             </f:DynamicPageHeader>
@@ -73,7 +70,6 @@
         <f:content>
             <IconTabBar id="iconTabBar" class="sapUiResponsiveContentPadding"
             selectedKey="{path: 'localModel>/selectedIconTabBar'}"
-            
             >
                 <items>
                     <IconTabFilter key="0" text="Productos">
@@ -85,10 +81,8 @@
                                         <ToolbarSpacer />
                                         <Button text="Agregar" icon="sap-icon://add" type="Transparent"/>
                                         <Button text="Configuración" icon="sap-icon://action-settings" type="Transparent"/>
-
                                     </content>
                                 </OverflowToolbar>
-
                             </headerToolbar>
                             <columns>
                                 <Column >
@@ -106,61 +100,41 @@
                                 <Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">
                                     <Text text="Precio C." />
                                 </Column>
-
                                 <Column minScreenWidth="Tablet" demandPopin="true">
                                     <Text text="Stock" />
                                 </Column>
-
                                 <Column minScreenWidth="Tablet" demandPopin="true">
                                     <Text text="Unidad M." />
                                 </Column>
-
                                 <Column minScreenWidth="Tablet" demandPopin="true">
                                     <Text text="Proveedor" />
                                 </Column>
-
                                 <Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">
                                     <Text text="Activo" />
                                 </Column>
-
                                 <Column hAlign="Center">
                                     <Text text="" />
                                 </Column>
-
                                 <!-- <Column hAlign="Center">
                                     <Text text="" />
                                 </Column> -->
-
                             </columns>
-
                             <items>
                                 <ColumnListItem vAlign="Middle">
                                     <cells>
-
                                         <Text text="{localModel>name}" />
-
                                         <Text text="{localModel>description}" />
-
                                         <Button press="onOpenViewImage" icon="sap-icon://picture" type="Emphasized"/>
-
                                         <Text text="{localModel>salePrice}" />
-
                                         <Text text="{localModel>purchasePrice}" />
-
                                         <Text text="{localModel>stock}" />
-
                                         <Text text="{localModel>unitOfMeasurementName}" />
                                         <Text text="{localModel>supplierName}" />
-
                                         <ObjectStatus text="{localModel>statusName}" icon="{localModel>statusIcon}" state="{localModel>statusState}" />
-
                                         <HBox class="contenRowIconTable">
                                             <Button icon="sap-icon://edit" type="Ghost"/>
-
                                             <Button icon="sap-icon://delete" type="Ghost"/>
                                         </HBox>
-
-
                                     </cells>
                                 </ColumnListItem>
                             </items>
@@ -176,7 +150,6 @@
                                         <Button text="Agregar" icon="sap-icon://add" type="Emphasized"/>
                                     </content>
                                 </OverflowToolbar>
-
                             </headerToolbar>
                             <columns>
                                 <Column width="150px">
@@ -191,22 +164,14 @@
                                 <Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">
                                     <Text text="Estado" />
                                 </Column>
-
-
                             </columns>
-
                             <items>
                                 <ColumnListItem vAlign="Middle">
                                     <cells>
-
                                         <Text text="{localModel>product}" />
-
                                         <Text text="{localModel>product}" />
-
                                         <Text text="{localModel>product}" />
-
                                         <ObjectStatus class="sapUiSmallMarginBottom" text="Activo" icon="sap-icon://sys-enter-2" state="Success" />
-
                                     </cells>
                                 </ColumnListItem>
                             </items>
@@ -214,8 +179,6 @@
                     </IconTabFilter>
                     <IconTabFilter   key="2"  text="Unidades de Medida">
                         <Table id="idUnitOfMeasurementTable" sticky="HeaderToolbar,ColumnHeaders" inset="false" items="{path: 'localModel>/listOfUnitOfMeasurement'}" class="sapFDynamicPageAlignContent" width="auto">
-         
-
                    <headerToolbar>
                                 <OverflowToolbar>
                                     <content>
@@ -223,10 +186,8 @@
                                         <ToolbarSpacer />
                                         <Button text="Agregar" icon="sap-icon://add" type="Transparent"/>
                                         <Button text="Configuración" icon="sap-icon://action-settings" type="Transparent"/>
-
                                     </content>
                                 </OverflowToolbar>
-
                             </headerToolbar>
                             <columns>
                                 <Column width="150px">
@@ -241,28 +202,19 @@
                                 <Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">
                                     <Text text="Estado" />
                                 </Column>
-
                             </columns>
-
                             <items>
                                 <ColumnListItem vAlign="Middle">
                                     <cells>
-
                                         <Text text="{localModel>product}" />
-
                                         <Text text="{localModel>product}" />
-
                                         <Text text="{localModel>product}" />
-
-
                                         <ObjectStatus class="sapUiSmallMarginBottom" text="Activo" icon="sap-icon://sys-enter-2" state="Success" />
-
                                     </cells>
                                 </ColumnListItem>
                             </items>
                         </Table>
                     </IconTabFilter>
-
                 </items>
             </IconTabBar>
         </f:content>

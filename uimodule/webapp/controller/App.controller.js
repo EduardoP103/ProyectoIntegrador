@@ -5,7 +5,6 @@ sap.ui.define(
      */
     function (BaseController) {
         "use strict";
-
         return BaseController.extend("com.pe.proyectoIntegrador.controller.App", {
             onInit() {},
         });

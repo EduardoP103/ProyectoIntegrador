@@ -8,20 +8,14 @@ sap.ui.define([
  */
 function (opaTest) {
   "use strict";
-
   opaTest("Should see the page", function (Given, When, Then) {
-
     // Arrangements
     Given.iStartMyApp();
-
     // Actions
     // When.onTheMainPage.iPressTheButton();
-
     // Assertions
     Then.onTheMainPage.iShouldSeeTheTitle();
-
     // Cleanup
     Then.iTeardownMyApp();
   });
-
 });

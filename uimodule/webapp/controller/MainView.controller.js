@@ -8,13 +8,11 @@ sap.ui.define(
         var EdmType = exportLibrary.EdmType;
         return Controller.extend("com.pe.proyectoIntegrador.controller.MainView", {
             onInit: function () {},
-
             onOpenViewImage: function (oEvent) {
                 var oButton = oEvent.getSource(),
                     oView = this.getView();
                 debugger;
                 var oProduct = oButton.getParent().getBindingContext("localModel");
-
                 debugger;
                 var oSelectObj = oProduct.getObject();
                 this.getView().getModel("localModel").setProperty("/selectedRowView", oSelectObj);
@@ -30,54 +28,44 @@ sap.ui.define(
                     }.bind(this)
                 );
             },
-
             onCloseViewImage: function () {
                 this.pPopover.close();
             },
             createColumnConfigTableProducts: function () {
                 var aCols = [];
-
                 aCols.push({
                     label: "ProductoFinal X Precio",
                     property: ["product", "price"],
                     type: EdmType.String,
                     template: "{0} {1}",
                 });
-
                 aCols.push({
                     label: "SupplierNombre",
                     property: ["supplier"],
                     type: EdmType.String,
                     template: "{0}",
                 });
-
                 //dimension
-
                 aCols.push({
                     label: "dimension",
                     property: ["dimension"],
                     type: EdmType.String,
                     template: "{0}",
                 });
-
                 //weight
-
                 aCols.push({
                     label: "weight",
                     property: ["weight"],
                     type: EdmType.String,
                     template: "{0}",
                 });
-
                 //price
-
                 aCols.push({
                     label: "price",
                     property: ["price"],
                     type: EdmType.String,
                     template: "{0}",
                 });
-
                 return aCols;
             },
             createColumnConfigTableSupplier: function () {
