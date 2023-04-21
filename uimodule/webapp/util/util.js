@@ -1,10 +1,12 @@
 sap.ui.define([
 	"./utilUI",
-	"./utilController"
-], function( utilUI , utilController) {
+	"./utilController",
+    "./utilHTTP"
+], function( utilUI , utilController,utilHTTP) {
 	"use strict";
 	return {
 		utilUI: utilUI,
 		utilController: utilController,
+        utilHTTP: utilHTTP
 	};
 });

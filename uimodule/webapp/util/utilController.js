@@ -14,10 +14,10 @@ sap.ui.define([
             var source = dataPass.viewDetail.getView().getModel('i18n').getResourceBundle();
             return source.getText(name);
         },
-		exportSpreadSheetXLSX: function (aCols, oSettings, oTable,fileName) {
+		exportSpreadSheetXLSX: function (aCols, oTable,fileName) {
 			var oSheet;
 			const oRowBinding = oTable.getBinding("items");
-			oSettings = {
+			const oSettings = {
 				workbook: {
 					columns: aCols,
 					hierarchyLevel: "Level",
@@ -30,6 +30,10 @@ sap.ui.define([
 			oSheet.build().finally(function () {
 				oSheet.destroy();
 			});
-		}
+		},
+        obtenerKeysObject : function(obj){
+            var keys = Object.keys(obj)
+            return keys;
+        }
 	};
 });

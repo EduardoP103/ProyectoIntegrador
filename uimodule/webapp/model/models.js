@@ -23,7 +23,7 @@ sap.ui.define(
                         cargo: "Analista de Sistemas",
                     },
                     selectedRowView: {},
-                    selectedIconTabBar: 0,
+                    selectedIconTabBar: "0",
                     listOfProducts: [
                         {
                             id: 1,

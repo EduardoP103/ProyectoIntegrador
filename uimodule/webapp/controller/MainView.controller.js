@@ -1,9 +1,9 @@
 sap.ui.define(
-    ["./BaseController", "../util/util", "sap/ui/export/library"],
+    ["./BaseController","../util/util", "sap/ui/export/library",'sap/m/MessageBox'],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-    function (Controller, util, exportLibrary) {
+    function (Controller, util ,exportLibrary,MessageBox) {
         "use strict";
         var EdmType = exportLibrary.EdmType;
         return Controller.extend("com.pe.proyectoIntegrador.controller.MainView", {
@@ -101,11 +101,25 @@ sap.ui.define(
                     aCols = this.createColumnConfigTableUnitOfMeasurement();
                 }
                 if (this.getView().getModel("localModel").getProperty(path).length > 0) {
-                    util.utilController.exportSpreadSheetXLSX(aCols, oSettings, oTable, fileName);
+                    util.utilController.exportSpreadSheetXLSX(aCols, oTable, fileName);
                 } else {
                     util.utilUI.messageBox("No existen registros para descargar", "WARNING", "Alerta");
                 }
             },
+            onPressShowMessageBox: function(){
+                debugger;
+                let msg = "MENSAJE";
+                let icon = "WARNING";
+                let title = "TITULO";
+                util.utilUI.messageBox(msg, icon, title)
+            },
+            onRealizarObtKeysObject : function(){
+                debugger;
+                let obj = {"nombre" : "Guillermo"}
+                let respuesta = util.utilController.obtenerKeysObject(obj)
+                alert(JSON.stringify(respuesta))
+            }
+            
         });
     }
 );
