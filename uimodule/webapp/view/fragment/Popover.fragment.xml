@@ -14,10 +14,12 @@
 				<ToolbarSpacer/>
 				<Button
 					id="idClosePopover"
-					text="{i18n>/closePopoverTxt}"
+					text="{i18n>closePopoverTxt}"
 					press="onPopoverClose" />
 			</OverflowToolbar>
 		</footer>
-		<Image src="{path: 'formModel>/selectedRowView/imgUrl}" width="15em" densityAware="false" />
+		<Image src="{
+            path:'formModel>/selectedRowView/imgUrl'
+        }" width="15em" densityAware="false" />
 	</Popover>
 </core:FragmentDefinition>
