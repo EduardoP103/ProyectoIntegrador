@@ -1,0 +1,23 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<Popover
+		id="imgPopover"
+		title="{
+            path:'formModel>/selectedRowView/productName'
+        }"
+		class="sapUiResponsivePadding--header sapUiResponsivePadding--footer"
+		placement="Bottom"
+		initialFocus="email">
+		<footer>
+			<OverflowToolbar>
+				<ToolbarSpacer/>
+				<Button
+					id="idClosePopover"
+					text="{i18n>/closePopoverTxt}"
+					press="onPopoverClose" />
+			</OverflowToolbar>
+		</footer>
+		<Image src="{path: 'formModel>/selectedRowView/imgUrl}" width="15em" densityAware="false" />
+	</Popover>
+</core:FragmentDefinition>

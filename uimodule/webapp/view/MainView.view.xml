@@ -152,7 +152,7 @@
 
                                         <Text text="{formModel>productDescription}" />
 
-                                        <Text text="{formModel>productImage}" />
+                                        <Button press="onOpenViewImage" icon="sap-icon://picture" type="Emphasized"/>
 
                                         <Text text="{formModel>productPriceV}" />
 

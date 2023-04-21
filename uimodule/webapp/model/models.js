@@ -19,6 +19,7 @@ sap.ui.define(
             },
             formModel: function () {
                 const oParam = {
+                    selectedRowView: {},
                     productList: [
                         {
                             "productName" : "SSD",
@@ -30,6 +31,7 @@ sap.ui.define(
                             "productUnitM" : "UND",
                             "productProvider" : "Pepito",
                             "productActive" : "Activo",
+                            "imgUrl" : "https://img.unocero.com/2021/08/rickroll_4k.jpeg"
 
                         },
                         {
@@ -42,6 +44,7 @@ sap.ui.define(
                             "productUnitM" : "UND",
                             "productProvider" : "Pepito",
                             "productActive" : "Activo",
+                            "imgUrl" : "https://img.unocero.com/2021/08/rickroll_4k.jpeg"
 
                         },
                         {
@@ -54,6 +57,7 @@ sap.ui.define(
                             "productUnitM" : "UND",
                             "productProvider" : "Pepito",
                             "productActive" : "Activo",
+                            "imgUrl" : "https://img.unocero.com/2021/08/rickroll_4k.jpeg"
 
                         },
                         {
@@ -66,6 +70,7 @@ sap.ui.define(
                             "productUnitM" : "UND",
                             "productProvider" : "Pepito",
                             "productActive" : "Activo",
+                            "imgUrl" : "https://img.unocero.com/2021/08/rickroll_4k.jpeg"
 
                         },
                         {
@@ -78,6 +83,7 @@ sap.ui.define(
                             "productUnitM" : "UND",
                             "productProvider" : "Pepito",
                             "productActive" : "Activo",
+                            "imgUrl" : "https://img.unocero.com/2021/08/rickroll_4k.jpeg"
 
                         },
                         {
@@ -90,6 +96,7 @@ sap.ui.define(
                             "productUnitM" : "UND",
                             "productProvider" : "Pepito",
                             "productActive" : "Activo",
+                            "imgUrl" : "https://img.unocero.com/2021/08/rickroll_4k.jpeg"
 
                         },
                         {
@@ -102,6 +109,7 @@ sap.ui.define(
                             "productUnitM" : "UND",
                             "productProvider" : "Pepito",
                             "productActive" : "Activo",
+                            "imgUrl" : "https://img.unocero.com/2021/08/rickroll_4k.jpeg"
 
                         },
                         {
@@ -114,6 +122,7 @@ sap.ui.define(
                             "productUnitM" : "UND",
                             "productProvider" : "Pepito",
                             "productActive" : "Activo",
+                            "imgUrl" : "https://img.unocero.com/2021/08/rickroll_4k.jpeg"
 
                         },
                         {
@@ -126,6 +135,7 @@ sap.ui.define(
                             "productUnitM" : "UND",
                             "productProvider" : "Pepito",
                             "productActive" : "Activo",
+                            "imgUrl" : "https://img.unocero.com/2021/08/rickroll_4k.jpeg"
 
                         },
                         {
@@ -138,6 +148,7 @@ sap.ui.define(
                             "productUnitM" : "UND",
                             "productProvider" : "Pepito",
                             "productActive" : "Activo",
+                            "imgUrl" : "https://img.unocero.com/2021/08/rickroll_4k.jpeg"
 
                         },
                         {
@@ -150,6 +161,7 @@ sap.ui.define(
                             "productUnitM" : "UND",
                             "productProvider" : "Pepito",
                             "productActive" : "Activo",
+                            "imgUrl" : "https://img.unocero.com/2021/08/rickroll_4k.jpeg"
 
                         },
                         {
@@ -162,42 +174,7 @@ sap.ui.define(
                             "productUnitM" : "UND",
                             "productProvider" : "Pepito",
                             "productActive" : "Activo",
-
-                        },
-                        {
-                            "productName" : "SSD",
-                            "productDescription" : "Disco Sólido",
-                            "productImage" : "Carro",
-                            "productPriceV" : "18.0",
-                            "productPriceC" : "18.0",
-                            "productStock" : "30.0",
-                            "productUnitM" : "UND",
-                            "productProvider" : "Pepito",
-                            "productActive" : "Activo",
-
-                        },
-                        {
-                            "productName" : "SSD",
-                            "productDescription" : "Disco Sólido",
-                            "productImage" : "Carro",
-                            "productPriceV" : "18.0",
-                            "productPriceC" : "18.0",
-                            "productStock" : "30.0",
-                            "productUnitM" : "UND",
-                            "productProvider" : "Pepito",
-                            "productActive" : "Activo",
-
-                        },
-                        {
-                            "productName" : "SSD",
-                            "productDescription" : "Disco Sólido",
-                            "productImage" : "Carro",
-                            "productPriceV" : "18.0",
-                            "productPriceC" : "18.0",
-                            "productStock" : "30.0",
-                            "productUnitM" : "UND",
-                            "productProvider" : "Pepito",
-                            "productActive" : "Activo",
+                            "imgUrl" : "https://img.unocero.com/2021/08/rickroll_4k.jpeg"
 
                         },
                     ],
