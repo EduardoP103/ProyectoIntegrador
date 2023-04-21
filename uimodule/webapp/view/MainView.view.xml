@@ -115,9 +115,6 @@
                                 <Column hAlign="Center">
                                     <Text text="" />
                                 </Column>
-                                <!-- <Column hAlign="Center">
-                                    <Text text="" />
-                                </Column> -->
                             </columns>
                             <items>
                                 <ColumnListItem vAlign="Middle">
@@ -152,10 +149,10 @@
                                 </OverflowToolbar>
                             </headerToolbar>
                             <columns>
-                                <Column width="150px">
+                                <Column>
                                     <Text text="Nombre" />
                                 </Column>
-                                <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+                                <Column>
                                     <Text text="Teléfono" />
                                 </Column>
                                 <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
@@ -198,10 +195,10 @@
                                 </OverflowToolbar>
                             </headerToolbar>
                             <columns>
-                                <Column width="150px">
+                                <Column>
                                     <Text text="Nombre" />
                                 </Column>
-                                <Column minScreenWidth="Tablet" demandPopin="true">
+                                <Column>
                                     <Text text="Descripción" />
                                 </Column>
                                 <Column minScreenWidth="Desktop" demandPopin="true" hAlign="End">
@@ -210,6 +207,9 @@
                                 <Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">
                                     <Text text="Estado" />
                                 </Column>
+                                <Column hAlign="Center">
+                                    <Text text="" />
+                                </Column>
                             </columns>
                             <items>
                                 <ColumnListItem vAlign="Middle">
@@ -217,7 +217,11 @@
                                         <Text text="{localModel>name}" />
                                         <Text text="{localModel>description}" />
                                         <Text text="{localModel>abbrevation}" />
-                                        <ObjectStatus class="sapUiSmallMarginBottom" text="Activo" icon="sap-icon://sys-enter-2" state="Success" />
+                                        <ObjectStatus text="{localModel>statusName}" icon="{localModel>statusIcon}" state="{localModel>statusState}" />
+                                        <HBox class="contenRowIconTable">
+                                            <Button icon="sap-icon://edit" type="Ghost"/>
+                                            <Button icon="sap-icon://delete" type="Ghost"/>
+                                        </HBox>
                                     </cells>
                                 </ColumnListItem>
                             </items>
