@@ -65,8 +65,6 @@ sap.ui.define(
                             abbrevation: "UND"
                         }
                     ],
-                    listOfSuppliers: [],
-                    // listaTabla : [],
                     listaTabla: [
                         {
                             product: "Carro",
