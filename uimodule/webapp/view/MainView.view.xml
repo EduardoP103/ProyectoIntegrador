@@ -179,7 +179,7 @@
                     </IconTabFilter>
                     <IconTabFilter   key="2"  text="Unidades de Medida">
                         <Table id="idUnitOfMeasurementTable" sticky="HeaderToolbar,ColumnHeaders" inset="false" items="{path: 'localModel>/listOfUnitOfMeasurement'}" class="sapFDynamicPageAlignContent" width="auto">
-                   <headerToolbar>
+                         <headerToolbar>
                                 <OverflowToolbar>
                                     <content>
                                         <Title text="Unidades de Medida (X): " level="H2"/>
@@ -225,6 +225,7 @@
                 <Button icon="sap-icon://message-popup" text="onRealizarObtKeysObject" press="onRealizarObtKeysObject" />
                 
                 <ToolbarSpacer/>
+                 <Button icon="sap-icon://excel-attachment" press="onExportSpreadSheetXLSX" type="Accept" text="Exportar CSV"/>
                 <Button icon="sap-icon://excel-attachment" press="onExportSpreadSheetXLSX" type="Accept" text="Exporta Excel"/>
             </OverflowToolbar>
         </f:footer>
