@@ -10,23 +10,163 @@ sap.ui.define(
      */
     function (JSONModel, Device) {
         "use strict";
-
         return {
             createDeviceModel: function () {
                 const oModel = new JSONModel(Device);
                 oModel.setDefaultBindingMode("OneWay");
                 return oModel;
             },
-            // localModel: function () {
-            //     const oParam = {
-            //         usuario:{
-            //             name: "Eduardo Pastor",
-            //             cargo: "Analista de Sistemas",                        cargo:
-            //         },
-            //         listOfProducts:[
-            //         ]
-            //     }
-            // }
+            localModel: function () {
+                const oParam = {
+                    usuario: {
+                        name: "Eduardo Pastor",
+                        cargo: "Analista de Sistemas",
+                    },
+                    selectedRowView: {},
+                    selectedIconTabBar: "0",
+                    listOfProducts: [
+                        {
+                            id: 1,
+                            name: "Poco X5 Pro Black 6GB - 128GB",
+                            description: "XIAOMI",
+                            image: "https://xiaomiperu.com/media/catalog/product/cache/deaf12c726c019462dcd02884cec40ac/1/_/1_5_1.jpg",
+                            fSalePrice: "1200",
+                            salePrice: "18.00",
+                            fPurchasePrice: 1800,
+                            purchasePrice: "18.00",
+                            fStock: 12,
+                            stock: "300.0",
+                            idUnitOfmeasurment: 1,
+                            unitOfMeasurementName: "UND",
+                            idSupplier: 1,
+                            supplierName: "Perú",
+                            idStatus: 1,
+                            statusName: "Activo",
+                            statusIcon: "sap-icon://sys-enter-2",
+                            statusState: "Success",
+                        },
+                        {
+                            id: 2,
+                            name: "Redmi Buds 4 (White)",
+                            description: "XIAOMI",
+                            image: "https://xiaomiperu.com/media/catalog/product/cache/deaf12c726c019462dcd02884cec40ac/r/e/redmi-buds-4_white.jpg",
+                            salePrice: "18.00",
+                            fPurchasePrice: 1800,
+                            purchasePrice: "18.00",
+                            fStock: 12,
+                            stock: "300.0",
+                            idUnitOfmeasurment: 1,
+                            unitOfMeasurementName: "UND",
+                            idSupplier: 1,
+                            supplierName: "Perú",
+                            idStatus: 1,
+                            statusName: "Activo",
+                            statusIcon: "sap-icon://sys-enter-2",
+                            statusState: "Success",
+                        },
+                        {
+                            id: 2,
+                            name: "Xiaomi Mi Portable Bluetooth Speaker (16W) Blue",
+                            description: "XIAOMI",
+                            image: "https://xiaomiperu.com/media/catalog/product/cache/deaf12c726c019462dcd02884cec40ac/m/i/mi-bluettoh-speaker.jpg",
+                            salePrice: "18.00",
+                            fPurchasePrice: 1800,
+                            purchasePrice: "18.00",
+                            fStock: 12,
+                            stock: "300.0",
+                            idUnitOfmeasurment: 1,
+                            unitOfMeasurementName: "UND",
+                            idSupplier: 1,
+                            supplierName: "Perú",
+                            idStatus: 1,
+                            statusName: "Activo",
+                            statusIcon: "sap-icon://sys-enter-2",
+                            statusState: "Success",
+                        },
+                        {
+                            id: 2,
+                            name: "Xiaomi Mi Portable Bluetooth Speaker (16W) Blue",
+                            description: "XIAOMI",
+                            image: "https://xiaomiperu.com/media/catalog/product/cache/deaf12c726c019462dcd02884cec40ac/m/i/mi-bluettoh-speaker.jpg",
+                            salePrice: "18.00",
+                            fPurchasePrice: 1800,
+                            purchasePrice: "18.00",
+                            fStock: 12,
+                            stock: "300.0",
+                            idUnitOfmeasurment: 1,
+                            unitOfMeasurementName: "UND",
+                            idSupplier: 1,
+                            supplierName: "Perú",
+                            idStatus: 1,
+                            statusName: "Activo",
+                            statusIcon: "sap-icon://sys-enter-2",
+                            statusState: "Success",
+                        },
+                        {
+                            id: 2,
+                            name: "Xiaomi Mi Portable Bluetooth Speaker (16W) Blue",
+                            description: "XIAOMI",
+                            image: "https://xiaomiperu.com/media/catalog/product/cache/deaf12c726c019462dcd02884cec40ac/m/i/mi-bluettoh-speaker.jpg",
+                            salePrice: "18.00",
+                            fPurchasePrice: 1800,
+                            purchasePrice: "18.00",
+                            fStock: 12,
+                            stock: "300.0",
+                            idUnitOfmeasurment: 1,
+                            unitOfMeasurementName: "UND",
+                            idSupplier: 1,
+                            supplierName: "Perú",
+                            idStatus: 1,
+                            statusName: "Activo",
+                            statusIcon: "sap-icon://sys-enter-2",
+                            statusState: "Success",
+                        },
+                        {
+                            id: 2,
+                            name: "Xiaomi Mi Portable Bluetooth Speaker (16W) Blue",
+                            description: "XIAOMI",
+                            image: "https://xiaomiperu.com/media/catalog/product/cache/deaf12c726c019462dcd02884cec40ac/m/i/mi-bluettoh-speaker.jpg",
+                            salePrice: "18.00",
+                            fPurchasePrice: 1800,
+                            purchasePrice: "18.00",
+                            fStock: 12,
+                            stock: "300.0",
+                            idUnitOfmeasurment: 1,
+                            unitOfMeasurementName: "UND",
+                            idSupplier: 1,
+                            supplierName: "Perú",
+                            idStatus: 1,
+                            statusName: "Activo",
+                            statusIcon: "sap-icon://sys-enter-2",
+                            statusState: "Success",
+                        },
+                        {
+                            id: 2,
+                            name: "Xiaomi Mi Portable Bluetooth Speaker (16W) Blue",
+                            description: "XIAOMI",
+                            image: "https://xiaomiperu.com/media/catalog/product/cache/deaf12c726c019462dcd02884cec40ac/m/i/mi-bluettoh-speaker.jpg",
+                            salePrice: "18.00",
+                            fPurchasePrice: 1800,
+                            purchasePrice: "18.00",
+                            fStock: 12,
+                            stock: "300.0",
+                            idUnitOfmeasurment: 1,
+                            unitOfMeasurementName: "UND",
+                            idSupplier: 1,
+                            supplierName: "Perú",
+                            idStatus: 1,
+                            statusName: "Activo",
+                            statusIcon: "sap-icon://sys-enter-2",
+                            statusState: "Success",
+                        },
+                    ],
+                    listOfSupplier: [],
+                    listOfUnitOfMeasurement: [],
+                    listOfSuppliers: [],
+                };
+                const oModel = new JSONModel(oParam);
+                return oModel;
+            },
         };
     }
 );

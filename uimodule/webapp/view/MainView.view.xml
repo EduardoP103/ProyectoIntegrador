@@ -1,175 +1,371 @@
 <mvc:View
-	height="100%"
-	xmlns:mvc="sap.ui.core.mvc"
-	displayBlock="true"
-	xmlns="sap.m"
-	xmlns:layout="sap.ui.layout"
-	xmlns:semantic="sap.f.semantic"
 	controllerName="com.pe.proyectoIntegrador.controller.MainView"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	xmlns:f="sap.f"
+	xmlns:layout="sap.ui.layout"
+	height="100%"
 >
-	<!-- <Page id="page" title="{i18n>hola}">
-        <content />
-    </Page>  -->
-	<semantic:SemanticPage
-		id="mySemanticPage"
-		headerPinnable="true"
-		toggleHeaderOnTitleClick="true"
-		preserveHeaderStateOnScroll="false"
-		titleAreaShrinkRatio="1:1.6:1.6"
-		showFooter="false"
+	<f:DynamicPage
+		id="dynamicPageId"
+		showFooter="true"
+		stickySubheaderProvider="iconTabBar"
+		class="sapUiNoContentPadding"
+		toggleHeaderOnTitleClick="{/titleClickable}"
 	>
-		<!-- Title Heading  -->
-		<semantic:titleHeading>
-			<Title
-				id="_IDGenTitle1"
-				text="{i18n>title}"
-			/>
-		</semantic:titleHeading>
-		<!-- TitleExpanded content-->
-		<semantic:titleSnappedContent>
-		</semantic:titleSnappedContent>
-		<!-- TitleSnapped content-->
-		<semantic:titleExpandedContent>
-		</semantic:titleExpandedContent>
-		<!-- Header Content -->
-		<semantic:headerContent>
-			<layout:HorizontalLayout
-				class="sapUiNoContentPadding"
-				allowWrapping="true"
-			>
-				<layout:VerticalLayout
-					width="auto"
-					class="sapUiLargeMarginEnd"
-				>
-					<Image
+		<!-- DynamicPage Title -->
+		<f:title>
+			<f:DynamicPageTitle>
+				<f:heading>
+					<Title text="{i18n>title}"/>
+				</f:heading>
+			</f:DynamicPageTitle>
+		</f:title>
+		<!-- DynamicPage Header -->
+		<f:header>
+			<f:DynamicPageHeader pinnable="true">
+				<layout:HorizontalLayout allowWrapping="true">
+					<layout:VerticalLayout class="sapUiMediumMarginEnd">
+						<Image
 						src="./assets/yoshi.jpg"
-						height="8rem"
-						width="8rem"
-					/>
-				</layout:VerticalLayout>
-				<layout:VerticalLayout
-					width="auto"
-					class="sapUiMediumMarginBeginEnd"
-				>
-					<ObjectAttribute title="{i18n>content}"/>
-					<ObjectStatus
-						text="{i18n>user}"
-						state="Success"
-					/>
-					<ObjectAttribute title="{i18n>post}"/>
-					<ObjectStatus
-						text="{i18n>position}"
-						state="Success"
-					/>
-				</layout:VerticalLayout>
-			
-                <IconTabBar
-                id="idIconTabBarFiori2"
-
-                class="sapUiResponsiveContentPadding">
-                <items>
-                    <IconTabFilter
-                        text="Productos"
-                        key="producto"
-                    >
-                       
-                    </IconTabFilter>
-                    <IconTabFilter
-                        text="Proveedores"
-                        key="proveedores"
-                    >
-                        
-                    </IconTabFilter>
-                    <IconTabFilter
-                        text="Unidades de Medida"
-                        key="unidadesDeMedida"
-                    >
-                       
-                    </IconTabFilter>
-
-                </items>
-            </IconTabBar>
-			</layout:HorizontalLayout>
-		</semantic:headerContent>
-		<!-- Content of Tables -->
-		<semantic:content>
-			<Table
-				id="idProductsTable"
-				inset="false"
-                items="{
-                    path:'PintarTabla>/listaTabla'
-                }"
-				class="sapFSemanticPageAlignContent"
-				width="auto"
+							width="100px"
+						/>
+					</layout:VerticalLayout>
+					<layout:VerticalLayout>
+						<ObjectAttribute title="{i18n>content}"/>
+						<ObjectStatus
+							text="{i18n>user}"
+							state="Success"
+						/>
+						<ObjectAttribute title="{i18n>post}"/>
+						<ObjectStatus
+							text="{i18n>position}"
+							state="Success"
+						/>
+					</layout:VerticalLayout>
+				</layout:HorizontalLayout>
+			</f:DynamicPageHeader>
+		</f:header>
+		<f:content>
+			<IconTabBar
+				id="iconTabBar"
+				class="sapUiResponsiveContentPadding"
+				selectedKey="{
+					path: 'localModel>/selectedIconTabBar'
+				}"
 			>
-				<columns>
-					<Column
-						id="nombreCol"
-						width="12em"
+				<items>
+					<IconTabFilter
+						key="0"
+						text="Productos"
 					>
-						<Text text="{i18n>nombreProducto}"/>
-					</Column>
-					<Column
-						id="descripcionCol"
-						minScreenWidth="Tablet"
-						demandPopin="true"
+						<Table
+							id="idProductsTable"
+							sticky="HeaderToolbar,ColumnHeaders"
+							inset="false"
+							items="{
+								path: 'localModel>/listOfProducts'
+							}"
+							class="sapFDynamicPageAlignContent"
+							width="auto"
+						>
+							<headerToolbar>
+								<OverflowToolbar>
+									<content>
+										<Title
+											text="Productos ({= ${localModel>/listOfProducts}.length })"
+											level="H2"
+										/>
+										<ToolbarSpacer/>
+										<Button
+											text="Agregar"
+											icon="sap-icon://add"
+											type="Transparent"
+										/>
+										<Button
+											text="Configuración"
+											icon="sap-icon://action-settings"
+											type="Transparent"
+										/>
+									</content>
+								</OverflowToolbar>
+							</headerToolbar>
+							<columns>
+								<Column>
+									<Text text="Nombre"/>
+								</Column>
+
+								<Column>
+									<Text text="Descripción"/>
+								</Column>
+								<Column
+									minScreenWidth="Desktop"
+									demandPopin="true"
+									hAlign="End"
+								>
+									<Text text="Imagen"/>
+								</Column>
+								<Column
+									minScreenWidth="Desktop"
+									demandPopin="true"
+									hAlign="Center"
+								>
+									<Text text="Precio V."/>
+								</Column>
+								<Column
+									minScreenWidth="Desktop"
+									demandPopin="true"
+									hAlign="Center"
+								>
+									<Text text="Precio C."/>
+								</Column>
+								<Column
+									minScreenWidth="Tablet"
+									demandPopin="true"
+								>
+									<Text text="Stock"/>
+								</Column>
+
+								<Column
+									minScreenWidth="Tablet"
+									demandPopin="true"
+								>
+									<Text text="Unidad M."/>
+								</Column>
+								<Column
+									minScreenWidth="Tablet"
+									demandPopin="true"
+								>
+									<Text text="Proveedor"/>
+								</Column>
+								<Column
+									minScreenWidth="Desktop"
+									demandPopin="true"
+									hAlign="Center"
+								>
+									<Text text="Activo"/>
+								</Column>
+								<Column hAlign="Center">
+									<Text text=""/>
+								</Column>
+							</columns>
+							<items>
+								<ColumnListItem vAlign="Middle">
+									<cells>
+										<Text text="{localModel>name}"/>
+										<Text text="{localModel>description}"/>
+										<Button
+											press="onOpenViewImage"
+											icon="sap-icon://picture"
+											type="Emphasized"
+										/>
+										<Text text="{localModel>salePrice}"/>
+										<Text text="{localModel>purchasePrice}"/>
+										<Text text="{localModel>stock}"/>
+										<Text text="{localModel>unitOfMeasurementName}"/>
+										<Text text="{localModel>supplierName}"/>
+										<ObjectStatus
+											text="{localModel>statusName}"
+											icon="{localModel>statusIcon}"
+											state="{localModel>statusState}"
+										/>
+										<HBox class="contenRowIconTable">
+											<Button
+												icon="sap-icon://edit"
+												type="Ghost"
+											/>
+											<Button
+												icon="sap-icon://delete"
+												type="Ghost"
+											/>
+										</HBox>
+									</cells>
+								</ColumnListItem>
+							</items>
+						</Table>
+					</IconTabFilter>
+					<IconTabFilter
+						key="1"
+						text="Proveedores"
 					>
-						<Text text="{i18n>descripcionProducto}"/>
-					</Column>
-					<Column
-                        id="imagenCol"
-						minScreenWidth="Tablet"
-						demandPopin="true"
+						<Table
+							id="idSupplierTable"
+							sticky="HeaderToolbar,ColumnHeaders"
+							inset="false"
+							items="{
+								path: 'localModel>/listOfSupplier'
+							}"
+							class="sapFDynamicPageAlignContent"
+							width="auto"
+						>
+							<headerToolbar>
+								<OverflowToolbar>
+									<content>
+										<Title
+											text="{i18n>titleSupplierNameCount}"
+											level="H2"
+										/>
+										<ToolbarSpacer/>
+										<Button
+											text="{i18n>add}"
+											icon="sap-icon://add"
+											type="Emphasized"
+										/>
+									</content>
+								</OverflowToolbar>
+							</headerToolbar>
+							<columns>
+								<Column width="150px">
+									<Text text="Nombre"/>
+								</Column>
+								<Column
+									minScreenWidth="Tablet"
+									demandPopin="true"
+								>
+									<Text text="Telefono"/>
+								</Column>
+								<Column
+									minScreenWidth="Desktop"
+									demandPopin="true"
+									hAlign="End"
+								>
+									<Text text="Dirección"/>
+								</Column>
+								<Column
+									minScreenWidth="Desktop"
+									demandPopin="true"
+									hAlign="Center"
+								>
+									<Text text="Estado"/>
+								</Column>
+							</columns>
+							<items>
+								<ColumnListItem vAlign="Middle">
+									<cells>
+										<Text text="{localModel>product}"/>
+										<Text text="{localModel>product}"/>
+										<Text text="{localModel>product}"/>
+										<ObjectStatus
+											class="sapUiSmallMarginBottom"
+											text="Activo"
+											icon="sap-icon://sys-enter-2"
+											state="Success"
+										/>
+									</cells>
+								</ColumnListItem>
+							</items>
+						</Table>
+					</IconTabFilter>
+					<IconTabFilter
+						key="2"
+						text="Unidades de Medida"
 					>
-						<Text text="{i18n>imagen}"/>
-					</Column>
-					<Column
-                        id="precioVCol"
-						minScreenWidth="Tablet"
-						demandPopin="true"
-					>
-						<Text text="{i18n>pricioV}"/>
-					</Column>
-					<Column
-                        id="precioCCol"
-						minScreenWidth="Tablet"
-						demandPopin="true"
-					>
-						<Text text="{i18n>precioC}"/>
-					</Column>
-					<Column
-                        id="unidadMCol"
-						minScreenWidth="Tablet"
-						demandPopin="true"
-					>
-						<Text text="{unidadM}"/>
-					</Column>
-					<Column
-                        id="proveedorCol"
-						minScreenWidth="Tablet"
-						demandPopin="true"
-					>
-						<Text text="{i18n>proveedor}"/>
-					</Column>
-					<Column
-                        id="activoCol"
-						minScreenWidth="Tablet"
-						demandPopin="true"
-					>
-						<Text text="{i18n>activo}"/>
-					</Column>
-				</columns>
-                <items>
-                    <Text text="{listOfProducts>nombreProducto}"/>
-                    <Text text="{listOfProducts>descripcionProducto}"/>
-                    <Text text="{listOfProducts>imagen}"/>
-                    <Text text="{listOfProducts>precioV}"/>
-                    <Text text="{listOfProducts>precioC}"/>
-                    <Text text="{listOfProducts>unidadM}"/>
-                    <Text text="{listOfProducts>proveedor}"/>
-                    <Text text="{listOfProducts>activo}"/>
-                </items> 
-			</Table>
-		</semantic:content>
-	</semantic:SemanticPage>
+						<Table
+							id="idUnitOfMeasurementTable"
+							sticky="HeaderToolbar,ColumnHeaders"
+							inset="false"
+							items="{
+								path: 'localModel>/listOfUnitOfMeasurement'
+							}"
+							class="sapFDynamicPageAlignContent"
+							width="auto"
+						>
+							<headerToolbar>
+								<OverflowToolbar>
+									<content>
+										<Title
+											text="Unidades de Medida (X)
+												: "
+											level="H2"
+										/>
+										<ToolbarSpacer/>
+										<Button
+											text="Agregar"
+											icon="sap-icon://add"
+											type="Transparent"
+										/>
+										<Button
+											text="Configuración"
+											icon="sap-icon://action-settings"
+											type="Transparent"
+										/>
+									</content>
+								</OverflowToolbar>
+							</headerToolbar>
+							<columns>
+								<Column width="150px">
+									<Text text="Nombre"/>
+								</Column>
+								<Column
+									minScreenWidth="Tablet"
+									demandPopin="true"
+								>
+									<Text text="Descripción"/>
+								</Column>
+								<Column
+									minScreenWidth="Desktop"
+									demandPopin="true"
+									hAlign="End"
+								>
+									<Text text="Abreviatura"/>
+								</Column>
+								<Column
+									minScreenWidth="Desktop"
+									demandPopin="true"
+									hAlign="Center"
+								>
+									<Text text="Estado"/>
+								</Column>
+							</columns>
+							<items>
+								<ColumnListItem vAlign="Middle">
+									<cells>
+										<Text text="{localModel>product}"/>
+										<Text text="{localModel>product}"/>
+										<Text text="{localModel>product}"/>
+										<ObjectStatus
+											class="sapUiSmallMarginBottom"
+											text="Activo"
+											icon="sap-icon://sys-enter-2"
+											state="Success"
+										/>
+									</cells>
+								</ColumnListItem>
+							</items>
+
+                            
+						</Table>
+					</IconTabFilter>
+				</items>
+			</IconTabBar>
+		</f:content>
+		<!-- DynamicPage Footer -->
+		<f:footer>
+			<OverflowToolbar>
+				<Button
+					icon="sap-icon://message-popup"
+					text="MostrarMessageBox"
+					press="onPressShowMessageBox"
+				/>
+				<Button
+					icon="sap-icon://message-popup"
+					text="onRealizarObtKeysObject"
+					press="onRealizarObtKeysObject"
+				/>
+				<ToolbarSpacer/>
+				<Button
+					icon="sap-icon://excel-attachment"
+					press="onExportSpreadSheetXLSX"
+					type="Accept"
+					text="Exportar CSV"
+				/>
+				<Button
+					icon="sap-icon://excel-attachment"
+					press="onExportSpreadSheetXLSX"
+					type="Accept"
+					text="Exporta Excel"
+				/>
+			</OverflowToolbar>
+		</f:footer>
+	</f:DynamicPage>
 </mvc:View>
