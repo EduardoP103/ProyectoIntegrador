@@ -16,7 +16,7 @@ sap.ui.define(
         return Controller.extend("com.pe.proyectoIntegrador.controller.MainView", {
             onInit: function () { },
             onOpenViewImage: function (oEvent) {
-                debugger;
+                
                 var oButton = oEvent.getSource(),
                     oView = this.getView();
                 var oProduct = oButton.getParent().getBindingContext("formModel");
@@ -30,7 +30,6 @@ sap.ui.define(
                         controller: this
                     }).then(function (oPopover) {
                         oView.addDependent(oPopover);
-                        //oPopover.bindElement("formModel>/productList/imgUrl");
                         return oPopover;
                     });
                 }
@@ -39,7 +38,7 @@ sap.ui.define(
                 });
             },
             onPopoverClose: function (oEvent) {
-                this.pPopover.close();
+                this.byId("imgPopover").close();
             }
         });
     });
