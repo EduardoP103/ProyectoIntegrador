@@ -1,0 +1,26 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+	xmlns:f="sap.f"
+	xmlns:card="sap.f.cards">
+	<Popover placement="Bottom" showHeader="false" contentWidth="300px">
+			<f:Card width="300px">
+				<f:header>
+					<card:NumericHeader
+						title="Aplicación realizada gracias a:"
+						subtitle="Consultor: Guillermo Narvaez"
+						number="10/10"
+						scale="Up"
+						trend="Up"
+						state="Good">
+                        
+						<card:sideIndicators>
+							<card:NumericSideIndicator number="100" unit="%" title="Aprendizaje" />
+							<card:NumericSideIndicator number="100" unit="%" title="Sabrozura" />
+						</card:sideIndicators>
+
+					</card:NumericHeader>
+				</f:header>
+			</f:Card>
+	</Popover>
+</core:FragmentDefinition>

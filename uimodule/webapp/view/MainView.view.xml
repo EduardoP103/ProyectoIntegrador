@@ -1,5 +1,416 @@
-<mvc:View controllerName="com.pe.proyectoIntegrador.controller.MainView" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m">
-    <Page id="page" title="{i18n>title}">
-        <content />
-    </Page>
+<mvc:View controllerName="com.pe.proyectoIntegrador.controller.MainView" 
+    xmlns:mvc="sap.ui.core.mvc" 
+    displayBlock="true" 
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    xmlns:layout="sap.ui.layout"
+	xmlns:core="sap.ui.core"
+	xmlns:smartTable="sap.ui.comp.smarttable"
+	height="100%">
+    <f:DynamicPage id="dynamicPageId" class="sapUiNoContentPadding" headerExpanded="{/headerExpanded}" toggleHeaderOnTitleClick="{/titleClickable}">
+
+        <f:title>
+				<f:DynamicPageTitle>
+					
+                    <f:heading>
+						<Title text="{i18n>title}"/>
+					</f:heading>
+					
+					<f:expandedContent>
+						<Label text=""/>
+					</f:expandedContent>
+
+					<f:snappedContent>
+						<Label text="{i18n>consultor}"/>
+					</f:snappedContent>
+
+					<f:snappedTitleOnMobile>
+						<Title text="{i18n>consultor}"/>
+					</f:snappedTitleOnMobile>		
+
+					<f:actions>
+						<Button
+								text="Activar/Desactivar Exportar"
+								type="Emphasized"
+								press="onToggleFooter"/>
+						<Button
+								text="Créditos de la aplicación"
+								type="Transparent"
+								press="onPressOpenPopover">
+							<layoutData>
+								<OverflowToolbarLayoutData priority="AlwaysOverflow" closeOverflowOnInteraction="false" />
+							</layoutData>
+						</Button>
+					</f:actions>			
+					
+				</f:DynamicPageTitle>
+		</f:title>
+
+        <f:header>
+
+				<f:DynamicPageHeader pinnable="true">
+
+                    <layout:HorizontalLayout allowWrapping="true" >
+
+                        <layout:VerticalLayout class="sapUiMediumMarginEnd">
+
+                            <Image class="sans" src="/img/sans.jpg" width="100px" />
+                        
+						</layout:VerticalLayout>
+
+						<layout:VerticalLayout>
+
+							<ObjectAttribute title="{i18n>consultorobj}"/>
+							<ObjectStatus text="{i18n>consultornombreobj}" state="Success" />
+                            <ObjectAttribute title="{i18n>cargoobj}"/>
+							<ObjectStatus text="{i18n>cargonombreobj}" state="Success" />
+							<Image class="seidor" src="/img/seidor.jpeg" width="110px" />
+<!--
+							<SearchField enableSuggestions="true" id="search" placeholder="Buscar" width="100%" class="search" liveChange="onSearch" value="{
+											path : 'formularioSimple>/search'
+										}"/>
+
+							<Select id="distritoid" selectedKey="{
+								path: 'formularioSimple>/selectDistrito'}"
+								change="onChangeSelect"
+								items="{
+									path: 'formularioSimple>/distritoSelect'
+								}">
+								<core:ListItem 
+								key="{formularioSimple>id}"
+								text="{formularioSimple>name}"/>
+							</Select>
+-->
+						</layout:VerticalLayout>
+
+						<ToolbarSpacer/>
+
+						<layout:VerticalLayout class="sapUiMediumMarginEnd">
+						
+							<Text text="Patrocinado por: "></Text>
+                            <Image class="sans" src="/img/logitech-logo.png" width="100px" />
+                        
+						</layout:VerticalLayout>
+
+					</layout:HorizontalLayout>
+
+				</f:DynamicPageHeader>
+
+		</f:header>
+
+		<f:content>
+
+				<IconTabBar id="iconTabBar" class="sapUiResponsiveContentPadding" selectedKey="{ path: 'formularioSimple>/tabSelect'}" >
+
+					<items>
+
+						<IconTabFilter key="0" id="tabproductos" text="Productos">
+
+							<Table id="idProductsTable1" backgroundDesign="Solid" sticky="HeaderToolbar,ColumnHeaders" inset="false" class="sapUiSmallNegativeMarginBeginEnd" width="auto"
+									items="{ path: 'formularioSimple>/listaTabla1',	sorter: { path: 'id' }
+									}" >
+
+								<headerToolbar>
+
+									<Toolbar>
+
+										<Title text="Productos ({= ${formularioSimple>/listaTabla1}.length })" level="H2"/>
+										<ToolbarSpacer/>
+										<Button type="Transparent" text="Agregar Producto" icon="sap-icon://add" press="onAddProducto"/>
+										<Button type="Transparent" text="Configuración" icon="sap-icon://action-settings" press="onConfig"/>
+
+									</Toolbar>
+
+								</headerToolbar>
+
+								<columns>
+
+									<Column	hAlign="Begin" width="15%">
+
+										<Text text="Nombre" />
+
+									</Column>
+
+									<Column	minScreenWidth="Tablet"	demandPopin="true" hAlign="Begin" width="15%">
+
+										<Text text="Descripción" />
+
+									</Column>
+
+									<Column	minScreenWidth="Tablet"	demandPopin="true" hAlign="Center" width="5%">
+
+										<Text text="Imagen" />
+
+									</Column>
+
+									<Column	hAlign="Center" width="10%">
+
+										<Text text="Previo V." />
+
+									</Column>
+
+									<Column	hAlign="Center" width="10%">
+
+										<Text text="Previo C." />
+
+									</Column>
+
+									<Column	hAlign="Center" width="5%">
+
+										<Text text="Stock" />
+
+									</Column>
+
+									<Column	hAlign="Center" width="10%">
+
+										<Text text="Unidad M." />
+
+									</Column>
+
+									<Column	hAlign="Center" width="15%">
+
+										<Text text="Proveedor" />
+
+									</Column>
+
+									<Column	hAlign="Center" width="10%">
+
+										<Text text="Activo" />
+
+									</Column>
+
+									<Column	hAlign="Center" width="5%">
+
+										<Text text="" />
+
+									</Column>
+
+								</columns>
+
+								<items>
+
+									<ColumnListItem>
+
+										<cells>
+
+											<Text  text="{formularioSimple>nombre}" />
+											<Text  text="{formularioSimple>descripcion}" />
+											<Button id="_IDGenButton2" icon="sap-icon://picture" type="Emphasized" press="handleResponsivePopoverPress"
+													ariaHasPopup="Dialog"/>
+											<Text  text="S/. {formularioSimple>preciov}" />
+											<Text  text="S/. {formularioSimple>precioc}" />
+											<Text  text="{formularioSimple>stock}" />
+											<Text  text="{formularioSimple>unidadm}" />
+											<Text  text="{formularioSimple>proveedor}" />
+											<ObjectStatus  text="{formularioSimple>activo}" state="Success" icon="sap-icon://message-success" />
+
+											<HBox justifyContent="SpaceBetween">
+												<Button id="_IDGenButton1" icon="sap-icon://edit" class="botoncito"/>
+												<Button id="deleteUserButton" icon="sap-icon://delete" />
+											</HBox>
+
+											
+										</cells>
+
+									</ColumnListItem>
+
+								</items>
+							</Table>
+
+						</IconTabFilter>
+
+						<IconTabFilter key="1" id="tabproveedores" text="Proveedores">
+
+							<Table id="idProductsTable2" sticky="HeaderToolbar,ColumnHeaders" inset="false" class="sapUiSmallNegativeMarginBeginEnd" width="auto"
+									items="{ path: 'formularioSimple>/listaTabla2',	sorter: { path: 'id' }
+									}" >
+
+								<headerToolbar>
+
+									<Toolbar>
+
+										<Title text="Proveedores ({= ${formularioSimple>/listaTabla2}.length })" level="H2"/>
+										<ToolbarSpacer/>
+										<Button type="Transparent" text="Agregar Proveedor" icon="sap-icon://add" press="onAddProveedor"/>
+
+									</Toolbar>
+
+								</headerToolbar>
+
+								<columns>
+
+									<Column	hAlign="Begin">
+
+										<Text text="Nombre" />
+
+									</Column>
+
+									<Column	minScreenWidth="Tablet"	demandPopin="true" hAlign="Center">
+
+										<Text text="Telefono" />
+
+									</Column>
+
+									<Column	minScreenWidth="Tablet"	demandPopin="true" hAlign="Center">
+
+										<Text text="Dirección" />
+
+									</Column>
+
+									<Column	hAlign="Center" >
+
+										<Text text="Estado" />
+
+									</Column>
+
+								</columns>
+
+								<items>
+
+									<ColumnListItem>
+
+										<cells>
+
+											<Text  text="{formularioSimple>nombre}" />
+											<Text  text="{formularioSimple>telefono}" />
+											<Text  text="{formularioSimple>direccion}" />
+											<ObjectStatus  text="{formularioSimple>estado}" state="Success" icon="sap-icon://message-success" />
+											
+										</cells>
+
+									</ColumnListItem>
+
+								</items>
+							</Table>
+
+						</IconTabFilter>
+
+						<IconTabFilter key="2" text="Clientes">
+
+							<Table id="idProductsTable3" sticky="HeaderToolbar,ColumnHeaders" inset="false" class="sapUiSmallNegativeMarginBeginEnd" width="auto"
+									items="{ path: 'formularioSimple>/listaTabla3',	sorter: { path: 'id' }
+									}" >
+
+								<headerToolbar>
+
+									<Toolbar>
+
+										<Title text="Clientes ({= ${formularioSimple>/listaTabla3}.length })" level="H2"/>
+										
+										<ToolbarSpacer/>
+										<Button type="Transparent" text="Agregar Cliente" icon="sap-icon://add" press="onAddRegistro"/>
+
+									</Toolbar>
+
+								</headerToolbar>
+
+								<columns>
+
+									<Column	hAlign="Begin">
+
+										<Text text="Nombres" />
+
+									</Column>
+
+									<Column	minScreenWidth="Tablet"	demandPopin="true" hAlign="Center">
+
+										<Text text="Apellidos" />
+
+									</Column>
+
+									<Column	minScreenWidth="Tablet"	demandPopin="true" hAlign="Center">
+
+										<Text text="E-mail" />
+
+									</Column>
+
+									<Column	hAlign="Center" >
+
+										<Text text="Sexo" />
+
+									</Column>
+
+									<Column	hAlign="Center" >
+
+										<Text text="Tipo Documento" />
+
+									</Column>
+
+									<Column	hAlign="Center" >
+
+										<Text text="Número Documento" />
+
+									</Column>
+
+									<Column	hAlign="Center" >
+
+										<Text text="Celular" />
+
+									</Column>
+
+									<Column	hAlign="Center" >
+
+										<Text text="Distrito" />
+
+									</Column>
+
+									<Column	hAlign="Center" >
+
+										<Text text="Dirección" />
+
+									</Column>
+
+								</columns>
+
+								<items>
+
+									<ColumnListItem>
+
+										<cells>
+
+											<Text  text="{formularioSimple>nombres}" />
+											<Text  text="{formularioSimple>apellidos}" />
+											<Text  text="{formularioSimple>correoelectronico}" />
+											<Text  text="{formularioSimple>sexo}" />
+											<Text  text="{formularioSimple>tipodocumento}" />
+											<Text  text="{formularioSimple>numdocumento}" />
+											<Text  text="{formularioSimple>celular}" />
+											<Text  text="{formularioSimple>distrito}" />
+											<Text  text="{formularioSimple>direccion}" />
+											
+										</cells>
+
+									</ColumnListItem>
+
+								</items>
+							</Table>
+
+						</IconTabFilter>
+
+					</items>
+
+				</IconTabBar>
+
+				
+				
+		</f:content>
+
+		<f:footer>
+
+			<OverflowToolbar>
+
+				<Button type="Transparent" icon="sap-icon://message-information" press="onInfo"/>
+				<Label text="Información sobre las opciones de exportar"/>
+
+				<ToolbarSpacer/>
+
+				<Button type="Accept" text="Exportar CSV" icon="sap-icon://documents" press="onDataExport"/>
+				<Button type="Accept" text="Exportar Excel" icon="sap-icon://excel-attachment" press="onExportSpreadSheetXLSX"/>
+
+			</OverflowToolbar>
+
+		</f:footer>
+
+    </f:DynamicPage>
+
 </mvc:View>
