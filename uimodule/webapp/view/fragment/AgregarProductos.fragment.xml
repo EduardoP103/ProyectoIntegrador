@@ -1,45 +1,37 @@
-<core:FragmentDefinition
-	xmlns="sap.m"
+<core:FragmentDefinition xmlns="sap.m"
 	xmlns:f="sap.ui.layout.form"
 	xmlns:mvc="sap.ui.core.mvc"
-    xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:html="http://www.w3.org/1999/xhtml"
 	xmlns:core="sap.ui.core">
-    <Dialog
-		id="Agregar"
-		title="Agregar Productos">
+	<Dialog id="Agregar" title="Agregar Productos">
 
 		<content>
 
 			<VBox class="sapUiSmallMargin" id="formContainerEmployment1">
-				<f:SimpleForm editable="true"
-					layout="ColumnLayout"
-					columnsM="2"
-					columnsL="3"
-					columnsXL="4">
+				<f:SimpleForm editable="true" layout="ColumnLayout" columnsM="2" columnsL="3" columnsXL="4">
 					<f:content>
 						<core:Title text="Ingreso de Productos" />
-						
+
 						<Label text="Nombre" />
 						<Input required="true" value="{path : 'formularioSimple>/addProducto/nombre' }" />
-                        <Label text="Descripcion" />
+						<Label text="Descripcion" />
 						<Input required="true" value="{path : 'formularioSimple>/addProducto/descripcion' }" />
-                        <Label text="Precio V." />
+						<Label text="Precio V." />
 						<Input required="true" type="Number" value="{path : 'formularioSimple>/addProducto/preciov' }" />
-                        <Label text="Precio C." />
+						<Label text="Precio C." />
 						<Input required="true" type="Number" value="{path : 'formularioSimple>/addProducto/precioc' }" />
-                        <Label text="Stock" />
+						<Label text="Stock" />
 						<Input required="true" type="Number" value="{path : 'formularioSimple>/addProducto/stock' }" />
 						<Label text="Unidad M." />
-						<Select id="distritoid" selectedKey="{
-								path: 'formularioSimple>/selectUMedidad'}"
-								change=""
-								items="{
-									path: 'formularioSimple>/unidadMedidad'
-								}">
-								<core:ListItem 
-								key="{formularioSimple>id}"
-								text="{formularioSimple>name}"/>
+						<Select id="distritoid" items="{
+						path: 'formularioSimple>/unidadMedida'
+					    }" selectedKey="{
+                            path: 'formularioSimple>/selectUnidadMedida'
+                        }">
+							<core:ListItem key="{formularioSimple>id}" text="{formularioSimple>name}" 
+							 />
 						</Select>
+
 						<Label text="Proveedor" />
 						<Input required="true" value="{path : 'formularioSimple>/addProducto/proveedor' }" />
 						<Label text="Activo" />
@@ -58,29 +50,21 @@
 
 				<content>
 
-					<Button
-					text="Agregar"
-					type="Accept"
-					press="onAddProductoTabla"
-					ariaHasPopup="Dialog" />
+					<Button text="Agregar" type="Accept" press="onAddProductoTabla" ariaHasPopup="Dialog" />
 
 					<ToolbarSpacer/>
 
 					<Button text="Limpiar" icon="sap-icon://clear-all" press="onLimpiarCamposDialogos"/>
 
 					<ToolbarSpacer/>
-							
-					<Button
-					text="Cerrar"
-					type="Reject"
-					press="closeDialogProducto"
-					ariaHasPopup="Dialog" />
-							
+
+					<Button text="Cerrar" type="Reject" press="closeDialogProducto" ariaHasPopup="Dialog" />
+
 				</content>
 
 			</Toolbar>
 
 		</footer>
-        
-    </Dialog>
+
+	</Dialog>
 </core:FragmentDefinition>

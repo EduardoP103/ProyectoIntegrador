@@ -616,7 +616,27 @@ sap.ui.define(
                 // oBinding.refresh();
                 MessageBox.success("Datos ingresados correctamente");
                 this.onLimpiarCamposDialogos();
-            }
+            },
+            onAfterRendering: function () {
+                this.loadPost();
+            },
+            loadPost: async function () {
+                const rawResponse = await fetch("https://pokeapi.co/api/v2/pokemon");
+                const content = await rawResponse.json();
+                let alista = [
+                    {
+                        id: "0",
+                        name: "--Seleccione--",
+                        url: "",
+                    },
+                ];
+                content.results.forEach((element, index) => {
+                    let obj = { ...element };
+                    obj.id = (index + 1).toString();
+                    alista.push(obj);
+                });
+                this.getView().getModel("formularioSimple").setProperty("/listaPokemones", alista);
+            },
         });
     }
 );

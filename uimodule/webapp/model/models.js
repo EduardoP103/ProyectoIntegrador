@@ -25,8 +25,7 @@ sap.ui.define(
                     tabSelect: "0",
                     search: "",
                     selectDistrito: "0",
-                    selectUMedidad: "0",
-
+                    selectUnidadMedida: "0",
                     distritoSelect: [
                         {
                             "id": "0",
@@ -36,21 +35,18 @@ sap.ui.define(
                             "id": "1",
                             "name:": "Ate"
                         }
-
                     ],
-
-                    unidadMedidad: [
+                    unidadMedida: [
                         {
                             "id": "0",
-                            "name:": "-----------Seleccione-----------"
+                            "name": "--Seleccione--"
                         },
                         {
                             "id": "1",
-                            "name:": "UND"
+                            "name": "UND"
                         }
 
                     ],
-
                     listaTabla1: [
                         {
                             "id": 0,
