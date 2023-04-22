@@ -73,7 +73,7 @@
 								<OverflowToolbar>
 									<content>
 										<Title
-											text="Productos ({= ${localModel>/listOfProducts}.length })"
+											text="{i18n>products} ({= ${localModel>/listOfProducts}.length })"
 											level="H2"
 										/>
 										<ToolbarSpacer/>
@@ -83,7 +83,7 @@
 											type="Transparent"
 										/>
 										<Button
-											text="Configuración"
+											text="{i18n>config}"
 											icon="sap-icon://action-settings"
 											type="Transparent"
 										/>
@@ -92,58 +92,58 @@
 							</headerToolbar>
 							<columns>
 								<Column>
-									<Text text="Nombre"/>
+									<Text text="{i18n>name}"/>
 								</Column>
 
 								<Column>
-									<Text text="Descripción"/>
+									<Text text="{i18n>description}"/>
 								</Column>
 								<Column
 									minScreenWidth="Desktop"
 									demandPopin="true"
 									hAlign="End"
 								>
-									<Text text="Imagen"/>
+									<Text text="{i18n>imagen}"/>
 								</Column>
 								<Column
 									minScreenWidth="Desktop"
 									demandPopin="true"
 									hAlign="Center"
 								>
-									<Text text="Precio V."/>
+									<Text text="{i18n>salePrice}"/>
 								</Column>
 								<Column
 									minScreenWidth="Desktop"
 									demandPopin="true"
 									hAlign="Center"
 								>
-									<Text text="Precio C."/>
+									<Text text="{i18n>purchasePrice}"/>
 								</Column>
 								<Column
 									minScreenWidth="Tablet"
 									demandPopin="true"
 								>
-									<Text text="Stock"/>
+									<Text text="{i18n>stock}"/>
 								</Column>
 
 								<Column
 									minScreenWidth="Tablet"
 									demandPopin="true"
 								>
-									<Text text="Unidad M."/>
+									<Text text="{i18n>unitOfMeasurementName}"/>
 								</Column>
 								<Column
 									minScreenWidth="Tablet"
 									demandPopin="true"
 								>
-									<Text text="Proveedor"/>
+									<Text text="{i18n>supplierName}"/>
 								</Column>
 								<Column
 									minScreenWidth="Desktop"
 									demandPopin="true"
 									hAlign="Center"
 								>
-									<Text text="Activo"/>
+									<Text text="{i18n>statusName}"/>
 								</Column>
 								<Column hAlign="Center">
 									<Text text=""/>
@@ -186,7 +186,7 @@
 					</IconTabFilter>
 					<IconTabFilter
 						key="1"
-						text="Proveedores"
+						text="{i18n>supplierNames}"
 					>
 						<Table
 							id="idSupplierTable"
@@ -202,13 +202,12 @@
 								<OverflowToolbar>
 									<content>
 										<Title
-											text="Proveedores (X)
-												: "
+											text="Proveedores (X):"
 											level="H2"
 										/>
 										<ToolbarSpacer/>
 										<Button
-											text="Agregar"
+											text="{i18n>add}"
 											icon="sap-icon://add"
 											type="Emphasized"
 										/>
@@ -217,27 +216,27 @@
 							</headerToolbar>
 							<columns>
 								<Column width="150px">
-									<Text text="Nombre"/>
+									<Text text="{i18n>name}"/>
 								</Column>
 								<Column
 									minScreenWidth="Tablet"
 									demandPopin="true"
 								>
-									<Text text="Telefono"/>
+									<Text text="{i18n>phone}"/>
 								</Column>
 								<Column
 									minScreenWidth="Desktop"
 									demandPopin="true"
 									hAlign="End"
 								>
-									<Text text="Dirección"/>
+									<Text text="{i18n>address}"/>
 								</Column>
 								<Column
 									minScreenWidth="Desktop"
 									demandPopin="true"
 									hAlign="Center"
 								>
-									<Text text="Estado"/>
+									<Text text="{i18n>state}"/>
 								</Column>
 							</columns>
 							<items>
@@ -259,7 +258,7 @@
 					</IconTabFilter>
 					<IconTabFilter
 						key="2"
-						text="Unidades de Medida"
+						text="{i18n>measurementUnits}"
 					>
 						<Table
 							id="idUnitOfMeasurementTable"
@@ -281,12 +280,12 @@
 										/>
 										<ToolbarSpacer/>
 										<Button
-											text="Agregar"
+											text="{i18n>add}"
 											icon="sap-icon://add"
 											type="Transparent"
 										/>
 										<Button
-											text="Configuración"
+											text="{i18n>config}"
 											icon="sap-icon://action-settings"
 											type="Transparent"
 										/>
@@ -301,21 +300,21 @@
 									minScreenWidth="Tablet"
 									demandPopin="true"
 								>
-									<Text text="Descripción"/>
+									<Text text="{i18n>description}"/>
 								</Column>
 								<Column
 									minScreenWidth="Desktop"
 									demandPopin="true"
 									hAlign="End"
 								>
-									<Text text="Abreviatura"/>
+									<Text text="{i18n>abbreviation}"/>
 								</Column>
 								<Column
 									minScreenWidth="Desktop"
 									demandPopin="true"
 									hAlign="Center"
 								>
-									<Text text="Estado"/>
+									<Text text="{i18n>state}"/>
 								</Column>
 							</columns>
 							<items>
@@ -332,9 +331,7 @@
 										/>
 									</cells>
 								</ColumnListItem>
-							</items>
-
-                            
+							</items>                            
 						</Table>
 					</IconTabFilter>
 				</items>
