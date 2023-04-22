@@ -29,6 +29,7 @@
                             path: 'formularioSimple>/selectUnidadMedida'
                         }">
 							<core:ListItem key="{formularioSimple>id}" text="{formularioSimple>name}" 
+							enabled="{= ${formularioSimple>id} === '0' ? false : true }"
 							 />
 						</Select>
 
