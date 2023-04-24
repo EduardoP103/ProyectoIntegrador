@@ -22,6 +22,21 @@ sap.ui.define(
                         name: "Eduardo Pastor",
                         cargo: "Analista de Sistemas",
                     },
+                    selectUnitOfMeasurementName: "0",
+                    unitOfMeasurementName: [
+                        {
+                            id: 0,
+                            name: "--Seleccione--",
+                        },
+                        {
+                            id: 1,
+                            name: "UND",
+                        },
+                        {
+                            id: 2,
+                            name: "DOC"
+                        }
+                    ],
                     selectedRowView: {},
                     selectedIconTabBar: "0",
                     listOfProducts: [
@@ -160,9 +175,35 @@ sap.ui.define(
                             statusState: "Success",
                         },
                     ],
-                    listOfSupplier: [],
-                    listOfUnitOfMeasurement: [],
-                    listOfSuppliers: [],
+                    listOfSuppliers: [
+                        {
+                            id: 1,
+                            name: "Perú",
+                            phone: "988999111",
+                            address: "Pasaje San Fijo",
+                            state: "Activo"
+                        },
+                    ],
+                    listOfUnitOfMeasurement: [
+                    {
+                        id: 1,
+                        name: "UND",
+                        description: "lorem"
+                    }
+                    ],
+                    addProduct: {
+                        name: "",
+                        description: "",
+                        image: "",
+                        salePrice: "",
+                        purchasePrice: "",
+                        stock: "",
+                        unitOfMeasurementName: "",
+                        supplierName: "",
+                        statusName: "",
+                    },
+                    
+
                 };
                 const oModel = new JSONModel(oParam);
                 return oModel;

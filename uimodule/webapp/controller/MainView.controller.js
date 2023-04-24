@@ -1,5 +1,6 @@
 sap.ui.define(
-    ["./BaseController", "../util/util", "sap/ui/export/library", 'sap/m/MessageBox'],
+    ["./BaseController", "../util/util", "sap/ui/export/library", 'sap/m/MessageBox',
+	"sap/ui/core/util/ExportTypeCSV"],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
@@ -8,7 +9,87 @@ sap.ui.define(
         let EdmType = exportLibrary.EdmType;
         return Controller.extend("com.pe.proyectoIntegrador.controller.MainView", {
             onInit: function () { },
-            onOpenViewImage: function (oEvent) {
+
+            onAddProduct: function () {
+                if (!this.oMPProduct) {
+                    this.oMPProduct = this.loadFragment({
+                        name: "com.pe.proyectoIntegrador.view.fragment.AgregarProducto"
+                    });
+                }
+                this.oMPProduct.then(function (oDialog) {
+                    this.oDialogProduct = oDialog;
+                    this.oDialogProduct.open();
+                }.bind(this));
+            },
+            closeDialogProduct: function () {
+                this.oDialogProduct.close();
+                this.oClean();
+            },
+             onAddProductOfTable: function () {
+                 let name = this.getView().getModel("localModel").getProperty("/addProduct").name;
+                 let description = this.getView().getModel("localModel").getProperty("/addProduct").description;
+                 let image = this.getView().getModel("localModel").getProperty("/addProduct").image;
+                 let salePrice = this.getView().getModel("localModel").getProperty("/addProduct").salePrice;
+                 let purchasePrice = this.getView().getModel("localModel").getProperty("/addProduct").purchasePrice;
+                 let stock = this.getView().getModel("localModel").getProperty("/addProduct").stock;
+                 let unitOfMeasurementName = this.getView().getModel("localModel").getProperty("/addProduct").unitOfMeasurementName;
+                 let supplierName = this.getView().getModel("localModel").getProperty("/addProduct").supplierName;
+                 let statusName = this.getView().getModel("localModel").getProperty("/addProduct").statusName;
+                 let oRespuesta = {
+                     valid: true,
+                     mensaje: ""
+                 };
+                 let items = this.getView().getModel("localModel").getProperty("/listOfProducts");
+                 let obj = this.getView().getModel("localModel").getProperty("/addProduct");
+
+
+                 let completeList = [];
+                 items.forEach((element) => {
+                     completeList.push(element);
+                 });
+                 completeList.push(obj);
+
+                 let list = [...items, ...[obj]];
+                 this.getView().getModel("localModel").setProperty("/listOfProducts", list);
+                 this.getView().getModel("localModel").refresh();
+
+                 MessageBox.success("Producto Ingresado");
+                 this.oClean();
+
+             },
+
+                oClean: function () {
+                this.getView().getModel("localModel").setProperty("/addProduct", {
+                    name: "",
+                    description: "",
+                    image: "",
+                    salePrice: "",
+                    purchasePrice: "",
+                    stock: "",
+                    unitOfMeasurementName: "",
+                    supplierName: "",
+                    statusName: "",
+                });
+            },
+
+
+                // onPressDelete: function(oEvent) {
+                //     debugger
+                //     const oTable = this.getView().byId("idProductsTable");
+                //     const oSelectedItem = oTable.getSelectedItem();
+                //     oTable.removeItem(oSelectedItem);
+                // },
+                // onPressEdit: function(oEvent) {
+                //     debugger
+                //     const oTable = this.getView().byId("idProductsTable");
+                //     const oSelectedItem = oTable.getSelectedItem();
+                //     const oContext = oSelectedItem.getBindingContext("localModel");
+                //     const sPath = oContext.getPath();
+                //     const oProduct = oContext.getModel().getProperty(sPath);
+                // },
+
+
+                onOpenViewImage: function (oEvent) {
                 let oButton = oEvent.getSource(),
                     oView = this.getView();
                 debugger;
@@ -32,12 +113,12 @@ sap.ui.define(
                 this.pPopover.close();
             },
             createColumnConfigTableProducts: function () {
-                var aCols = [];
+                let aCols = [];
                 aCols.push({
-                    label: "ProductoFinal X Precio",
-                    property: ["name", "salePrice"],
+                    label: "Producto",
+                    property: ["name"],
                     type: EdmType.String,
-                    template: "{0} {1}",
+                    template: "{0}",
                 });
                 aCols.push({
                     label: "Description",
@@ -52,14 +133,12 @@ sap.ui.define(
                     type: EdmType.String,
                     template: "{0}",
                 });
-                //weight
                 aCols.push({
                     label: "PrecioC",
                     property: ["purchasePrice"],
                     type: EdmType.String,
                     template: "{0}",
                 });
-                //price
                 aCols.push({
                     label: "UnidadM",
                     property: ["stock"],
@@ -82,13 +161,42 @@ sap.ui.define(
                 return aCols;
             },
             createColumnConfigTableSupplier: function () {
-                var aCols = [];
-                return aCols;
+                let aColsSupplier = [];
+
+                aColsSupplier.push({
+                    label: "Proveedor",
+                    property: ["name"],
+                    type: EdmType.String,
+                    template: "{0}",
+                });
+
+                aColsSupplier.push({
+                    label: "Telefono",
+                    property: ["phone"],
+                    type: EdmType.Double,
+                    template: "{0}",
+                });
+
+                aColsSupplier.push({
+                    label: "Dirección",
+                    property: ["address"],
+                    type: EdmType.String,
+                    template: "{0}",
+                });
+
+                aColsSupplier.push({
+                    label: "Estado",
+                    property: ["state"],
+                    type: EdmType.String,
+                    template: "{0}",
+                })
+                return aColsSupplier;
             },
             createColumnConfigTableUnitOfMeasurement: function () {
                 var aCols = [];
                 return aCols;
             },
+            // XLSX
             onExportSpreadSheetXLSX: function () {
                 debugger;
                 let aCols;
@@ -119,6 +227,45 @@ sap.ui.define(
                     util.utilUI.messageBox("No existen registros para descargar", "WARNING", "Alerta");
                 }
             },
+            // CSV
+
+            // onDataExport: function(oEvent){
+            //    let selectedIconTabBar = this.getView().getModel("localModel").getProperty("/selectedIconTabBar") 
+            //    if (selectedIconTabBar === "0"){
+            //     let oExport = new Export({
+            //         exportType: new ExportTypeCSV({
+            //             separatorChar: ";"
+            //         }),
+
+            //         models: this.getView().getModel("localModel"),
+
+            //         rows: {
+            //             path: "/listOfProducts"
+            //         },
+
+            //         columns: [{
+            //             name: "Nombre",
+            //             template: {
+            //                 content: {"name"}
+            //             }
+            //         },
+            //          {
+            //             name : "Description",
+            //             template: {
+            //                 content: {"description"}
+            //             }
+            //         },
+            //         {
+            //             name: 
+            //         }
+                
+                
+            //     ]
+            //     })
+            //    }
+            // },
+
+
             onPressShowMessageBox: function () {
                 debugger;
                 let msg = "MENSAJE";
@@ -128,7 +275,7 @@ sap.ui.define(
             },
             onRealizarObtKeysObject: function () {
                 debugger;
-                let obj = { "nombre": "Guillermo" }
+                let obj = { "nombre": "Eduardo" }
                 let respuesta = util.utilController.obtenerKeysObject(obj)
                 alert(JSON.stringify(respuesta))
             }

@@ -2,6 +2,7 @@
 	controllerName="com.pe.proyectoIntegrador.controller.MainView"
 	xmlns:mvc="sap.ui.core.mvc"
 	xmlns="sap.m"
+	xmlns:c="sap.ui.core"
 	xmlns:f="sap.f"
 	xmlns:layout="sap.ui.layout"
 	height="100%"
@@ -17,7 +18,7 @@
 		<f:title>
 			<f:DynamicPageTitle>
 				<f:heading>
-					<Title text="{i18n>title}"/>
+					<Title text="{i18n>title}"/>						
 				</f:heading>
 			</f:DynamicPageTitle>
 		</f:title>
@@ -58,13 +59,19 @@
 					<IconTabFilter
 						key="0"
 						text="Productos"
+						selectKey="{
+							path: 'localModel>/selectedIconTab
+						}"
 					>
 						<Table
 							id="idProductsTable"
 							sticky="HeaderToolbar,ColumnHeaders"
 							inset="false"
 							items="{
-								path: 'localModel>/listOfProducts'
+								path: 'localModel>/listOfProducts',
+								sorter: {
+									path: 'id'
+								}
 							}"
 							class="sapFDynamicPageAlignContent"
 							width="auto"
@@ -81,6 +88,7 @@
 											text="{i18n>add}"
 											icon="sap-icon://add"
 											type="Transparent"
+											press="onAddProduct"
 										/>
 										<Button
 											text="{i18n>config}"
@@ -159,24 +167,26 @@
 											icon="sap-icon://picture"
 											type="Emphasized"
 										/>
-										<Text text="{localModel>salePrice}"/>
-										<Text text="{localModel>purchasePrice}"/>
+										<Text text="S/. {localModel>salePrice}"/>
+										<Text text="S/. {localModel>purchasePrice}"/>
 										<Text text="{localModel>stock}"/>
 										<Text text="{localModel>unitOfMeasurementName}"/>
 										<Text text="{localModel>supplierName}"/>
-										<ObjectStatus
+										 <ObjectStatus
 											text="{localModel>statusName}"
-											icon="{localModel>statusIcon}"
-											state="{localModel>statusState}"
-										/>
+											icon="sap-icon://message-success"
+											state="Success"
+										/> 
 										<HBox class="contenRowIconTable">
 											<Button
 												icon="sap-icon://edit"
 												type="Ghost"
+												press="onPressEdit"
 											/>
 											<Button
 												icon="sap-icon://delete"
 												type="Ghost"
+												press="onPressDelete"
 											/>
 										</HBox>
 									</cells>
@@ -193,7 +203,7 @@
 							sticky="HeaderToolbar,ColumnHeaders"
 							inset="false"
 							items="{
-								path: 'localModel>/listOfSupplier'
+								path: 'localModel>/listOfSuppliers'
 							}"
 							class="sapFDynamicPageAlignContent"
 							width="auto"
@@ -202,14 +212,19 @@
 								<OverflowToolbar>
 									<content>
 										<Title
-											text="Proveedores (X):"
+											text="Proveedores ({=${localModel>/listOfSuppliers}.length })"
 											level="H2"
 										/>
 										<ToolbarSpacer/>
 										<Button
 											text="{i18n>add}"
 											icon="sap-icon://add"
-											type="Emphasized"
+											type="Transparent"
+										/>
+										<Button
+											text="{i18n>config}"
+											icon="sap-icon://action-settings"
+											type="Transparent"
 										/>
 									</content>
 								</OverflowToolbar>
@@ -221,18 +236,19 @@
 								<Column
 									minScreenWidth="Tablet"
 									demandPopin="true"
+									hAlign="Center"
 								>
 									<Text text="{i18n>phone}"/>
 								</Column>
 								<Column
-									minScreenWidth="Desktop"
+									minScreenWidth="Tablet"
 									demandPopin="true"
-									hAlign="End"
+									hAlign="Center"
 								>
 									<Text text="{i18n>address}"/>
 								</Column>
 								<Column
-									minScreenWidth="Desktop"
+									minScreenWidth="Tablet"
 									demandPopin="true"
 									hAlign="Center"
 								>
@@ -242,14 +258,14 @@
 							<items>
 								<ColumnListItem vAlign="Middle">
 									<cells>
-										<Text text="{localModel>product}"/>
-										<Text text="{localModel>product}"/>
-										<Text text="{localModel>product}"/>
+										<Text text="{localModel>name}"/>
+										<Text text="{localModel>phone}"/>
+										<Text text="{localModel>address}"/>
 										<ObjectStatus
 											class="sapUiSmallMarginBottom"
-											text="Activo"
-											icon="sap-icon://sys-enter-2"
+											text="{localModel>state}"
 											state="Success"
+											icon="sap-icon://message-success"
 										/>
 									</cells>
 								</ColumnListItem>
