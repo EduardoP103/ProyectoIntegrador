@@ -1,5 +1,221 @@
-<mvc:View controllerName="com.pe.proyectoIntegrador.controller.MainView" xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m">
-    <Page id="page" title="{i18n>title}">
-        <content />
-    </Page>
+<mvc:View xmlns:core="sap.ui.core" controllerName="com.pe.proyectoIntegrador.controller.MainView" 
+xmlns:mvc="sap.ui.core.mvc" displayBlock="true" 
+xmlns="sap.m" xmlns:f="sap.f" 
+xmlns:layout="sap.ui.layout" 
+height="100%">
+	<f:DynamicPage id="dynamicPageId"
+	showFooter="true"
+	>
+	
+		<f:title>
+			<f:DynamicPageTitle>
+				<f:heading>
+					<Title text="Sistema Gestion de Ventas" />
+				</f:heading>
+			</f:DynamicPageTitle>
+		</f:title>
+		<f:header>
+			<f:DynamicPageHeader pinnable="true">
+				<layout:HorizontalLayout allowWrapping="true">
+				
+					<layout:VerticalLayout class="sapUiMediumMarginEnd">
+						<Image class="sans" src="https://cecytebcs.edu.mx/wp-content/uploads/2022/02/programacion.jpeg"
+						width="150px"/>
+					</layout:VerticalLayout>
+
+					
+					<layout:VerticalLayout class="sapUiMediumMarginEnd">
+						<ObjectAttribute title="Consultor"/>
+						<ObjectStatus text="Karla Torres" state="Success" />
+						<ObjectAttribute title="Cargo"/>
+						<ObjectStatus text="Practicante" state="Success" />
+					</layout:VerticalLayout>
+				</layout:HorizontalLayout>
+			</f:DynamicPageHeader>
+		</f:header>
+		<f:content>
+			<IconTabBar id="iconTabBar" class="sapUiResponsiveContentPadding"
+			selectedKey="{path: 'formularioSimple>/selectedIconTabBar'}">
+				<items>
+					<IconTabFilter key="0" text="Productos">
+						<Table id="idProductsTable" 
+						inset="false" 
+						items="{path: 'formularioSimple>/listaProductos'}">
+							<headerToolbar>
+									<Toolbar>
+										<Label text="Productos(17):"></Label>
+										<ToolbarSpacer/>
+										<Button text="Agregar" icon="sap-icon://add"></Button>
+										<Button text="Configuración" icon="sap-icon://action-settings"></Button>
+									</Toolbar>
+								</headerToolbar>
+							<columns>
+								<Column width="12em">
+									<Text text="Nombre" />
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true">
+									<Text text="Descripción" />
+								</Column>
+								<Column minScreenWidth="Desktop" demandPopin="true" hAlign="End">
+									<Text text="Imagen" />
+								</Column>
+								<Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">
+									<Text text="Precio V." />
+								</Column>
+								<Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">
+									<Text text="Precio C." />
+								</Column>
+								<Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">
+									<Text text="Unidad M." />
+								</Column>
+								<Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">
+									<Text text="Proveedor" />
+								</Column>
+								<Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">
+									<Text text="Activo" />
+								</Column>
+								<Column hAlign="End">
+									
+								</Column>
+								
+							</columns>
+							<items>
+							<ColumnListItem vAlign="Middle">
+							<cells>
+					
+								<Text text="{formularioSimple>nombre}" />
+
+								<Text text="{formularioSimple>descripción}" />
+
+								<Button  press="openImage" icon="sap-icon://picture" type="Emphasized"/>
+
+								<Text text="{formularioSimple>preciov}" />
+
+								<Text text="{formularioSimple>precioc}" />
+
+								<Text text="{formularioSimple>unidadm}" />
+
+								<Text text="{formularioSimple>proveedor}" />
+
+								
+								
+								<ObjectStatus icon="sap-icon://message-success" text="Activo" state="Success" />
+							
+								
+								<HBox >
+								<Button id="boton-edit" icon="sap-icon://edit"></Button>
+								<Button id="boton-delete" icon="sap-icon://delete"></Button>
+								</HBox>
+							</cells>
+							</ColumnListItem>
+							</items>
+						</Table>
+					</IconTabFilter>
+					<IconTabFilter key="1" text="Proveedores">
+						<Table id="idProveedores" 
+						inset="false" 
+						items="{path: 'formularioSimple>/listaProveedores'}">
+
+						<headerToolbar>
+									<Toolbar>
+										<Label text="Proveedores(10):"></Label>
+										<ToolbarSpacer/>
+										<Button text="Agregar" icon="sap-icon://add" type="Emphasized"></Button>
+										
+									</Toolbar>
+								</headerToolbar>
+							<columns>
+								<Column width="12em">
+									<Text text="Nombre" />
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true">
+									<Text text="Telefono" />
+								</Column>
+								<Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">
+									<Text text="Dirección" />
+								</Column>
+								<Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">
+									<Text text="Estado" />
+								</Column>
+							</columns>
+							<items>
+							<ColumnListItem vAlign="Middle">
+							<cells>
+					
+								<Text text="{formularioSimple>nombre}" />
+
+								<Text text="{formularioSimple>telefono}" />
+
+								<Text text="{formularioSimple>dirección}" />
+
+								<ObjectStatus icon="sap-icon://message-success" text="Activo" state="Success" />
+
+							</cells>
+							</ColumnListItem>
+							</items>
+						</Table>
+					</IconTabFilter>
+					<IconTabFilter key="2" text="Unidades de Medida">
+					<Table id="idUnidades" 
+						inset="false" 
+						items="{path: 'formularioSimple>/listaMedidas'}">
+
+						<headerToolbar>
+									<Toolbar>
+										<Label text="Unidades de Medida(7):"></Label>
+										<ToolbarSpacer/>
+										<Button text="Agregar" icon="sap-icon://add"></Button>
+										<Button text="Configuración" icon="sap-icon://action-settings"></Button>
+									</Toolbar>
+								</headerToolbar>
+
+
+							<columns>
+								<Column width="12em">
+									<Text text="Nombre" />
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true">
+									<Text text="Descripción" />
+								</Column>
+								<Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">
+									<Text text="Abreviatura" />
+								</Column>
+								<Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">
+									<Text text="Estado" />
+								</Column>
+							</columns>
+							<items>
+							<ColumnListItem vAlign="Middle">
+							<cells>
+					
+								<Text text="{formularioSimple>nombre}" />
+
+								<Text text="{formularioSimple>descripción}" />
+
+								<Text text="{formularioSimple>abreviatura}" />
+
+								<ObjectStatus icon="sap-icon://message-success" text="Activo" state="Success" />
+								
+							</cells>
+							</ColumnListItem>
+							</items>
+						</Table>
+					
+					</IconTabFilter>
+				</items>
+			</IconTabBar>
+		</f:content>
+
+		<f:footer>
+				<OverflowToolbar>
+					<ToolbarSpacer/>
+					<Button icon="sap-icon://excel-attachment" press="onExportCSV" text="Exportar CSV"/>
+					<Button icon="sap-icon://excel-attachment" press="onExportExcel" text="Exportar Excel"/>
+				</OverflowToolbar>
+			</f:footer>
+
+
+
+
+	</f:DynamicPage>
 </mvc:View>

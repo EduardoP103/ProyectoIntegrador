@@ -1,0 +1,24 @@
+<c:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:c="sap.ui.core"
+>
+
+<Popover
+		id="myPopover"
+		title="{path: 'formularioSimple>/selectedRowView/nombre'}"
+		class="sapUiResponsivePadding--header sapUiResponsivePadding--footer"
+		placement="Bottom"
+		initialFocus="email">
+		<footer>
+			<OverflowToolbar>
+				<ToolbarSpacer/>
+				<Button
+					id="idCerrarPopover"
+					text="Cerrar"
+					press="closeImage" />
+			</OverflowToolbar>
+		</footer>
+		<Image src="{path: 'formularioSimple>/selectedRowView/imagen'}" width="15em" densityAware="false" />
+	</Popover>
+
+</c:FragmentDefinition>
