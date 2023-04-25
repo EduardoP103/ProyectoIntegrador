@@ -3,27 +3,27 @@
 	xmlns:mvc="sap.ui.core.mvc"
 	xmlns:html="http://www.w3.org/1999/xhtml"
 	xmlns:core="sap.ui.core">
-	<Dialog id="AgregarProd" title="Agregar Productos">
+	<Dialog id="EditarProd" title="Editar Productos">
 
 		<content>
 
-			<VBox class="sapUiSmallMargin" id="formContainerEmployment1">
+			<VBox class="sapUiSmallMargin" id="formContainerEmployment3">
 				<f:SimpleForm editable="true" layout="ColumnLayout" columnsM="2" columnsL="3" columnsXL="5">
 					<f:content>
-						<core:Title text="Ingreso de Productos" />
+						<core:Title text="Edición de Productos" />
 
 						<Label text="Nombre" />
-						<Input required="true" value="{path : 'formularioSimple>/addProducto/nombre' }" />
+						<Input required="true" value="{path : 'formularioSimple>/listaTabla1/nombre' }" />
 						<Label text="Descripcion" />
-						<Input required="true" value="{path : 'formularioSimple>/addProducto/descripcion' }" />
+						<Input required="true" value="{path : 'formularioSimple>/editProducto/descripcion' }" />
 						<Label text="Precio V." />
-						<Input required="true" type="Number" value="{path : 'formularioSimple>/addProducto/preciov' }" />
+						<Input required="true" type="Number" value="{path : 'formularioSimple>/editProducto/preciov' }" />
 						<Label text="Precio C." />
-						<Input required="true" type="Number" value="{path : 'formularioSimple>/addProducto/precioc' }" />
+						<Input required="true" type="Number" value="{path : 'formularioSimple>/editProducto/precioc' }" />
 						<Label text="Stock" />
-						<Input required="true" type="Number" value="{path : 'formularioSimple>/addProducto/stock' }" />
+						<Input required="true" type="Number" value="{path : 'formularioSimple>/editProducto/stock' }" />
 						<Label text="Unidad M." />
-						<Select required="true" id="idUnidadMedida" items="{
+						<Select required="true" id="idUnidadMedida2" items="{
 						path: 'formularioSimple>/unidadMedida'
 					    }" selectedKey="{
                             path: 'formularioSimple>/selectUnidadMedida'
@@ -35,7 +35,7 @@
 
 						<Label text="Proveedor" />
 
-						<Select id="idProveedor" required="true" items="{
+						<Select id="idProveedor2" required="true" items="{
 						path: 'formularioSimple>/listaProveedores'
 					    }" selectedKey="{
                             path: 'formularioSimple>/selectProveedor'
@@ -46,7 +46,7 @@
 						</Select>
 						
 						<Label text="Activo" />
-						<Select id="idActivo" required="true" items="{
+						<Select id="idActivo2" required="true" items="{
 						path: 'formularioSimple>/activo'
 					    }" selectedKey="{
                             path: 'formularioSimple>/selectActivo'
@@ -57,8 +57,8 @@
 						</Select>
 
 						<Label text="Imagen" />
-						<Input value="{path : 'formularioSimple>/addProducto/urlImage' }" valueLiveUpdate="true" />
-						<Image src="{path : 'formularioSimple>/addProducto/urlImage' }" width="100px" />
+						<Input value="{path : 'formularioSimple>/editProducto/urlImage' }" valueLiveUpdate="true" />
+						<Image src="{path : 'formularioSimple>/editProducto/urlImage' }" width="100px" />
 
 
 
@@ -76,15 +76,11 @@
 
 				<content>
 
-					<Button text="Agregar" type="Accept" press="onAddProductoTabla" ariaHasPopup="Dialog" />
+					<Button text="Editar" type="Accept" press="onEditProductoTabla" ariaHasPopup="Dialog" />
 
 					<ToolbarSpacer/>
 
-					<Button text="Limpiar" icon="sap-icon://clear-all" press="onLimpiarCamposDialogos"/>
-
-					<ToolbarSpacer/>
-
-					<Button text="Cerrar" type="Reject" press="closeDialogProducto" ariaHasPopup="Dialog" />
+					<Button text="Cerrar" type="Reject" press="closeDialogProductoe" ariaHasPopup="Dialog" />
 
 				</content>
 

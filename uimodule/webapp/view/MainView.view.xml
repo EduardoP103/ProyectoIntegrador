@@ -54,7 +54,7 @@
 
                         <layout:VerticalLayout class="sapUiMediumMarginEnd">
 
-                            <Image class="sans" src="/img/sans.jpg" width="100px" />
+                            <Image class="sans" src="https://images.goodsmile.info/cgm/images/product/20220301/12411/96007/large/9f93d7819589c11702049d2a553c015c.jpg" width="100px" />
                         
 						</layout:VerticalLayout>
 
@@ -64,7 +64,7 @@
 							<ObjectStatus text="{i18n>consultornombreobj}" state="Success" />
                             <ObjectAttribute title="{i18n>cargoobj}"/>
 							<ObjectStatus text="{i18n>cargonombreobj}" state="Success" />
-							<Image class="seidor" src="/img/seidor.jpeg" width="110px" />
+							<Image class="seidor" src="https://www.seidor.com/icons/seidor.jpeg" width="110px" />
 <!--
 							<SearchField enableSuggestions="true" id="search" placeholder="Buscar" width="100%" class="search" liveChange="onSearch" value="{
 											path : 'formularioSimple>/search'
@@ -88,7 +88,7 @@
 						<layout:VerticalLayout class="sapUiMediumMarginEnd">
 						
 							<Text text="Patrocinado por: "></Text>
-                            <Image class="sans" src="/img/logitech-logo.png" width="100px" />
+                            <Image class="sans" src="https://logodownload.org/wp-content/uploads/2018/03/logitech-logo-3.png" width="100px" />
                         
 						</layout:VerticalLayout>
 
@@ -131,13 +131,13 @@
 
 									</Column>
 
-									<Column	minScreenWidth="Tablet"	demandPopin="true" hAlign="Begin" width="15%">
+									<Column	minScreenWidth="Desktop" demandPopin="true" hAlign="Begin" width="15%">
 
 										<Text text="Descripción" />
 
 									</Column>
 
-									<Column	minScreenWidth="Tablet"	demandPopin="true" hAlign="Center" width="5%">
+									<Column	minScreenWidth="Desktop" demandPopin="true" hAlign="Center" width="5%">
 
 										<Text text="Imagen" />
 
@@ -149,19 +149,19 @@
 
 									</Column>
 
-									<Column	hAlign="Center" width="10%">
+									<Column	minScreenWidth="Desktop" demandPopin="true" hAlign="Center" width="10%">
 
 										<Text text="Previo C." />
 
 									</Column>
 
-									<Column	hAlign="Center" width="5%">
+									<Column hAlign="Center" width="8%">
 
 										<Text text="Stock" />
 
 									</Column>
 
-									<Column	hAlign="Center" width="10%">
+									<Column	minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="10%">
 
 										<Text text="Unidad M." />
 
@@ -173,15 +173,15 @@
 
 									</Column>
 
-									<Column	hAlign="Center" width="10%">
+									<Column	minScreenWidth="Desktop" demandPopin="true" hAlign="Center" width="10%">
 
 										<Text text="Activo" />
 
 									</Column>
 
-									<Column	hAlign="Center" width="5%">
+									<Column	hAlign="Center" width="5%" minScreenWidth="1450px" demandPopin="true">
 
-										<Text text="" />
+										<Text text="Acciones" />
 
 									</Column>
 
@@ -205,8 +205,11 @@
 											<ObjectStatus  text="{formularioSimple>activo}" state="Success" icon="sap-icon://message-success" />
 
 											<HBox justifyContent="SpaceBetween">
-												<Button id="_IDGenButton1" icon="sap-icon://edit" class="botoncito"/>
-												<Button id="deleteUserButton" icon="sap-icon://delete" />
+												<Button id="_IDGenButton1" icon="sap-icon://edit" class="botoncito" press="onEditarProducto"/>
+												<Button
+												press="onConfirmarEliminacion"
+												icon="sap-icon://delete"
+												ariaHasPopup="Dialog" />
 											</HBox>
 
 											
@@ -245,7 +248,7 @@
 
 									</Column>
 
-									<Column	minScreenWidth="Tablet"	demandPopin="true" hAlign="Center">
+									<Column	hAlign="Center">
 
 										<Text text="Telefono" />
 
@@ -257,7 +260,7 @@
 
 									</Column>
 
-									<Column	hAlign="Center" >
+									<Column	minScreenWidth="Desktop" demandPopin="true" hAlign="Center" >
 
 										<Text text="Estado" />
 
@@ -318,19 +321,19 @@
 
 									</Column>
 
-									<Column	minScreenWidth="Tablet"	demandPopin="true" hAlign="Center">
+									<Column	minScreenWidth="Desktop"	demandPopin="true" hAlign="Center">
 
 										<Text text="E-mail" />
 
 									</Column>
 
-									<Column	hAlign="Center" >
+									<Column	minScreenWidth="Desktop" demandPopin="true" hAlign="Center" >
 
 										<Text text="Sexo" />
 
 									</Column>
 
-									<Column	hAlign="Center" >
+									<Column	minScreenWidth="Tablet" demandPopin="true" hAlign="Center" >
 
 										<Text text="Tipo Documento" />
 
@@ -342,19 +345,19 @@
 
 									</Column>
 
-									<Column	hAlign="Center" >
+									<Column demandPopin="true" hAlign="Center" >
 
 										<Text text="Celular" />
 
 									</Column>
 
-									<Column	hAlign="Center" >
+									<Column	minScreenWidth="Desktop" hAlign="Center" >
 
 										<Text text="Distrito" />
 
 									</Column>
 
-									<Column	hAlign="Center" >
+									<Column	minScreenWidth="Desktop" demandPopin="true" hAlign="Center" >
 
 										<Text text="Dirección" />
 
@@ -377,6 +380,73 @@
 											<Text  text="{formularioSimple>celular}" />
 											<Text  text="{formularioSimple>distrito}" />
 											<Text  text="{formularioSimple>direccion}" />
+											
+										</cells>
+
+									</ColumnListItem>
+
+								</items>
+							</Table>
+
+						</IconTabFilter>
+
+						<IconTabFilter key="3" text="Unidad de Medida">
+
+							<Table id="idProductsTable4" sticky="HeaderToolbar,ColumnHeaders" inset="false" class="sapUiSmallNegativeMarginBeginEnd" width="auto"
+									items="{ path: 'formularioSimple>/listaTabla4',	sorter: { path: 'id' }
+									}" >
+
+								<headerToolbar>
+
+									<Toolbar>
+
+										<Title text="Unidad de Medida ({= ${formularioSimple>/listaTabla4}.length })" level="H2"/>
+										
+										<ToolbarSpacer/>
+										<Button type="Transparent" text="Agregar Unidad de Medida" icon="sap-icon://add" press="onAddRegistro"/>
+
+									</Toolbar>
+
+								</headerToolbar>
+
+								<columns>
+
+									<Column	hAlign="Begin">
+
+										<Text text="Nombre" />
+
+									</Column>
+
+									<Column	minScreenWidth="Tablet"	demandPopin="true" hAlign="Center">
+
+										<Text text="Descripcion" />
+
+									</Column>
+
+									<Column	hAlign="Center">
+
+										<Text text="Abreviatura" />
+
+									</Column>
+
+									<Column	hAlign="Center" >
+
+										<Text text="Estado" />
+
+									</Column>									
+
+								</columns>
+
+								<items>
+
+									<ColumnListItem>
+
+										<cells>
+
+											<Text  text="{formularioSimple>nombre}" />
+											<Text  text="{formularioSimple>descripcion}" />
+											<Text  text="{formularioSimple>abreviatura}" />
+											<ObjectStatus  text="{formularioSimple>estado}" state="Success" icon="sap-icon://message-success" />
 											
 										</cells>
 
