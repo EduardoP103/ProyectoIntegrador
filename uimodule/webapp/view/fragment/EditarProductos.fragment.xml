@@ -13,7 +13,7 @@
 						<core:Title text="Edición de Productos" />
 
 						<Label text="Nombre" />
-						<Input required="true" value="{path : 'formularioSimple>/listaTabla1/nombre' }" />
+						<Input required="true" value="{path : 'formularioSimple>/editProducto/nombre' }" />
 						<Label text="Descripcion" />
 						<Input required="true" value="{path : 'formularioSimple>/editProducto/descripcion' }" />
 						<Label text="Precio V." />

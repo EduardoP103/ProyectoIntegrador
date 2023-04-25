@@ -205,7 +205,7 @@
 											<ObjectStatus  text="{formularioSimple>activo}" state="Success" icon="sap-icon://message-success" />
 
 											<HBox justifyContent="SpaceBetween">
-												<Button id="_IDGenButton1" icon="sap-icon://edit" class="botoncito" press="onEditarProducto"/>
+												<Button id="_IDGenButton1" icon="sap-icon://edit" class="botoncito" press="onEditProducto"/>
 												<Button
 												press="onConfirmarEliminacion"
 												icon="sap-icon://delete"

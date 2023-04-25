@@ -862,7 +862,8 @@ sap.ui.define(
                 this.getView().getModel("formularioSimple").setProperty("/selectActivo", oSelectObj.idActivo);
                 
                 this.getView().getModel("formularioSimple").setProperty("/editProducto", obj);
-                //this.onEditProductoTabla();
+                // this.onEditProductoTabla();
+                this.onEditarProducto();
 
             },
 
