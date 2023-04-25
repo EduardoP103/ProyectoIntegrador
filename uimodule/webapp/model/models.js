@@ -58,6 +58,10 @@ sap.ui.define(
                         {
                             "id": "1",
                             "name": "CyC Computer"
+                        },
+                        {
+                            "id": "2",
+                            "name": "Memorykings"
                         }
 
                     ],
@@ -83,7 +87,10 @@ sap.ui.define(
                             "stock": "15",
                             "unidadm": "UND",
                             "proveedor": "CyC Computer",
-                            "activo": "Activo"
+                            "activo": "Activo",
+                            "idUnidaddm": '1',
+                            "idProveedor": '1',
+                            "idActivo": '1'
 
                         },
                         {
@@ -96,7 +103,10 @@ sap.ui.define(
                             "stock": "10",
                             "unidadm": "UND",
                             "proveedor": "Memorykings",
-                            "activo": "Activo"
+                            "activo": "Activo",
+                            "idUnidaddm": '1',
+                            "idProveedor": '1',
+                            "idActivo": '1'
 
                         },
                         {
@@ -109,7 +119,10 @@ sap.ui.define(
                             "stock": "18",
                             "unidadm": "UND",
                             "proveedor": "CyC Computer",
-                            "activo": "Activo"
+                            "activo": "Activo",
+                            "idUnidaddm": '1',
+                            "idProveedor": '1',
+                            "idActivo": '1'
 
                         },
                         {
@@ -258,7 +271,7 @@ sap.ui.define(
                     ],
                     listaTabla2: [
                         {
-                            "id": 0,
+                            "id": 1,
                             "nombre": "CyC Computer",
                             "telefono": "992591551",
                             "direccion": "Avenida Garcilazo de la de Vega 1249 - Interior 404 4to piso",
@@ -266,29 +279,29 @@ sap.ui.define(
 
                         },
                         {
-                            "id": 1,
+                            "id": 2,
                             "nombre": "Memorykings",
                             "telefono": "998245564",
                             "direccion": "Avenida Garcilazo de la de Vega 1261 - Stand 226-227",
                             "estado": "Activo"
 
                         },
-                        {
-                            "id": 2,
-                            "nombre": "Phantom",
-                            "telefono": "960984854",
-                            "direccion": "Avenida Garcilazo de la de Vega 1337 - Centro Cívico, C.C. Real Plaza",
-                            "estado": "Activo"
+                        // {
+                        //     "id": 2,
+                        //     "nombre": "Phantom",
+                        //     "telefono": "960984854",
+                        //     "direccion": "Avenida Garcilazo de la de Vega 1337 - Centro Cívico, C.C. Real Plaza",
+                        //     "estado": "Activo"
 
-                        },
-                        {
-                            "id": 3,
-                            "nombre": "Impacto SA",
-                            "telefono": "955227737",
-                            "direccion": "Avenida Garcilazo de la Vega 1251 - CC. COMPUPLAZA - Int. 302",
-                            "estado": "Activo"
+                        // },
+                        // {
+                        //     "id": 3,
+                        //     "nombre": "Impacto SA",
+                        //     "telefono": "955227737",
+                        //     "direccion": "Avenida Garcilazo de la Vega 1251 - CC. COMPUPLAZA - Int. 302",
+                        //     "estado": "Activo"
 
-                        }
+                        // }
                     ],
                     listaTabla3: [
                         {

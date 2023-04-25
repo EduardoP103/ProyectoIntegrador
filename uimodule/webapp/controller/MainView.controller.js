@@ -722,6 +722,9 @@ sap.ui.define(
                 let pro = this.getView().getModel("formularioSimple").getProperty("/addProducto").proveedor;
                 let ac  = this.getView().getModel("formularioSimple").getProperty("/addProducto").activo;
 
+                let selectUnidadMedida = this.getView().getModel("formularioSimple").getProperty("/selectUnidadMedida")
+                let selectProveedor = this.getView().getModel("formularioSimple").getProperty("/selectProveedor")
+                let selectActivo = this.getView().getModel("formularioSimple").getProperty("/selectActivo")
 
                 let oProducto = {
                     "id": this.getView().getModel("formularioSimple").getProperty("/listaTabla1").length+1,
@@ -733,7 +736,10 @@ sap.ui.define(
                     "stock": s,
                     "unidadm":  this.getView().byId("idUnidadMedida").getSelectedItem().getProperty("text") ,
                     "proveedor":  this.getView().byId("idProveedor").getSelectedItem().getProperty("text"),
-                    "activo": this.getView().byId("idActivo").getSelectedItem().getProperty("text")
+                    "activo": this.getView().byId("idActivo").getSelectedItem().getProperty("text"),
+                    "idUnidaddm" : selectUnidadMedida,
+                    "idProveedor" : selectProveedor,
+                    "idActivo" : selectActivo
                     
                 }
                 let oRespuesta = {
@@ -774,6 +780,22 @@ sap.ui.define(
                 let pro = this.getView().getModel("formularioSimple").getProperty("/editProducto").proveedor;
                 let ac  = this.getView().getModel("formularioSimple").getProperty("/editProducto").activo;
 
+                let selectUnidadMedida = this.getView().getModel("formularioSimple").getProperty("/selectUnidadMedida")
+                let selectProveedor = this.getView().getModel("formularioSimple").getProperty("/selectProveedor")
+                let selectActivo = this.getView().getModel("formularioSimple").getProperty("/selectActivo")
+
+                var aEncontradoUnidad = this.getView().getModel("formularioSimple").getProperty("/unidadMedida").filter(function(item,index){
+                    return item.id == selectUnidadMedida;
+                })
+
+                var aEncontradoProveedor = this.getView().getModel("formularioSimple").getProperty("/listaProveedores").filter(function(item,index){
+                    return item.id ==  selectProveedor;
+                })
+
+                var aEncontradoActivo = this.getView().getModel("formularioSimple").getProperty("/activo").filter(function(item,index){
+                    return item.id ==  selectActivo;
+                })
+
                 let oProducto1 = {
                     "id": id,
                     "nombre": nomProd,
@@ -782,9 +804,12 @@ sap.ui.define(
                     "preciov": pvProd,
                     "precioc": pcProd,
                     "stock": sProd,
-                    "unidadm":  "und" ,
-                    "proveedor":  "pro",
-                    "activo": "act"
+                    "unidadm": aEncontradoUnidad[0].name,// "und" ,
+                    "proveedor": aEncontradoProveedor[0].name, //"pro",
+                    "activo": aEncontradoActivo[0].name,//"act"
+                    "idUnidaddm" : selectUnidadMedida,
+                    "idProveedor" : selectProveedor,
+                    "idActivo" : selectActivo
                     
                 }
                 let oRespuesta2 = {
@@ -811,7 +836,7 @@ sap.ui.define(
                 let listaFinal = [];
                 for (let index = 0; index < listaTabla1.length; index++) {
                     const element = listaTabla1[index];
-                    if(element.id == oProducto.id){
+                    if(element.id == oProducto1.id){
                         listaFinal.push(oProducto1);
                     }
                     else{
@@ -820,8 +845,8 @@ sap.ui.define(
                 }
                 this.getView().getModel("formularioSimple").setProperty("/listaTabla1",listaFinal);
                 this.getView().getModel("formularioSimple").refresh();
-                MessageBox.success("Datos ingresados correctamente");
-                this.closeDialogProducto();
+                MessageBox.success("Datos editados correctamente");
+                this.closeDialogProductoe();
             },
 
             // ----------------------------Editar registros de Producto -------------------------//
