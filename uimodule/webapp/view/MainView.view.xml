@@ -73,6 +73,7 @@
                         <ObjectStatus text="Eyner Mesones" state="Success" />
                         <ObjectAttribute title="Cargo" />
                         <ObjectStatus text="Analista del sistema" state="Success" />
+                        
                     </layout:VerticalLayout>
                 </layout:HorizontalLayout>
             </f:DynamicPageHeader>
@@ -188,7 +189,7 @@
         <!-- DynamicPage Footer -->
         <f:footer>
             <OverflowToolbar>
-               
+                <Button icon="sap-icon://message-popup" press="onPressPopup" text="{i18n>popupButton}"/>
                 <ToolbarSpacer/>
                  <Button icon="sap-icon://excel-attachment" press="onExportSpreadSheetCSV" type="Accept" text="Exportar CSV"/>
                 <Button icon="sap-icon://excel-attachment" press="onExportSpreadSheetXLSX" type="Accept" text="Exportar Excel"/>

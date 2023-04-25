@@ -20,6 +20,7 @@ sap.ui.define(
             formModel: function () {
                 const oParam = {
                     selectedRowView: {},
+                    selectedIconTabBar: "0",
                     productList: [
                         {
                             "productName" : "SSD",
@@ -178,6 +179,7 @@ sap.ui.define(
 
                         },
                     ],
+                    
                 }
                 const oModel = new JSONModel(oParam);
                 return oModel;
