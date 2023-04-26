@@ -2,8 +2,8 @@
 	xmlns="sap.m"
 	xmlns:core="sap.ui.core">
 	<Popover
-		id="idAddProduct"
-		title="{i18n>}">
+		id="imgPopover"
+		title="{path: 'formModel>/selectedRowView/productName'}">
 		<footer>
 			<OverflowToolbar>
 				<ToolbarSpacer/>

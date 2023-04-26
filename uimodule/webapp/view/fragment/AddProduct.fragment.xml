@@ -8,13 +8,20 @@
 		title="{i18n>addProductDialogTitle}">
 		<content>
             <VBox class="sapUiSmallMargin" id="dialogo">
-                <Label text="Nombre del producto" />
-                <Input id="fragmentProductName"
-                            placeholder="{i18n>phColorFavorito}"
-                            value="{
-                            path:'formularioModel>/colorFavorito'
-                        }" />
+	<f:SimpleForm editable="true" layout="ColumnLayout" columnsM="2" columnsL="3" columnsXL="5">
+					<f:content>
+						<core:Title text="Ingreso de Productos" />
+
+						<Label text="Nombre" />
+						<Input required="true" value="{path : 'formularioSimple>/addProducto/nombre' }" />
+
+</f:content>
+
+				</f:SimpleForm>
             </VBox>
+
+			
+
         </content> 
 		<footer>
 			<Toolbar>

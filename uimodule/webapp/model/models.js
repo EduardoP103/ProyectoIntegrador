@@ -29,156 +29,191 @@ sap.ui.define(
                             "productPriceV" : "18.0",
                             "productPriceC" : "18.0",
                             "productStock" : "30.0",
+                            "idUnitM" : 1,
                             "productUnitM" : "UND",
+                            "idSupplier" : 1,
                             "productProvider" : "Pepito",
+                            "idStatus" : 1,
                             "productActive" : "Activo",
                             "imgUrl" : "https://img.unocero.com/2021/08/rickroll_4k.jpeg"
 
                         },
-                        {
-                            "productName" : "SSD",
-                            "productDescription" : "Disco Sólido",
-                            "productImage" : "Carro",
-                            "productPriceV" : "18.0",
-                            "productPriceC" : "18.0",
-                            "productStock" : "30.0",
-                            "productUnitM" : "UND",
-                            "productProvider" : "Pepito",
-                            "productActive" : "Activo",
-                            "imgUrl" : "https://img.unocero.com/2021/08/rickroll_4k.jpeg"
+                        
+                        // {
+                        //     "productName" : "SSD",
+                        //     "productDescription" : "Disco Sólido",
+                        //     "productImage" : "Carro",
+                        //     "productPriceV" : "18.0",
+                        //     "productPriceC" : "18.0",
+                        //     "productStock" : "30.0",
+                        //     "productUnitM" : "UND",
+                        //     "productProvider" : "Pepito",
+                        //     "productActive" : "Activo",
+                        //     "imgUrl" : "https://img.unocero.com/2021/08/rickroll_4k.jpeg"
 
-                        },
-                        {
-                            "productName" : "SSD",
-                            "productDescription" : "Disco Sólido",
-                            "productImage" : "Carro",
-                            "productPriceV" : "18.0",
-                            "productPriceC" : "18.0",
-                            "productStock" : "30.0",
-                            "productUnitM" : "UND",
-                            "productProvider" : "Pepito",
-                            "productActive" : "Activo",
-                            "imgUrl" : "https://img.unocero.com/2021/08/rickroll_4k.jpeg"
+                        // },
+                        // {
+                        //     "productName" : "SSD",
+                        //     "productDescription" : "Disco Sólido",
+                        //     "productImage" : "Carro",
+                        //     "productPriceV" : "18.0",
+                        //     "productPriceC" : "18.0",
+                        //     "productStock" : "30.0",
+                        //     "productUnitM" : "UND",
+                        //     "productProvider" : "Pepito",
+                        //     "productActive" : "Activo",
+                        //     "imgUrl" : "https://img.unocero.com/2021/08/rickroll_4k.jpeg"
 
-                        },
-                        {
-                            "productName" : "SSD",
-                            "productDescription" : "Disco Sólido",
-                            "productImage" : "Carro",
-                            "productPriceV" : "18.0",
-                            "productPriceC" : "18.0",
-                            "productStock" : "30.0",
-                            "productUnitM" : "UND",
-                            "productProvider" : "Pepito",
-                            "productActive" : "Activo",
-                            "imgUrl" : "https://img.unocero.com/2021/08/rickroll_4k.jpeg"
+                        // },
+                        // {
+                        //     "productName" : "SSD",
+                        //     "productDescription" : "Disco Sólido",
+                        //     "productImage" : "Carro",
+                        //     "productPriceV" : "18.0",
+                        //     "productPriceC" : "18.0",
+                        //     "productStock" : "30.0",
+                        //     "productUnitM" : "UND",
+                        //     "productProvider" : "Pepito",
+                        //     "productActive" : "Activo",
+                        //     "imgUrl" : "https://img.unocero.com/2021/08/rickroll_4k.jpeg"
 
-                        },
-                        {
-                            "productName" : "SSD",
-                            "productDescription" : "Disco Sólido",
-                            "productImage" : "Carro",
-                            "productPriceV" : "18.0",
-                            "productPriceC" : "18.0",
-                            "productStock" : "30.0",
-                            "productUnitM" : "UND",
-                            "productProvider" : "Pepito",
-                            "productActive" : "Activo",
-                            "imgUrl" : "https://img.unocero.com/2021/08/rickroll_4k.jpeg"
+                        // },
+                        // {
+                        //     "productName" : "SSD",
+                        //     "productDescription" : "Disco Sólido",
+                        //     "productImage" : "Carro",
+                        //     "productPriceV" : "18.0",
+                        //     "productPriceC" : "18.0",
+                        //     "productStock" : "30.0",
+                        //     "productUnitM" : "UND",
+                        //     "productProvider" : "Pepito",
+                        //     "productActive" : "Activo",
+                        //     "imgUrl" : "https://img.unocero.com/2021/08/rickroll_4k.jpeg"
 
-                        },
-                        {
-                            "productName" : "SSD",
-                            "productDescription" : "Disco Sólido",
-                            "productImage" : "Carro",
-                            "productPriceV" : "18.0",
-                            "productPriceC" : "18.0",
-                            "productStock" : "30.0",
-                            "productUnitM" : "UND",
-                            "productProvider" : "Pepito",
-                            "productActive" : "Activo",
-                            "imgUrl" : "https://img.unocero.com/2021/08/rickroll_4k.jpeg"
+                        // },
+                        // {
+                        //     "productName" : "SSD",
+                        //     "productDescription" : "Disco Sólido",
+                        //     "productImage" : "Carro",
+                        //     "productPriceV" : "18.0",
+                        //     "productPriceC" : "18.0",
+                        //     "productStock" : "30.0",
+                        //     "productUnitM" : "UND",
+                        //     "productProvider" : "Pepito",
+                        //     "productActive" : "Activo",
+                        //     "imgUrl" : "https://img.unocero.com/2021/08/rickroll_4k.jpeg"
 
-                        },
-                        {
-                            "productName" : "SSD",
-                            "productDescription" : "Disco Sólido",
-                            "productImage" : "Carro",
-                            "productPriceV" : "18.0",
-                            "productPriceC" : "18.0",
-                            "productStock" : "30.0",
-                            "productUnitM" : "UND",
-                            "productProvider" : "Pepito",
-                            "productActive" : "Activo",
-                            "imgUrl" : "https://img.unocero.com/2021/08/rickroll_4k.jpeg"
+                        // },
+                        // {
+                        //     "productName" : "SSD",
+                        //     "productDescription" : "Disco Sólido",
+                        //     "productImage" : "Carro",
+                        //     "productPriceV" : "18.0",
+                        //     "productPriceC" : "18.0",
+                        //     "productStock" : "30.0",
+                        //     "productUnitM" : "UND",
+                        //     "productProvider" : "Pepito",
+                        //     "productActive" : "Activo",
+                        //     "imgUrl" : "https://img.unocero.com/2021/08/rickroll_4k.jpeg"
 
-                        },
-                        {
-                            "productName" : "SSD",
-                            "productDescription" : "Disco Sólido",
-                            "productImage" : "Carro",
-                            "productPriceV" : "18.0",
-                            "productPriceC" : "18.0",
-                            "productStock" : "30.0",
-                            "productUnitM" : "UND",
-                            "productProvider" : "Pepito",
-                            "productActive" : "Activo",
-                            "imgUrl" : "https://img.unocero.com/2021/08/rickroll_4k.jpeg"
+                        // },
+                        // {
+                        //     "productName" : "SSD",
+                        //     "productDescription" : "Disco Sólido",
+                        //     "productImage" : "Carro",
+                        //     "productPriceV" : "18.0",
+                        //     "productPriceC" : "18.0",
+                        //     "productStock" : "30.0",
+                        //     "productUnitM" : "UND",
+                        //     "productProvider" : "Pepito",
+                        //     "productActive" : "Activo",
+                        //     "imgUrl" : "https://img.unocero.com/2021/08/rickroll_4k.jpeg"
 
-                        },
-                        {
-                            "productName" : "SSD",
-                            "productDescription" : "Disco Sólido",
-                            "productImage" : "Carro",
-                            "productPriceV" : "18.0",
-                            "productPriceC" : "18.0",
-                            "productStock" : "30.0",
-                            "productUnitM" : "UND",
-                            "productProvider" : "Pepito",
-                            "productActive" : "Activo",
-                            "imgUrl" : "https://img.unocero.com/2021/08/rickroll_4k.jpeg"
+                        // },
+                        // {
+                        //     "productName" : "SSD",
+                        //     "productDescription" : "Disco Sólido",
+                        //     "productImage" : "Carro",
+                        //     "productPriceV" : "18.0",
+                        //     "productPriceC" : "18.0",
+                        //     "productStock" : "30.0",
+                        //     "productUnitM" : "UND",
+                        //     "productProvider" : "Pepito",
+                        //     "productActive" : "Activo",
+                        //     "imgUrl" : "https://img.unocero.com/2021/08/rickroll_4k.jpeg"
 
-                        },
-                        {
-                            "productName" : "SSD",
-                            "productDescription" : "Disco Sólido",
-                            "productImage" : "Carro",
-                            "productPriceV" : "18.0",
-                            "productPriceC" : "18.0",
-                            "productStock" : "30.0",
-                            "productUnitM" : "UND",
-                            "productProvider" : "Pepito",
-                            "productActive" : "Activo",
-                            "imgUrl" : "https://img.unocero.com/2021/08/rickroll_4k.jpeg"
+                        // },
+                        // {
+                        //     "productName" : "SSD",
+                        //     "productDescription" : "Disco Sólido",
+                        //     "productImage" : "Carro",
+                        //     "productPriceV" : "18.0",
+                        //     "productPriceC" : "18.0",
+                        //     "productStock" : "30.0",
+                        //     "productUnitM" : "UND",
+                        //     "productProvider" : "Pepito",
+                        //     "productActive" : "Activo",
+                        //     "imgUrl" : "https://img.unocero.com/2021/08/rickroll_4k.jpeg"
 
-                        },
-                        {
-                            "productName" : "SSD",
-                            "productDescription" : "Disco Sólido",
-                            "productImage" : "Carro",
-                            "productPriceV" : "18.0",
-                            "productPriceC" : "18.0",
-                            "productStock" : "30.0",
-                            "productUnitM" : "UND",
-                            "productProvider" : "Pepito",
-                            "productActive" : "Activo",
-                            "imgUrl" : "https://img.unocero.com/2021/08/rickroll_4k.jpeg"
+                        // },
+                        // {
+                        //     "productName" : "SSD",
+                        //     "productDescription" : "Disco Sólido",
+                        //     "productImage" : "Carro",
+                        //     "productPriceV" : "18.0",
+                        //     "productPriceC" : "18.0",
+                        //     "productStock" : "30.0",
+                        //     "productUnitM" : "UND",
+                        //     "productProvider" : "Pepito",
+                        //     "productActive" : "Activo",
+                        //     "imgUrl" : "https://img.unocero.com/2021/08/rickroll_4k.jpeg"
 
-                        },
-                        {
-                            "productName" : "SSD",
-                            "productDescription" : "Disco Sólido",
-                            "productImage" : "Carro",
-                            "productPriceV" : "18.0",
-                            "productPriceC" : "18.0",
-                            "productStock" : "30.0",
-                            "productUnitM" : "UND",
-                            "productProvider" : "Pepito",
-                            "productActive" : "Activo",
-                            "imgUrl" : "https://img.unocero.com/2021/08/rickroll_4k.jpeg"
+                        // },
+                        // {
+                        //     "productName" : "SSD",
+                        //     "productDescription" : "Disco Sólido",
+                        //     "productImage" : "Carro",
+                        //     "productPriceV" : "18.0",
+                        //     "productPriceC" : "18.0",
+                        //     "productStock" : "30.0",
+                        //     "productUnitM" : "UND",
+                        //     "productProvider" : "Pepito",
+                        //     "productActive" : "Activo",
+                        //     "imgUrl" : "https://img.unocero.com/2021/08/rickroll_4k.jpeg"
 
-                        },
+                        // },
                     ],
+                    addProduct : {
+                        "productName" : "",
+                        "productDescription" : "",
+                        "productImage" : "",
+                        "productPriceV" : "",
+                        "productPriceC" : "",
+                        "productStock" : "",
+                        "idUnitM" : "0",
+                        "productUnitM" : "",
+                        "idSupplier" : "0",
+                        "productProvider" : "Pepito",
+                        "idStatus" : "",
+                        "productActive" : "",
+                        "imgUrl" : ""
+                    },
+                    editProduct : {
+                        "idProduct" : null,
+                        "productName" : "",
+                        "productDescription" : "",
+                        "productImage" : "",
+                        "productPriceV" : "",
+                        "productPriceC" : "",
+                        "productStock" : "",
+                        "idUnitM" : "0",
+                        "productUnitM" : "",
+                        "idSupplier" : "0",
+                        "productProvider" : "Pepito",
+                        "idStatus" : "",
+                        "productActive" : "",
+                        "imgUrl" : ""
+                    },
 
                     supplierList : [
                         {

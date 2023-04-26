@@ -42,6 +42,30 @@ sap.ui.define(
             onPopoverClose: function (oEvent) {
                 this.byId("imgPopover").close();
             },
+
+            onOpenAddDialog: function (oEvent) {
+                
+                var oButton = oEvent.getSource(),
+                oView = this.getView();
+                // create popover
+                if (!this.oDialogAddProduct) {
+                    this.oDialogAddProduct = Fragment.load({
+                        id: oView.getId(),
+                        name: "com.pe.proyectoIntegrador.view.fragment.AddProduct",
+                        controller: this
+                    }).then(function (oPopover) {
+                        oView.addDependent(oPopover);
+                        return oPopover;
+                    });
+                }
+                this.oDialogAddProduct.then(function (oPopover) {
+                    oPopover.openBy(oButton);
+                });
+            },
+            onAddProductClose: function (oEvent) {
+                this.byId("idAddProductDialog").close();
+            },
+
             onPressPopup: function (oEvent) {
                 let message="Mensaje";
                 let icon = "WARNING";
@@ -158,7 +182,6 @@ sap.ui.define(
             },
             onAddButton: function(){
                 let add_obj={};
-                
 
             },
             loadSupplier : function(){
