@@ -26,13 +26,12 @@ sap.ui.define(
                             "idProducto" : 1,
                             "productName" : "SSD",
                             "productDescription" : "Disco Sólido",
-                            "productImage" : "Carro",
                             "productPriceV" : "18.0",
                             "productPriceC" : "18.0",
                             "productStock" : "30.0",
-                            "idMesurement" : 1,
-                            "productUnitM" : "UND",
-                            "idSupplier" : 1,
+                            "idMeasurement" : 1,
+                            "productUnitM" : "Unidades",
+                            "idProvider" : 1,
                             "productProvider" : "Pepito",
                             "idStatus" : 1,
                             "productActive" : "Activo",
@@ -40,46 +39,44 @@ sap.ui.define(
 
                         }
                     ],
-                    addProducto : {
+                    addProduct : {
                         "idProduct" : null,
                         "productName" : "",
                         "productDescription" : "",
-                        "productImage" : "",
                         "productPriceV" : "",
                         "productPriceC" : "",
                         "productStock" : "",
-                        "idMesurement" : "0",
+                        "idMeasurement" : "0",
                         "productUnitM" : "",
-                        "idSupplier" : "0",
+                        "idProvider" : "0",
                         "productProvider" : "",
                         "idStatus" : "0",
                         "productActive" : "",
                         "imgUrl" : ""
                     },
-                    editProducto : {
+                    editProduct : {
                         "idProduct" : null,
                         "productName" : "",
                         "productDescription" : "",
-                        "productImage" : "",
                         "productPriceV" : "",
                         "productPriceC" : "",
                         "productStock" : "",
-                        "idUnidad" : "0",
+                        "idMeasurement" : "0",
                         "productUnitM" : "",
-                        "idSupplier" : "0",
+                        "idProvider" : "0",
                         "productProvider" : "",
-                        "idStatus" : "",
+                        "idStatus" : "0",
                         "productActive" : "",
                         "imgUrl" : ""
                     },
 
-                    supplierList : [
+                    providerList : [
                         {
-                            id: 1,
+                            id: "1",
                             name: "Pepito",
                             phone: "980545386",
                             address: "Av. Manuel Gonzales parda",
-                            idStatus: 1,
+                            idStatus: "1",
                             statusName: "Activo",
                             statusIcon: "sap-icon://sys-enter-2",
                             statusState: "Success",
@@ -96,20 +93,20 @@ sap.ui.define(
                     ],
                     
                     //Desplegable de los combos para el agregar y el editar
-                    selectSupplierList : [{
+                    selectProviderList : [{
                         "key" : "0",
-                        "text" : "--Seleccione---"
+                        "text" : "--Seleccione proveedor---"
                     },
 
                 ],
                     selectMeasurementList : [{
                         "key" : "0",
-                        "text" : "--Seleccione---"
+                        "text" : "--Seleccione medida---"
                     }],
 
                     selectStatusList : [{
                         "key" : "0",
-                        "text" : "--Seleccione---"
+                        "text" : "--Seleccione opción---"
                     },{
                         "key" : "1",
                         "text" : "Activo"

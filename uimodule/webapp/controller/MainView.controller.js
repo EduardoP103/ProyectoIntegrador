@@ -59,21 +59,21 @@ sap.ui.define(
             },
             onAddProductClose: function (oEvent) {
                 this.oDialogAddProduct.close();
-                this.limpiarCamposAgregarForm();
+                this.cleanFieldsAddForm();
             },
 
             onAddProductSave: function(){
                 debugger;
 
                 //1.VALIDAR QUE TODOS LOS CAMPOS ESTEN LLENOS
-                const { productName, idMesurement ,idStatus ,idSupplier }  = this.getView().getModel("formModel").getProperty("/addProducto")
-                if(productName.trim().length==0 || idStatus == "0"){
+                const { productName, productDescription, productPriceV, productPriceC, productStock, imgUrl, idMeasurement ,idStatus ,idProvider }  = this.getView().getModel("formModel").getProperty("/addProduct")
+                if(productName.trim().length==0 || idStatus == "0" || productDescription.trim().length==0|| productPriceV.trim().length==0 || productPriceC.trim().length==0 || productStock.trim().length==0 || imgUrl.trim().length==0 || idMeasurement == "0" || idStatus == "0" ){
                     util.utilUI.messageBox("Complete todos campos marcados en asterisco", "WARNING", "Alerta");
                     return;
                 }
                 
                let productList = this.getView().getModel("formModel").getProperty("/productList");
-               let addProducto = this.getView().getModel("formModel").getProperty("/addProducto");
+               let addProduct = this.getView().getModel("formModel").getProperty("/addProduct");
                let id;
                if(productList.length>0){
                     let ordenadoDesc =  productList.sort(function(a, b){
@@ -90,12 +90,12 @@ sap.ui.define(
                     id = 1;
                 }
                
-                this.getView().getModel("formModel").setProperty("/addProducto/idMesurement",parseInt(idMesurement));
-                this.getView().getModel("formModel").setProperty("/addProducto/idStatus",parseInt(idStatus));
-                this.getView().getModel("formModel").setProperty("/addProducto/idSupplier",parseInt(idSupplier));
-                this.getView().getModel("formModel").setProperty("/addProducto/idProducto",id);
+                this.getView().getModel("formModel").setProperty("/addProduct/idMeasurement",parseInt(idMeasurement));
+                this.getView().getModel("formModel").setProperty("/addProduct/idStatus",parseInt(idStatus));
+                this.getView().getModel("formModel").setProperty("/addProduct/idProvider",parseInt(idProvider));
+                this.getView().getModel("formModel").setProperty("/addProduct/idProducto",id);
 
-                productList.push(this.getView().getModel("formModel").getProperty("/addProducto"))
+                productList.push(this.getView().getModel("formModel").getProperty("/addProduct"))
                 this.getView().getModel("formModel").setProperty("/productList",productList)
 
                 //Refrescar TODO lo que esta anidado a formModel
@@ -107,31 +107,31 @@ sap.ui.define(
             onChangeMeasurementAdd: function(oEvent){
                 debugger;
                 let text = oEvent.getSource().getSelectedItem().getProperty("text");
-                this.getView().getModel("formModel").setProperty("/addProducto/productUnitM",text)
+                this.getView().getModel("formModel").setProperty("/addProduct/productUnitM",text)
             },
-            onChangeSupplierAdd: function(oEvent){
+            onChangeProviderAdd: function(oEvent){
                 debugger;
                 let text = oEvent.getSource().getSelectedItem().getProperty("text");
-                this.getView().getModel("formModel").setProperty("/addProducto/productProvider",text)
+                this.getView().getModel("formModel").setProperty("/addProduct/productProvider",text)
             },
             onChangeStatusAdd: function(oEvent){
                 debugger;
                 let text = oEvent.getSource().getSelectedItem().getProperty("text");
-                this.getView().getModel("formModel").setProperty("/addProducto/productActive",text)
+                this.getView().getModel("formModel").setProperty("/addProduct/productActive",text)
             },
 
 
-            limpiarCamposAgregarForm: function () {
-                this.getView().getModel("formModel").setProperty("/addProducto", {
+            cleanFieldsAddForm: function () {
+                this.getView().getModel("formModel").setProperty("/addProduct", {
                         "productName" : "",
                         "productDescription" : "",
                         "productImage" : "",
                         "productPriceV" : "",
                         "productPriceC" : "",
                         "productStock" : "",
-                        "idMesurement" : "0",
+                        "idMeasurement" : "0",
                         "productUnitM" : "",
-                        "idSupplier" : "0",
+                        "idProvider" : "0",
                         "productProvider" : "",
                         "idStatus" : "0",
                         "productActive" : "",
@@ -183,7 +183,7 @@ sap.ui.define(
                     fileName = "ProductoDataExcel.xlsx";
                     aCols = this.createColumnConfigTableProducts();
                 } else if (selectedIconTabBar === "1") {
-                    oTable = this.getView().byId("idSupplierTable");
+                    oTable = this.getView().byId("idProviderTable");
                     path = oTable.getBinding("items").getPath();
                     fileName = "ProveedorDataExcel.xlsx";
                     aCols = this.createColumnConfigTableSupplier();
@@ -262,23 +262,19 @@ sap.ui.define(
             },
 
             loadSupplier: function () {
-                debugger;
-                const { supplierList, selectSupplierList } = this.getView().getModel("formModel").getData();
-                supplierList.forEach((element) => {
-                    debugger;
+                const { providerList, selectProviderList } = this.getView().getModel("formModel").getData();
+                providerList.forEach((element) => {
                     let obj = {};
                     obj.key = element.id.toString();
                     obj.text = element.name;
-                    selectSupplierList.push(obj);
+                    selectProviderList.push(obj);
                 });
 
-                this.getView().getModel("formModel").setProperty("/selectSupplierList", selectSupplierList);
+                this.getView().getModel("formModel").setProperty("/selectProviderList", selectProviderList);
             },
             loadMeasurement: function () {
-                debugger;
                 const { measurementList, selectMeasurementList } = this.getView().getModel("formModel").getData();
                 measurementList.forEach((element) => {
-                    debugger;
                     let obj = {};
                     obj.key = element.id.toString();
                     obj.text = element.name;
@@ -292,6 +288,82 @@ sap.ui.define(
                 this.loadSupplier();
                 this.loadMeasurement();
             },
+            onPressEditProduct: function (oEvent) {
+                
+                var oButton = oEvent.getSource(),
+                oView = this.getView();
+                var oProduct = oButton.getParent().getBindingContext("formModel");
+                var oSelectObj = oProduct.getObject();
+                this.getView().getModel("formModel").setProperty("/selectedRowView", oSelectObj);
+                debugger;
+                // create popover
+                if (!this.oEditProduct) {
+                    this.oEditProduct = this.loadFragment({
+                        name: "com.pe.proyectoIntegrador.view.fragment.EditProduct",
+                    });
+                }
+                this.oEditProduct.then(
+                    function (oDialog1) {
+                        this.oDialogEditProduct = oDialog1;
+                        this.oDialogEditProduct.open();
+                    }.bind(this)
+                );
+            },
+            onEditProductSave: function(){
+                debugger;
+
+                //1.VALIDAR QUE TODOS LOS CAMPOS ESTEN LLENOS
+                const { productName, productDescription, productPriceV, productPriceC, productStock, imgUrl, idMeasurement ,idStatus ,idProvider }  = this.getView().getModel("formModel").getProperty("/editProduct")
+                if(productName.trim().length==0 || idStatus == "0" || productDescription.trim().length==0|| productPriceV.trim().length==0 || productPriceC.trim().length==0 || productStock.trim().length==0 || imgUrl.trim().length==0 || idMeasurement == "0" || idStatus == "0" ){
+                    util.utilUI.messageBox("Complete todos campos marcados en asterisco", "WARNING", "Alerta");
+                    return;
+                }
+                this.getView().getModel("formModel").setProperty("/editProduct/idMeasurement",parseInt(idMeasurement));
+                this.getView().getModel("formModel").setProperty("/editProduct/idStatus",parseInt(idStatus));
+                this.getView().getModel("formModel").setProperty("/editProduct/idProvider",parseInt(idProvider));
+
+                //Refrescar TODO lo que esta anidado a formModel
+                this.getView().getModel("formModel").refresh(true);
+
+                this.onEditProductClose();
+            },
+            onEditProductClose: function (oEvent) {
+                this.oDialogEditProduct.close();
+                this.cleanFieldsEditForm();
+            },
+            onChangeMeasurementEdit: function(oEvent){
+                debugger;
+                let text = oEvent.getSource().getSelectedItem().getProperty("text");
+                this.getView().getModel("formModel").setProperty("/editProduct/productUnitM",text)
+            },
+            onChangeProviderEdit: function(oEvent){
+                debugger;
+                let text = oEvent.getSource().getSelectedItem().getProperty("text");
+                this.getView().getModel("formModel").setProperty("/editProduct/productProvider",text)
+            },
+            onChangeStatusEdit: function(oEvent){
+                debugger;
+                let text = oEvent.getSource().getSelectedItem().getProperty("text");
+                this.getView().getModel("formModel").setProperty("/editProduct/productActive",text)
+            },
+            cleanFieldsEditForm: function () {
+                this.getView().getModel("formModel").setProperty("/editProduct", {
+                        "productName" : "",
+                        "productDescription" : "",
+                        "productImage" : "",
+                        "productPriceV" : "",
+                        "productPriceC" : "",
+                        "productStock" : "",
+                        "idMeasurement" : "0",
+                        "productUnitM" : "",
+                        "idProvider" : "0",
+                        "productProvider" : "",
+                        "idStatus" : "0",
+                        "productActive" : "",
+                        "imgUrl" : ""
+                    });
+            },
+            
         });
     }
 );

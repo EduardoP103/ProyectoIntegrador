@@ -2,7 +2,7 @@
 	xmlns:f="sap.ui.layout.form"
 	xmlns:mvc="sap.ui.core.mvc"
 	xmlns:core="sap.ui.core">
-	<Dialog id="idAddProductDialog" title="{i18n>addProductDialogTitle}">
+	<Dialog id="idEditProductDialog" title="{i18n>addProductDialogTitle}">
 		<content>
 			<VBox class="sapUiSmallMargin">
 				<f:SimpleForm editable="true" layout="ColumnLayout" columnsM="2" columnsL="3" columnsXL="3">
@@ -10,31 +10,31 @@
 						<core:Title text="{i18n>addProductDialogTitle2}" />
 
 						<Label text="{i18n>tab1TableC1}" />
-						<Input required="true" placeholder="{i18n>addProductDialogPH1}" value="{path : 'formModel>/addProduct/productName' }" />
+						<Input required="true" placeholder="{i18n>addProductDialogPH1}" value="{path : 'formModel>/editProduct/productName' }" />
 
 						<Label text="{i18n>tab1TableC2}" />
-						<Input required="true" placeholder="{i18n>addProductDialogPH2}" value="{path : 'formModel>/addProduct/productDescription' }" />
+						<Input required="true" placeholder="{i18n>addProductDialogPH2}" value="{path : 'formModel>/editProduct/productDescription' }" />
 						
 						<Label text="{i18n>tab1TableC3}" required="true" />
-						<Input value="{path : 'formModel>/addProduct/imgUrl' }" placeholder="{i18n>addProductDialogPH3}" valueLiveUpdate="true" />
-						<Image src="{path : 'formModel>/addProduct/imgUrl' }" width="100px" />
+						<Input value="{path : 'formModel>/editProduct/imgUrl' }" placeholder="{i18n>addProductDialogPH3}" valueLiveUpdate="true" />
+						<Image src="{path : 'formModel>/editProduct/imgUrl' }" width="100px" />
 						
 						<Label text="{i18n>tab1TableC4}" />
-						<Input required="true" placeholder="{i18n>addProductDialogPH4}" value="{path : 'formModel>/addProduct/productPriceV' }" />
+						<Input required="true" placeholder="{i18n>addProductDialogPH4}" value="{path : 'formModel>/editProduct/productPriceV' }" />
 
 						<Label text="{i18n>tab1TableC5}" />
-						<Input required="true" placeholder="{i18n>addProductDialogPH5}" value="{path : 'formModel>/addProduct/productPriceC' }" />
+						<Input required="true" placeholder="{i18n>addProductDialogPH5}" value="{path : 'formModel>/editProduct/productPriceC' }" />
 
 						<Label text="{i18n>tab1TableC6}" />
-						<Input required="true" placeholder="{i18n>addProductDialogPH6}" value="{path : 'formModel>/addProduct/productStock' }" />
+						<Input required="true" placeholder="{i18n>addProductDialogPH6}" value="{path : 'formModel>/editProduct/productStock' }" />
 
 						<Label text="{i18n>tab1TableC7}" />
 						<Select required="true" items="{
 						path: 'formModel>/selectMeasurementList'
 					    }" selectedKey="{
-                            path: 'formModel>/addProduct/idMeasurement'
+                            path: 'formModel>/editProduct/idMeasurement'
                         }"
-						change="onChangeMeasurementAdd"
+						change="onChangeMeasurementEdit"
 						>
 							<core:ListItem key="{formModel>key}" text="{formModel>text}" enabled="{= ${formModel>key} === '0' ? false : true }" />
 						</Select>
@@ -44,9 +44,9 @@
 						<Select required="true" items="{
 						path: 'formModel>/selectProviderList'
 					    }" selectedKey="{
-                            path: 'formModel>/addProduct/idProvider'
+                            path: 'formModel>/editProduct/idProvider'
                         }"
-						change="onChangeProviderAdd"
+						change="onChangeProviderEdit"
 						>
 							<core:ListItem key="{formModel>key}" text="{formModel>text}" enabled="{= ${formModel>key} === '0' ? false : true }" />
 						</Select>
@@ -56,9 +56,9 @@
 						<Select required="true" items="{
 						path: 'formModel>/selectStatusList'
 					    }" selectedKey="{
-                            path: 'formModel>/addProduct/idStatus'
+                            path: 'formModel>/editProduct/idStatus'
                         }"
-						change="onChangeStatusAdd"
+						change="onChangeStatusEdit"
 						>
 							<core:ListItem key="{formModel>key}" text="{formModel>text}" enabled="{= ${formModel>key} === '0' ? false : true }" />
 						</Select>
@@ -75,8 +75,8 @@
 		<footer>
 			<Toolbar>
 				<content>
-					<Button type="Accept" text="{i18n>dialogAcceptButton}" press="onAddProductSave" />
-					<Button text="{i18n>dialogRejectButton}" type="Reject" press="onAddProductClose" ariaHasPopup="Dialog" />
+					<Button type="Accept" text="{i18n>dialogAcceptButton}" press="onEditProductSave" />
+					<Button text="{i18n>dialogEditRejectButton}" type="Reject" press="onEditProductClose" ariaHasPopup="Dialog" />
 				</content>
 			</Toolbar>
 		</footer>

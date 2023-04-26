@@ -168,8 +168,8 @@
                                         <ObjectStatus  text="{formModel>productActive}" state="Success" icon="sap-icon://sys-enter-2" />
 
                                         <HBox class="contenRowIconTable">
-                                            <Button icon="sap-icon://edit" type="Ghost"/>
-                                            <Button icon="sap-icon://delete" type="Ghost"/>
+                                            <Button press="onPressEditProduct" icon="sap-icon://edit" type="Ghost"/>
+                                            <Button press="onPressDeleteProduct" icon="sap-icon://delete" type="Ghost"/>
                                         </HBox>
 
                                     </cells>
