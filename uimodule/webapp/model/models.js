@@ -179,6 +179,41 @@ sap.ui.define(
 
                         },
                     ],
+
+                    supplierList : [
+                        {
+                            id: 1,
+                            name: "Pepito",
+                            phone: "980545386",
+                            address: "Av. Manuel Gonzales parda",
+                            idStatus: 1,
+                            statusName: "Activo",
+                            statusIcon: "sap-icon://sys-enter-2",
+                            statusState: "Success",
+                        }
+                    ],
+
+                    measurementList : [
+                        {  
+                             id: 1,
+                            name: "Unidades",
+                            description: "Unidades",
+                            abbrevation: "UND"
+                        }
+                    ],
+                    
+                    //Desplegable de los combos para el agregar y el editar
+                    selectSupplierList : [{
+                        "key" : "0",
+                        "text" : "--Seleccione---"
+                    },
+
+                ],
+                    selectMeasurementList : [{
+                        "key" : "0",
+                        "text" : "--Seleccione---"
+                    }],
+
                     
                 }
                 const oModel = new JSONModel(oParam);

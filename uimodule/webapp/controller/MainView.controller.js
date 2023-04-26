@@ -160,6 +160,38 @@ sap.ui.define(
                 let add_obj={};
                 
 
+            },
+            loadSupplier : function(){
+                debugger;
+                const {supplierList , selectSupplierList} = this.getView().getModel("formModel").getData();
+                supplierList.forEach(element => {
+                    debugger;
+                    let obj = {}
+                    obj.key = element.id.toString();
+                    obj.text = element.name;
+                    selectSupplierList.push(obj)
+                });
+
+                this.getView().getModel("formModel").setProperty("/selectSupplierList",selectSupplierList);
+
+            },
+            loadMeasurement : function(){
+                debugger;
+                const {measurementList , selectMeasurementList} = this.getView().getModel("formModel").getData();
+                measurementList.forEach(element => {
+                    debugger;
+                    let obj = {}
+                    obj.key = element.id.toString();
+                    obj.text = element.name;
+                    selectMeasurementList.push(obj)
+                });
+
+                this.getView().getModel("formModel").setProperty("/selectMeasurementList",selectMeasurementList);
+            },
+
+            onAfterRendering : function(){
+                this.loadSupplier();
+                this.loadMeasurement();
             }
         });
     });
