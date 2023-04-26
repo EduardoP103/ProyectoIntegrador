@@ -487,7 +487,6 @@ sap.ui.define(
 
             },
 
-            // ----------------------------Agregar registros a las tabla Producto -------------------------//
 
             // REVISAR
             onAddProductTable: function () {
@@ -526,16 +525,7 @@ sap.ui.define(
                     valid: true,
                     mensaje: ""
                 };
-                if (name.trim().length == 0 ||
-                    description.trim().length == 0 ||
-                    salePrice <= 0 ||
-                    purchasePrice <= 0 ||
-                    stock <= 0 ||
-                    this.getView().getModel("localModel").getProperty("/selectStateName") == "0" ||
-                    this.getView().getModel("localModel").getProperty("/selectSupplierName") == "0" ||
-                    this.getView().getModel("localModel").getProperty("/selectUnitOfMeasurementName") == "0"
-
-                ) {
+                 {
                     oRespuesta.valid = false;
                     oRespuesta.mensaje = "llena los campos";
                     MessageBox.warning("Todos los campos son necesario");
@@ -619,9 +609,9 @@ sap.ui.define(
                 for (let index = 0; index < listOfProducts.length; index++) {
                     const element = listOfProducts[index];
                     if (element.id == oProducto1.id) {
+                        // eslint-disable-next-line max-lines
                         listFinal.push(oProducto1);
-                    }
-                    else {
+                    } else {
                         listFinal.push(element);
                     }
                 }
@@ -630,6 +620,7 @@ sap.ui.define(
                 MessageBox.success("Producto actualizado");
                 this.closeDialogProductoe();
             },
+
 
             onPressEdit: function (oEvent) {
 
