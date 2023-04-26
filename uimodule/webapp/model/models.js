@@ -29,34 +29,40 @@ sap.ui.define(
                     selectUnitOfMeasurementName: "0",
                     ListunitOfMeasurementName: [
                         {
-                            id: 0,
+                            id: "0",
                             name: "--Seleccione--",
                         },
                         {
-                            id: 1,
+                            id: "1",
                             name: "UND",
                         },
                         {
-                            id: 2,
+                            id: "2",
                             name: "DOC"
                         }
                     ],
                     activo: [
                         {
-                            id: 0,
+                            id: "0",
                             name: "--Seleccione--",
                         },
                         {
-                            id: 1,
-                            name: "Activo"
+                            id: "1",
+                            name: "Activo",
+                            statusIcon: "sap-icon://sys-enter-2",
+                            statusState: "Success",
                         },
                         {
-                            id: 2,
-                            name: "En Proceso"
+                            id: "2",
+                            name: "En Proceso",
+                            statusIcon: "sap-icon://in-progress",
+                            statusState: "Warning",
                         },
                         {
-                            id: 3,
-                            name: "Inactivo"
+                            id: "3",
+                            name: "Inactivo",
+                            statusIcon: "",
+                            statusState: "Error",
                         }
                     ],
                     selectedRowView: {},
@@ -216,28 +222,37 @@ sap.ui.define(
                     ],
                     listSupplierName:[
                         {
-                            id: 0,
+                            id: "0",
                             name: "--Seleccione--"
                         },
                         {
-                            id: 1,
+                            id: "1",
                             name: "Perú"
                         },
                         {
-                            id: 2,
+                            id: "2",
                             name: "USA"
                         }
                     ],
                     addProduct: {
+                        id: null,
                         name: "",
                         description: "",
                         image: "",
+                        fSalePrice: "",
                         salePrice: "",
+                        fPurchasePrice: 0,
                         purchasePrice: "",
+                        fStock: 0,
                         stock: "",
+                        idUnitOfmeasurment: "0",
                         unitOfMeasurementName: "",
+                        idSupplier: "0",
                         supplierName: "",
+                        idStatus: "0",
                         statusName: "",
+                        statusIcon: "sap-icon://sys-enter-2",
+                        statusState: "Success",
                     },
                     editProduct: {
                         id: "",

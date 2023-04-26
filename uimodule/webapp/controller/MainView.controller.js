@@ -51,18 +51,13 @@ sap.ui.define(
         return Controller.extend("com.pe.proyectoIntegrador.controller.MainView", {
             onInit: function () { },
 
-            // ----------------------------Dynamic Page -------------------------//
-
-
-            // ----------------------------Popover image -------------------------//
-
             onOpenViewImage: function (oEvent) {
-                var oButton = oEvent.getSource(),
+                let oButton = oEvent.getSource(),
                     oView = this.getView();
                 debugger;
-                var oProduct = oButton.getParent().getBindingContext("localModel");
+                let oProduct = oButton.getParent().getBindingContext("localModel");
                 debugger;
-                var oSelectObj = oProduct.getObject();
+                let oSelectObj = oProduct.getObject();
                 this.getView().getModel("localModel").setProperty("/selectedRowView", oSelectObj);
                 if (!this.oPopover) {
                     this.oPopover = this.loadFragment({
@@ -84,7 +79,7 @@ sap.ui.define(
                 this.byId("myPopover").close();
             },
 
-            // ----------------------------Creación de columnas para exportar datos en XLSX -------------------------//
+            // ---------------Creación de columnas para exportar datos en XLSX --------------------//
 
             createColumnConfigTableProducts: function () {
                 let aCols = [];
@@ -501,12 +496,18 @@ sap.ui.define(
                 let supplierName = this.getView().getModel("localModel").getProperty("/addProduct").supplierName;
                 let statusName = this.getView().getModel("localModel").getProperty("/addProduct").statusName;
 
-                let selectUnitOfMeasurementName = this.getView().getModel("localModel").getProperty("/selectUnitOfMeasurementName")
-                let selectSupplierName = this.getView().getModel("localModel").getProperty("/selectSupplierName")
-                let selectStateName = this.getView().getModel("localModel").getProperty("/selectStateName")
-
-                let oProducto = {
-                    "id": this.getView().getModel("localModel").getProperty("/listOfProducts").length + 1,
+                
+                
+                 const { selectStateName, selectUnitOfMeasurementName,selectSupplierName} = this.getView().getModel("localModel").getData()
+                 
+                        let id = 1;
+                let listaOrdenada =   this.getView().getModel("localModel").getProperty("/listOfProducts").sort(function(a, b){
+return b.id - a.id;});
+                if(listaOrdenada.length>0){
+                        id = listaOrdenada[0].id + 1
+                }
+                    let oProducto = {
+                    "id": id,
                     "name": name,
                     "description": description,
                     "image": image,
@@ -525,7 +526,7 @@ sap.ui.define(
                     valid: true,
                     mensaje: ""
                 };
-                 {
+                if(false) {
                     oRespuesta.valid = false;
                     oRespuesta.mensaje = "llena los campos";
                     MessageBox.warning("Todos los campos son necesario");
@@ -541,20 +542,11 @@ sap.ui.define(
             // DEBUGGER
             onPressEditTabla: function () {
                 debugger
-                let id = this.getView().getModel("localModel").getProperty("/editProduct").id;
+               // let id = this.getView().getModel("localModel").getProperty("/editProduct").id;
+                const {id,description : descriptionProduct , image : imageProduct, salePrice,purchasePrice, stock, unitOfMeasurementName,supplierName,statusName} = this.getView().getModel("localModel").getProperty("/editProduct")
                 let nameProduct = this.getView().getModel("localModel").getProperty("/editProduct").name;
-                let descriptionProduct = this.getView().getModel("localModel").getProperty("/editProduct").description;
-                let imageProduct = this.getView().getModel("localModel").getProperty("/editProduct").image;
-                let salePrice = this.getView().getModel("localModel").getProperty("/editProduct").salePrice;
-                let purchasePrice = this.getView().getModel("localModel").getProperty("/editProduct").purchasePrice;
-                let stock = this.getView().getModel("localModel").getProperty("/editProduct").stock;
-                let unitOfMeasurementName = this.getView().getModel("localModel").getProperty("/editProduct").unitOfMeasurementName;
-                let supplierName = this.getView().getModel("localModel").getProperty("/editProduct").supplierName;
-                let statusName = this.getView().getModel("localModel").getProperty("/editProduct").statusName;
 
-                let selectUnitOfMeasurementName = this.getView().getModel("localModel").getProperty("/selectUnitOfMeasurementName")
-                let selectSupplierName = this.getView().getModel("localModel").getProperty("/selectSupplierName")
-                let selectStateName = this.getView().getModel("localModel").getProperty("/selectStateName")
+                const { selectStateName, selectUnitOfMeasurementName,selectSupplierName} = this.getView().getModel("localModel").getData()
 
                 let oSearchUnit = this.getView().getModel("localModel").getProperty("/ListunitOfMeasurementName").filter(function (item, index) {
                     return item.id == selectUnitOfMeasurementName;
@@ -564,7 +556,7 @@ sap.ui.define(
                     return item.id == selectSupplierName;
                 })
 
-                let oSearchStatusName = this.getView().getModel("localModel").getProperty("/statusName").filter(function (item, index) {
+                let oSearchStatusName = this.getView().getModel("localModel").getProperty("/activo").filter(function (item, index) {
                     return item.id == selectStateName;
                 })
 
@@ -588,21 +580,21 @@ sap.ui.define(
                     valid: true,
                     mensaje: ""
                 };
-                if (nameProd.trim().length == 0 ||
-                    descProd.trim().length == 0 ||
-                    pvProd <= 0 ||
-                    pcProd <= 0 ||
-                    sProd <= 0 ||
-                    this.getView().getModel("localModel").getProperty("/selectStateName") == "0" ||
-                    this.getView().getModel("localModel").getProperty("/selectSupplierName") == "0" ||
-                    this.getView().getModel("localModel").getProperty("/selectUnitOfMeasurementName") == "0"
+                // if (nameProduct.trim().length == 0 ||
+                // nameProduct.trim().length == 0 ||
+                //     pvProd <= 0 ||
+                //     pcProd <= 0 ||
+                //     sProd <= 0 ||
+                //     selectStateName== "0" ||
+                //     selectSupplierName == "0" ||
+                //     selectUnitOfMeasurementName== "0"
 
-                ) {
-                    oResp.valid = false;
-                    oResp.mensaje = "llena los campos";
-                    MessageBox.warning("Rellene todos los campos");
-                    return oResp;
-                }
+                // ) {
+                //     oResp.valid = false;
+                //     oResp.mensaje = "llena los campos";
+                //     MessageBox.warning("Rellene todos los campos");
+                //     return oResp;
+                // }
                 let listOfProducts = this.getView().getModel("localModel").getProperty("/listOfProducts");
                 //listOfProducts.push(oProducto);
                 let listFinal = [];
@@ -636,7 +628,7 @@ sap.ui.define(
 
                 let oSelectObj = oProduct2.getObject();
                 debugger;
-
+                /*
                 let obj = {
                     "id": oSelectObj.id,
                     "name": oSelectObj.name,
@@ -649,17 +641,14 @@ sap.ui.define(
                     "supplierName": oSelectObj.supplierName,
                     "statusName": oSelectObj.statusName
                 }
-
-                this.getView().getModel("localModel").setProperty("/selectUnitOfMeasurementName", oSelectObj.idUnidaddm);
-                this.getView().getModel("localModel").setProperty("/selectSupplierName", oSelectObj.idsupplierName);
-                this.getView().getModel("localModel").setProperty("/selectStateName", oSelectObj.idstatusName);
-
-                this.getView().getModel("localModel").setProperty("/editProduct", obj);
+                */
+                this.getView().getModel("localModel").setProperty("/selectUnitOfMeasurementName", oSelectObj.idUnitOfmeasurment);
+                this.getView().getModel("localModel").setProperty("/selectSupplierName", oSelectObj.idSupplier);
+                this.getView().getModel("localModel").setProperty("/selectStateName", oSelectObj.idStatus);
+                this.getView().getModel("localModel").setProperty("/editProduct", oSelectObj);
                 this.onEditarProducto();
 
             },
-
-            // ----------------------------Agregar registros a las tabla supplierName -------------------------//
 
             onaddSupplierNameTabla: function () {
                 let name = this.getView().getModel("localModel").getProperty("/addSupplierName").name;
@@ -675,7 +664,6 @@ sap.ui.define(
                     "state": this.getView().byId("idstatusName2").getSelectedItem().getProperty("text")
 
                 }
-
                 let oResp = {
                     valid: true,
                     mensaje: ""
@@ -688,7 +676,7 @@ sap.ui.define(
                 ) {
                     oResp.valid = false;
                     oResp.mensaje = "llena los campos";
-                    MessageBox.warning("Todos los campos son obligatorios y no se pueden ingresar números menores o iguales a 0");
+                    MessageBox.warning("Ingresa todos los campos");
                     return oResp;
                 }
                 let listOfSuppliers = this.getView().getModel("localModel").getProperty("/listOfSuppliers");
