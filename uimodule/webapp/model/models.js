@@ -22,8 +22,12 @@ sap.ui.define(
                         name: "Eduardo Pastor",
                         cargo: "Analista de Sistemas",
                     },
+                    selectedIconTabBar: "0",
+                    selectRowView: {},
+                    selectStateName: "0",
+                    selectSupplierName: "0",
                     selectUnitOfMeasurementName: "0",
-                    unitOfMeasurementName: [
+                    ListunitOfMeasurementName: [
                         {
                             id: 0,
                             name: "--Seleccione--",
@@ -37,11 +41,28 @@ sap.ui.define(
                             name: "DOC"
                         }
                     ],
-                    selectedRowView: {},
-                    selectedIconTabBar: "0",
-                    listOfProducts: [
+                    activo: [
+                        {
+                            id: 0,
+                            name: "--Seleccione--",
+                        },
                         {
                             id: 1,
+                            name: "Activo"
+                        },
+                        {
+                            id: 2,
+                            name: "En Proceso"
+                        },
+                        {
+                            id: 3,
+                            name: "Inactivo"
+                        }
+                    ],
+                    selectedRowView: {},
+                    listOfProducts: [
+                        {
+                            id: 0,
                             name: "Poco X5 Pro Black 6GB - 128GB",
                             description: "XIAOMI",
                             image: "https://xiaomiperu.com/media/catalog/product/cache/deaf12c726c019462dcd02884cec40ac/1/_/1_5_1.jpg",
@@ -61,7 +82,7 @@ sap.ui.define(
                             statusState: "Success",
                         },
                         {
-                            id: 2,
+                            id: 1,
                             name: "Redmi Buds 4 (White)",
                             description: "XIAOMI",
                             image: "https://xiaomiperu.com/media/catalog/product/cache/deaf12c726c019462dcd02884cec40ac/r/e/redmi-buds-4_white.jpg",
@@ -99,7 +120,7 @@ sap.ui.define(
                             statusState: "Success",
                         },
                         {
-                            id: 2,
+                            id: 3,
                             name: "Xiaomi Mi Portable Bluetooth Speaker (16W) Blue",
                             description: "XIAOMI",
                             image: "https://xiaomiperu.com/media/catalog/product/cache/deaf12c726c019462dcd02884cec40ac/m/i/mi-bluettoh-speaker.jpg",
@@ -118,7 +139,7 @@ sap.ui.define(
                             statusState: "Success",
                         },
                         {
-                            id: 2,
+                            id: 4,
                             name: "Xiaomi Mi Portable Bluetooth Speaker (16W) Blue",
                             description: "XIAOMI",
                             image: "https://xiaomiperu.com/media/catalog/product/cache/deaf12c726c019462dcd02884cec40ac/m/i/mi-bluettoh-speaker.jpg",
@@ -137,7 +158,7 @@ sap.ui.define(
                             statusState: "Success",
                         },
                         {
-                            id: 2,
+                            id: 5,
                             name: "Xiaomi Mi Portable Bluetooth Speaker (16W) Blue",
                             description: "XIAOMI",
                             image: "https://xiaomiperu.com/media/catalog/product/cache/deaf12c726c019462dcd02884cec40ac/m/i/mi-bluettoh-speaker.jpg",
@@ -156,7 +177,7 @@ sap.ui.define(
                             statusState: "Success",
                         },
                         {
-                            id: 2,
+                            id: 6,
                             name: "Xiaomi Mi Portable Bluetooth Speaker (16W) Blue",
                             description: "XIAOMI",
                             image: "https://xiaomiperu.com/media/catalog/product/cache/deaf12c726c019462dcd02884cec40ac/m/i/mi-bluettoh-speaker.jpg",
@@ -177,7 +198,7 @@ sap.ui.define(
                     ],
                     listOfSuppliers: [
                         {
-                            id: 1,
+                            id: 0,
                             name: "Perú",
                             phone: "988999111",
                             address: "Pasaje San Fijo",
@@ -186,10 +207,26 @@ sap.ui.define(
                     ],
                     listOfUnitOfMeasurement: [
                     {
-                        id: 1,
-                        name: "UND",
-                        description: "lorem"
-                    }
+                        id: 0,
+                        name: "UNIDAD",
+                        description: "lorem",
+                        abbreviation: "UND",
+                        state: "Activo"
+                    },
+                    ],
+                    listSupplierName:[
+                        {
+                            id: 0,
+                            name: "--Seleccione--"
+                        },
+                        {
+                            id: 1,
+                            name: "Perú"
+                        },
+                        {
+                            id: 2,
+                            name: "USA"
+                        }
                     ],
                     addProduct: {
                         name: "",
@@ -202,7 +239,24 @@ sap.ui.define(
                         supplierName: "",
                         statusName: "",
                     },
-                    
+                    editProduct: {
+                        id: "",
+                        name: "",
+                        description: "",
+                        image: "",
+                        salePrice: "",
+                        purchasePrice: "",
+                        stock: "",
+                        unitOfMeasurementName: "",
+                        supplierName: "",
+                        statusName: "",
+                    },
+                    addSupplierName: {
+                        name: "",
+                        phone: "",
+                        address: "",
+                        state: "",
+                    }
 
                 };
                 const oModel = new JSONModel(oParam);

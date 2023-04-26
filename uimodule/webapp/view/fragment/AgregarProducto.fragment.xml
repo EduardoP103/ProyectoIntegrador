@@ -4,46 +4,134 @@
 	xmlns:mvc="sap.ui.core.mvc"
 	xmlns:core="sap.ui.core"
 >
-<Dialog id="Agregar" title="Agregar Productos"  >
-	<content>
-		<VBox class="sapUiSmallMargin" id="formContainerEmployment1">
-			<f:SimpleForm editable="true" layout="ColumnLayout" columnsM="2" columnsL="3" columnsXL="4">
-				<f:content>
-					<Label text="{i18n>name}"/>
-					<Input  value="{path: 'localModel>/addProduct/name'}"/>
-					<Label text="{i18n>description}"/>
-					<Input   value="{path: 'localModel>/addProduct/description'}"/>
-					<Label text="{i18n>salePrice}"/>
-					<Input  type="Number" value="{path: 'localModel>/addProduct/salePrice'}"/>
-					<Label text="{i18n>purchasePrice}"/>
-					<Input  type="Number" value="{path: 'localModel>/addProduct/purchasePrice'}"/>
-					<Label text="{i18n>stock}"/>
-					<Input  type="Number" value="{path: 'localModel>/addProduct/stock'}"/>
-					<Label text="{i18n>unitOfMeasurementName}"/>
-					<Select items="{path: 'localModel>/unitOfMeasurementName'}" selectedKey="{path: 'localModel>/selectUnitOfMeasurementName'}">
-						<core:ListItem key="{localModel>id}" text="{localModel>name}" enabled="{= ${localModel>id} === '0' ? false : true }"/>
-					</Select>
-					<Label text="{i18n>supplierName}"/>
-					<Input  value="{path: 'localModel>/addProduct/supplierName'}"/>
-					<Label text="{i18n>statusName}"/>
-					<Input  value="{path: 'localModel>/addProduct/statusName'}"/>
-					<Label text="{i18n>imagen}"/>
-					<Input/>
-				</f:content>
-			</f:SimpleForm>
-		</VBox>
-	</content>
-	<footer>
-		<Toolbar justifyContent="End">
-			<content>
-				<Button text="Agregar" icon="sap-icon://add-activity" type="Accept" press="onAddProductOfTable" ariaHasPopup="Dialog"/>
-
-				<Button text="Limpiar" icon="sap-icon://clear-filter" press="oClean"/>
-				<ToolbarSpacer/>
-				<Button text="Cerrar" type="Reject" press="closeDialogProduct" ariaHasPopup="Dialog"/>
-			</content>
-		</Toolbar>
-	</footer>
-</Dialog>
-
+	<Dialog
+		id="Agregar"
+		title="Agregar Productos"
+	>
+		<content>
+			<VBox
+				class="sapUiSmallMargin"
+				id="formContainerEmployment1"
+			>
+				<f:SimpleForm
+					editable="true"
+					layout="ColumnLayout"
+					columnsM="2"
+					columnsL="3"
+					columnsXL="4"
+				>
+					<f:content>
+						<Label text="{i18n>name}"/>
+						<Input value="{
+							path: 'localModel>/addProduct/name'
+						}"/>
+						<Label text="{i18n>description}"/>
+						<Input value="{
+							path: 'localModel>/addProduct/description'
+						}"/>
+						<Label text="{i18n>salePrice}"/>
+						<Input
+							type="Number"
+							value="{
+								path: 'localModel>/addProduct/salePrice'
+							}"
+						/>
+						<Label text="{i18n>purchasePrice}"/>
+						<Input
+							type="Number"
+							value="{
+								path: 'localModel>/addProduct/purchasePrice'
+							}"
+						/>
+						<Label text="{i18n>stock}"/>
+						<Input
+							type="Number"
+							value="{
+								path: 'localModel>/addProduct/stock'
+							}"
+						/>
+						<Label text="{i18n>unitOfMeasurementName}"/>
+						<Select
+							required="true"
+							id="idUnit"
+							items="{
+								path: 'localModel>/unitOfMeasurementName'
+							}"
+							selectedKey="{
+								path: 'localModel>/selectUnitOfMeasurementName'
+							}"
+						>
+							<core:ListItem
+								key="{localModel>id}"
+								text="{localModel>name}"
+								enabled="{= ${localModel>id} === '0' ? false : true }"
+							/>
+						</Select>
+						<Label text="{i18n>supplierName}"/>
+						<Select
+							id="idsupplierName"
+							required="true"
+							items="{
+								path: 'localModel>/listSupplierName'
+							}"
+							selectedKey="{
+								path: 'localModel>/selectSupplierName'
+							}"
+						>
+							<core:ListItem
+								key="{localModel>id}"
+								text="{localModel>name}"
+								enabled="{= ${localModel>id} === '0' ? false : true }"
+							/>
+						</Select>
+		
+						<Label text="{i18n>statusName}"/>
+							<Select
+							id="idActivo"
+							required="true"
+							items="{
+								path: 'localModel>/activo'
+							}"
+							selectedKey="{
+								path: 'localModel>/selectStateName'
+							}"
+						>
+							<core:ListItem
+								key="{localModel>id}"
+								text="{localModel>name}"
+								enabled="{= ${localModel>id} === '0' ? false : true }"
+							/>
+						</Select>
+						<Label text="{i18n>image}"/>
+						<Input/>
+					</f:content>
+				</f:SimpleForm>
+			</VBox>
+		</content>
+		<footer>
+			<Toolbar justifyContent="End">
+				<content>
+					<Button
+						text="Agregar"
+						icon="sap-icon://add-activity"
+						type="Accept"
+						press="onAddProductTable"
+						ariaHasPopup="Dialog"
+					/>
+					<Button
+						text="Limpiar"
+						icon="sap-icon://clear-filter"
+						press="onLimpiarCamposDialogos"
+					/>
+					<ToolbarSpacer/>
+					<Button
+						text="Cerrar"
+						type="Reject"
+						press="closeDialogProducto"
+						ariaHasPopup="Dialog"
+					/>
+				</content>
+			</Toolbar>
+		</footer>
+	</Dialog>
 </core:FragmentDefinition>

@@ -1,21 +1,18 @@
 <core:FragmentDefinition
 	xmlns="sap.m"
 	xmlns:core="sap.ui.core">
-	<Popover
+	<ResponsivePopover
 		id="myPopover"
 		title="{path: 'localModel>/selectedRowView/name'}"
-		class="sapUiResponsivePadding--header sapUiResponsivePadding--footer"
-		placement="Bottom"
-		initialFocus="email">
-		<footer>
-			<OverflowToolbar>
-				<ToolbarSpacer/>
-				<Button
-					id="idCerrarPopover"
+		class="sapUiContentPadding"
+		placement="Bottom" >
+		<endButton>
+			<Button
 					text="Cerrar"
-					press="onCloseViewImage" />
-			</OverflowToolbar>
-		</footer>
-		<Image src="{path: 'localModel>/selectedRowView/image'}" width="15em" densityAware="false" />
-	</Popover>
+					press="oCloseImage" />
+		</endButton>
+		<content>
+			<Image src="{path: 'localModel>/selectedRowView/image'}" width="15em"  />
+		</content>
+	</ResponsivePopover>
 </core:FragmentDefinition>
