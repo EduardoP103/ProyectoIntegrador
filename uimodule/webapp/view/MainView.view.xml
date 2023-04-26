@@ -165,7 +165,7 @@
 
                                         <Text text="{formModel>productProvider}" />
 
-                                        <ObjectStatus text="{formModel>productActive}" icon="sap-icon://sys-enter-2" state="Success" />
+                                        <ObjectStatus  text="{formModel>productActive}" state="Success" icon="sap-icon://sys-enter-2" />
 
                                         <HBox class="contenRowIconTable">
                                             <Button icon="sap-icon://edit" type="Ghost"/>

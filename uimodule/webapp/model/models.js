@@ -22,14 +22,15 @@ sap.ui.define(
                     selectedRowView: {},
                     selectedIconTabBar: "0",
                     productList: [
-                        {
+                        {   
+                            "idProducto" : 1,
                             "productName" : "SSD",
                             "productDescription" : "Disco Sólido",
                             "productImage" : "Carro",
                             "productPriceV" : "18.0",
                             "productPriceC" : "18.0",
                             "productStock" : "30.0",
-                            "idUnitM" : 1,
+                            "idMesurement" : 1,
                             "productUnitM" : "UND",
                             "idSupplier" : 1,
                             "productProvider" : "Pepito",
@@ -38,6 +39,23 @@ sap.ui.define(
                             "imgUrl" : "https://img.unocero.com/2021/08/rickroll_4k.jpeg"
 
                         },
+                        // {   
+                        //     "idProducto" : 5,
+                        //     "productName" : "SSD_2",
+                        //     "productDescription" : "Disco Sólido_2",
+                        //     "productImage" : "Carro_2",
+                        //     "productPriceV" : "18.0",
+                        //     "productPriceC" : "18.0",
+                        //     "productStock" : "30.0",
+                        //     "idMesurement" : 1,
+                        //     "productUnitM" : "UND",
+                        //     "idSupplier" : 1,
+                        //     "productProvider" : "Pepito",
+                        //     "idStatus" : 1,
+                        //     "productActive" : "Activo",
+                        //     "imgUrl" : "https://img.unocero.com/2021/08/rickroll_4k.jpeg"
+
+                        // },
                         
                         // {
                         //     "productName" : "SSD",
@@ -183,22 +201,7 @@ sap.ui.define(
 
                         // },
                     ],
-                    addProduct : {
-                        "productName" : "",
-                        "productDescription" : "",
-                        "productImage" : "",
-                        "productPriceV" : "",
-                        "productPriceC" : "",
-                        "productStock" : "",
-                        "idUnitM" : "0",
-                        "productUnitM" : "",
-                        "idSupplier" : "0",
-                        "productProvider" : "Pepito",
-                        "idStatus" : "",
-                        "productActive" : "",
-                        "imgUrl" : ""
-                    },
-                    editProduct : {
+                    addProducto : {
                         "idProduct" : null,
                         "productName" : "",
                         "productDescription" : "",
@@ -206,10 +209,26 @@ sap.ui.define(
                         "productPriceV" : "",
                         "productPriceC" : "",
                         "productStock" : "",
-                        "idUnitM" : "0",
+                        "idMesurement" : "0",
                         "productUnitM" : "",
                         "idSupplier" : "0",
-                        "productProvider" : "Pepito",
+                        "productProvider" : "",
+                        "idStatus" : "0",
+                        "productActive" : "",
+                        "imgUrl" : ""
+                    },
+                    editProducto : {
+                        "idProduct" : null,
+                        "productName" : "",
+                        "productDescription" : "",
+                        "productImage" : "",
+                        "productPriceV" : "",
+                        "productPriceC" : "",
+                        "productStock" : "",
+                        "idUnidad" : "0",
+                        "productUnitM" : "",
+                        "idSupplier" : "0",
+                        "productProvider" : "",
                         "idStatus" : "",
                         "productActive" : "",
                         "imgUrl" : ""
@@ -248,6 +267,18 @@ sap.ui.define(
                         "key" : "0",
                         "text" : "--Seleccione---"
                     }],
+
+                    selectStatusList : [{
+                        "key" : "0",
+                        "text" : "--Seleccione---"
+                    },{
+                        "key" : "1",
+                        "text" : "Activo"
+                    },{
+                        "key" : "2",
+                        "text" : "Desactivado"
+                    }
+                ],
 
                     
                 }
