@@ -104,34 +104,34 @@
                                 </OverflowToolbar>
                             </headerToolbar>
                             <columns>
-                                <Column width="12em">
+                                <Column >
                                     <Text text="{i18n>tab1TableC1}"/>
                                 </Column>
-                                <Column minScreenWidth="Tablet" demandPopin="true">
+                                <Column >
                                     <Text text="{i18n>tab1TableC2}" />
                                 </Column>
-                                <Column minScreenWidth="Tablet" demandPopin="true" hAlign="End">
+                                <Column minScreenWidth="Desktop" demandPopin="true"  hAlign="Center">
                                     <Text text="{i18n>tab1TableC3}" />
                                 </Column>
-                                <Column hAlign="Center">
+                                <Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">
                                     <Text text="{i18n>tab1TableC4}" />
                                 </Column>
-                                <Column hAlign="Center">
+                                <Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">
                                     <Text text="{i18n>tab1TableC5}" />
                                 </Column>
-                                <Column hAlign="Center">
+                                <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
                                     <Text text="{i18n>tab1TableC6}" />
                                 </Column>
-                                <Column hAlign="Center">
+                                <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
                                     <Text text="{i18n>tab1TableC7}" />
                                 </Column>
-                                <Column hAlign="Center">
+                                <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
                                     <Text text="{i18n>tab1TableC8}" />
                                 </Column>
-                                <Column hAlign="Center">
+                                <Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">
                                     <Text text="{i18n>tab1TableC9}" />
                                 </Column>
-                                <Column hAlign="Center">
+                                <Column >
                                     <Text text="" />
                                 </Column>
                             </columns>
