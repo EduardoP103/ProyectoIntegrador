@@ -215,7 +215,7 @@ sap.ui.define(
                     {
                         id: 0,
                         name: "UNIDAD",
-                        description: "lorem",
+                        description: "lorem lorem",
                         abbreviation: "UND",
                         state: "Activo"
                     },

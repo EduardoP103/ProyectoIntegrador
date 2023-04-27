@@ -91,7 +91,7 @@ height="100%"
 									text="{i18n>add}"
 									icon="sap-icon://add"
 									type="Transparent"
-									press="onaddProduct"
+									press="onAddProduct"
 								/>
 								<Button
 									text="{i18n>config}"
@@ -189,7 +189,7 @@ height="100%"
 									<Button
 										icon="sap-icon://delete"
 										type="Ghost"
-										press="onPressDelete"
+										press="onConDelete"
 									/>
 								</HBox>
 							</cells>
@@ -199,11 +199,11 @@ height="100%"
 			</IconTabFilter>
 					<IconTabFilter
 						key="1"
-						id="tabsupplierNamees"
+						id="tabSupplierNames"
 						text="{i18n>supplierNames}"
 					>
 						<Table
-							id="idProductsTable2"
+							id="listOfSuppliers"
 							sticky="HeaderToolbar,ColumnHeaders"
 							inset="false"
 							class="sapUiSmallNegativeMarginBeginEnd"
@@ -219,7 +219,7 @@ height="100%"
 								<OverflowToolbar>
 									<content>
 									<Title
-										text="supplierNamees ({= ${localModel>/listOfSuppliers}.length })"
+										text="Proveedores ({= ${localModel>/listOfSuppliers}.length })"
 										level="H2"
 									/>
 									<ToolbarSpacer/>
@@ -280,7 +280,7 @@ height="100%"
 						text="{i18n>measurementUnits}"
 					>
 						<Table
-							id="idUnitOfMeasurementTable"
+							id="listOfUnitOfMeasurement"
 							sticky="HeaderToolbar,ColumnHeaders"
 							inset="false"
 							class="sapUiSmallNegativeMarginBeginEnd"
@@ -333,7 +333,7 @@ height="100%"
 									<cells>
 										<Text text="{localModel>name}"/>
 										<Text text="{localModel>description}"/>
-										<Text text="{localModel>abreviatura}"/>
+										<Text text="{localModel>abbreviation}"/>
 										<ObjectStatus
 											text="{localModel>state}"
 											state="Success"
@@ -350,16 +350,7 @@ height="100%"
 		<!-- Dynamige Footer -->
 		<f:footer>
 			<OverflowToolbar>
-				<!-- <Button
-					icon="sap-icon://message-popup"
-					text="MostrarMessageBox"
-					press="onPressShowMessageBox"
-				/>
-				<Button
-					icon="sap-icon://message-popup"
-					text="onRealizarObtKeysObject"
-					press="onRealizarObtKeysObject"
-				/> -->
+
 				<ToolbarSpacer/>
 				<Button
 					icon="sap-icon://excel-attachment"

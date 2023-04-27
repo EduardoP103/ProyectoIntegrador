@@ -50,27 +50,22 @@ sap.ui.define(
 
         return Controller.extend("com.pe.proyectoIntegrador.controller.MainView", {
             onInit: function () { },
-
             onOpenViewImage: function (oEvent) {
-                let oButton = oEvent.getSource(),
-                    oView = this.getView();
-                debugger;
-                let oProduct = oButton.getParent().getBindingContext("localModel");
-                debugger;
-                let oSelectObj = oProduct.getObject();
-                this.getView().getModel("localModel").setProperty("/selectedRowView", oSelectObj);
+                const oButton = oEvent.getSource();
+                const oView = this.getView();
+                const selectedProduct = oButton.getParent().getBindingContext("localModel").getObject();
+
+                oView.getModel("localModel").setProperty("/selectedRowView", selectedProduct);
+
                 if (!this.oPopover) {
                     this.oPopover = this.loadFragment({
                         name: "com.pe.proyectoIntegrador.view.fragment.Popover",
                     });
                 }
-                this.oPopover.then(
-                    function (oPop) {
-                        this.pPopover = oPop;
-                        oPop.openBy(oButton);
-                    }.bind(this)
-                );
-
+                this.oPopover.then(function (oPop) {
+                    this.pPopover = oPop;
+                    oPop.openBy(oButton);
+                }.bind(this));
             },
 
             oCloseImage: function (oEvent) {
@@ -216,37 +211,77 @@ sap.ui.define(
                 return aCols;
             },
 
-            // ----------------------------Exportar datos en XLSX -------------------------//
-
+            //    XLSX
+            // onExportSpreadSheetXLSX: function () {
+            //     debugger;
+            //     const tabs = [
+            //       { id: "1", table: "idProductsTable", columns: this.createColumnConfigTableProducts(), fileName: "ListaProductos.xlsx" },
+            //       { id: "2", table: "listOfSuppliers", columns: this.createColumnConfigTableSupplier(), fileName: "listSupplierName.xlsx" },
+            //       { id: "3", table: "listOfUnitOfMeasurement", columns: this.createColumnConfigTableUnitOfMeasurement(), fileName: "ListaunitOfMeasurementName.xlsx" },
+            //     ];
+            //     const selectedTab = this.getView().getModel("localModel").getProperty("/selectedIconTabBar");
+            //     const tab = tabs.find((t) => t.id === selectedTab);
+            //     if (!tab) {
+            //       MessageBox.warning("No existen datos, no se puede crear el documento");
+            //       return;
+            //     }
+            //     const table = this.getView().byId(tab.table);
+            //     const aCols = tab.columns;
+            //     const fileName = tab.fileName;
+            //     if (table.getBinding("items").oList.length > 0) {
+            //       util.utilController.exportSpreadSheetXLSX(table, aCols, fileName);
+            //     } else {
+            //       MessageBox.warning("No existen datos, no se puede crear el documento");
+            //     }
+            //   },
             onExportSpreadSheetXLSX: function () {
-                const tabs = [
-                    { id: "0", table: "idProductsTable", columns: this.createColumnConfigTableProducts(), fileName: "ListaProductos.xlsx" },
-                    { id: "1", table: "listOfSuppliers", columns: this.createColumnConfigTableSupplier(), fileName: "listSupplierName.xlsx" },
-                    { id: "2", table: "listOfUnitOfMeasurement", columns: this.createColumnConfigTableUnitOfMeasurement(), fileName: "ListaunitOfMeasurementName.xlsx" },
-                ];
                 const selectedTab = this.getView().getModel("localModel").getProperty("/selectedIconTabBar");
-                const tab = tabs.find((t) => t.id === selectedTab);
-                if (!tab) {
+                let oTable, aCols, fileName;
+
+                switch (selectedTab) {
+                    case "0":
+                        oTable = this.getView().byId("idProductsTable");
+                        aCols = this.createColumnConfigTableProducts();
+                        fileName = "ListaProductosEnStock.xlsx";
+                        break;
+                    case "1":
+                        oTable = this.getView().byId("listOfSuppliers");
+                        aCols = this.createColumnConfigTableSupplier();
+                        fileName = "ListaProveedores.xlsx";
+                        break;
+                    case "2":
+                        oTable = this.getView().byId("listOfUnitOfMeasurement");
+                        aCols = this.createColumnConfigTableUnitOfMeasurement();
+                        fileName = "ListaUnidadMedida.xlsx";
+                        break;
+                    default:
+                        MessageBox.warning("No existen datos, no se puede crear el documento");
+                        return;
+                }
+                const oRowBinding = oTable.getBinding("items");
+                if (!oRowBinding || !oRowBinding.getLength()) {
                     MessageBox.warning("No existen datos, no se puede crear el documento");
                     return;
                 }
-                const table = this.getView().byId(tab.table);
-                const aCols = tab.columns;
-                const fileName = tab.fileName; Property
-                if (table.getBinding("items").oList.length > 0) {
-                    util.utilController.exportSpreadSheetXLSX(table, aCols, fileName);
-                } else {
-                    MessageBox.warning("No existen datos, no se puede crear el documento");
-                }
+                const oSettings = {
+                    workbook: { columns: aCols },
+                    dataSource: oRowBinding,
+                    fileName: fileName
+                };
+                const oSheet = new Spreadsheet(oSettings);
+                oSheet.build().finally(function () {
+                    oSheet.destroy();
+                });
             },
 
-            // ----------------------------Exportar datos en CSV -------------------------//
+            // CSV
 
             onDataExport: function (oEvent) {
+                debugger;
 
-                var selectedTab = this.getView().getModel("localModel").getProperty("/selectedIconTabBar");
+                let selectedTab = this.getView().getModel("localModel").getProperty("/selectedIconTabBar");
 
-                if (selectedTab === "0") {
+                if (selectedTab == "0") {
 
                     var oExport = new Export({
 
@@ -266,17 +301,17 @@ sap.ui.define(
                         // column definitions with column name and binding info for the content
 
                         columns: [{
-                            name: "name",
+                            name: "Nombre",
                             template: {
                                 content: "{name}"
                             }
                         }, {
-                            name: "description",
+                            name: "Descripcion",
                             template: {
                                 content: "{description}"
                             }
                         }, {
-                            name: "image",
+                            name: "Imagenes",
                             template: {
                                 content: "{image}"
                             }
@@ -313,7 +348,7 @@ sap.ui.define(
                         }]
                     });
 
-                } else if (selectedTab === "1") {
+                } else if (selectedTab == "1") {
 
                     let oExport = new Export({
 
@@ -321,66 +356,52 @@ sap.ui.define(
                         exportType: new ExportTypeCSV({
                             separatorChar: ","
                         }),
-
-                        // Pass in the model created above
                         models: this.getView().getModel("localModel"),
-
-                        // binding information for the rows aggregation
                         rows: {
                             path: "/listOfSuppliers"
                         },
 
-                        // column definitions with column name and binding info for the content
-
                         columns: [{
-                            name: "name",
+                            name: "Nome",
                             template: {
                                 content: "{name}"
                             }
                         }, {
-                            name: "phone",
+                            name: "Telefono",
                             template: {
                                 content: "{phone}"
                             }
                         }, {
-                            name: "address",
+                            name: "Dirección",
                             template: {
                                 content: "{address}"
                             }
                         }, {
-                            name: "state",
+                            name: "Estado",
                             template: {
-                                content: "{state}"
+                                content: "{statusName}"
                             }
                         }]
                     });
 
-                } else if (selectedTab === "2") {
+                } else if (selectedTab == "2") {
+                    debugger;
 
                     let oExport = new Export({
-
-                        // Type that will be used to generate the content. Own ExportType's can be created to support other formats
                         exportType: new ExportTypeCSV({
                             separatorChar: ","
                         }),
-
-                        // Pass in the model created above
                         models: this.getView().getModel("localModel"),
-
-                        // binding information for the rows aggregation
                         rows: {
                             path: "/listOfUnitOfMeasurement"
                         },
-
-                        // column definitions with column name and binding info for the content
-
                         columns: [{
-                            name: "name",
+                            name: "Nombres",
                             template: {
                                 content: "{name}"
                             }
                         }, {
-                            name: "description",
+                            name: "Descripcion",
                             template: {
                                 content: "{description}"
                             }
@@ -392,22 +413,24 @@ sap.ui.define(
                         }, {
                             name: "state",
                             template: {
-                                content: "{state}"
+                                content: "{statusName}"
                             }
                         }]
                     });
 
                 }
                 // download exported file
-                oExport.saveFile().catch(function (oError) {
-                    MessageBox.error("Error when downloading data. Browser might not be supported!\n\n" + oError);
-                }).then(function () {
-                    oExport.destroy();
-                });
+                oExport
+                    .saveFile()
+                    .catch(function (oError) {
+                        MessageBox.error(`Error when downloading data. Browser might not be supported!\n\n${oError}`);
+                    })
+                    .then(function () {
+                        oExport.destroy();
+                    });
             },
 
-            // ----------------------------Abrir Fragment Agregar Producto -------------------------//
-            onaddProduct: function () {
+            onAddProduct: function () {
 
                 if (!this.oMPProducto) {
                     this.oMPProducto = this.loadFragment({
@@ -421,52 +444,52 @@ sap.ui.define(
                 }.bind(this));
 
             },
-            closeDialogProducto: function () {
-                //this.getView().getModel("localModel").setProperty("/search", "");
-                //this.onLimpiarCamposDialogo();
+            closeProducts: function(){
+                debugger;
                 this.oDialogProducto.close();
-                this.onLimpiarCamposDialogos();
+                this.onClearInputs();
             },
 
-            // ----------------------------Abrir Fragment Editar Producto -------------------------//
+            // Editar Producto
             onEditarProducto: function () {
 
-                if (!this.oMPProductoe) {
-                    this.oMPProductoe = this.loadFragment({
+                if (!this.oMPProductos) {
+                    this.oMPProductos = this.loadFragment({
                         name: "com.pe.proyectoIntegrador.view.fragment.EditProduct"
                     });
                 }
-                this.oMPProductoe.then(function (oDialog) {
-                    this.oDialogProductoe = oDialog;
-                    this.oDialogProductoe.open();
+                this.oMPProductos.then(
+                    function (oDialog) {
+                    this.oDialogProducts = oDialog;
+                    this.oDialogProducts.open();
 
-                }.bind(this));
+                }.bind(this)
+            );
 
+        },
+            closeProducts: function () {
+                this.oDialogProducts.close();
+                this.onClearInputs();
             },
-            closeDialogProductoe: function () {
-                //this.getView().getModel("localModel").setProperty("/search", "");
-                //this.onLimpiarCamposDialogo();
-                this.oDialogProductoe.close();
-                this.onLimpiarCamposDialogos();
-            },
 
 
-            // ----------------------------Limpiar campos a ingresar -------------------------//
 
-            onLimpiarCamposDialogos: function () {
-                this.getView().getModel("localModel").setProperty("/addProduct", {
-                    "name": "",
-                    "description": "",
-                    "salePrice": "",
-                    "image": "",
-                    "purchasePrice": "",
-                    "stock": "",
-                    "unitOfMeasurementName": "",
-                    "supplierName": "",
-                    "statusName": ""
-                });
+            onClearInputs: function () {
+                this.getView().getModel("localModel").setProperty("/addProduct",
+                    {
+                        "name": "",
+                        "description": "",
+                        "salePrice": "",
+                        "image": "",
+                        "purchasePrice": "",
+                        "stock": "",
+                        "unitOfMeasurementName": "",
+                        "supplierName": "",
+                        "statusName": ""
+                    });
 
                 this.getView().getModel("localModel").setProperty("/selectSupplierName", "0");
+
 
                 this.getView().getModel("localModel").setProperty("/selectUnitOfMeasurementName", "0");
 
@@ -482,31 +505,65 @@ sap.ui.define(
 
             },
 
+            // onConDelete function (oEvent){
+
+            //     const oButton = oEvent.getSource(),
+            //         oView = this.getView();
+            //         debugger; 
+            //         const oProduct = oButton.getParent().getBindingContext("localModel");
+            //         debugger;
+            //         const oSelectObj = oProduct.getObject();
+            //         this.getView().getModel("localModel").setProperty("selectedRowEliminar", oSelectObj);
+
+            //         if(!this.oMPProductoElimnado){
+            //             this.oMPProductoElimnado = this.loadFragment({
+            //                 name: "com.pe.proyectoIntegrador.view.fragment.DeleteProduct",
+            //             });
+            //         }
+            //         this.oMPProductoElimnado.then(
+            //             function (oDialogProductoEliminado){
+            //                 this.oDialogProductoEliminado = oDialogProductoEliminado;
+            //                 this.oDialogProductoEliminado.open();
+            //             }.bind(this)
+            //         );
+            // },
+            // closeDialogDeleteProduct: function(){
+            //     this.oDialogProductoEliminado.close();
+            // },
+            // onPressDeleteProduct: function (){
+            //     let selectedRowEliminar = this.getView().getModel("localModel").getProperty("/selectedRowEliminar");
+            //     let listOfProducts = this.getView().getModel("localModel").getProperty("/listOfProducts");
+
+            //     let listaFinal = [];
+
+            //     for(let index = 0; index < listOfProducts.length; index++){
+            //         const element = listOfProducts[index];
+            //         if(element.id != selectedRowEliminar.id){
+            //             listaFinal.push(element);
+            //         }
+            //     }
+            //     this.getView().getModel("localModel").setProperty("/listOfProducts", listOfProducts);
+            //     this.getView().getModel("localModel").refresh();
+            //     MessageBox.success("Se ha eliminado el Producto");
+            //     this.closeDialogDeleteProduct();
+            // },
+
 
             // REVISAR
             onAddProductTable: function () {
+                // const {id,description : descriptionProduct , image : imageProduct, salePrice,purchasePrice, stock, unitOfMeasurementName,supplierName,statusName} = this.getView().getModel("localModel").getProperty("/editProduct")
+                const { name, description, image, salePrice, purchasePrice, stock, unitOfMeasurementName, supplierName, statusName } = this.getView().getModel("localModel").getProperty("/addProduct")
                 debugger;
-                let name = this.getView().getModel("localModel").getProperty("/addProduct").name;
-                let description = this.getView().getModel("localModel").getProperty("/addProduct").description;
-                let image = this.getView().getModel("localModel").getProperty("/addProduct").image;
-                let salePrice = this.getView().getModel("localModel").getProperty("/addProduct").salePrice;
-                let purchasePrice = this.getView().getModel("localModel").getProperty("/addProduct").purchasePrice;
-                let stock = this.getView().getModel("localModel").getProperty("/addProduct").stock;
-                let unitOfMeasurementName = this.getView().getModel("localModel").getProperty("/addProduct").unitOfMeasurementName;
-                let supplierName = this.getView().getModel("localModel").getProperty("/addProduct").supplierName;
-                let statusName = this.getView().getModel("localModel").getProperty("/addProduct").statusName;
+                const { selectStateName, selectUnitOfMeasurementName, selectSupplierName } = this.getView().getModel("localModel").getData()
 
-                
-                
-                 const { selectStateName, selectUnitOfMeasurementName,selectSupplierName} = this.getView().getModel("localModel").getData()
-                 
-                        let id = 1;
-                let listaOrdenada =   this.getView().getModel("localModel").getProperty("/listOfProducts").sort(function(a, b){
-return b.id - a.id;});
-                if(listaOrdenada.length>0){
-                        id = listaOrdenada[0].id + 1
+                let id = 1;
+                let listaOrdenada = this.getView().getModel("localModel").getProperty("/listOfProducts").sort(function (a, b) {
+                    return b.id - a.id;
+                });
+                if (listaOrdenada.length > 0) {
+                    id = listaOrdenada[0].id + 1
                 }
-                    let oProducto = {
+                let oProducto = {
                     "id": id,
                     "name": name,
                     "description": description,
@@ -526,7 +583,7 @@ return b.id - a.id;});
                     valid: true,
                     mensaje: ""
                 };
-                if(false) {
+                if (false) {
                     oRespuesta.valid = false;
                     oRespuesta.mensaje = "llena los campos";
                     MessageBox.warning("Todos los campos son necesario");
@@ -538,15 +595,19 @@ return b.id - a.id;});
                 MessageBox.success("Datos ingresados correctamente");
                 this.closeDialogProducto();
             },
+            closeAddProducts: function () {
+                this.oDialogProducts.close();
+                this.onClearInputs();
+            },
 
             // DEBUGGER
             onPressEditTabla: function () {
                 debugger
-               // let id = this.getView().getModel("localModel").getProperty("/editProduct").id;
-                const {id,description : descriptionProduct , image : imageProduct, salePrice,purchasePrice, stock, unitOfMeasurementName,supplierName,statusName} = this.getView().getModel("localModel").getProperty("/editProduct")
+                // let id = this.getView().getModel("localModel").getProperty("/editProduct").id;
+                const { id, description: descriptionProduct, image: imageProduct, salePrice, purchasePrice, stock, unitOfMeasurementName, supplierName, statusName } = this.getView().getModel("localModel").getProperty("/editProduct")
                 let nameProduct = this.getView().getModel("localModel").getProperty("/editProduct").name;
 
-                const { selectStateName, selectUnitOfMeasurementName,selectSupplierName} = this.getView().getModel("localModel").getData()
+                const { selectStateName, selectUnitOfMeasurementName, selectSupplierName } = this.getView().getModel("localModel").getData()
 
                 let oSearchUnit = this.getView().getModel("localModel").getProperty("/ListunitOfMeasurementName").filter(function (item, index) {
                     return item.id == selectUnitOfMeasurementName;
@@ -610,7 +671,7 @@ return b.id - a.id;});
                 this.getView().getModel("localModel").setProperty("/listOfProducts", listFinal);
                 this.getView().getModel("localModel").refresh();
                 MessageBox.success("Producto actualizado");
-                this.closeDialogProductoe();
+                this.closeProducts();
             },
 
 

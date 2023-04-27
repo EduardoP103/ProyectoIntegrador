@@ -46,9 +46,9 @@
 			<content>
 				<Button text="Agregar" icon="sap-icon://add-activity" type="Accept" press="onAddProductTable" ariaHasPopup="Dialog"/>
 
-				<Button text="Limpiar" icon="sap-icon://clear-filter" press="oClean"/>
+				<Button text="Limpiar" icon="sap-icon://clear-filter" press="onClearInputs"/>
 				<ToolbarSpacer/>
-				<Button text="Cerrar" type="Reject" press="closeDialogProduct" ariaHasPopup="Dialog"/>
+				<Button text="Cerrar" type="Reject" press="closeAddProducts" ariaHasPopup="Dialog"/>
 			</content>
 		</Toolbar>
 	</footer>

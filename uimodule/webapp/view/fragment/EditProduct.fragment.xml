@@ -34,7 +34,7 @@
 						
 					<Label text="{i18n>image}"/>
 					<Input  value="{path:  'localModel>/editProduct/image'}" valueLiveUpdate="true" />
-					<Image src="{path : 'localModel>/editProduct/image' }" width="100px" />
+					<Image src="{path : 'localModel>/editProduct/image' }" width="14rem" />
 				</f:content>
 			</f:SimpleForm>
 		</VBox>
@@ -44,9 +44,9 @@
 			<content>
 				<Button text="Agregar" icon="sap-icon://add-activity" type="Accept" press="onPressEditTabla" ariaHasPopup="Dialog"/>
 
-				<Button text="Limpiar" icon="sap-icon://clear-filter" press="oClean"/>
+				<Button text="Limpiar" icon="sap-icon://clear-filter" press="onClearInputs"/>
 				<ToolbarSpacer/>
-				<Button text="Cerrar" type="Reject" press="closeDialogProduct" ariaHasPopup="Dialog"/>
+				<Button text="Cededrar" type="Reject" press="closeProducts" ariaHasPopup="Dialog"/>
 			</content>
 		</Toolbar>
 	</footer>
