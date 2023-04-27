@@ -211,7 +211,7 @@ sap.ui.define(
                             "id": 7,
                             "nombre": "CASE COOLER MASTER COSMOS INFINITY 30 ANIVERSARIO",
                             "descripcion": "PN:MCC-C700M-KHNN-S30",
-                            "imagen": "https://cyccomputer.pe/47468-large_default/case-cooler-master-cosmos-infinity-30-aniversario-obsequio-fuente-v1300-platinum-pnmcc-c700m-khnn-s30.jpg",
+                            "imagen": "https://cdn.memorykings.pe/files/2023/03/20/345927-MK033301A-1.jpg",
                             "preciov": "4189.00",
                             "precioc": "3999.00",
                             "stock": "6",
@@ -490,6 +490,13 @@ sap.ui.define(
                         "celular": "",
                         "distrito": "",
                         "direccion": "",
+                    },
+                    addUnidadMedida : {
+                        "id": "",
+                        "nombre": "",
+                        "descripcion": "",
+                        "abreviatura": "",
+                        "estado": ""
                     },
                     SupplierCollection: [
                         {

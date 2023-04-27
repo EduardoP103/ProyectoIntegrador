@@ -23,15 +23,15 @@ sap.ui.define(
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      * @param {typeof sap.ui.model.json.JSONModel} JSONModel 
- * @param {typeof sap.f.library} library 
- * @param {typeof sap.ui.core.Fragment} Fragment 
- * @param {typeof sap.m.MessagePopover} MessagePopover 
- * @param {typeof sap.m.MessageBox} MessageBox 
- * @param {typeof sap.m.MessageToast} MessageToast 
- * @param {typeof sap.m.MessageItem} MessageItem 
- * @param {typeof sap.ui.core.message.Message} Message 
- * @param {typeof sap.ui.core.library} coreLibrary 
- * @param {typeof sap.ui.core.Core} Core 
+    * @param {typeof sap.f.library} library 
+    * @param {typeof sap.ui.core.Fragment} Fragment 
+    * @param {typeof sap.m.MessagePopover} MessagePopover 
+    * @param {typeof sap.m.MessageBox} MessageBox 
+    * @param {typeof sap.m.MessageToast} MessageToast 
+    * @param {typeof sap.m.MessageItem} MessageItem 
+    * @param {typeof sap.ui.core.message.Message} Message 
+    * @param {typeof sap.ui.core.library} coreLibrary 
+    * @param {typeof sap.ui.core.Core} Core 
  */
     function (
         Controller,
@@ -99,6 +99,8 @@ sap.ui.define(
                     oPopover.openBy(oSourceControl);
                 });
             },
+
+            // ----------------------------Card Datos Consultor -------------------------//
 
             onPressOpenPopover2: function (oEvent) {
                 const oView1 = this.getView(),
@@ -773,7 +775,7 @@ sap.ui.define(
                 this.onLimpiarCamposDialogos();
             },
 
-            // ----------------------------Botón eliminar registro -------------------------//
+            // ----------------------------Botón eliminar producto -------------------------//
 
             onConfirmarEliminacion: function (oEvent) {
 
@@ -866,6 +868,28 @@ sap.ui.define(
                 this.onLimpiarCamposDialogos();
             },
 
+            // ----------------------------Abrir Fragment Agregar Unidad Medida -------------------------//
+
+            onAddUnidadMedida: function () {
+                if (!this.oMPUnidad) {
+                    this.oMPUnidad = this.loadFragment({
+                        name: "com.pe.proyectoIntegrador.view.fragment.AgregarUnidadMedida",
+                    });
+                }
+                this.oMPUnidad.then(
+                    function (oDialog3) {
+                        this.oDialogUnidad = oDialog3;
+                        this.oDialogUnidad.open();
+                    }.bind(this)
+                );
+            },
+            closeDialogUnidadMedida: function () {
+                // this.getView().getModel("formularioSimple").setProperty("/search", "");
+                // this.onLimpiarCamposDialogo();
+                this.oDialogUnidad.close();
+                this.onLimpiarCamposDialogos();
+            },
+
             // ----------------------------Limpiar campos a ingresar -------------------------//
 
             onLimpiarCamposDialogos: function () {
@@ -908,6 +932,13 @@ sap.ui.define(
                 this.getView().getModel("formularioSimple").setProperty("/selectTipoDocumento", "0");
 
                 this.getView().getModel("formularioSimple").setProperty("/selectDistrito", "0");
+
+                this.getView().getModel("formularioSimple").setProperty("/addUnidadMedida", {
+                    nombre: "",
+                    descripcion: "",
+                    abreviatura: "",
+                    activo: "",
+                });
             },
 
             // ----------------------------Agregar registros a las tabla Producto -------------------------//
@@ -1071,7 +1102,7 @@ sap.ui.define(
                 this.closeDialogProductoe();
             },
 
-            // ----------------------------Editar registros de Producto -------------------------//
+            // ----------------------------Llamar datos al editar producto y llamado del Fragment -------------------------//
 
             onEditProducto: function (oEvent) {
                 const oButton = oEvent.getSource(),
@@ -1201,6 +1232,46 @@ sap.ui.define(
                 this.closeDialogCliente();
             },
 
+            // ----------------------------Agregar registros a las tabla Unidad Medida -------------------------//
+
+            onAddUnidadMedidaTabla: function () {
+                const nomUM = this.getView().getModel("formularioSimple").getProperty("/addUnidadMedida").nombre;
+                const descUM = this.getView().getModel("formularioSimple").getProperty("/addUnidadMedida").descripcion;
+                const abrevUM = this.getView().getModel("formularioSimple").getProperty("/addUnidadMedida").abreviatura;
+                const estUM = this.getView().getModel("formularioSimple").getProperty("/addUnidadMedida").estado;
+
+                const oUnidad = {
+                    id: this.getView().getModel("formularioSimple").getProperty("/listaTabla2").length+1,
+                    nombre: nomUM,
+                    descripcion: descUM,
+                    abreviatura: abrevUM,
+                    estado: this.getView().byId("idActivoUM").getSelectedItem().getProperty("text")
+                };
+
+                const oRespuesta4 = {
+                    valid: true,
+                    mensaje: "",
+                };
+                if (nomUM.trim().length == 0 || 
+                descUM.trim().length == 0 || 
+                abrevUM.trim().length == 0 ||
+                    this.getView().getModel("formularioSimple").getProperty("/selectActivo") == "0"
+                    ) {
+                    oRespuesta4.valid = false;
+                    oRespuesta4.mensaje = "llena los campos";
+                    MessageBox.warning("Todos los campos son obligatorios y no se pueden ingresar números menores o iguales a 0");
+                    return oRespuesta4;
+                }
+                const listaTabla4 = this.getView().getModel("formularioSimple").getProperty("/listaTabla4");
+                listaTabla4.push(oUnidad);
+                
+                MessageBox.success("Datos ingresados correctamente");
+                this.loadMeasurementPost();
+                this.getView().getModel("formularioSimple").refresh(true);
+                this.closeDialogUnidadMedida();
+            },
+
+            // ----------------------------Agregar datos de la tabla Proveedor al combo -------------------------//
 
             loadSupplier: function () {
                 const { listaTabla2, listaProveedores } = this.getView().getModel("formularioSimple").getData();
@@ -1229,6 +1300,9 @@ sap.ui.define(
 
                 this.getView().getModel("formularioSimple").setProperty("/listaProveedores", listaProveedores);
             },
+
+            // ----------------------------Agregar datos de la tabla Unidad Medida al combo -------------------------//
+
             loadMeasurement: function () {
                 const { listaTabla4, unidadMedida } = this.getView().getModel("formularioSimple").getData();
                 listaTabla4.forEach((element) => {

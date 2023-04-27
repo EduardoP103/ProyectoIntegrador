@@ -63,7 +63,7 @@
 							<ObjectAttribute title="{i18n>consultorobj}"/>
 							<Button text="{i18n>consultornombreobj}" type="Transparent" icon="sap-icon://account" press="onPressOpenPopover2"/>
                             <ObjectAttribute title="{i18n>cargoobj}"/>
-							<Button text="{i18n>cargonombreobj}"  type="Transparent" icon="sap-icon://in-progress" enabled="false"/>
+							<Button text="{i18n>cargonombreobj}"  type="Transparent" icon="sap-icon://employee" enabled="false"/>
 							
 							<Image class="seidor" src="https://www.seidor.com/icons/seidor.jpeg" width="110px" />
 
@@ -135,7 +135,7 @@
 
 									<Column	hAlign="Center" width="10%">
 
-										<Text text="Previo V." />
+										<Text text="Precio V." />
 
 									</Column>
 
@@ -394,7 +394,7 @@
 										<Title text="Unidad de Medida ({= ${formularioSimple>/listaTabla4}.length })" level="H2"/>
 										
 										<ToolbarSpacer/>
-										<Button type="Transparent" text="Agregar Unidad de Medida" icon="sap-icon://add" press="onAddRegistro"/>
+										<Button type="Transparent" text="Agregar Unidad de Medida" icon="sap-icon://add" press="onAddUnidadMedida"/>
 
 									</Toolbar>
 
