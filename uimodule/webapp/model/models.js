@@ -449,6 +449,7 @@ sap.ui.define(
                         }
                     ],
                     addProducto : {
+                        "id": "",
                         "nombre": "",
                         "descripcion": "",
                         "preciov": "",
@@ -472,12 +473,14 @@ sap.ui.define(
                         "activo": ""
                     },
                     addProveedor : {
+                        "id": "",
                         "nombre": "",
                         "telefono": "",
                         "direccion": "",
                         "estado": ""
                     },
                     addCliente : {
+                        "id": "",
                         "nombres": "",
                         "apellidos": "",
                         "correoelectronico": "",
@@ -487,7 +490,28 @@ sap.ui.define(
                         "celular": "",
                         "distrito": "",
                         "direccion": "",
-                    }
+                    },
+                    SupplierCollection: [
+                        {
+                            "SupplierName": "Red Point Stores",
+                            "Street": "Main St",
+                            "HouseNumber": "1618",
+                            "ZIPCode": "31415",
+                            "City": "Maintown",
+                            "Country": "Germany",
+                            "Url": "http://www.sap.com",
+                            "Twitter": "@sap",
+                            "Tel": "+49 6227 747474",
+                            "Sms": "+49 173 123456",
+                            "Mobile": "+49 173 123456",
+                            "Pager": "+49 173 123456",
+                            "Fax": "+49 123 456789",
+                            "Email": "john.smith@sap.com",
+                            "Rating": 4,
+                            "Prime": "true",
+                            "Disposable": 30
+                        }
+                    ]
 
                 }
                 const oModel = new JSONModel(oParam);

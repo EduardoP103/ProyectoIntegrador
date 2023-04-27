@@ -100,6 +100,25 @@ sap.ui.define(
                 });
             },
 
+            onPressOpenPopover2: function (oEvent) {
+                const oView1 = this.getView(),
+                    oSourceControl1 = oEvent.getSource();
+
+                if (!this._pPopover2) {
+                    this._pPopover2 = Fragment.load({
+                        id: oView1.getId(),
+                        name: "com.pe.proyectoIntegrador.view.fragment.Card2",
+                    }).then(function (oPopover2) {
+                        oView1.addDependent(oPopover2);
+                        return oPopover2;
+                    });
+                }
+
+                this._pPopover2.then(function (oPopover2) {
+                    oPopover2.openBy(oSourceControl1);
+                });
+            },
+
             // ----------------------------Popover imagen -------------------------//
 
             handleResponsivePopoverPress: function (oEvent) {

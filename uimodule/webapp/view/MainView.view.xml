@@ -61,13 +61,14 @@
 						<layout:VerticalLayout>
 
 							<ObjectAttribute title="{i18n>consultorobj}"/>
-							<ObjectStatus text="{i18n>consultornombreobj}" state="Success" />
+							<Button text="{i18n>consultornombreobj}" type="Transparent" icon="sap-icon://account" press="onPressOpenPopover2"/>
                             <ObjectAttribute title="{i18n>cargoobj}"/>
-							<ObjectStatus text="{i18n>cargonombreobj}" state="Success" />
+							<Button text="{i18n>cargonombreobj}"  type="Transparent" icon="sap-icon://in-progress" enabled="false"/>
+							
 							<Image class="seidor" src="https://www.seidor.com/icons/seidor.jpeg" width="110px" />
 
 						</layout:VerticalLayout>
-
+						
 						<ToolbarSpacer/>
 
 						<layout:VerticalLayout class="sapUiMediumMarginEnd">
@@ -140,7 +141,7 @@
 
 									<Column	minScreenWidth="Desktop" demandPopin="true" hAlign="Center" width="10%">
 
-										<Text text="Previo C." />
+										<Text text="Precio C." />
 
 									</Column>
 
