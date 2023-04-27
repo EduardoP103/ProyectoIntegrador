@@ -7,7 +7,22 @@
 
 		<content>
 
-			<VBox class="sapUiSmallMargin" id="formContainerEmployment2">
+			<VBox alignItems="Center">
+				<Image
+				src="https://cdn-icons-png.flaticon.com/512/4003/4003697.png"
+				mode="{/imageMode}"
+				height="150px"
+				backgroundSize="5em 5em"
+				backgroundPosition="center"
+				width="auto"
+                class="img" >
+                    <layoutData>
+                        <FlexItemData growFactor="0.5" />
+                    </layoutData>
+				</Image>
+			</VBox>
+
+			<VBox class="sapUiSmallMargin" id="formAgregarProveedor">
 				<f:SimpleForm editable="true" layout="ColumnLayout" columnsM="2" columnsL="2" columnsXL="4">
 					<f:content>
 						<core:Title text="Ingreso de Proveedor" />
@@ -19,7 +34,7 @@
 						<Label text="Dirección" />
 						<Input required="true" value="{path : 'formularioSimple>/addProveedor/direccion' }" />
 						<Label text="Activo" />
-						<Select id="idActivo2" required="true" items="{
+						<Select id="idActivo3" required="true" items="{
 						path: 'formularioSimple>/activo'
 					    }" selectedKey="{
                             path: 'formularioSimple>/selectActivo'

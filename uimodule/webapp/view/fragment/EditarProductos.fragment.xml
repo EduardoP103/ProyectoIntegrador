@@ -7,7 +7,22 @@
 
 		<content>
 
-			<VBox class="sapUiSmallMargin" id="formContainerEmployment3">
+			<VBox alignItems="Center">
+				<Image
+				src="https://cdn-icons-png.flaticon.com/512/269/269074.png"
+				mode="{/imageMode}"
+				height="120px"
+				backgroundSize="5em 5em"
+				backgroundPosition="center"
+				width="auto"
+                class="img" >
+                    <layoutData>
+                        <FlexItemData growFactor="0.5" />
+                    </layoutData>
+				</Image>
+			</VBox>
+
+			<VBox class="sapUiSmallMargin" id="formEditarProducto">
 				<f:SimpleForm editable="true" layout="ColumnLayout" columnsM="2" columnsL="3" columnsXL="5">
 					<f:content>
 						<core:Title text="Edición de Productos" />

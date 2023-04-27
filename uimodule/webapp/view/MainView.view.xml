@@ -65,22 +65,7 @@
                             <ObjectAttribute title="{i18n>cargoobj}"/>
 							<ObjectStatus text="{i18n>cargonombreobj}" state="Success" />
 							<Image class="seidor" src="https://www.seidor.com/icons/seidor.jpeg" width="110px" />
-<!--
-							<SearchField enableSuggestions="true" id="search" placeholder="Buscar" width="100%" class="search" liveChange="onSearch" value="{
-											path : 'formularioSimple>/search'
-										}"/>
 
-							<Select id="distritoid" selectedKey="{
-								path: 'formularioSimple>/selectDistrito'}"
-								change="onChangeSelect"
-								items="{
-									path: 'formularioSimple>/distritoSelect'
-								}">
-								<core:ListItem 
-								key="{formularioSimple>id}"
-								text="{formularioSimple>name}"/>
-							</Select>
--->
 						</layout:VerticalLayout>
 
 						<ToolbarSpacer/>
@@ -91,6 +76,10 @@
                             <Image class="sans" src="https://logodownload.org/wp-content/uploads/2018/03/logitech-logo-3.png" width="100px" />
                         
 						</layout:VerticalLayout>
+
+						<SearchField enableSuggestions="true" id="search" placeholder="Buscar" width="100%" class="search" liveChange="onSearch" value="{
+											path : 'formularioSimple>/search'
+										}"/>
 
 					</layout:HorizontalLayout>
 
@@ -210,6 +199,7 @@
 												press="onConfirmarEliminacion"
 												icon="sap-icon://delete"
 												ariaHasPopup="Dialog" />
+												
 											</HBox>
 
 											
@@ -301,7 +291,7 @@
 										<Title text="Clientes ({= ${formularioSimple>/listaTabla3}.length })" level="H2"/>
 										
 										<ToolbarSpacer/>
-										<Button type="Transparent" text="Agregar Cliente" icon="sap-icon://add" press="onAddRegistro"/>
+										<Button type="Transparent" text="Agregar Cliente" icon="sap-icon://add" press="onAddCliente"/>
 
 									</Toolbar>
 

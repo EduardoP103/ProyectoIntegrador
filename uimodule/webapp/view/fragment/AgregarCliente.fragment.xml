@@ -1,0 +1,111 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:core="sap.ui.core">
+	<Dialog id="AgregarCliente" title="Agregar Cliente">
+
+		<content>
+
+			<VBox alignItems="Center">
+				<Image
+				src="https://cdn-icons-png.flaticon.com/512/419/419231.png"
+				mode="{/imageMode}"
+				height="150px"
+				backgroundSize="5em 5em"
+				backgroundPosition="center"
+				width="auto"
+                class="img" >
+                    <layoutData>
+                        <FlexItemData growFactor="0.5" />
+                    </layoutData>
+				</Image>
+			</VBox>
+
+			<VBox class="sapUiSmallMargin" id="formAgregarCliente">
+				<f:SimpleForm editable="true" layout="ColumnLayout" columnsM="2" columnsL="3" columnsXL="5">
+					<f:content>
+						<core:Title text="Ingreso de Cliente" />
+
+						<Label text="Nombres" />
+						<Input required="true" value="{path : 'formularioSimple>/addCliente/nombres' }" />
+
+						<Label text="Apellidos" />
+						<Input required="true" value="{path : 'formularioSimple>/addCliente/apellidos' }" />
+
+						<Label text="E-mail" />
+						<Input required="true" value="{path : 'formularioSimple>/addCliente/correoelectronico' }" />
+
+						<Label text="Sexo" />
+						<Select id="idSexo" required="true" items="{
+						path: 'formularioSimple>/sexo'
+					    }" selectedKey="{
+                            path: 'formularioSimple>/selectSexo'
+                        }">
+							<core:ListItem key="{formularioSimple>id}" text="{formularioSimple>name}" 
+							enabled="{= ${formularioSimple>id} === '0' ? false : true }"
+							 />
+						</Select>
+
+						<Label text="Tipo Documento" />
+						<Select id="idTipoDocumento" required="true" items="{
+						path: 'formularioSimple>/tipoDocumento'
+					    }" selectedKey="{
+                            path: 'formularioSimple>/selectTipoDocumento'
+                        }">
+							<core:ListItem key="{formularioSimple>id}" text="{formularioSimple>name}" 
+							enabled="{= ${formularioSimple>id} === '0' ? false : true }"
+							 />
+						</Select>
+
+						<Label text="Número Documento" />
+						<Input required="true" type="Number" value="{path : 'formularioSimple>/addCliente/numdocumento' }" />
+
+						<Label text="Celular" />
+						<Input required="true" type="Number" value="{path : 'formularioSimple>/addCliente/celular' }" />
+
+						<Label text="Distrito" />
+						<Select id="idDistrito" required="true" items="{
+						path: 'formularioSimple>/distritoSelect'
+					    }" selectedKey="{
+                            path: 'formularioSimple>/selectDistrito'
+                        }">
+							<core:ListItem key="{formularioSimple>id}" text="{formularioSimple>name}" 
+							enabled="{= ${formularioSimple>id} === '0' ? false : true }"
+							 />
+						</Select>
+
+						<Label text="Dirección" />
+						<Input required="true" value="{path : 'formularioSimple>/addCliente/direccion' }" />
+						
+					</f:content>
+
+				</f:SimpleForm>
+			</VBox>
+
+		</content>
+
+		<footer>
+
+			<Toolbar>
+
+				<content>
+
+					<Button text="Agregar" type="Accept" press="onAddClienteTabla" ariaHasPopup="Dialog" />
+
+					<ToolbarSpacer/>
+
+					<Button text="Limpiar" icon="sap-icon://clear-all" press="onLimpiarCamposDialogos"/>
+
+					<ToolbarSpacer/>
+
+					<Button text="Cerrar" type="Reject" press="closeDialogCliente" ariaHasPopup="Dialog" />
+
+				</content>
+
+			</Toolbar>
+
+		</footer>
+
+	</Dialog>
+</core:FragmentDefinition>

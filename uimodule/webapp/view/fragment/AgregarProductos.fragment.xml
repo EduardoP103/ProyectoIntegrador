@@ -7,7 +7,22 @@
 
 		<content>
 
-			<VBox class="sapUiSmallMargin" id="formContainerEmployment1">
+			<VBox alignItems="Center">
+				<Image
+				src="https://static.vecteezy.com/system/resources/previews/005/165/208/non_2x/add-to-cart-icon-style-add-product-in-trolley-vector.jpg"
+				mode="{/imageMode}"
+				height="150px"
+				backgroundSize="5em 5em"
+				backgroundPosition="center"
+				width="auto"
+                class="img" >
+                    <layoutData>
+                        <FlexItemData growFactor="0.5" />
+                    </layoutData>
+				</Image>
+			</VBox>
+
+			<VBox class="sapUiSmallMargin" id="formAgregarProducto">
 				<f:SimpleForm editable="true" layout="ColumnLayout" columnsM="2" columnsL="3" columnsXL="5">
 					<f:content>
 						<core:Title text="Ingreso de Productos" />
