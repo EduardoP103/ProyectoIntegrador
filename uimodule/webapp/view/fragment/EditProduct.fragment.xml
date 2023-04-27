@@ -2,12 +2,12 @@
 	xmlns:f="sap.ui.layout.form"
 	xmlns:mvc="sap.ui.core.mvc"
 	xmlns:core="sap.ui.core">
-	<Dialog id="idEditProductDialog" title="{i18n>addProductDialogTitle}">
+	<Dialog id="idEditProductDialog" title="{i18n>editProductDialogTitle}">
 		<content>
 			<VBox class="sapUiSmallMargin">
 				<f:SimpleForm editable="true" layout="ColumnLayout" columnsM="2" columnsL="3" columnsXL="3">
 					<f:content>
-						<core:Title text="{i18n>addProductDialogTitle2}" />
+						<core:Title text="{i18n>editProductDialogTitle2}" />
 
 						<Label text="{i18n>tab1TableC1}" />
 						<Input required="true" placeholder="{i18n>addProductDialogPH1}" value="{path : 'formModel>/editProduct/productName' }" />

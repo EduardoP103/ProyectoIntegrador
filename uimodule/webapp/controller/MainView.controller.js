@@ -63,7 +63,7 @@ sap.ui.define(
             },
 
             onAddProductSave: function(){
-                debugger;
+                
 
                 //1.VALIDAR QUE TODOS LOS CAMPOS ESTEN LLENOS
                 const { productName, productDescription, productPriceV, productPriceC, productStock, imgUrl, idMeasurement ,idStatus ,idProvider }  = this.getView().getModel("formModel").getProperty("/addProduct")
@@ -77,13 +77,13 @@ sap.ui.define(
                let id;
                if(productList.length>0){
                     let ordenadoDesc =  productList.sort(function(a, b){
-                        return b.idProducto - a.idProducto;
+                        return b.idProduct - a.idProduct;
                          });
         
                         //  let ordenadoAsc =  productList.sort(function(a, b){
-                        //     return a.idProducto - b.idProducto;
+                        //     return a.idProduct - b.idProduct;
                         //      });
-                             id =    ordenadoDesc[0].idProducto + 1;
+                             id =    ordenadoDesc[0].idProduct + 1;
                              
                             
                 }else{
@@ -93,7 +93,7 @@ sap.ui.define(
                 this.getView().getModel("formModel").setProperty("/addProduct/idMeasurement",parseInt(idMeasurement));
                 this.getView().getModel("formModel").setProperty("/addProduct/idStatus",parseInt(idStatus));
                 this.getView().getModel("formModel").setProperty("/addProduct/idProvider",parseInt(idProvider));
-                this.getView().getModel("formModel").setProperty("/addProduct/idProducto",id);
+                this.getView().getModel("formModel").setProperty("/addProduct/idProduct",id);
 
                 productList.push(this.getView().getModel("formModel").getProperty("/addProduct"))
                 this.getView().getModel("formModel").setProperty("/productList",productList)
@@ -105,17 +105,17 @@ sap.ui.define(
             },
 
             onChangeMeasurementAdd: function(oEvent){
-                debugger;
+                
                 let text = oEvent.getSource().getSelectedItem().getProperty("text");
                 this.getView().getModel("formModel").setProperty("/addProduct/productUnitM",text)
             },
             onChangeProviderAdd: function(oEvent){
-                debugger;
+               
                 let text = oEvent.getSource().getSelectedItem().getProperty("text");
                 this.getView().getModel("formModel").setProperty("/addProduct/productProvider",text)
             },
             onChangeStatusAdd: function(oEvent){
-                debugger;
+                
                 let text = oEvent.getSource().getSelectedItem().getProperty("text");
                 this.getView().getModel("formModel").setProperty("/addProduct/productActive",text)
             },
@@ -294,8 +294,8 @@ sap.ui.define(
                 oView = this.getView();
                 var oProduct = oButton.getParent().getBindingContext("formModel");
                 var oSelectObj = oProduct.getObject();
-                this.getView().getModel("formModel").setProperty("/selectedRowView", oSelectObj);
-                debugger;
+                this.getView().getModel("formModel").setProperty("/editProduct", {...oSelectObj});
+                
                 // create popover
                 if (!this.oEditProduct) {
                     this.oEditProduct = this.loadFragment({
@@ -322,9 +322,23 @@ sap.ui.define(
                 this.getView().getModel("formModel").setProperty("/editProduct/idStatus",parseInt(idStatus));
                 this.getView().getModel("formModel").setProperty("/editProduct/idProvider",parseInt(idProvider));
 
+                
+                let productList = this.getView().getModel("formModel").getProperty("/productList");
+                let updateList = [];
+                let editProduct=this.getView().getModel("formModel").getProperty("/editProduct");
+                productList.forEach(element => {
+                //1. Validator si en el caso el idde editProducto != element.id ahi debes pushear a la listaF
+                
+                if (element.idProduct != editProduct.idProduct){
+                    updateList.push(element);
+                } else{
+                    updateList.push(editProduct);
+                }
+                this.getView().getModel("formModel").setProperty("/productList",{...updateList});
+                });
                 //Refrescar TODO lo que esta anidado a formModel
                 this.getView().getModel("formModel").refresh(true);
-
+                        //const{productList} =this.getView().getModel("formModel").getData()
                 this.onEditProductClose();
             },
             onEditProductClose: function (oEvent) {
@@ -332,17 +346,17 @@ sap.ui.define(
                 this.cleanFieldsEditForm();
             },
             onChangeMeasurementEdit: function(oEvent){
-                debugger;
+                
                 let text = oEvent.getSource().getSelectedItem().getProperty("text");
                 this.getView().getModel("formModel").setProperty("/editProduct/productUnitM",text)
             },
             onChangeProviderEdit: function(oEvent){
-                debugger;
+                
                 let text = oEvent.getSource().getSelectedItem().getProperty("text");
                 this.getView().getModel("formModel").setProperty("/editProduct/productProvider",text)
             },
             onChangeStatusEdit: function(oEvent){
-                debugger;
+                
                 let text = oEvent.getSource().getSelectedItem().getProperty("text");
                 this.getView().getModel("formModel").setProperty("/editProduct/productActive",text)
             },

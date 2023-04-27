@@ -23,7 +23,7 @@ sap.ui.define(
                     selectedIconTabBar: "0",
                     productList: [
                         {   
-                            "idProducto" : 1,
+                            "idProduct" : 1,
                             "productName" : "SSD",
                             "productDescription" : "Disco Sólido",
                             "productPriceV" : "18.0",
