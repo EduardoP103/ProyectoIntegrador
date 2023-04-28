@@ -822,6 +822,29 @@ sap.ui.define(
                 this.closeDialogEliminarProducto();
             },
 
+            // ----------------------------Abrir Fragment Configuracion -------------------------//
+
+            onConfig: function () {
+                if (!this.oMPConfig) {
+                    this.oMPConfig = this.loadFragment({
+                        name: "com.pe.proyectoIntegrador.view.fragment.ConfiguradorColumnas",
+                    });
+                }
+                this.oMPConfig.then(
+                    function (oDialogConf) {
+                        this.oDialogConfig = oDialogConf;
+                        this.oDialogConfig.open();
+                    }.bind(this)
+                );
+            },
+
+            closeDialogConfig: function () {
+                // this.getView().getModel("formularioSimple").setProperty("/search", "");
+                // this.onLimpiarCamposDialogo();
+                this.oDialogConfig.close();
+                this.onLimpiarCamposDialogos();
+            },
+
             // ----------------------------Abrir Fragment Agregar Proveedor -------------------------//
 
             onAddProveedor: function () {

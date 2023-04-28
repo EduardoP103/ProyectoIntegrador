@@ -1,0 +1,144 @@
+<core:FragmentDefinition xmlns:f="sap.ui.layout.form"
+	xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:core="sap.ui.core"
+	xmlns:dnd="sap.ui.core.dnd"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:c="sap.ui.core"
+	xmlns="sap.m">
+	<Dialog id="ConfigColumn" title="Configurador de columnas">
+
+		<content>
+
+			<!-- <VBox class="sapUiSmallMargin" id="formContainerEmployment1"> -->
+
+			<HBox renderType="Bare">
+
+				<Table id="tableAvailableColumns" mode="SingleSelectMaster" growing="true" growingThreshold="10" beforeOpenContextMenu="onBeforeOpenContextMenu" 
+				items="{
+								path: '/ProductCollection',
+								filters: {path: 'Rank', operator: 'EQ', value1: '0'}
+							}">
+					<contextMenu>
+						<Menu>
+							<MenuItem text="Move to Selected Products" press="moveToSelectedProductsTable" />
+						</Menu>
+					</contextMenu>
+					<headerToolbar>
+						<OverflowToolbar>
+							<Title text="Disponibles" />
+						</OverflowToolbar>
+					</headerToolbar>
+					<columns>
+						<Column>
+							<Text text="Nombre" />
+						</Column>
+						<!-- <Column>
+							<Text text="Category" />
+						</Column>
+						<Column hAlign="End" width="6rem">
+							<Text text="Quantity" />
+						</Column> -->
+					</columns>
+					<dragDropConfig>
+						<dnd:DragInfo groupName="available2selected" sourceAggregation="items" />
+						<dnd:DropInfo groupName="selected2available" drop="onDropAvailableProductsTable" />
+					</dragDropConfig>
+					<items>
+						<ColumnListItem>
+							<cells>
+								<Text text="{Name}" wrapping="false" />
+								<!-- <Text text="{Category}" wrapping="false" />
+								<Text text="{
+								path: 'Quantity',
+								type: 'sap.ui.model.type.Integer'
+							}" /> -->
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+
+				<VBox justifyContent="Center" class="sapUiTinyMarginBeginEnd">
+				
+
+					<Button class="sapUiTinyMarginBottom" icon="sap-icon://navigation-right-arrow" tooltip="Move to selected" press="moveToSelectedProductsTable"/>
+					<Button class="sapUiTinyMarginBottom" icon="sap-icon://navigation-left-arrow" tooltip="Move to available" press="moveToAvailableProductsTable"/>
+					
+					<Button class="sapUiTinyMarginBottom" icon="sap-icon://close-command-field" tooltip="Mover todo a Selecionada" press="moveToAllAvailableProductsTable"/>
+					<Button icon="sap-icon://open-command-field" tooltip="Mover todo a Selecionada" press="moveToAllSelectedProductsTable"/>
+				</VBox>
+
+				<Table id="tableSelectedColumns" mode="SingleSelectMaster" growing="true" growingThreshold="10" beforeOpenContextMenu="onBeforeOpenContextMenu" items="{
+					path: '/ProductCollection',
+					filters: {path: 'Rank', operator: 'GT', value1: '0'},
+					sorter: {path: 'Rank', descending: true}
+				}" noDataText="Porfavor, Drag-and-Drop las columnas a visualizar.">
+							<contextMenu>
+								<Menu>
+									<MenuItem text="Move to Available Products" press="moveToAvailableProductsTable" />
+									<MenuItem text="Move up" press="moveUp" />
+									<MenuItem text="Move down" press="moveDown" />
+								</Menu>
+							</contextMenu>
+							<headerToolbar>
+								<OverflowToolbar>
+									<Title text="Seleccionadas" />
+									<ToolbarSpacer/>
+									<Button icon="sap-icon://navigation-up-arrow" tooltip="Move up" press="moveUp"/>
+									<Button icon="sap-icon://navigation-down-arrow" tooltip="Move down" press="moveDown"/>
+								</OverflowToolbar>
+							</headerToolbar>
+							<columns>
+								<Column>
+									<Text text="Nombre" />
+								</Column>
+								<!-- <Column>
+									<Text text="Category" />
+								</Column>
+								<Column hAlign="End" width="6rem">
+									<Text text="Quantity" />
+								</Column> -->
+							</columns>
+							<dragDropConfig>
+								<dnd:DragInfo groupName="selected2available" sourceAggregation="items" />
+								<dnd:DropInfo groupName="available2selected" targetAggregation="items" dropPosition="Between" drop="onDropSelectedProductsTable" />
+								<dnd:DragDropInfo sourceAggregation="items" targetAggregation="items" dropPosition="Between" drop="onDropSelectedProductsTable"/>
+							</dragDropConfig>
+							<items>
+								<ColumnListItem>
+									<cells>
+										<Text text="{Name}" wrapping="false" />
+										<!-- <Text text="{Category}" wrapping="false" />
+										<Text text="{
+								path: 'Quantity',
+								type: 'sap.ui.model.type.Integer'
+							}" /> -->
+									</cells>
+								</ColumnListItem>
+							</items>
+						</Table>
+
+
+			</HBox>
+
+		</content>
+
+		<footer>
+
+			<Toolbar>
+
+				<content>
+
+					<Button text="Aplicar" type="Accept" press="onApplyViewColumns" ariaHasPopup="Dialog" />
+
+					<ToolbarSpacer/>
+
+					<Button text="Cerrar" type="Reject" press="closeDialogConfig" ariaHasPopup="Dialog" />
+
+				</content>
+
+			</Toolbar>
+
+		</footer>
+
+	</Dialog>
+</core:FragmentDefinition>
