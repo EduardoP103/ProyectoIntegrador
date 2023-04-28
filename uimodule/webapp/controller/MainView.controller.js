@@ -783,9 +783,7 @@ sap.ui.define(
             
                 const oButton = oEvent.getSource(),
                     oView = this.getView();
-                debugger;
                 const oProduct = oButton.getParent().getBindingContext("formularioSimple");
-                debugger;
                 const oSelectObj = oProduct.getObject();
                 this.getView().getModel("formularioSimple").setProperty("/selectedRowEliminar", oSelectObj);
                 
@@ -1082,7 +1080,7 @@ sap.ui.define(
                     oRespuesta2.valid = false;
                     oRespuesta2.mensaje = "llena los campos";
                     MessageBox.warning("Todos los campos son obligatorios y no se pueden ingresar números menores o iguales a 0");
-                    return oRespuesta;
+                    return oRespuesta2;
                 }
                 const listaTabla1 = this.getView().getModel("formularioSimple").getProperty("/listaTabla1");
                 // listaTabla1.push(oProducto);
@@ -1108,14 +1106,9 @@ sap.ui.define(
                 const oButton = oEvent.getSource(),
                     oView = this.getView();
 
-                debugger;
-
                 const oProduct2 = oButton.getParent().getBindingContext("formularioSimple");
 
-                debugger;
-
                 const oSelectObj = oProduct2.getObject();
-                debugger;
 
                 const obj = {
                     id: oSelectObj.id,

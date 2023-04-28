@@ -54,7 +54,9 @@
 
                         <layout:VerticalLayout class="sapUiMediumMarginEnd">
 
-                            <Image class="sans" src="https://images.goodsmile.info/cgm/images/product/20220301/12411/96007/large/9f93d7819589c11702049d2a553c015c.jpg" width="100px" />
+                            <Image class="sans" src="https://www.memorykings.pe/files_noticias/listado/memorykings-listado.png" width="180px" />
+
+							<Image class="sans" src="https://aerocool.io/wp-content/uploads/2019/07/CYC-logo.png" width="180px" />
                         
 						</layout:VerticalLayout>
 

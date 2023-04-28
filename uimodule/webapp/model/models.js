@@ -216,7 +216,7 @@ sap.ui.define(
                             "precioc": "3999.00",
                             "stock": "6",
                             "unidadm": "UND",
-                            "proveedor": "CyC Computer",
+                            "proveedor": "Memorykings",
                             "activo": "Activo",
                             "idUnidaddm": '1',
                             "idProveedor": '1',
@@ -421,7 +421,7 @@ sap.ui.define(
                         },
                         {
                             "id": 5,
-                            "nombres": "Antonio",
+                            "nombres": "Antonio Toñito",
                             "apellidos": "Mayuri Valdez",
                             "correoelectronico": "anto.mv98@gmail.com",
                             "sexo": "Masculino",
