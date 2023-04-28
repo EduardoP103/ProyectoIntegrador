@@ -10,15 +10,15 @@
 			<f:SimpleForm editable="true" layout="ColumnLayout" columnsM="2" columnsL="3" columnsXL="4">
 				<f:content>
 					<Label required="true" text="{i18n>name}"/>
-					<Input  value="{path: 'localModel>/addProduct/name'}"/>
+					<Input  value="{path: 'localModel>/addProduct/name'} " liveChange="onInputChange"/>
 					<Label text="{i18n>description}"/>
-					<Input   value="{path: 'localModel>/addProduct/description'}"/>
+					<Input   value="{path: 'localModel>/addProduct/description'}" liveChange="onInputChange"/>
 					<Label text="{i18n>salePrice}"/>
-					<Input  type="Number" value="{path: 'localModel>/addProduct/salePrice'}"/>
+					<Input  type="Number" value="{path: 'localModel>/addProduct/salePrice'}" maxLength="4"  liveChange="onNumberInput"/>
 					<Label text="{i18n>purchasePrice}"/>
-					<Input  type="Number" value="{path: 'localModel>/addProduct/purchasePrice'}"/>
+					<Input  type="Number" value="{path: 'localModel>/addProduct/purchasePrice'}" maxLength="4" liveChange="onNumberInput"/>
 					<Label text="{i18n>stock}"/>
-					<Input  type="Number" value="{path: 'localModel>/addProduct/stock'}"/>
+					<Input  type="Number" value="{path: 'localModel>/addProduct/stock'}" maxLength="4" liveChange="onNumberInput"/>
 					<Label text="{i18n>unitOfMeasurementName}"/>
 					<Select id="idUnit" items="{path: 'localModel>/ListunitOfMeasurementName'}" selectedKey="{path: 'localModel>/selectUnitOfMeasurementName'}">
 						<core:ListItem key="{localModel>id}" text="{localModel>name}" enabled="{= ${localModel>id} === '0' ? false : true }"/>
@@ -31,12 +31,9 @@
 						<Select id="idStatus" items="{path: 'localModel>/activo'}" selectedKey="{path: 'localModel>/selectStateName'}">
 							<core:ListItem key="{localModel>id}" text="{localModel>name}" enabled="{= ${localModel>id} === '0' ? false : true }"/>
 						</Select>
-						
-					
-
 					<Label text="{i18n>image}"/>
-					<Input  value="{path:  'localModel>/addProduct/image'}" valueLiveUpdate="true" />
-					<Image src="{path : 'localModel>/addProduct/image' }" width="100px" />
+					<Input  value="{path:  'localModel>/addProduct/image'}" valueLiveUpdate="true" change="onImageChange" />
+					<Image src="{path : 'localModel>/addProduct/image' }" width="14rem" />
 				</f:content>
 			</f:SimpleForm>
 		</VBox>
