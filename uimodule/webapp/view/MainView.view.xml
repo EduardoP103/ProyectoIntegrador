@@ -79,9 +79,9 @@
             </f:DynamicPageHeader>
         </f:header>
         <f:content>
-            <IconTabBar id="iconTabBar" class="sapUiResponsiveContentPadding">
+            <IconTabBar id="iconTabBar" class="sapUiResponsiveContentPadding" selectedKey="{ path: 'formModel>/selectedIconTabBar'}">
                 <items>
-                    <IconTabFilter text="{i18n>tab1Title}">
+                    <IconTabFilter key="0" text="{i18n>tab1Title}">
                         <Table id="idProductsTable"
                             inset="false"
                             sticky="HeaderToolbar,ColumnHeaders"
@@ -177,7 +177,7 @@
                             </items>
                         </Table>
                     </IconTabFilter>
-                    <IconTabFilter text="{i18n>tab2Title}">
+                    <IconTabFilter key="1" text="{i18n>tab2Title}">
                         <Table id="idProviderTable"
                             inset="false"
                             sticky="HeaderToolbar,ColumnHeaders"
@@ -191,7 +191,7 @@
                                     <Label text="{i18n>tab2TableTitle}"></Label>
                                 </Toolbar>
                                 <OverflowToolbar>
-                                    <Title text="Productos ({=${formModel>/providerList}.length})" level="H2" />
+                                    <Title text="Proveedores({=${formModel>/providerList}.length})" level="H2" />
                                     <ToolbarSpacer></ToolbarSpacer>
                                     <Button icon="sap-icon://add" text="{i18n>addUnitButtonText}"
                                         press="onAddUnitButton" />
@@ -248,7 +248,7 @@
                             </items>
                         </Table>
                     </IconTabFilter>
-                    <IconTabFilter text="{i18n>tab3Title}">
+                    <IconTabFilter key="2" text="{i18n>tab3Title}">
                         <Table id="idUnitOfMeasurementTable"
                             inset="false"
                             sticky="HeaderToolbar,ColumnHeaders"
@@ -262,7 +262,7 @@
                                     <Label text="{i18n>tab3TableTitle}"></Label>
                                 </Toolbar>
                                 <OverflowToolbar>
-                                    <Title text="Productos ({=${formModel>/measurementList}.length})" level="H2" />
+                                    <Title text="Unidades ({=${formModel>/measurementList}.length})" level="H2" />
                                     <ToolbarSpacer></ToolbarSpacer>
                                     <Button icon="sap-icon://add" text="{i18n>addUnitButtonText}"
                                         press="onAddUnitButton" />

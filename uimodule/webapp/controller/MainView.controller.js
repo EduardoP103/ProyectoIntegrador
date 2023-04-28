@@ -149,10 +149,58 @@ sap.ui.define(
             createColumnConfigTableProducts: function () {
                 var aCols = [];
                 aCols.push({
-                    label: "Producto",
+                    label: "ID",
+                    property: ["idProduct"],
+                    type: EdmType.String,
+                    template: "{0}",
+                });
+                aCols.push({
+                    label: "Name",
                     property: ["productName"],
                     type: EdmType.String,
-                    template: "{0} {1}",
+                    template: "{0}",
+                });
+                aCols.push({
+                    label: "Description",
+                    property: ["productDescription"],
+                    type: EdmType.String,
+                    template: "{0}",
+                });
+                aCols.push({
+                    label: "Price V.",
+                    property: ["productPriceV"],
+                    type: EdmType.String,
+                    template: "{0}",
+                });
+                aCols.push({
+                    label: "Price C.",
+                    property: ["productPriceC"],
+                    type: EdmType.String,
+                    template: "{0}",
+                });
+                aCols.push({
+                    label: "Stock",
+                    property: ["productStock"],
+                    type: EdmType.String,
+                    template: "{0}",
+                });
+                aCols.push({
+                    label: "Unit ID",
+                    property: ["idMeasurement"],
+                    type: EdmType.String,
+                    template: "{0}",
+                });
+                aCols.push({
+                    label: "Unit",
+                    property: ["productUnitM"],
+                    type: EdmType.String,
+                    template: "{0}",
+                });
+                aCols.push({
+                    label: "Provider ID",
+                    property: ["idProvider"],
+                    type: EdmType.String,
+                    template: "{0}",
                 });
                 aCols.push({
                     label: "Provider",
@@ -160,14 +208,92 @@ sap.ui.define(
                     type: EdmType.String,
                     template: "{0}",
                 });
+                aCols.push({
+                    label: "Status ID",
+                    property: ["idStatus"],
+                    type: EdmType.String,
+                    template: "{0}",
+                });
+                aCols.push({
+                    label: "Status",
+                    property: ["productActive"],
+                    type: EdmType.String,
+                    template: "{0}",
+                });
+                aCols.push({
+                    label: "Image URL",
+                    property: ["imgUrl"],
+                    type: EdmType.String,
+                    template: "{0}",
+                });
+                
                 return aCols;
             },
             createColumnConfigTableSupplier: function () {
                 var aCols = [];
+                aCols.push({
+                    label: "ID",
+                    property: ["idProvider"],
+                    type: EdmType.String,
+                    template: "{0}",
+                });
+                aCols.push({
+                    label: "Name",
+                    property: ["providerName"],
+                    type: EdmType.String,
+                    template: "{0}",
+                });
+                aCols.push({
+                    label: "Phone",
+                    property: ["providerPhone"],
+                    type: EdmType.String,
+                    template: "{0}",
+                });
+                aCols.push({
+                    label: "Address",
+                    property: ["providerAddress"],
+                    type: EdmType.String,
+                    template: "{0}",
+                });aCols.push({
+                    label: "Status ID",
+                    property: ["idStatus"],
+                    type: EdmType.String,
+                    template: "{0}",
+                });
+                aCols.push({
+                    label: "Status",
+                    property: ["providerActive"],
+                    type: EdmType.String,
+                    template: "{0}",
+                });
                 return aCols;
             },
             createColumnConfigTableUnitOfMeasurement: function () {
                 var aCols = [];
+                aCols.push({
+                    label: "Unit ID",
+                    property: ["idUnit"],
+                    type: EdmType.String,
+                    template: "{0}",
+                });
+                aCols.push({
+                    label: "Name",
+                    property: ["unitName"],
+                    type: EdmType.String,
+                    template: "{0}",
+                });
+                aCols.push({
+                    label: "Description",
+                    property: ["unitDescription"],
+                    type: EdmType.String,
+                    template: "{0}",
+                });
+                aCols.push({
+                    label: "Abbreviation",
+                    property: ["unitAbbreviation"],
+                    type: EdmType.String,
+                    template: "{0}",
+                });
                 return aCols;
             },
             onExportSpreadSheetXLSX: function () {
@@ -177,6 +303,7 @@ sap.ui.define(
                 let fileName = "";
                 let path = "";
                 const selectedIconTabBar = this.getView().getModel("formModel").getProperty("/selectedIconTabBar");
+                debugger;
                 if (selectedIconTabBar === "0") {
                     oTable = this.getView().byId("idProductsTable");
                     path = oTable.getBinding("items").getPath();
@@ -377,6 +504,27 @@ sap.ui.define(
                         "imgUrl" : ""
                     });
             },
+            onPressDeleteProduct: function(oEvent){
+                var oButton = oEvent.getSource(),
+                oView = this.getView();
+                var oProduct = oButton.getParent().getBindingContext("formModel");
+                var oSelectObj = oProduct.getObject();
+                this.getView().getModel("formModel").setProperty("/editProduct", {...oSelectObj});
+                let productList = this.getView().getModel("formModel").getProperty("/productList");
+                let updateList = [];
+                let editProduct=this.getView().getModel("formModel").getProperty("/editProduct");
+                productList.forEach(element => {
+                //1. Validator si en el caso el idde editProducto != element.id ahi debes pushear a la listaF
+                
+                if (element.idProduct != editProduct.idProduct){
+                    updateList.push({...element});
+                } 
+                this.getView().getModel("formModel").setProperty("/productList",updateList);
+                });
+                //Refrescar TODO lo que esta anidado a formModel
+                this.getView().getModel("formModel").refresh(true);
+                        //const{productList} =this.getView().getModel("formModel").getData()
+            }
             
         });
     }
