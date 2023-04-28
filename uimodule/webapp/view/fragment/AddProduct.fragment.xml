@@ -10,7 +10,7 @@
 			<f:SimpleForm editable="true" layout="ColumnLayout" columnsM="2" columnsL="3" columnsXL="4">
 				<f:content>
 					<Label required="true" text="{i18n>name}"/>
-					<Input  value="{path: 'localModel>/addProduct/name'} " liveChange="onInputChange"/>
+					<Input  value="{path: 'localModel>/addProduct/name'}" liveChange="onInputChange"/>
 					<Label text="{i18n>description}"/>
 					<Input   value="{path: 'localModel>/addProduct/description'}" liveChange="onInputChange"/>
 					<Label text="{i18n>salePrice}"/>

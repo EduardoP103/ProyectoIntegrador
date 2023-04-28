@@ -421,7 +421,7 @@ sap.ui.define(
 
                 if (!this.oMPProducto) {
                     this.oMPProducto = this.loadFragment({
-                        name: "com.pe.proyectoIntegrador.view.fragment.AgregarProducto"
+                        name: "com.pe.proyectoIntegrador.view.fragment.AddProduct"
                     });
                 }
                 this.oMPProducto.then(function (oDialog) {
@@ -463,7 +463,7 @@ sap.ui.define(
 
             // REVISAR ESTO 
             onClearInputs: function () {
-                this.getView().getModel("localModel").setProperty("/addProduct", 
+                this.getView().getModel("localModel").setProperty("/addProduct",
                     {
                         "name": "",
                         "description": "",
@@ -490,7 +490,7 @@ sap.ui.define(
                     "state": ""
                 });
 
-                this.getView().getModel("localModel").setProperty("/editProduct", 
+                this.getView().getModel("localModel").setProperty("/editProduct",
                     {
                         "name": "",
                         "description": "",
@@ -503,67 +503,162 @@ sap.ui.define(
                         "statusName": ""
                     });
             },
+            onConfirmDeletion: function (oEvent) {
 
-
-
-
-            // REVISAR
-            onAddProductTable: function () {
-                // const {id,description : descriptionProduct , image : imageProduct, salePrice,purchasePrice, stock, unitOfMeasurementName,supplierName,statusName} = this.getView().getModel("localModel").getProperty("/editProduct")
-                const { name, description, image, salePrice, purchasePrice, stock, unitOfMeasurementName, supplierName, statusName } = this.getView().getModel("localModel").getProperty("/addProduct")
                 debugger;
-                const { selectStateName, selectUnitOfMeasurementName, selectSupplierName } = this.getView().getModel("localModel").getData()
+            
+                const oButton = oEvent.getSource(),
+                    oView = this.getView();
+                const oProduct = oButton.getParent().getBindingContext("localModel");
+                const oSelectObj = oProduct.getObject();
+                this.getView().getModel("localModel").setProperty("/selectRowDelete", oSelectObj);
+                
 
+                if (!this.oMPProductRemoved) {
+                    this.oMPProductRemoved = this.loadFragment({
+                        name: "com.pe.proyectoIntegrador.view.fragment.DeleteProduct",
+                    });
+                }
+                this.oMPProductRemoved.then(
+                    function (oDialogProductDeleted) {
+                        this.oDialogProductDeleted = oDialogProductDeleted;
+                        this.oDialogProductDeleted.open();
+                    }.bind(this)
+                );
+            },
+
+            closeDialogRemoveProduct: function () {
+                this.oDialogProductDeleted.close();
+            },
+
+            onPressDeleteProduct: function () {
+                let selectRowDelete =  this.getView().getModel("localModel").getProperty("/selectRowDelete");
+                 let listOfProducts = this.getView().getModel("localModel").getProperty("/listOfProducts");
+                 let finalProducts = [];
+                 
+                 for (let index = 0; index < listOfProducts.length; index++){
+                     const element = listOfProducts[index];
+                     if (element.id != selectRowDelete.id){
+                         finalProducts.push(element);
+                     }
+                 }
+                 this.getView().getModel("localModel").setProperty("/listOfProducts", finalProducts);
+                 this.getView().getModel("localModel").refresh();
+                 MessageBox.success("Producto Eliminado");
+                 this.closeDialogRemoveProduct();
+             },
+            // REVISAR
+            // onAddProductTable: function () {
+            //     debugger;
+            //     const { name, description, image, salePrice, purchasePrice, stock, unitOfMeasurementName, supplierName, statusName } = this.getView().getModel("localModel").getProperty("/addProduct")
+
+            //     const { selectStateName, selectUnitOfMeasurementName, selectSupplierName } = this.getView().getModel("localModel").getData()
+            //     // Verificar si algún campo está vacío
+            //     if (!name || !description || !image || !salePrice || !purchasePrice || !stock || !unitOfMeasurementName || !supplierName || !statusName) {
+            //         MessageBox.warning("Todos los campos son necesarios");
+            //         return;
+            //     }
+            //     let id = 1;
+            //     let listaOrdenada = this.getView().getModel("localModel").getProperty("/listOfProducts").sort(function (a, b) {
+            //         return b.id - a.id;
+            //     });
+            //     if (listaOrdenada.length > 0) {
+            //         id = listaOrdenada[0].id + 1
+            //     }
+            //     let oProducto = {
+            //         "id": id,
+            //         "name": name,
+            //         "description": description,
+            //         "image": image,
+            //         "salePrice": salePrice,
+            //         "purchasePrice": purchasePrice,
+            //         "stock": stock,
+            //         "unitOfMeasurementName": this.getView().byId("idUnit").getSelectedItem().getProperty("text"),
+            //         "supplierName": this.getView().byId("idSupplier").getSelectedItem().getProperty("text"),
+            //         "statusName": this.getView().byId("idStatus").getSelectedItem().getProperty("text"),
+            //         "idUnitOfmeasurment": selectUnitOfMeasurementName,
+            //         "idSupplier": selectSupplierName,
+            //         "idStatus": selectStateName
+            //     }
+            //     let oRespuesta = {
+            //         valid: true,
+            //         mensaje: ""
+            //     };
+            //     if(true){
+            //         oRespuesta.valid = false;
+            //         oRespuesta.mensaje="Llena los campos"
+            //         Message.warning("Todos los campos son necesarios");
+            //         return oRespuesta;
+            //     }
+            //     let listOfProducts = this.getView().getModel("localModel").getProperty("/listOfProducts");
+            //     listOfProducts.push(oProducto);
+            //     this.getView().getModel("localModel").refresh();
+            //     MessageBox.success("Datos ingresados correctamente");
+            //     this.closeDialogProducto();
+            // },
+            onAddProductTable: function () {
+                const {
+                  name,
+                  description,
+                  image,
+                  salePrice,
+                  purchasePrice,
+                  stock,
+                  unitOfMeasurementName,
+                  supplierName,
+                  statusName
+                } = this.getView().getModel("localModel").getProperty("/addProduct");
+              
+                // Validar que los campos requeridos estén completos
+                if (!name || !description || !image || !stock || !salePrice ||!purchasePrice ) {
+                  MessageBox.warning("Es necesario saber el Nombre, Descripcion y la imagen del Producto");
+                  return;
+                }
+              
+                const {
+                  selectStateName,
+                  selectUnitOfMeasurementName,
+                  selectSupplierName
+                } = this.getView().getModel("localModel").getData();
+              
                 let id = 1;
                 let listaOrdenada = this.getView().getModel("localModel").getProperty("/listOfProducts").sort(function (a, b) {
-                    return b.id - a.id;
+                  return b.id - a.id;
                 });
                 if (listaOrdenada.length > 0) {
-                    id = listaOrdenada[0].id + 1
+                  id = listaOrdenada[0].id + 1
                 }
                 let oProducto = {
-                    "id": id,
-                    "name": name,
-                    "description": description,
-                    "image": image,
-                    "salePrice": salePrice,
-                    "purchasePrice": purchasePrice,
-                    "stock": stock,
-                    "unitOfMeasurementName": this.getView().byId("idUnit").getSelectedItem().getProperty("text"),
-                    "supplierName": this.getView().byId("idSupplier").getSelectedItem().getProperty("text"),
-                    "statusName": this.getView().byId("idStatus").getSelectedItem().getProperty("text"),
-                    "idUnitOfmeasurment": selectUnitOfMeasurementName,
-                    "idSupplier": selectSupplierName,
-                    "idStatus": selectStateName
-
+                  "id": id,
+                  "name": name,
+                  "description": description,
+                  "image": image,
+                  "salePrice": salePrice,
+                  "purchasePrice": purchasePrice,
+                  "stock": stock,
+                  "unitOfMeasurementName": this.getView().byId("idUnit").getSelectedItem().getProperty("text"),
+                  "supplierName": this.getView().byId("idSupplier").getSelectedItem().getProperty("text"),
+                  "statusName": this.getView().byId("idStatus").getSelectedItem().getProperty("text"),
+                  "idUnitOfmeasurment": selectUnitOfMeasurementName,
+                  "idSupplier": selectSupplierName,
+                  "idStatus": selectStateName
                 }
-                let oRespuesta = {
-                    valid: true,
-                    mensaje: ""
-                };
-                if (false) {
-                    oRespuesta.valid = false;
-                    oRespuesta.mensaje = "llena los campos";
-                    MessageBox.warning("Todos los campos son necesario");
-                    return oRespuesta;
-                }
+              
                 let listOfProducts = this.getView().getModel("localModel").getProperty("/listOfProducts");
                 listOfProducts.push(oProducto);
                 this.getView().getModel("localModel").refresh();
-                MessageBox.success("Datos ingresados correctamente");
+                MessageBox.success("Producto guardado");
                 this.closeDialogProducto();
-            },
-            closeAddProducts: function () {
-                this.oDialogProducts.close();
-                this.onClearInputs();
-            },
+              },
+              
+
 
             // DEBUGGER
             onPressEditTabla: function () {
                 debugger
                 // let id = this.getView().getModel("localModel").getProperty("/editProduct").id;
-                const { id, description: descriptionProduct, image: imageProduct, salePrice, purchasePrice, stock, unitOfMeasurementName, supplierName, statusName } = this.getView().getModel("localModel").getProperty("/editProduct")
-                let nameProduct = this.getView().getModel("localModel").getProperty("/editProduct").name;
+                const { id, name: nameProduct, description: descriptionProduct, image: imageProduct, salePrice, purchasePrice, stock, unitOfMeasurementName, supplierName, statusName } = this.getView().getModel("localModel").getProperty("/editProduct")
+                // let nameProduct = this.getView().getModel("localModel").getProperty("/editProduct").name;
 
                 const { selectStateName, selectUnitOfMeasurementName, selectSupplierName } = this.getView().getModel("localModel").getData()
 
@@ -596,37 +691,49 @@ sap.ui.define(
 
                 }
                 let oResp = {
-                    valid: true,
-                    mensaje: ""
-                };
-                // if (nameProduct.trim().length == 0 ||
-                // nameProduct.trim().length == 0 ||
-                //     pvProd <= 0 ||
-                //     pcProd <= 0 ||
-                //     sProd <= 0 ||
-                //     selectStateName== "0" ||
-                //     selectSupplierName == "0" ||
-                //     selectUnitOfMeasurementName== "0"
+                    valid: false,
+                    mensaje: "",
 
-                // ) {
-                //     oResp.valid = false;
-                //     oResp.mensaje = "llena los campos";
-                //     MessageBox.warning("Rellene todos los campos");
-                //     return oResp;
-                // }
+                };
+                if (
+                    nameProduct.trim().length == 0 ||
+                    descriptionProduct.trim().length == 0 ||
+                    salePrice <= 0 ||
+                    purchasePrice <= 0 ||
+                    stock <= 0 ||
+                    this.getView().getModel("localModel").getProperty("/selectStateName") == "0" ||
+                    this.getView().getModel("localModel").getProperty("/selectSupplierName") == "0" ||
+                    this.getView().getModel("localModel").getProperty("/selectUnitOfMeasurementName") == "0"
+                ) {
+                    oRespuesta2.valid = false;
+                    oRespuesta2.mensaje = "llena los campos";
+
+                    // Agregar la condición para mostrar el MessageBox solo si hay campos vacíos
+                    if (nomProd.trim().length == 0 ||
+                        descProd.trim().length == 0 ||
+                        pvProd <= 0 ||
+                        pcProd <= 0 ||
+                        sProd <= 0 ||
+                        this.getView().getModel("localModel").getProperty("/selectActivo") == "0" ||
+                        this.getView().getModel("localModel").getProperty("/selectProveedor") == "0" ||
+                        this.getView().getModel("localModel").getProperty("/selectUnidadMedida") == "0"
+                    ) {
+                        MessageBox.warning("Todos los campos son necesarios");
+                    }
+                    return oRespuesta;
+                }
+
                 let listOfProducts = this.getView().getModel("localModel").getProperty("/listOfProducts");
-                //listOfProducts.push(oProducto);
-                let listaFinal = [];
+                let finalProducts = [];
                 for (let index = 0; index < listOfProducts.length; index++) {
                     const element = listOfProducts[index];
                     if (element.id == oProducto1.id) {
-                        // eslint-disable-next-line max-lines
-                        listaFinal.push(oProducto1);
+                        finalProducts.push(oProducto1);
                     } else {
-                        listaFinal.push(element);
+                        finalProducts.push(element);
                     }
                 }
-                this.getView().getModel("localModel").setProperty("/listOfProducts", listaFinal);
+                this.getView().getModel("localModel").setProperty("/listOfProducts", finalProducts);
                 this.getView().getModel("localModel").refresh(true);
                 MessageBox.success("Producto actualizado");
                 this.closeProducts();
@@ -654,19 +761,19 @@ sap.ui.define(
                 this.onEditarProducto();
 
             },
-            onInputChange: function(oEvent) {
+            onInputChange: function (oEvent) {
                 const oInput = oEvent.getSource();
                 let sValue = oInput.getValue().trim(); // Se elimina cualquier espacio en blanco al principio o al final
                 const regex = /^[a-zA-Z]+(\s[a-zA-Z]+)*$/; // Expresión regular para permitir solo letras y un solo espacio entre cada palabra
                 if (!regex.test(sValue)) {
-                  oInput.setValueState("Error");
-                  sValue = sValue.replace(/[^\sa-zA-Z]/g, ''); // Se eliminan todos los caracteres que no son letras o espacios
-                  oInput.setValue(sValue);
+                    oInput.setValueState("Error");
+                    sValue = sValue.replace(/[^\sa-zA-Z]/g, ''); // Se eliminan todos los caracteres que no son letras o espacios
+                    oInput.setValue(sValue);
                 } else {
-                  oInput.setValueState("None");
+                    oInput.setValueState("None");
                 }
-              },
-              onNumberInput: function (oEvent) {
+            },
+            onNumberInput: function (oEvent) {
 
 
                 const oInput = oEvent.getSource();
@@ -682,7 +789,7 @@ sap.ui.define(
                     oInput.setValueState("None");
                 }
             },
-                          
+
             onImageChange: function (oEvent) {
                 const oInput = oEvent.getSource();
                 const sValue = oInput.getValue();
@@ -698,7 +805,7 @@ sap.ui.define(
             },
 
 
-            // onConfirmarEliminacion: function (oEvent) {
+            // onConfirmDeletion: function (oEvent) {
 
 
             //     const oButton = oEvent.getSource(),
@@ -707,16 +814,16 @@ sap.ui.define(
             //     const oProduct = oButton.getParent().getBindingContext("localModel");
             //     debugger;
             //     const oSelectObj = oProduct.getObject();
-            //     this.getView().getModel("localModel").setProperty("/selectedRowEliminar", oSelectObj);
+            //     this.getView().getModel("localModel").setProperty("/selectRowDelete", oSelectObj);
 
-            //     if (!this.oMPProductoEliminado) {
-            //         this.oMPProductoEliminado = this.loadFragment({
+            //     if (!this.oMPProductRemoved) {
+            //         this.oMPProductRemoved = this.loadFragment({
             //             name: "com.pe.proyectoIntegrador.view.fragment.DeleteProduct",
             //         });
             //     }
-            //     this.oMPProductoEliminado.then(
-            //         function (oDialogProductoEliminado) {
-            //             this.oDialogProductoELiminado = oDialogProductoEliminado;
+            //     this.oMPProductRemoved.then(
+            //         function (oDialogProductDeleted) {
+            //             this.oDialogProductoELiminado = oDialogProductDeleted;
             //             this.oDialogProductoELiminado.open();
             //         }.bind(this)
             //     );
@@ -725,19 +832,19 @@ sap.ui.define(
             // closeDialogElimnarProducto: function () {
             //     this.oDialogProductoELiminado.close();
             // },
-            // onPressEliminarProducto: function () {
-            //     let selectedRowEliminar = this.getView().getModel("localModel").getProperty("/selectedRowEliminar");
-            //     let listaFinal = this.getView().getProperty("/localModel").getProperty("listOfProducts");
+            // onPressDeleteProduct: function () {
+            //     let selectRowDelete = this.getView().getModel("localModel").getProperty("/selectRowDelete");
+            //     let finalProducts = this.getView().getProperty("/localModel").getProperty("listOfProducts");
 
-            //     let listaFinal = [];
+            //     let finalProducts = [];
 
             //     for (let index = 0; index < listOfProducts.length; index++) {
             //         const element = listOfProducts[index];
-            //         if (element.id != selectedRowEliminar.id) {
-            //             listaFinal.push(element);
+            //         if (element.id != selectRowDelete.id) {
+            //             finalProducts.push(element);
             //         }
             //     }
-            //     this.getView().getModel("localModel").setProperty("/listOfProducts", listaFinal);
+            //     this.getView().getModel("localModel").setProperty("/listOfProducts", finalProducts);
             //     this.getView().getBinding("localModel").refresh();
             //     MessageBox.success("Producto Eliminado");
             //     this.closeDialogElimnarProducto();

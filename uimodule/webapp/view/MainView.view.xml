@@ -189,7 +189,7 @@ height="100%"
 									<Button
 										icon="sap-icon://delete"
 										type="Ghost"
-										press="onConfirmarEliminacion"
+										press="onConfirmDeletion"
 										ariaHasPopup="Dialog"
 									/>
 								</HBox>
