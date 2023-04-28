@@ -265,8 +265,8 @@ sap.ui.define(
                 const { providerList, selectProviderList } = this.getView().getModel("formModel").getData();
                 providerList.forEach((element) => {
                     let obj = {};
-                    obj.key = element.id.toString();
-                    obj.text = element.name;
+                    obj.key = element.idProvider.toString();
+                    obj.text = element.providerName;
                     selectProviderList.push(obj);
                 });
 
@@ -276,8 +276,8 @@ sap.ui.define(
                 const { measurementList, selectMeasurementList } = this.getView().getModel("formModel").getData();
                 measurementList.forEach((element) => {
                     let obj = {};
-                    obj.key = element.id.toString();
-                    obj.text = element.name;
+                    obj.key = element.idUnit.toString();
+                    obj.text = element.unitName;
                     selectMeasurementList.push(obj);
                 });
 
@@ -330,11 +330,11 @@ sap.ui.define(
                 //1. Validator si en el caso el idde editProducto != element.id ahi debes pushear a la listaF
                 
                 if (element.idProduct != editProduct.idProduct){
-                    updateList.push(element);
+                    updateList.push({...element});
                 } else{
-                    updateList.push(editProduct);
+                    updateList.push({...editProduct});
                 }
-                this.getView().getModel("formModel").setProperty("/productList",{...updateList});
+                this.getView().getModel("formModel").setProperty("/productList",updateList);
                 });
                 //Refrescar TODO lo que esta anidado a formModel
                 this.getView().getModel("formModel").refresh(true);

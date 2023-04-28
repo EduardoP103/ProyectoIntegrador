@@ -72,23 +72,29 @@ sap.ui.define(
 
                     providerList : [
                         {
-                            id: "1",
-                            name: "Pepito",
-                            phone: "980545386",
-                            address: "Av. Manuel Gonzales parda",
-                            idStatus: "1",
-                            statusName: "Activo",
-                            statusIcon: "sap-icon://sys-enter-2",
-                            statusState: "Success",
+                            "idProvider": "1",
+                            "providerName": "Pepito",
+                            "providerPhone": "980545386",
+                            "providerAddress": "Av. Manuel Gonzales parda",
+                            "idStatus": "1",
+                            "providerActive": "Activo",
+                            "providerStatusIcon": "sap-icon://sys-enter-2",
+                            "providerStatusState": "Success",
                         }
                     ],
 
                     measurementList : [
                         {  
-                             id: 1,
-                            name: "Unidades",
-                            description: "Unidades",
-                            abbrevation: "UND"
+                            "idUnit": 1,
+                            "unitName": "Unidades",
+                            "unitDescription": "Unidades",
+                            "unitAbbreviation": "UND"
+                        },
+                        {  
+                            "idUnit": 2,
+                            "unitName": "Metros",
+                            "unitDescription": "Metros",
+                            "unitAbbreviation": "m"
                         }
                     ],
                     

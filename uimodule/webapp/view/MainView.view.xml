@@ -178,10 +178,141 @@
                         </Table>
                     </IconTabFilter>
                     <IconTabFilter text="{i18n>tab2Title}">
-                        <Text text="Attachments go here ..." />
+                        <Table id="idProviderTable"
+                            inset="false"
+                            sticky="HeaderToolbar,ColumnHeaders"
+                            items="{
+                                path: 'formModel>/providerList'
+                            }"
+                            class="sapUiSmallNegativeMarginBeginEnd"
+                            width="auto">
+                            <headerToolbar>
+                                <Toolbar>
+                                    <Label text="{i18n>tab2TableTitle}"></Label>
+                                </Toolbar>
+                                <OverflowToolbar>
+                                    <Title text="Productos ({=${formModel>/providerList}.length})" level="H2" />
+                                    <ToolbarSpacer></ToolbarSpacer>
+                                    <Button icon="sap-icon://add" text="{i18n>addUnitButtonText}"
+                                        press="onAddUnitButton" />
+                                    <Button icon="sap-icon://settings"
+                                        text="{i18n>settingsButtonText}" press="onSettingProviderButton" />
+                                </OverflowToolbar>
+                            </headerToolbar>
+                            <columns>
+                                <Column >
+                                    <Text text="{i18n>tab2TableC1}"/>
+                                </Column>
+                                <Column >
+                                    <Text text="{i18n>tab2TableC2}" />
+                                </Column>
+                                <Column minScreenWidth="Desktop" demandPopin="true"  hAlign="Center">
+                                    <Text text="{i18n>tab2TableC3}" />
+                                </Column>
+                                <Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">
+                                    <Text text="{i18n>tab2TableC4}" />
+                                </Column>
+                                <Column >
+                                    <Text text="" />
+                                </Column>
+                            </columns>
+                            <items>
+                                <ColumnListItem>
+                                    <cells>
+                                        <!--<ObjectIdentifier
+                                        title="{Name}" text="{ProductId}"/>
+                                    <Text text="{SupplierName}" />
+                                    <Text text="{Width} x {Depth} x {Height} {DimUnit}" />
+                                    <ObjectNumber
+                                        number="{
+                                            parts:[{path:'Price'},{path:'CurrencyCode'}],
+                                            type: 'sap.ui.model.type.Currency',
+                                            formatOptions: {showMeasure: false}
+                                        }"
+                                        unit="{CurrencyCode}" /> -->
+                                        <Text text="{formModel>providerName}" />
+
+                                        <Text text="{formModel>providerPhone}" />
+
+                                        <Text text="{formModel>providerAddress}" />
+
+                                        <ObjectStatus  text="{formModel>providerActive}" state="Success" icon="sap-icon://sys-enter-2" />
+
+                                        <HBox class="contenRowIconTable">
+                                            <Button press="onPressEditProvider" icon="sap-icon://edit" type="Ghost"/>
+                                            <Button press="onPressDeleteProvider" icon="sap-icon://delete" type="Ghost"/>
+                                        </HBox>
+
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
                     </IconTabFilter>
                     <IconTabFilter text="{i18n>tab3Title}">
-                        <Text text="Notes go here ..." />
+                        <Table id="idUnitOfMeasurementTable"
+                            inset="false"
+                            sticky="HeaderToolbar,ColumnHeaders"
+                            items="{
+                                path: 'formModel>/measurementList'
+                            }"
+                            class="sapUiSmallNegativeMarginBeginEnd"
+                            width="auto">
+                            <headerToolbar>
+                                <Toolbar>
+                                    <Label text="{i18n>tab3TableTitle}"></Label>
+                                </Toolbar>
+                                <OverflowToolbar>
+                                    <Title text="Productos ({=${formModel>/measurementList}.length})" level="H2" />
+                                    <ToolbarSpacer></ToolbarSpacer>
+                                    <Button icon="sap-icon://add" text="{i18n>addUnitButtonText}"
+                                        press="onAddUnitButton" />
+                                    <Button icon="sap-icon://settings"
+                                        text="{i18n>settingsButtonText}" press="onSettingsUnitButton" />
+                                </OverflowToolbar>
+                            </headerToolbar>
+                            <columns>
+                                <Column >
+                                    <Text text="{i18n>tab3TableC1}"/>
+                                </Column>
+                                <Column >
+                                    <Text text="{i18n>tab3TableC2}" />
+                                </Column>
+                                <Column minScreenWidth="Desktop" demandPopin="true"  hAlign="Center">
+                                    <Text text="{i18n>tab3TableC3}" />
+                                </Column>
+                                <Column >
+                                    <Text text="" />
+                                </Column>
+                            </columns>
+                            <items>
+                                <ColumnListItem>
+                                    <cells>
+                                        <!--<ObjectIdentifier
+                                        title="{Name}" text="{ProductId}"/>
+                                    <Text text="{SupplierName}" />
+                                    <Text text="{Width} x {Depth} x {Height} {DimUnit}" />
+                                    <ObjectNumber
+                                        number="{
+                                            parts:[{path:'Price'},{path:'CurrencyCode'}],
+                                            type: 'sap.ui.model.type.Currency',
+                                            formatOptions: {showMeasure: false}
+                                        }"
+                                        unit="{CurrencyCode}" /> -->
+                                        <Text text="{formModel>unitName}" />
+
+                                        <Text text="{formModel>unitDescription}" />
+
+                                        <Text text="{formModel>unitAbbreviation}" />
+
+                                        <HBox class="contenRowIconTable">
+                                            <Button press="onPressEditUnit" icon="sap-icon://edit" type="Ghost"/>
+                                            <Button press="onPressDeleteUnit" icon="sap-icon://delete" type="Ghost"/>
+                                        </HBox>
+
+                                    </cells>
+                                </ColumnListItem>
+                            </items>
+                        </Table>
                     </IconTabFilter>
                 </items>
             </IconTabBar>
