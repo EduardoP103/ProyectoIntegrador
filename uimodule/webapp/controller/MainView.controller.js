@@ -472,7 +472,6 @@ sap.ui.define(
                 let selectUnidadMedida = this.getView().getModel("formularioSimple").getProperty("/selectKeyUnidad")
                 let selectProveedor = this.getView().getModel("formularioSimple").getProperty("/selectKeyProveedor")
                 let selectActivo = this.getView().getModel("formularioSimple").getProperty("/selectKeyActivo")
-            
 
                 //almacenar datos
                 const oProducto = {
@@ -497,6 +496,7 @@ sap.ui.define(
 
                     ){
                     MessageBox.warning("Todos los campos son obligatorios y no se pueden ingresar números menores o iguales a 0");
+                    return;
                     }
                     
                     const listaProductos = this.getView().getModel("formularioSimple").getProperty("/listaProductos");
@@ -612,6 +612,7 @@ sap.ui.define(
                     this.getView().getModel("formularioSimple").getProperty("/selectKeyActivo") == "0" 
                 ){
                     MessageBox.warning("Todos los campos menos la imagen son obligatorios");
+                    return;
                 }
                 const listaProductos = this.getView().getModel("formularioSimple").getProperty("/listaProductos");
 
