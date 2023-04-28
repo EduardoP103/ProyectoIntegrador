@@ -3,3 +3,24 @@
     flex-direction: row;
     column-gap: 10px;
 }
+.customDialogClass .sapMDialogScrollCont {
+    border: 2px solid transparent;
+    border-radius: 4px;
+    animation: dialogBlink 1s infinite;
+  }
+  
+  @keyframes dialogBlink {
+    0% {
+      border-color: red;
+      box-shadow: 0 0 10px red;
+    }
+    50% {
+      border-color: white;
+      box-shadow: none;
+    }
+    100% {
+      border-color: red;
+      box-shadow: 0 0 10px red;
+    }
+  }
+  

@@ -3,12 +3,13 @@
     xmlns:f="sap.ui.layout.form"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns:core="sap.ui.core">
-    
+
     <Dialog
         id="deleteProductForm"
         title="Confirmación"
-        contentWidth="auto">
-        
+        contentWidth="auto"
+        class="customDialogClass">
+
         <VBox class="sapUiSmallMargin" id="formContainerEmployment4">
             <f:SimpleForm editable="true"
                 layout="ColumnLayout"
@@ -20,7 +21,7 @@
                 </f:content>
             </f:SimpleForm>
         </VBox>
-        
+
         <footer>
             <Toolbar>
                 <content>
@@ -39,5 +40,5 @@
             </Toolbar>
         </footer>
     </Dialog>
-    
+
 </core:FragmentDefinition>
