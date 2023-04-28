@@ -1,10 +1,11 @@
 <mvc:View xmlns:core="sap.ui.core" controllerName="com.pe.proyectoIntegrador.controller.MainView" 
 xmlns:mvc="sap.ui.core.mvc" displayBlock="true" 
-xmlns="sap.m" xmlns:f="sap.f" 
+xmlns="sap.m" 
+xmlns:f="sap.f" 
 xmlns:layout="sap.ui.layout" 
 height="100%">
-	<f:DynamicPage id="dynamicPageId"
-	showFooter="true"
+	<f:DynamicPage id="dynamicPageId" class="sapUiNoContentPadding"
+	showFooter="true" headerExpanded="{/headerExpanded}"
 	>
 	
 		<f:title>
@@ -43,9 +44,9 @@ height="100%">
 						items="{path: 'formularioSimple>/listaProductos'}">
 							<headerToolbar>
 									<Toolbar>
-										<Label text="Productos(17):"></Label>
+										<Label text="Productos:"></Label>
 										<ToolbarSpacer/>
-										<Button text="Agregar" icon="sap-icon://add"></Button>
+										<Button text="Agregar" icon="sap-icon://add" press="registarProducto"></Button>
 										<Button text="Configuración" icon="sap-icon://action-settings"></Button>
 									</Toolbar>
 								</headerToolbar>
@@ -85,7 +86,7 @@ height="100%">
 					
 								<Text text="{formularioSimple>nombre}" />
 
-								<Text text="{formularioSimple>descripción}" />
+								<Text text="{formularioSimple>descripcion}" />
 
 								<Button  press="openImage" icon="sap-icon://picture" type="Emphasized"/>
 
@@ -103,7 +104,7 @@ height="100%">
 							
 								
 								<HBox >
-								<Button id="boton-edit" icon="sap-icon://edit"></Button>
+								<Button id="boton-edit" icon="sap-icon://edit" press="editarProducto"></Button>
 								<Button id="boton-delete" icon="sap-icon://delete"></Button>
 								</HBox>
 							</cells>
@@ -118,7 +119,7 @@ height="100%">
 
 						<headerToolbar>
 									<Toolbar>
-										<Label text="Proveedores(10):"></Label>
+										<Label text="Proveedores:"></Label>
 										<ToolbarSpacer/>
 										<Button text="Agregar" icon="sap-icon://add" type="Emphasized"></Button>
 										
@@ -146,7 +147,7 @@ height="100%">
 
 								<Text text="{formularioSimple>telefono}" />
 
-								<Text text="{formularioSimple>dirección}" />
+								<Text text="{formularioSimple>direccion}" />
 
 								<ObjectStatus icon="sap-icon://message-success" text="Activo" state="Success" />
 
@@ -162,7 +163,7 @@ height="100%">
 
 						<headerToolbar>
 									<Toolbar>
-										<Label text="Unidades de Medida(7):"></Label>
+										<Label text="Unidades de Medida:"></Label>
 										<ToolbarSpacer/>
 										<Button text="Agregar" icon="sap-icon://add"></Button>
 										<Button text="Configuración" icon="sap-icon://action-settings"></Button>
@@ -190,7 +191,7 @@ height="100%">
 					
 								<Text text="{formularioSimple>nombre}" />
 
-								<Text text="{formularioSimple>descripción}" />
+								<Text text="{formularioSimple>descripcion}" />
 
 								<Text text="{formularioSimple>abreviatura}" />
 

@@ -21,287 +21,353 @@ sap.ui.define(
                 const oParam = {
                     selectedRowView: {},
                     selectedIconTabBar: "0",
+                    selectKeyUnidad: "0",
+                    selectKeyProveedor: "0",
+                    selectKeyActivo: "0",
+
+                    
                     // listaProductos: [],
                     listaProductos:
                     [
                         {
+                            "id" : 1,
                             "nombre": "Alcohol",
-                            "descripción": "Desinfectante",
-                            "imagen" : "https://www.shutterstock.com/image-illustration/tula-russia-february-28-2021-260nw-1932915491.jpg",
-                            "preciov": "5.00",
-                            "precioc": "5.00",
-                            "unidadm":"200",
+                            "descripcion": "Desinfectante",
+                            "imagen" : "https://vivanda.vtexassets.com/arquivos/ids/205826/20200279.jpg?v=637339185932600000",
+                            "preciov": "11.90",
+                            "precioc": "11.90",
+                            "unidadm":"LT",
                             "proveedor":"Karla",
-                            "activo" : "Activo"
+                            "activo" : "Activo",
+                            "idunidad": '1',
+                            "idproveedor":'3',
+                            "idactivo":'1'
                         },
                         {
+                            "id" : 2,
                             "nombre": "Detergente Liquido Ariel",
-                            "descripción": "Detergente",
-                            "imagen" : "imagen",
-                            "preciov": "5.00",
-                            "precioc": "5.00",
-                            "unidadm":"200",
-                            "proveedor":"Karla",
-                            "activo" : "Activo"
+                            "descripcion": "Detergente",
+                            "imagen" : "https://plazavea.vteximg.com.br/arquivos/ids/24300752-512-512/20128351.jpg",
+                            "preciov": "25.90",
+                            "precioc": "25.90",
+                            "unidadm":"LT",
+                            "proveedor":"Carmen",
+                            "activo" : "Activo",
+                            "idunidad": "1",
+                            "idproveedor":"1",
+                            "idactivo":"1"
                         },
                         {
-                            "nombre": "Jabon liquido ",
-                            "descripción": "Jabon",
-                            "imagen" : "imagen",
-                            "preciov": "5.00",
-                            "precioc": "5.00",
-                            "unidadm":"200",
+                            "id" : "3",
+                            "nombre": "Jabon liquido Aval",
+                            "descripcion": "Jabon",
+                            "imagen" : "https://corporacionliderperu.com/46605-large_default/aval-jabon-liquido-frasco-x-400-ml-antibac-frutos-rojos.jpg",
+                            "preciov": "8.10",
+                            "precioc": "8.10",
+                            "unidadm":"ML",
                             "proveedor":"Karla",
-                            "activo" : "Activo"
+                            "activo" : "Activo",
+                            "idunidad": "2",
+                            "idproveedor":"3",
+                            "idactivo":"1"
                         },
                         {
-                            "nombre": "Papel Higienico",
-                            "descripción": "Papel",
-                            "imagen" : "imagen",
-                            "preciov": "5.00",
-                            "precioc": "5.00",
-                            "unidadm":"200",
-                            "proveedor":"Karla",
-                            "activo" : "Activo"
+                            "id" : "4",
+                            "nombre": "Papel Toalla Elite",
+                            "descripcion": "Papel",
+                            "imagen" : "https://corporacionliderperu.com/47008-large_default/elite-papel-toalla-mega-rollo-rojo-x-106h.jpg",
+                            "preciov": "2.70",
+                            "precioc": "2.70",
+                            "unidadm":"G",
+                            "proveedor":"Carmen",
+                            "activo" : "Activo",
+                            "idunidad": "3",
+                            "idproveedor":"1",
+                            "idactivo":"1"
                         },
                         {
-                            "nombre": "Papel Toalla",
-                            "descripción": "Papel",
-                            "imagen" : "imagen",
-                            "preciov": "5.00",
-                            "precioc": "5.00",
-                            "unidadm":"200",
-                            "proveedor":"Karla",
-                            "activo" : "Activo"
-                        },
-                        {
+                            "id" : "5",
                             "nombre": "Suavitel",
-                            "descripción": "Suavizante",
-                            "imagen" : "imagen",
-                            "preciov": "5.00",
-                            "precioc": "5.00",
-                            "unidadm":"200",
+                            "descripcion": "Suavizante",
+                            "imagen" : "https://promart.vteximg.com.br/arquivos/ids/567787-1000-1000/120682.jpg?v=637393515659930000",
+                            "preciov": "39.90",
+                            "precioc": "39.90",
+                            "unidadm":"LT",
                             "proveedor":"Karla",
-                            "activo" : "Activo"
+                            "activo" : "Activo",
+                            "idunidad": "1",
+                            "idproveedor":"3",
+                            "idactivo":"1"
                         },
                         {
-                            "nombre": "Limpiavidrios",
-                            "descripción": "Limpiavidrios",
-                            "imagen" : "imagen",
-                            "preciov": "5.00",
-                            "precioc": "5.00",
-                            "unidadm":"200",
-                            "proveedor":"Karla",
-                            "activo" : "Activo"
+                            "id" : "6",
+                            "nombre": "Limpiavidrios Sapolio",
+                            "descripcion": "Limpiavidrios",
+                            "imagen" : "https://production-tailoy-repo-magento-statics.s3.amazonaws.com/imagenes/872x872/productos/i/l/i/limpiavidrios-lavanda-gatllo-x650ml-sapolio-14533-default-1.jpg",
+                            "preciov": "8.90",
+                            "precioc": "8.90",
+                            "unidadm":"ML",
+                            "proveedor":"Carmen",
+                            "activo" : "Activo",
+                            "idunidad": "2",
+                            "idproveedor":"1",
+                            "idactivo":"1"
                         },
                         {
-                            "nombre": "Ambientador Glade Vainilla",
-                            "descripción": "Ambientador",
-                            "imagen" : "imagen",
-                            "preciov": "5.00",
-                            "precioc": "5.00",
-                            "unidadm":"200",
-                            "proveedor":"Karla",
-                            "activo" : "Activo"
-                        },
-                        {
+                            "id" : "7",
                             "nombre": "Ambientador Glade Lavanda",
-                            "descripción": "Ambientador",
-                            "imagen" : "imagen",
-                            "preciov": "5.00",
-                            "precioc": "5.00",
-                            "unidadm":"200",
+                            "descripcion": "Ambientador",
+                            "imagen" : "https://promart.vteximg.com.br/arquivos/ids/568243-1000-1000/116352.jpg?v=637393529653970000",
+                            "preciov": "11.50",
+                            "precioc": "11.50",
+                            "unidadm":"ML",
                             "proveedor":"Karla",
-                            "activo" : "Activo"
+                            "activo" : "Activo",
+                            "idunidad": "2",
+                            "idproveedor":"3",
+                            "idactivo":"1"
                         },
                         {
+                            "id" : "8",
                             "nombre": "Detergente en polvo Ace",
-                            "descripción": "detergente",
-                            "imagen" : "imagen",
-                            "preciov": "5.00",
-                            "precioc": "5.00",
-                            "unidadm":"200",
-                            "proveedor":"Karla",
-                            "activo" : "Activo"
+                            "descripcion": "detergente",
+                            "imagen" : "https://plazavea.vteximg.com.br/arquivos/ids/14673266-512-512/20112024.jpg",
+                            "preciov": "46.90",
+                            "precioc": "46.90",
+                            "unidadm":"G",
+                            "proveedor":"Jhon",
+                            "activo" : "Activo",
+                            "idunidad": "3",
+                            "idproveedor":"2",
+                            "idactivo":"1"
                         },
                         {
-                            "nombre": "Ambientador Glade",
-                            "descripción": "Ambientador",
-                            "imagen" : "imagen",
-                            "preciov": "5.00",
-                            "precioc": "5.00",
-                            "unidadm":"200",
-                            "proveedor":"Karla",
-                            "activo" : "Activo"
-                        },
-                        {
+                            "id" : "9",
                             "nombre": "Lejía Clorox",
-                            "descripción": "Lejía",
-                            "imagen" : "imagen",
-                            "preciov": "5.00",
-                            "precioc": "5.00",
-                            "unidadm":"200",
+                            "descripcion": "Lejía",
+                            "imagen" : "https://vegaperu.vtexassets.com/arquivos/ids/158593/7756641003872.jpg?v=637660221588430000",
+                            "preciov": "2.10",
+                            "precioc": "2.10",
+                            "unidadm":"ML",
                             "proveedor":"Karla",
-                            "activo" : "Activo"
+                            "activo" : "Activo",
+                            "idunidad": "2",
+                            "idproveedor":"3",
+                            "idactivo":"1"
                         },
                         {
-                            "nombre": "SacaGrasa",
-                            "descripción": "Saca grasa",
-                            "imagen" : "imagen",
-                            "preciov": "5.00",
-                            "precioc": "5.00",
-                            "unidadm":"200",
-                            "proveedor":"Karla",
-                            "activo" : "Activo"
+                            "id" : "10",
+                            "nombre": "SacaGrasa Sapolio",
+                            "descripcion": "Saca grasa",
+                            "imagen" : "https://plazavea.vteximg.com.br/arquivos/ids/22277544-512-512/1982354002-1.jpg",
+                            "preciov": "9.90",
+                            "precioc": "9.90",
+                            "unidadm":"ML",
+                            "proveedor":"Jhon",
+                            "activo" : "Activo",
+                            "idunidad": "2",
+                            "idproveedor":"2",
+                            "idactivo":"1"
                         },
                         {
-                            "nombre": "Cera en Pasta",
-                            "descripción": "Cera",
-                            "imagen" : "imagen",
-                            "preciov": "5.00",
-                            "precioc": "5.00",
-                            "unidadm":"200",
-                            "proveedor":"Karla",
-                            "activo" : "Activo"
+                            "id" : "11",
+                            "nombre": "Cera en Pasta Sapolio Amarilla",
+                            "descripcion": "Cera",
+                            "imagen" : "https://plazavea.vteximg.com.br/arquivos/ids/22277890-450-450/32238.jpg?v=638049614224330000",
+                            "preciov": "6.50",
+                            "precioc": "6.50",
+                            "unidadm":"ML",
+                            "proveedor":"Jhon",
+                            "activo" : "Activo",
+                            "idunidad": "2",
+                            "idproveedor":"2",
+                            "idactivo":"1"
                         },
                         {
+                            "id" : "12",
                             "nombre": "Jabon Camay",
-                            "descripción": "Jabon",
-                            "imagen" : "imagen",
-                            "preciov": "5.00",
-                            "precioc": "5.00",
-                            "unidadm":"200",
+                            "descripcion": "Jabon",
+                            "imagen" : "https://vegaperu.vtexassets.com/arquivos/ids/157202/7891150044500.jpg?v=637618918127670000",
+                            "preciov": "2.40",
+                            "precioc": "2.40",
+                            "unidadm":"G",
                             "proveedor":"Karla",
-                            "activo" : "Activo"
+                            "activo" : "Activo",
+                            "idunidad": "3",
+                            "idproveedor":"3",
+                            "idactivo":"1"
                         },
                         {
+                            "id" : "13",
                             "nombre": "Jabon Bolivar",
-                            "descripción": "Jabon Ropa",
-                            "imagen" : "imagen",
-                            "preciov": "5.00",
-                            "precioc": "5.00",
-                            "unidadm":"200",
-                            "proveedor":"Karla",
-                            "activo" : "Activo"
+                            "descripcion": "Jabon Ropa",
+                            "imagen" : "https://plazavea.vteximg.com.br/arquivos/ids/22278960-450-450/20236877.jpg?v=638049620688130000",
+                            "preciov": "3.20",
+                            "precioc": "3.20",
+                            "unidadm":"G",
+                            "proveedor":"Jhon",
+                            "activo" : "Activo",
+                            "idunidad": "3",
+                            "idproveedor":"2",
+                            "idactivo":"1"
                         },
                         {
+                            "id" : "14",
                             "nombre": "Jabon Protex",
-                            "descripción": "Jabon Rostro",
-                            "imagen" : "imagen",
-                            "preciov": "5.00",
-                            "precioc": "5.00",
-                            "unidadm":"200",
-                            "proveedor":"Karla",
-                            "activo" : "Activo"
+                            "descripcion": "Jabon Rostro",
+                            "imagen" : "https://www.protex-soap.com/content/dam/cp-sites/personal-care/protex-relaunch/latam/products/protex-avena-2022.jpg",
+                            "preciov": "3.20",
+                            "precioc": "3.20",
+                            "unidadm":"G",
+                            "proveedor":"Carmen",
+                            "activo" : "Activo",
+                            "idunidad": "3",
+                            "idproveedor":"1",
+                            "idactivo":"1"
                         },                        
                     ],
+
+                    //Lista proveedores
                     listaProveedores :
                     [
                         {
-                            "nombre": "Karla",
+                            "id" : "1",
+                            "nombre": "Carmen",
                             "telefono": "923754061",
-                            "dirección" : "Santa Teodosia 475",
+                            "direccion" : "Santa Teodosia 475",
                             "estado" : "activo"
                         },
                         {
-                            "nombre": "Karla",
+                            "id" : "2",
+                            "nombre": "Jhon",
                             "telefono": "923754061",
-                            "dirección" : "Santa Teodosia 475",
+                            "direccion" : "Santa Teodosia 475",
                             "estado" : "activo"
                         },
                         {
+                            "id" : "3",
                             "nombre": "Karla",
                             "telefono": "923754061",
-                            "dirección" : "Santa Teodosia 475",
+                            "direccion" : "Santa Teodosia 475",
                             "estado" : "activo"
                         },
-                        {
-                            "nombre": "Karla",
-                            "telefono": "923754061",
-                            "dirección" : "Santa Teodosia 475",
-                            "estado" : "activo"
-                        },{
-                            "nombre": "Karla",
-                            "telefono": "923754061",
-                            "dirección" : "Santa Teodosia 475",
-                            "estado" : "activo"
-                        },
-                        {
-                            "nombre": "Karla",
-                            "telefono": "923754061",
-                            "dirección" : "Santa Teodosia 475",
-                            "estado" : "activo"
-                        },{
-                            "nombre": "Karla",
-                            "telefono": "923754061",
-                            "dirección" : "Santa Teodosia 475",
-                            "estado" : "activo"
-                        },
-                        {
-                            "nombre": "Karla",
-                            "telefono": "923754061",
-                            "dirección" : "Santa Teodosia 475",
-                            "estado" : "activo"
-                        },
-                        {
-                            "nombre": "Karla",
-                            "telefono": "923754061",
-                            "dirección" : "Santa Teodosia 475",
-                            "estado" : "activo"
-                        },
-                        {
-                            "nombre": "Karla",
-                            "telefono": "923754061",
-                            "dirección" : "Santa Teodosia 475",
-                            "estado" : "activo"
-                        }
+                        
                         
                     ],
+
+                    //lista medidas
                     listaMedidas:
                     [
+                       
                         {
-                            "nombre": "Kilogramos",
-                            "descripción": "Kilogramos",
-                            "abreviatura" : "KG",
-                            "estado" : "activo"
-                        },
-                        {
-                            "nombre": "Gramos",
-                            "descripción": "Gramos",
-                            "abreviatura" : "GR",
-                            "estado" : "activo"
-                        },
-                        {
+                            "id" : "1",
                             "nombre": "Litros",
-                            "descripción": "Litros",
-                            "abreviatura" : "L",
+                            "descripcion": "Litros",
+                            "abreviatura" : "LT",
                             "estado" : "activo"
                         },
                         {
+                            "id" : "2",
                             "nombre": "Mililitros",
-                            "descripción": "Mililitros",
+                            "descripcion": "Mililitros",
                             "abreviatura" : "ML",
                             "estado" : "activo"
                         },
                         {
-                            "nombre": "Onzas",
-                            "descripción": "Onzas",
-                            "abreviatura" : "OZ",
+                            "id" : "3",
+                            "nombre": "Gramos",
+                            "descripcion": "Gramos",
+                            "abreviatura" : "GR",
                             "estado" : "activo"
+                        }                        
+                    ],
+                    //para combo unidad medida
+                    unidadMedida: [
+                        {
+                            "id": "0",
+                            "unidad": "--Seleccione--"
                         },
                         {
-                            "nombre": "Kilos",
-                            "descripción": "Kilos",
-                            "abreviatura" : "KG",
-                            "estado" : "activo"
+                            "id": "1",
+                            "unidad": "LT"
                         },
                         {
-                            "nombre": "Onzas",
-                            "descripción": "Onzas",
-                            "abreviatura" : "OZ",
-                            "estado" : "activo"
+                            "id": "2",
+                            "unidad": "ML"
                         },
-                    ]
+                        {
+                            "id": "3",
+                            "unidad": "G"
+                        }
+                    ],
+
+                    //para combo proveedor
+                    proveedor : [
+                        {
+                            "id":"0",
+                            "nombre":"--Seleccione--"
+                        },
+                        {
+                            "id":"1",
+                            "nombre":"Carmen"
+                        },
+                        {
+                            "id":"2",
+                            "nombre":"Jhon"
+                        },
+                        {
+                            "id":"3",
+                            "nombre":"Karla"
+                        }
+
+                    ],
+
+                    //para combo activo
+                    activo:[
+                        {
+                            "id":"0",
+                            "activo":"--Seleccione"
+                        },
+                        {
+                            "id":"1",
+                            "activo":"Activo"
+                        },
+                        // {
+                        //     "id":"2",
+                        //     "activo":"Desactivo"
+                        // }
+                    ],
+
+                    //agregarProducto
+                    agregarProducto : {
+                        "id" : "",
+                        "nombre": "",
+                        "descripcion": "",
+                        "urlImage": "",
+                        "preciov": "",
+                        "precioc": "",
+                        "unidadm": "",
+                        "proveedor": "",
+                        "activo": "",
+                        "idunidad": "",
+                        "idproveedor":"",
+                        "idactivo":""
+                    },
+
+                    editarProducto : {
+                        "id":"",
+                        "nombre": "",
+                        "descripcion": "",
+                        "urlImage": "",
+                        "preciov": "",
+                        "precioc": "",
+                        "unidadm": "",
+                        "proveedor": "",
+                        "activo": "",
+                        "idunidad": "",
+                        "idproveedor":"",
+                        "idactivo":""
+                    }
                 }
                 const oModel = new JSONModel(oParam);
                 return oModel;

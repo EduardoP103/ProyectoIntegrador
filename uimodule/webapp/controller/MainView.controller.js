@@ -1,26 +1,42 @@
 sap.ui.define(
-    ["./BaseController",
+    ["sap/ui/core/mvc/Controller",
     "sap/ui/core/util/Export",
     "sap/ui/core/util/ExportTypeCSV",
     'sap/ui/export/Spreadsheet',
-    'sap/ui/export/library'],
+    'sap/ui/export/library',
+    "sap/m/MessageBox",
+    "sap/m/ColumnListItem",
+    "sap/f/library"],
+
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-    function (Controller, Export, ExportTypeCSV, Spreadsheet, exportLibrary) {
+    function (Controller, Export, ExportTypeCSV, Spreadsheet, exportLibrary,MessageBox, ColumnListItem, library) {
         "use strict";
-        var EdmType = exportLibrary.EdmType;
+        const EdmType = exportLibrary.EdmType;
+        const DynamicPageTitleArea = library.DynamicPageTitleArea;
+
 
         return Controller.extend("com.pe.proyectoIntegrador.controller.MainView", {
             onInit: function () {},
 
+            getPage: function () {
+                return this.byId("dynamicPageId");
+                },
+                toggleAreaPriority: function () {
+                const oTitle = this.getPage().getTitle(),
+                sNewPrimaryArea = oTitle.getPrimaryArea() === DynamicPageTitleArea.Begin ? DynamicPageTitleArea.Middle : DynamicPageTitleArea.Begin;
+                oTitle.setPrimaryArea(sNewPrimaryArea);
+                },
+
+            //abrir imagen
             openImage: function(oEvent) {
-                var oButton = oEvent.getSource(),
+                const oButton = oEvent.getSource(),
                 oView = this.getView();
                 
-                var oProduct = oButton.getParent().getBindingContext("formularioSimple");
+                const oProduct = oButton.getParent().getBindingContext("formularioSimple");
             
-                var oSelectObj = oProduct.getObject();
+                const oSelectObj = oProduct.getObject();
                 this.getView().getModel("formularioSimple").setProperty("/selectedRowView", oSelectObj);
                  if (!this.oPopover) {
                 this.oPopover = this.loadFragment({
@@ -35,16 +51,20 @@ sap.ui.define(
             );
 
             },
+
+            //cerrar imagen
             closeImage: function () {
                 this.pPopover.close();
             },
 
 
 
+            //exportar csv
             onExportCSV: function(oEvent) {
             
-                var selectedTab = this.getView().getModel("formularioSimple").getProperty("/selectedIconTabBar");
+                const selectedTab = this.getView().getModel("formularioSimple").getProperty("/selectedIconTabBar");
 
+                //exportar productos
                 if(selectedTab === "0") {
                     var oExport = new Export({
     
@@ -56,13 +76,12 @@ sap.ui.define(
                         // Pass in the model created above
                         models : this.getView().getModel("formularioSimple"),
         
-                        // binding information for the rows aggregation
+                   
                         rows : {
                             path : "/listaProductos"
                         },
         
-                        // column definitions with column name and binding info for the content
-        
+                        //columnas
                         columns : [{
                             name : "Nombre",
                             template : {
@@ -71,7 +90,7 @@ sap.ui.define(
                         }, {
                             name : "Descripción",
                             template : {
-                                content : "{descripción}"
+                                content : "{descripcion}"
                             }
                         }, {
                             name : "Imagen",
@@ -115,7 +134,8 @@ sap.ui.define(
 
                 }
 
-                if(selectedTab === "1") {
+                //exportar proveedores
+                else if(selectedTab === "1") {
                     var oExport = new Export({
     
                         // Type that will be used to generate the content. Own ExportType's can be created to support other formats
@@ -146,7 +166,7 @@ sap.ui.define(
                         }, {
                             name : "Direccion",
                             template : {
-                                content : "{dirección}"
+                                content : "{direccion}"
                             }
                         }, {
                             name : "Estado",
@@ -164,6 +184,7 @@ sap.ui.define(
                     });
                 }
 
+                //exportar unidades medida
                 else {
                     var oExport = new Export({
     
@@ -190,7 +211,7 @@ sap.ui.define(
                         }, {
                             name : "Descripción",
                             template : {
-                                content : "{descripción}"
+                                content : "{descripcion}"
                             }
                         }, {
                             name : "Abreviatura",
@@ -216,7 +237,7 @@ sap.ui.define(
             
             },
 
-            
+            //creando config tabla producto
             createColumnConfigTableProducts: function() {
                  var aCols = [];
     
@@ -229,7 +250,7 @@ sap.ui.define(
 
                  aCols.push({
                      label: 'Descripción',
-                     property: ['descripción'],
+                     property: ['descripcion'],
                      type: EdmType.String,
                      template: '{0}'
                  });
@@ -282,6 +303,8 @@ sap.ui.define(
 
                  return aCols;
              },
+
+             //tabla proveedores
            createColumnConfigTableProviders: function () {
                 var aCols = [];
 
@@ -300,16 +323,13 @@ sap.ui.define(
                     template: '{0}'
                 });
 
-               
-                //dimension
                 aCols.push({
                     label: 'Dirección',
-                    property: ['dirección'],
+                    property: ['direccion'],
                     type: EdmType.String,
                     template: '{0}'
                 });
                
-                //weight
                 aCols.push({
                     label: 'Estado',
                     property: ['estado'],
@@ -319,6 +339,8 @@ sap.ui.define(
 
                return aCols;
              },
+
+             //tabla unidades de medida
             createColumnConfigTableUnitOfMeasurement: function () {
                 var aCols = [];
 
@@ -330,14 +352,12 @@ sap.ui.define(
                 });
 
                 aCols.push({
-                    label: 'descripción',
-                    property: ['descripción'],
+                    label: 'descripcion',
+                    property: ['descripcion'],
                     type: EdmType.String,
                     template: '{0}'
                 });
 
-               
-                //dimension
                 aCols.push({
                     label: 'abreviatura',
                     property: ['abreviatura'],
@@ -345,7 +365,6 @@ sap.ui.define(
                     template: '{0}'
                 });
                
-                //weight
                 aCols.push({
                     label: 'Estado',
                     property: ['estado'],
@@ -424,11 +443,190 @@ sap.ui.define(
                 });
             },
 
+
+            //registar
+            registarProducto: function () {
+                if (!this.oMPDialog) {
+                    this.oMPDialog = this.loadFragment({
+                        name: "com.pe.proyectoIntegrador.view.fragment.AgregarProducto"
+                    });
+                }
+                this.oMPDialog.then(function (oDialog) {
+                    this.oDialogAddProducto = oDialog;
+                    this.oDialogAddProducto.open();
+                }.bind(this));
+            },
+
+
+            closeDialog: function () {
+                this.oDialogAddProducto.close();
+                this.onLimpiarDialogo();
+            },
+
+            agregarProducto: function() {
+                let n = this.getView().getModel("formularioSimple").getProperty("/agregarProducto").nombre;
+                let d = this.getView().getModel("formularioSimple").getProperty("/agregarProducto").descripcion;
+                let urlImage = this.getView().getModel("formularioSimple").getProperty("/agregarProducto").urlImage;
+                let pv = this.getView().getModel("formularioSimple").getProperty("/agregarProducto").preciov;
+                let pc = this.getView().getModel("formularioSimple").getProperty("/agregarProducto").precioc;
+                let selectUnidadMedida = this.getView().getModel("formularioSimple").getProperty("/selectKeyUnidad")
+                let selectProveedor = this.getView().getModel("formularioSimple").getProperty("/selectKeyProveedor")
+                let selectActivo = this.getView().getModel("formularioSimple").getProperty("/selectKeyActivo")
             
 
-               
-    
-                // download exported file
+                //almacenar datos
+                const oProducto = {
+                    id: this.getView().getModel("formularioSimple").getProperty("/listaProductos").length,
+                    nombre: n,
+                    descripcion: d,
+                    imagen:urlImage,
+                    preciov: pv,
+                    precioc: pc,
+                    unidadm:  this.getView().byId("idUnidad").getSelectedItem().getProperty("text") ,
+                    proveedor:  this.getView().byId("proveedor").getSelectedItem().getProperty("text"),
+                    activo: this.getView().byId("activo").getSelectedItem().getProperty("text"),
+                };
+
+                    if ( n.trim().length == 0 ||
+                    d.trim().length == 0 ||
+                    pv <= 0 ||
+                    pc <= 0 ||
+                    this.getView().getModel("formularioSimple").getProperty("/selectKeyActivo") == "0"||
+                    this.getView().getModel("formularioSimple").getProperty("/selectKeyProveedor") == "0"||
+                    this.getView().getModel("formularioSimple").getProperty("/selectKeyUnidad") == "0"
+
+                    ){
+                    MessageBox.warning("Todos los campos son obligatorios y no se pueden ingresar números menores o iguales a 0");
+                    }
+                    
+                    const listaProductos = this.getView().getModel("formularioSimple").getProperty("/listaProductos");
+                    listaProductos.push(oProducto);
+                    this.getView().getModel("formularioSimple").refresh();
+                    MessageBox.success("Datos ingresados correctamente");
+                    this.closeDialog();
+
+            },
+
+            onLimpiarDialogo: function() {
+                this.getView().getModel("formularioSimple").setProperty("/agregarProducto", {
+                        nombre: "",
+                        descripcion: "",
+                        urlImage: "",
+                        preciov: "",
+                        previoc: "",
+                        unidadm: "",
+                        proveedor: "",
+                        activo: ""
+                });
+
+                this.getView().getModel("formularioSimple").setProperty("/selectKeyUnidad" ,"0");
+                this.getView().getModel("formularioSimple").setProperty("/selectKeyProveedor" ,"0");
+                this.getView().getModel("formularioSimple").setProperty("/selectKeyActivo" ,"0");
+
+            },
+
+
+            //editar
+            editarProducto: function (oEvent) {
+                const oButton = oEvent.getSource(),
+                oView = this.getView();
+                
+                const oProduct = oButton.getParent().getBindingContext("formularioSimple");
+            
+                const oSelectObj = oProduct.getObject();
+                //
+
+                const obj ={
+                        id: oSelectObj.id,
+                        nombre: oSelectObj.nombre,
+                        descripcion: oSelectObj.descripcion,
+                        urlImage: oSelectObj.imagen,
+                        preciov: oSelectObj.preciov,
+                        precioc: oSelectObj.precioc,
+                        unidadm: oSelectObj.unidadm,
+                        proveedor: oSelectObj.proveedor,
+                        activo: oSelectObj.activo
+                };
+
+                
+
+                this.getView().getModel("formularioSimple").setProperty("/selectKeyUnidad", oSelectObj.idunidad)
+                this.getView().getModel("formularioSimple").setProperty("/selectKeyProveedor", oSelectObj.idproveedor)
+                this.getView().getModel("formularioSimple").setProperty("/selectKeyActivo", oSelectObj.idactivo)
+
+                this.getView().getModel("formularioSimple").setProperty("/editarProducto", obj);
+
+
+
+                if (!this.oMPDialog2) {
+                    this.oMPDialog2 = this.loadFragment({
+                        name: "com.pe.proyectoIntegrador.view.fragment.EditProducto"
+                    });
+                }
+                this.oMPDialog2.then(function (oDialog) {
+                    this.oDialogEditProd = oDialog;
+                    this.oDialogEditProd.open();
+                }.bind(this));
+            },
+            closeDialog2: function () {
+                this.oDialogEditProd.close();
+                this.onLimpiarDialogo();
+                
+            },
+
+            guardarEditarProducto : function() {
+                const id = this.getView().getModel("formularioSimple").getProperty("/editarProducto").id;
+                const nomProd = this.getView().getModel("formularioSimple").getProperty("/editarProducto").nombre;
+                const desProd = this.getView().getModel("formularioSimple").getProperty("/editarProducto").descripcion;
+                const urlImage = this.getView().getModel("formularioSimple").getProperty("/editarProducto").urlImage;
+                const pvProd = this.getView().getModel("formularioSimple").getProperty("/editarProducto").preciov;
+                const pcProd = this.getView().getModel("formularioSimple").getProperty("/editarProducto").precioc;
+
+                const selectKeyUnidad = this.getView().getModel("formularioSimple").getProperty("/selectKeyUnidad");
+                const selectKeyProveedor = this.getView().getModel("formularioSimple").getProperty("/selectKeyProveedor");
+                const selectKeyActivo = this.getView().getModel("formularioSimple").getProperty("/selectKeyActivo");
+
+                const oProducto1 = {
+                    id: id,
+                    nombre: nomProd,
+                    descripcion: desProd,
+                    imagen: urlImage,
+                    preciov: pvProd,
+                    precioc: pcProd,
+                    idUnidadmd: selectKeyUnidad,
+                    idProveedor: selectKeyProveedor,
+                    idActivo: selectKeyActivo
+                };
+
+                if(
+                    nomProd.trim().length == 0 ||
+                    desProd.trim().length == 0 ||
+                    pvProd <= 0 ||
+                    pcProd <= 0 ||
+                    this.getView().getModel("formularioSimple").getProperty("/selectKeyUnidad") == "0" ||
+                    this.getView().getModel("formularioSimple").getProperty("/selectKeyProveedor") == "0" ||
+                    this.getView().getModel("formularioSimple").getProperty("/selectKeyActivo") == "0" 
+                ){
+                    MessageBox.warning("Todos los campos menos la imagen son obligatorios");
+                }
+                const listaProductos = this.getView().getModel("formularioSimple").getProperty("/listaProductos");
+
+                const listaFinal = [];
+
+                for (let index = 0; index < listaProductos.length; index++) {
+                    const element = listaProductos[index];
+                    if(element.id == oProducto1.id){
+                        listaFinal.push(oProducto1);
+                    }else{
+                        listaFinal.push(element);
+                    }
+                    
+                }
+                this.getView().getModel("formularioSimple").setProperty("/listaProductos", listaFinal);
+                this.getView().getModel("formularioSimple").refresh(true);
+                MessageBox.success("Datos editados");
+                this.closeDialog2();
+            }
 
 
         });

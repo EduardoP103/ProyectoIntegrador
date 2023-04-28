@@ -7,7 +7,7 @@
 		id="myPopover"
 		title="{path: 'formularioSimple>/selectedRowView/nombre'}"
 		class="sapUiResponsivePadding--header sapUiResponsivePadding--footer"
-		placement="Bottom"
+		placement="Auto"
 		initialFocus="email">
 		<footer>
 			<OverflowToolbar>

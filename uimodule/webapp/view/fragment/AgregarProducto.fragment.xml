@@ -1,0 +1,95 @@
+<c:FragmentDefinition
+	xmlns="sap.m"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:mvc="sap.ui.core.mvc"
+	xmlns:c="sap.ui.core"
+>
+<Dialog
+		id="mainDialog"
+		title="Agregar Producto">
+<content>
+			<VBox class="sapUiSmallMargin" id="formContainerEmployment">
+				<f:SimpleForm editable="true"
+					layout="ColumnLayout"
+					title="Producto"
+					columnsM="2"
+					columnsL="2"
+					columnsXL="2">
+					<f:content>
+						<c:Title text="Product" />
+						<Label text="Nombre: " />
+						<Input value="{path : 'formularioSimple>/agregarProducto/nombre' }" />
+						<Label text="Descripción: " />
+						<Input value="{path : 'formularioSimple>/agregarProducto/descripcion' }" />
+						<Label text="Imagen" />
+						<Input value="{path : 'formularioSimple>/agregarProducto/urlImage' }" />
+						<Label text="Precio V." />
+						<Input type="Number" value="{path : 'formularioSimple>/agregarProducto/preciov' }" />
+                        <c:Title text="" />
+						<Label text="Precio C." />
+						<Input type="Number" value="{path : 'formularioSimple>/agregarProducto/precioc' }" />
+
+                        <!--Combo unidad m.-->
+						<Label text="Unidad Medida:" />
+                        <Select
+                         id="idUnidad" 
+                        items="{
+						path: 'formularioSimple>/unidadMedida'
+					    }" 
+                        selectedKey="{
+                            path: 'formularioSimple>/selectKeyUnidad'
+                        }">
+                        <c:ListItem key="{formularioSimple>id}" 
+                        text="{formularioSimple>unidad}"
+                        enabled="{= ${formularioSimple>id} === '0' ? false : true }"></c:ListItem>
+                        
+                        </Select>
+
+                        <!--Combo Proveedor-->
+                        <Label text="Proveedor" />
+                        <Select required="true" id="proveedor" items="{
+						path: 'formularioSimple>/proveedor'
+					    }" selectedKey="{
+                            path: 'formularioSimple>/selectKeyProveedor'
+                        }">
+                        <c:ListItem key="{formularioSimple>id}" 
+                        text="{formularioSimple>nombre}" 
+                        enabled="{= ${formularioSimple>id} === '0' ? false : true }">
+                        </c:ListItem>
+                        </Select>
+
+                        <!--Combo Activo-->
+                        <Label text="Activo" />
+                        <Select id="activo" items="{
+						path: 'formularioSimple>/activo'
+					    }" selectedKey="{
+                            path: 'formularioSimple>/selectKeyActivo'
+                        }">
+                        <c:ListItem key="{formularioSimple>id}" 
+                        text="{formularioSimple>activo}"
+                        enabled="{= ${formularioSimple>id} === '0' ? false : true }"></c:ListItem>
+                        </Select>
+						
+					</f:content>
+				</f:SimpleForm>
+			</VBox>
+
+		</content>
+        <footer>
+			<Toolbar>
+				<content>
+					<ToolbarSpacer ></ToolbarSpacer>
+					<Button type="Accept"
+							text="Registrar"
+							press="agregarProducto" />
+
+					<Button id="Reject"
+						text="Cerrar"
+						type="Reject"
+						press="closeDialog"
+						ariaHasPopup="Dialog" />
+				</content>
+			</Toolbar>
+		</footer>
+    </Dialog>
+</c:FragmentDefinition>
