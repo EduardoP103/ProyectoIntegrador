@@ -117,7 +117,7 @@
 										<Title text="Productos ({= ${formularioSimple>/listaTabla1}.length })" level="H2"/>
 										<ToolbarSpacer/>
 										<Button type="Transparent" text="Agregar Producto" icon="sap-icon://add" press="onAddProducto"/>
-										<Button type="Transparent" text="Configuración" icon="sap-icon://action-settings" press="onConfig"/>
+										<Button type="Transparent" text="Configuración" icon="sap-icon://action-settings" press="onOpenDialogConfiguradorColumnas"/>
 
 									</Toolbar>
 
@@ -127,7 +127,7 @@
 
 									<Column	hAlign="Begin" width="15%">
 
-										<Text text="Nombre" />
+										<Text  text="Nombre" />
 
 									</Column>
 
