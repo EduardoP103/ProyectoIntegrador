@@ -593,9 +593,13 @@ sap.ui.define(
                     imagen: urlImage,
                     preciov: pvProd,
                     precioc: pcProd,
-                    idUnidadmd: selectKeyUnidad,
-                    idProveedor: selectKeyProveedor,
-                    idActivo: selectKeyActivo
+                    idunidad: selectKeyUnidad,
+                    idproveedor: selectKeyProveedor,
+                    idactivo: selectKeyActivo,
+                    unidadm:  this.getView().byId("idUnidad2").getSelectedItem().getProperty("text") ,
+                    proveedor:  this.getView().byId("proveedor2").getSelectedItem().getProperty("text"),
+                    activo: this.getView().byId("activo2").getSelectedItem().getProperty("text"),
+
                 };
 
                 if(
