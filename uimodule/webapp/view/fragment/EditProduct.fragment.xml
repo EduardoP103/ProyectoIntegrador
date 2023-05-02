@@ -42,7 +42,7 @@
 	<footer>
 		<Toolbar justifyContent="End">
 			<content>
-				<Button text="Agregar" icon="sap-icon://add-activity" type="Accept" press="onPressEditTabla" ariaHasPopup="Dialog"/>
+				<Button text="Actualizar" icon="sap-icon://add-activity" type="Accept" press="onPressEditTabla" ariaHasPopup="Dialog"/>
 
 				<Button text="Limpiar" icon="sap-icon://clear-filter" press="onClearInputs"/>
 				<ToolbarSpacer/>

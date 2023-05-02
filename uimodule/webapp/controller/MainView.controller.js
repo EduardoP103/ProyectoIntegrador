@@ -650,7 +650,7 @@ sap.ui.define(
                 MessageBox.success("Producto guardado");
                 this.closeDialogProducto();
               },
-              
+
 
 
             // DEBUGGER
@@ -772,6 +772,35 @@ sap.ui.define(
                 } else {
                     oInput.setValueState("None");
                 }
+            },
+            onExportToPDF: function() {
+                debugger;
+                const oTable = this.getView().byId("idProductsTable"); // Reemplaza "myTable" con el ID de tu tabla
+                const aColumns = oTable.getColumns();
+                const aColumnData = aColumns.map(function(column) {
+                  return {
+                    label: column.getHeader(),
+
+                    template: {
+                      content: "{" + column.getAggregation("template").getBindingInfo("text").parts[0].path + "}"
+                    }
+                  };
+                });
+                const oModel = oTable.getModel();
+                const aItems = oModel.getProperty("/"); // Obtiene todos los elementos de la tabla
+                const oSettings = {
+                  workbook: {
+                    columns: aColumnData,
+                    context: {
+                      application: "SAPUI5 Demo App"
+                    }
+                  },
+                  dataSource: aItems
+                };
+                const oSheet = new Spreadsheet(oSettings);
+                oSheet.build().finally(function() {
+                  oSheet.destroy();
+                })
             },
             onNumberInput: function (oEvent) {
 
