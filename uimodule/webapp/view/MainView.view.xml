@@ -68,7 +68,6 @@
 						<!-- TABLA -->
 						<Table
 							id="idProductsTable"
-							alternateRowColors="true"
 							sticky="HeaderToolbar,ColumnHeaders"
 							inset="false"
 							items="{
@@ -353,7 +352,7 @@
 				<Button
 					icon="sap-icon://pdf-attachment"
 					type="Transparent"
-					press="onExportToPdf"
+					press="onExportPDF"
 					text="Exportar PDF"
 				/>
 				<Button

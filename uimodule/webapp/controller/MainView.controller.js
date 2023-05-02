@@ -291,6 +291,74 @@ sap.ui.define(
                     oSheet.destroy();
                 });
             },
+            onExportPDF: function() {
+                const selectedTab = this.getView().getModel("localModel").getProperty("/selectedIconTabBar");
+                let oTable, aCols;
+              
+                switch (selectedTab) {
+                  case "0":
+                    oTable = this.getView().byId("idProductsTable");
+                    aCols = this.createColumnConfigTableProducts();
+                    break;
+                  case "1":
+                    oTable = this.getView().byId("listOfSuppliers");
+                    aCols = this.createColumnConfigTableSupplier();
+                    break;
+                  case "2":
+                    oTable = this.getView().byId("listOfUnitOfMeasurement");
+                    aCols = this.createColumnConfigTableUnitOfMeasurement();
+                    break;
+                  default:
+                    MessageBox.warning("No existen datos, no se puede crear el documento");
+                    return;
+                }
+              
+                const oRowBinding = oTable.getBinding("items");
+                if (!oRowBinding || !oRowBinding.getLength()) {
+                  MessageBox.warning("No existen datos, no se puede crear el documento");
+                  return;
+                }
+              
+                const columns = [];
+                const data = [];
+              
+                // Construir la configuración de columnas
+                aCols.forEach(function(column) {
+                  columns.push({
+                    header: column.label,
+                    key: column.property[0]
+                  });
+                });
+              
+                // Construir la data
+                oRowBinding.getContexts().forEach(function(context) {
+                  const item = context.getObject();
+                  const rowData = {};
+              
+                  aCols.forEach(function(column) {
+                    rowData[column.property[0]] = item[column.property[0]];
+                  });
+              
+                  data.push(rowData);
+                });
+              
+                // Crear el archivo PDF
+                const docDefinition = {
+                  content: [
+                    { text: "Lista de " + selectedTab, style: "header" },
+                    { text: new Date().toLocaleString(), style: "subheader" },
+                    { table: { headerRows: 1, widths: columns.map(column => "auto"), body: [columns.map(column => column.header)].concat(data.map(item => columns.map(column => item[column.key])))} }
+                  ],
+                  styles: {
+                    header: { fontSize: 22, bold: true, alignment: "center", margin: [0, 0, 0, 10] },
+                    subheader: { fontSize: 14, bold: true, alignment: "center", margin: [0, 0, 0, 10] }
+                  }
+                };
+              
+                pfkmaker(docDefinition, "Lista" + selectedTab + ".pdf");
+              },
+              
+              
 
             // CSV
 
@@ -875,41 +943,41 @@ sap.ui.define(
             // },
   
 
-            onaddSupplierNameTabla: function () {
-                let name = this.getView().getModel("localModel").getProperty("/addSupplierName").name;
-                let phone = this.getView().getModel("localModel").getProperty("/addSupplierName").phone;
-                let address = this.getView().getModel("localModel").getProperty("/addSupplierName").address;
-                let est = this.getView().getModel("localModel").getProperty("/addSupplierName").state;
+            // onaddSupplierNameTabla: function () {
+            //     let name = this.getView().getModel("localModel").getProperty("/addSupplierName").name;
+            //     let phone = this.getView().getModel("localModel").getProperty("/addSupplierName").phone;
+            //     let address = this.getView().getModel("localModel").getProperty("/addSupplierName").address;
+            //     let est = this.getView().getModel("localModel").getProperty("/addSupplierName").state;
 
-                let osupplierName = {
-                    "id": this.getView().getModel("localModel").getProperty("/listOfSuppliers").length + 1,
-                    "name": name,
-                    "phone": phone,
-                    "address": address,
-                    "state": this.getView().byId("idstatusName2").getSelectedItem().getProperty("text")
+            //     let osupplierName = {
+            //         "id": this.getView().getModel("localModel").getProperty("/listOfSuppliers").length + 1,
+            //         "name": name,
+            //         "phone": phone,
+            //         "address": address,
+            //         "state": this.getView().byId("idstatusName2").getSelectedItem().getProperty("text")
 
-                }
-                let oResp = {
-                    valid: true,
-                    mensaje: ""
-                };
-                if (name.trim().length == 0 ||
-                    address.trim().length == 0 ||
-                    phone <= 0 ||
-                    this.getView().getModel("localModel").getProperty("/selectStateName") == "0"
+            //     }
+            //     let oResp = {
+            //         valid: true,
+            //         mensaje: ""
+            //     };
+            //     if (name.trim().length == 0 ||
+            //         address.trim().length == 0 ||
+            //         phone <= 0 ||
+            //         this.getView().getModel("localModel").getProperty("/selectStateName") == "0"
 
-                ) {
-                    oResp.valid = false;
-                    oResp.mensaje = "llena los campos";
-                    MessageBox.warning("Ingresa todos los campos");
-                    return oResp;
-                }
-                let listOfSuppliers = this.getView().getModel("localModel").getProperty("/listOfSuppliers");
-                listOfSuppliers.push(osupplierName);
-                this.getView().getModel("localModel").refresh();
-                MessageBox.success("Datos ingresados correctamente");
-                this.closeDialogsupplierName();
-            },
+            //     ) {
+            //         oResp.valid = false;
+            //         oResp.mensaje = "llena los campos";
+            //         MessageBox.warning("Ingresa todos los campos");
+            //         return oResp;
+            //     }
+            //     let listOfSuppliers = this.getView().getModel("localModel").getProperty("/listOfSuppliers");
+            //     listOfSuppliers.push(osupplierName);
+            //     this.getView().getModel("localModel").refresh();
+            //     MessageBox.success("Datos ingresados correctamente");
+            //     this.closeDialogsupplierName();
+            // },
         });
     }
 );
