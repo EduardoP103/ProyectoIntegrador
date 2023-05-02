@@ -19,6 +19,8 @@ sap.ui.define(
         "sap/base/util/deepExtend",
         "sap/m/ColumnListItem",
         "../util/util",
+	"sap/ui/vbm/Containers",
+	"sap/ui/model/FilterOperator",
     ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
@@ -84,7 +86,36 @@ sap.ui.define(
                 this.byId("myPopover").close();
             },
 
-            // ---------------Creación de columnas para exportar datos en XLSX --------------------//
+            // PDF
+            onExportToPDF: function() {
+                debugger;
+                const oTable = this.getView().byId("idProductsTable"); 
+                const aColumns = oTable.getColumns();
+                const aColumnData = aColumns.map(function(column) {
+                    return {
+                        label: column.getHeader(),
+                        template: {
+                            content: `{$ {column.getAggregation("template").getBindingInfo("text").parts[0].path}}`
+                        }
+                    };
+                });
+                const oSettings = {
+                    workbook: {
+                        columns: aColumnData,
+                        context: {
+                            application: "SAPUI5 Demo App"
+                        }
+                    },
+                    dataSource: oTable.getModel().getProperty("/selectedIconTabBar"),
+                    fileName: "ListaProductosEnStock.pdf"
+                };
+                const oSheet = new Spreadsheet(oSettings);
+                oSheet.build().finally(function() {
+                    oSheet.destroy();
+                });
+            },
+            
+            // XLSX
 
             createColumnConfigTableProducts: function () {
                 let aCols = [];
@@ -547,55 +578,6 @@ sap.ui.define(
                  MessageBox.success("Producto Eliminado");
                  this.closeDialogRemoveProduct();
              },
-            // REVISAR
-            // onAddProductTable: function () {
-            //     debugger;
-            //     const { name, description, image, salePrice, purchasePrice, stock, unitOfMeasurementName, supplierName, statusName } = this.getView().getModel("localModel").getProperty("/addProduct")
-
-            //     const { selectStateName, selectUnitOfMeasurementName, selectSupplierName } = this.getView().getModel("localModel").getData()
-            //     // Verificar si algún campo está vacío
-            //     if (!name || !description || !image || !salePrice || !purchasePrice || !stock || !unitOfMeasurementName || !supplierName || !statusName) {
-            //         MessageBox.warning("Todos los campos son necesarios");
-            //         return;
-            //     }
-            //     let id = 1;
-            //     let listaOrdenada = this.getView().getModel("localModel").getProperty("/listOfProducts").sort(function (a, b) {
-            //         return b.id - a.id;
-            //     });
-            //     if (listaOrdenada.length > 0) {
-            //         id = listaOrdenada[0].id + 1
-            //     }
-            //     let oProducto = {
-            //         "id": id,
-            //         "name": name,
-            //         "description": description,
-            //         "image": image,
-            //         "salePrice": salePrice,
-            //         "purchasePrice": purchasePrice,
-            //         "stock": stock,
-            //         "unitOfMeasurementName": this.getView().byId("idUnit").getSelectedItem().getProperty("text"),
-            //         "supplierName": this.getView().byId("idSupplier").getSelectedItem().getProperty("text"),
-            //         "statusName": this.getView().byId("idStatus").getSelectedItem().getProperty("text"),
-            //         "idUnitOfmeasurment": selectUnitOfMeasurementName,
-            //         "idSupplier": selectSupplierName,
-            //         "idStatus": selectStateName
-            //     }
-            //     let oRespuesta = {
-            //         valid: true,
-            //         mensaje: ""
-            //     };
-            //     if(true){
-            //         oRespuesta.valid = false;
-            //         oRespuesta.mensaje="Llena los campos"
-            //         Message.warning("Todos los campos son necesarios");
-            //         return oRespuesta;
-            //     }
-            //     let listOfProducts = this.getView().getModel("localModel").getProperty("/listOfProducts");
-            //     listOfProducts.push(oProducto);
-            //     this.getView().getModel("localModel").refresh();
-            //     MessageBox.success("Datos ingresados correctamente");
-            //     this.closeDialogProducto();
-            // },
             onAddProductTable: function () {
                 const {
                   name,
@@ -773,35 +755,7 @@ sap.ui.define(
                     oInput.setValueState("None");
                 }
             },
-            onExportToPDF: function() {
-                debugger;
-                const oTable = this.getView().byId("idProductsTable"); // Reemplaza "myTable" con el ID de tu tabla
-                const aColumns = oTable.getColumns();
-                const aColumnData = aColumns.map(function(column) {
-                  return {
-                    label: column.getHeader(),
-
-                    template: {
-                      content: "{" + column.getAggregation("template").getBindingInfo("text").parts[0].path + "}"
-                    }
-                  };
-                });
-                const oModel = oTable.getModel();
-                const aItems = oModel.getProperty("/"); // Obtiene todos los elementos de la tabla
-                const oSettings = {
-                  workbook: {
-                    columns: aColumnData,
-                    context: {
-                      application: "SAPUI5 Demo App"
-                    }
-                  },
-                  dataSource: aItems
-                };
-                const oSheet = new Spreadsheet(oSettings);
-                oSheet.build().finally(function() {
-                  oSheet.destroy();
-                })
-            },
+           
             onNumberInput: function (oEvent) {
 
 
@@ -833,51 +787,94 @@ sap.ui.define(
                 }
             },
 
+            // FILTROS
 
-            // onConfirmDeletion: function (oEvent) {
+            // _filter: function(){
+            //     debugger
+            //     let oFilter = null;
 
-
-            //     const oButton = oEvent.getSource(),
-            //         oView = this.getView();
-            //     debugger;
-            //     const oProduct = oButton.getParent().getBindingContext("localModel");
-            //     debugger;
-            //     const oSelectObj = oProduct.getObject();
-            //     this.getView().getModel("localModel").setProperty("/selectRowDelete", oSelectObj);
-
-            //     if (!this.oMPProductRemoved) {
-            //         this.oMPProductRemoved = this.loadFragment({
-            //             name: "com.pe.proyectoIntegrador.view.fragment.DeleteProduct",
-            //         });
+            //     if(this._oGlobalFilter && this.oPriceFilter){
+            //         oFilter = new Filter([this.oGlobalFilter, this.oPriceFilter], true);
+            //     } else if(this._oGlobalFilter){
+            //         oFilter = this._oGlobalFilter;
+            //     } else if (this._oPriceFilter){
+            //         oFilter = this._oPriceFilter;
             //     }
-            //     this.oMPProductRemoved.then(
-            //         function (oDialogProductDeleted) {
-            //             this.oDialogProductoELiminado = oDialogProductDeleted;
-            //             this.oDialogProductoELiminado.open();
-            //         }.bind(this)
-            //     );
+            //     this.byId("table").getBinding().filter(oFilter, "Application");
             // },
+            // filterGlobally: function(oEvent){
+            //     debugger
+            //     let sQuery = oEvent.getParameter("query");
+            //     this._oGlobalFilter = null;
 
-            // closeDialogElimnarProducto: function () {
-            //     this.oDialogProductoELiminado.close();
-            // },
-            // onPressDeleteProduct: function () {
-            //     let selectRowDelete = this.getView().getModel("localModel").getProperty("/selectRowDelete");
-            //     let finalProducts = this.getView().getProperty("/localModel").getProperty("listOfProducts");
-
-            //     let finalProducts = [];
-
-            //     for (let index = 0; index < listOfProducts.length; index++) {
-            //         const element = listOfProducts[index];
-            //         if (element.id != selectRowDelete.id) {
-            //             finalProducts.push(element);
-            //         }
+            //     if(sQuery) {
+            //         this._oGlobalFilter = new Filter([
+            //             new Filter("Name", FilterOperator.Contains, sQuery),
+            //             new Filter("Category", FilterOperator.Contains, sQuery)
+            //         ], false);
             //     }
-            //     this.getView().getModel("localModel").setProperty("/listOfProducts", finalProducts);
-            //     this.getView().getBinding("localModel").refresh();
-            //     MessageBox.success("Producto Eliminado");
-            //     this.closeDialogElimnarProducto();
+            //     this._filter();
             // },
+            // filterPrice: function(oEvent){
+            //     debugger
+            //     let oColumn = oEvent.getParameter("column");
+            //     if(oColumn != this.byId("price")){
+            //         return; 
+            //     }
+            //     oEvent.preventDefault();
+
+            //     let sValue = oEvent.getParameter("value");
+            //     function clear(){
+            //         this._oPriceFilter = null;
+            //         oColumn.setFiltered(false);
+            //         this._filter();
+            //     }
+            //     if (!sValue){
+            //         clear.apply(this);
+            //         return;
+            //     }
+            //     let fValue = null;
+            //     try {
+            //         fValue = parseFloat(sValue, 10);
+            //     } catch (e){
+            //     }
+            //     if(!isNaN(fValue)){
+            //         this._oPriceFilter = new Filter("Price", FilterOperator.BT, fValue - 20, fValue + 20);
+            //         oColumn.setFiltered(true);
+            //         this._filter();
+            //     }else{
+            //         clear.apply(this);
+            //     }
+            // },
+
+            // clearAllFilters: function(oEvent){
+            //     debugger
+            //     let oTable = this.byId("table");
+            //     let oUiModel = this.getView().getModel("ui");
+            //     oUiModel.setProperty("/globalFilter", "");
+			//     oUiModel.setProperty("/availabilityFilterOn", false);
+
+            //     this._oGlobalFilter = null;
+            //     this._PriceFilter = null;
+            //     this._filter();
+
+            //     let oColumns = oTable.getColumns();
+            //     for(let i = 0; i < aColumns.length; i++) {
+            //         oTable.fireValidationError(aColumns[i], null);
+
+            //     }
+            // },
+            // toggleAvailabilityFilter: function(oEvent) {
+            //     debugger
+            //     this.byId("availability").filter(oEvent.getParameter("pressed") ? "X" : "");
+            // },
+
+            // formatAvailableToObjectState: function(bAvailable) {
+            //     debugger
+            //     return bAvailable ? "Success" : "Error";
+            // },
+  
+
             onaddSupplierNameTabla: function () {
                 let name = this.getView().getModel("localModel").getProperty("/addSupplierName").name;
                 let phone = this.getView().getModel("localModel").getProperty("/addSupplierName").phone;
