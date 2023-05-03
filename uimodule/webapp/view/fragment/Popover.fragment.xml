@@ -5,7 +5,8 @@
 		id="myPopover"
 		title="{path: 'localModel>/selectedRowView/name'}"
 		class="sapUiContentPadding"
-		placement="Bottom" >
+		initialFocus="action"
+		placement="Right" >
 		<endButton>
 			<Button
 					text="Cerrar"

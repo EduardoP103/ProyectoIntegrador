@@ -47,11 +47,15 @@
 							text="{i18n>position}"
 							state="Success"
 						/>
+						
 					</layout:VerticalLayout>
 				</layout:HorizontalLayout>
 			</f:DynamicPageHeader>
+			
 		</f:header>
+		
 		<f:content>
+			
 			<IconTabBar
 				id="iconTabBar"
 				class="sapUiResponsiveContentPadding"
@@ -59,12 +63,17 @@
 					path: 'localModel>/selectedIconTabBar'
 				}"
 			>
+			
 				<items>
 					<IconTabFilter
 						key="0"
 						id="tabproductos"
 						text="{i18n>products}"
 					>
+					<SearchField enableSuggestions="true" id="searchField" placeholder="Filtrar" width="auto" liveChange="onSearch" value="{
+						path: 'localModel>/search'
+					}"
+					></SearchField>
 						<!-- TABLA -->
 						<Table
 							id="idProductsTable"
@@ -98,6 +107,7 @@
 											icon="sap-icon://action-settings"
 											type="Transparent"
 										/>
+
 									</content>
 								</OverflowToolbar>
 							</headerToolbar>

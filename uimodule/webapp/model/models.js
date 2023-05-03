@@ -22,6 +22,8 @@ sap.ui.define(
                         name: "Eduardo Pastor",
                         cargo: "Analista de Sistemas",
                     },
+                    tabSelect: "0",
+                    search: "",
                     selectedIconTabBar: "0",
                     selectRowView: {},
                     selectStateName: "0",

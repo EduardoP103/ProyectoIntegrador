@@ -3,6 +3,8 @@ sap.ui.define(
         "sap/ui/core/mvc/Controller",
         "sap/ui/model/json/JSONModel",
         "sap/f/library",
+        // "sap/ui/core/util/PDFDocument",
+        // "jspdf",
         "sap/ui/core/Fragment",
         "sap/m/MessagePopover",
         "sap/m/MessageBox",
@@ -36,6 +38,8 @@ sap.ui.define(
     * @param {typeof sap.ui.core.Core} Core 
  */
     function (
+        // PDFDocument,
+        // jsPDF,
         Controller,
         JSONModel,
         library,
@@ -292,21 +296,25 @@ sap.ui.define(
                 });
             },
             onExportPDF: function() {
+                debugger;
                 const selectedTab = this.getView().getModel("localModel").getProperty("/selectedIconTabBar");
-                let oTable, aCols;
+                let oTable, aCols, fileName;
               
                 switch (selectedTab) {
                   case "0":
                     oTable = this.getView().byId("idProductsTable");
                     aCols = this.createColumnConfigTableProducts();
+                    fileName = "ListaProductosEnStock.pdf";
                     break;
                   case "1":
                     oTable = this.getView().byId("listOfSuppliers");
                     aCols = this.createColumnConfigTableSupplier();
+                    fileName = "ListaProveedores.pdf";
                     break;
                   case "2":
                     oTable = this.getView().byId("listOfUnitOfMeasurement");
                     aCols = this.createColumnConfigTableUnitOfMeasurement();
+                    fileName = "ListaUnidadMedida.pdf";
                     break;
                   default:
                     MessageBox.warning("No existen datos, no se puede crear el documento");
@@ -318,47 +326,23 @@ sap.ui.define(
                   MessageBox.warning("No existen datos, no se puede crear el documento");
                   return;
                 }
-              
-                const columns = [];
-                const data = [];
-              
-                // Construir la configuración de columnas
-                aCols.forEach(function(column) {
-                  columns.push({
-                    header: column.label,
-                    key: column.property[0]
+            
+                const doc = new jsPDF();
+                const tableData = oRowBinding.getCurrentContexts().map(function(oContext) {
+                  return aCols.map(function(column) {
+                    const property = column.property[0];
+                    return oContext.getProperty(property);
                   });
                 });
-              
-                // Construir la data
-                oRowBinding.getContexts().forEach(function(context) {
-                  const item = context.getObject();
-                  const rowData = {};
-              
-                  aCols.forEach(function(column) {
-                    rowData[column.property[0]] = item[column.property[0]];
-                  });
-              
-                  data.push(rowData);
+                doc.autoTable({
+                  head: [aCols.map(function(column) {
+                    return column.label;
+                  })],
+                  body: tableData
                 });
-              
-                // Crear el archivo PDF
-                const docDefinition = {
-                  content: [
-                    { text: "Lista de " + selectedTab, style: "header" },
-                    { text: new Date().toLocaleString(), style: "subheader" },
-                    { table: { headerRows: 1, widths: columns.map(column => "auto"), body: [columns.map(column => column.header)].concat(data.map(item => columns.map(column => item[column.key])))} }
-                  ],
-                  styles: {
-                    header: { fontSize: 22, bold: true, alignment: "center", margin: [0, 0, 0, 10] },
-                    subheader: { fontSize: 14, bold: true, alignment: "center", margin: [0, 0, 0, 10] }
-                  }
-                };
-              
-                pfkmaker(docDefinition, "Lista" + selectedTab + ".pdf");
+                doc.save(fileName);
               },
-              
-              
+
 
             // CSV
 
@@ -448,7 +432,7 @@ sap.ui.define(
                         },
 
                         columns: [{
-                            name: "Nome",
+                            name: "Name",
                             template: {
                                 content: "{name}"
                             }
@@ -516,6 +500,32 @@ sap.ui.define(
                     });
             },
 
+            // Filtrar
+            onSearch: function(oEvent) {
+                const newValue = oEvent.getSource().getValue();
+                this.filter(newValue);
+              },
+              
+              createFilter: function(property, operator, value) {
+                return new sap.ui.model.Filter(property, operator, value);
+              },
+              
+              filter: function(value) {
+                const selectedTabIndex = this.getView().getModel("localModel").getProperty("/tabSelect");
+                const properties = selectedTabIndex === "0"
+                  ? ["name", "description", "salePrice", "purchasePrice", "stock", "unitOfMeasurement", "supplier", "statusName"]
+                  : ["name", "phone", "address", "statusName"];
+                
+                const filters = properties.map(prop => this.createFilter(prop, sap.ui.model.FilterOperator.Contains, value));
+                const allFilters = new sap.ui.model.Filter(filters, false);
+                
+                const oBinding = selectedTabIndex === "0"
+                  ? this.getView().byId("idProductsTable").getBinding("items")
+                  : this.getView().byId("listOfSuppliers").getBinding("items");
+                
+                oBinding.filter(allFilters);
+              },
+              
             onAddProduct: function () {
 
                 if (!this.oMPProducto) {
