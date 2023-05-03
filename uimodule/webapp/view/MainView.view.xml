@@ -97,12 +97,10 @@
 										/>
 										<ToolbarSpacer/>
 										<Button
-										text="{i18n>sortAscending}"
 										press="onSortAscending"
 										icon="sap-icon://sort-ascending"
 									  />
 									  <Button
-										text="{i18n>sortDescending}"
 										press="onSortDescending"
 										icon="sap-icon://sort-descending"
 									  />

@@ -134,7 +134,7 @@ sap.ui.define(
                             image: "https://xiaomiperu.com/media/catalog/product/cache/deaf12c726c019462dcd02884cec40ac/t/v/tv-stick_ambos.jpg",
                             salePrice: "170",
                             fPurchasePrice: 170,
-                            purchasePrice: "170",
+                            purchasePrice: "70",
                             fStock: 121,
                             stock: "300",
                             idUnitOfmeasurment: 1,
