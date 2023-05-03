@@ -499,19 +499,23 @@ sap.ui.define(
                         oExport.destroy();
                     });
             },
+            // FILTRO ASCENDENTE Y DESCENTENTE
             onSortAscending: function() {
-                var oBinding = this.byId("idProductsTable").getBinding("items");
-                var oSorter = new sap.ui.model.Sorter("id", false); // false para ascendente
-                oBinding.sort([oSorter]);
+                var oTable = this.byId("idProductsTable");
+                var oBinding = oTable.getBinding("items");
+                var aSorters = [];
+                aSorters.push(new sap.ui.model.Sorter("salePrice", false));
+                oBinding.sort(aSorters);
               },
               
               onSortDescending: function() {
-                var oBinding = this.byId("idProductsTable").getBinding("items");
-                var oSorter = new sap.ui.model.Sorter("id", true); // true para descendente
-                oBinding.sort([oSorter]);
+                var oTable = this.byId("idProductsTable");
+                var oBinding = oTable.getBinding("items");
+                var aSorters = [];
+                aSorters.push(new sap.ui.model.Sorter("salePrice", true));
+                oBinding.sort(aSorters);
               },
               
-
             // Filtrar
             onSearch: function(oEvent) {
                 const newValue = oEvent.getSource().getValue();
