@@ -97,6 +97,16 @@
 										/>
 										<ToolbarSpacer/>
 										<Button
+										text="{i18n>sortAscending}"
+										press="onSortAscending"
+										icon="sap-icon://sort-ascending"
+									  />
+									  <Button
+										text="{i18n>sortDescending}"
+										press="onSortDescending"
+										icon="sap-icon://sort-descending"
+									  />
+										<Button
 											text="{i18n>add}"
 											icon="sap-icon://add"
 											type="Transparent"
@@ -107,7 +117,7 @@
 											icon="sap-icon://action-settings"
 											type="Transparent"
 										/>
-
+										
 									</content>
 								</OverflowToolbar>
 							</headerToolbar>

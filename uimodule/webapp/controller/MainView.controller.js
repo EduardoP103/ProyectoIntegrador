@@ -499,6 +499,18 @@ sap.ui.define(
                         oExport.destroy();
                     });
             },
+            onSortAscending: function() {
+                var oBinding = this.byId("idProductsTable").getBinding("items");
+                var oSorter = new sap.ui.model.Sorter("id", false); // false para ascendente
+                oBinding.sort([oSorter]);
+              },
+              
+              onSortDescending: function() {
+                var oBinding = this.byId("idProductsTable").getBinding("items");
+                var oSorter = new sap.ui.model.Sorter("id", true); // true para descendente
+                oBinding.sort([oSorter]);
+              },
+              
 
             // Filtrar
             onSearch: function(oEvent) {
