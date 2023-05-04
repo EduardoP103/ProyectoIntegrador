@@ -47,7 +47,6 @@
 							text="{i18n>position}"
 							state="Success"
 						/>
-						
 					</layout:VerticalLayout>
 				</layout:HorizontalLayout>
 			</f:DynamicPageHeader>
@@ -164,6 +163,12 @@
 								>
 									<Text text="{i18n>supplierName}"/>
 								</Column>
+								<Column 
+									minScreenWidth="Tablet"
+									demandPopin="true"
+								>
+									<Text text="{i18n>datepicker}"/>
+								</Column>
 								<Column
 									minScreenWidth="Desktop"
 									demandPopin="true"
@@ -174,6 +179,7 @@
 								<Column hAlign="Center">
 									<Text text=""/>
 								</Column>
+								
 							</columns>
 							<items>
 								<ColumnListItem vAlign="Middle">
@@ -190,6 +196,7 @@
 										<Text text="{localModel>stock}"/>
 										<Text text="{localModel>unitOfMeasurementName}"/>
 										<Text text="{localModel>supplierName}"/>
+											<Text text="{localModel>datepicker}"/>
 										<ObjectStatus
 											text="{localModel>statusName}"
 											icon="sap-icon://message-success"

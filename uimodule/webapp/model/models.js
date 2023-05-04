@@ -63,7 +63,7 @@ sap.ui.define(
                         {
                             id: "3",
                             name: "Inactivo",
-                            statusIcon: "",
+                            statusIcon: "sap-icon://delete",
                             statusState: "Error",
                         }
                     ],
@@ -88,6 +88,7 @@ sap.ui.define(
                             statusName: "Activo",
                             statusIcon: "sap-icon://sys-enter-2",
                             statusState: "Success",
+                            datepicker: "4/05/2023"
                         },
                         {
                             id: 1,
@@ -107,6 +108,7 @@ sap.ui.define(
                             statusName: "Activo",
                             statusIcon: "sap-icon://sys-enter-2",
                             statusState: "Success",
+                            datepicker: "4/05/2023"
                         },
                         {
                             id: 2,
@@ -126,6 +128,7 @@ sap.ui.define(
                             statusName: "Activo",
                             statusIcon: "sap-icon://sys-enter-2",
                             statusState: "Success",
+                            datepicker: "4/05/2023"
                         },
                         {
                             id: 3,
@@ -145,6 +148,7 @@ sap.ui.define(
                             statusName: "Activo",
                             statusIcon: "sap-icon://sys-enter-2",
                             statusState: "Success",
+                            datepicker: "4/05/2023"
                         },
                     ],
                     listOfSuppliers: [
@@ -198,6 +202,7 @@ sap.ui.define(
                         statusName: "",
                         statusIcon: "sap-icon://sys-enter-2",
                         statusState: "Success",
+                        datepicker: "",
                     },
                     editProduct: {
                         id: "",
@@ -210,6 +215,7 @@ sap.ui.define(
                         unitOfMeasurementName: "",
                         supplierName: "",
                         statusName: "",
+                        datepicker: "",
                     },
                     addSupplierName: {
                         name: "",

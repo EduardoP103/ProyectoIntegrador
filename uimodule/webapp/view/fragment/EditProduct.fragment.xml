@@ -4,52 +4,185 @@
 	xmlns:mvc="sap.ui.core.mvc"
 	xmlns:core="sap.ui.core"
 >
-<Dialog id="DialogEditProduct" title="Editar Producto"  >
-	<content>
-		<VBox class="sapUiSmallMargin">
-			<f:SimpleForm editable="true" layout="ColumnLayout" columnsM="2" columnsL="3" columnsXL="4">
-				<f:content>
-					<Label text="{i18n>name}" required="true"/>
-					<Input  value="{path: 'localModel>/editProduct/name'}" liveChange="onInputChange"/>
-					<Label text="{i18n>description}" required="true"/>
-					<Input   value="{path: 'localModel>/editProduct/description'}" liveChange="onInputChange"/>
-					<Label text="{i18n>salePrice}" required="true"/>
-					<Input  type="Number" value="{path: 'localModel>/editProduct/salePrice'}" maxLength="4"  liveChange="onNumberInput"/>
-					<Label text="{i18n>purchasePrice}" required="true"/>
-					<Input  type="Number" value="{path: 'localModel>/editProduct/purchasePrice'}" maxLength="4"  liveChange="onNumberInput"/>
-					<Label text="{i18n>stock}" required="true"/>
-					<Input  type="Number" value="{path: 'localModel>/editProduct/stock'}" maxLength="4"  liveChange="onNumberInput"/>
-					<Label text="{i18n>unitOfMeasurementName}" required="true"/>
-					<Select id="idUnitEdit" items="{path: 'localModel>/ListunitOfMeasurementName'}" selectedKey="{path: 'localModel>/selectUnitOfMeasurementName'}">
-						<core:ListItem key="{localModel>id}" text="{localModel>name}" enabled="{= ${localModel>id} === '0' ? false : true }"/>
-					</Select>
-					<Label text="{i18n>supplierName}" required="true"/>
-						<Select id="idSupplierEdit" items="{path: 'localModel>/listSupplierName'}" selectedKey="{path: 'localModel>/selectSupplierName'}">
-							<core:ListItem key="{localModel>id}" text="{localModel>name}" enabled="{= ${localModel>id} === '0' ? false : true }"/>
+	<Dialog
+		id="DialogEditProduct"
+		title="Editar Producto"
+	>
+		<content>
+			<VBox class="sapUiSmallMargin">
+				<f:SimpleForm
+					editable="true"
+					layout="ColumnLayout"
+					columnsM="2"
+					columnsL="3"
+					columnsXL="4"
+				>
+					<f:content>
+						<Label
+							text="{i18n>name}"
+							required="true"
+						/>
+						<Input
+							value="{
+								path: 'localModel>/editProduct/name'
+							}"
+							liveChange="onInputChange"
+						/>
+						<Label
+							text="{i18n>description}"
+							required="true"
+						/>
+						<Input
+							value="{
+								path: 'localModel>/editProduct/description'
+							}"
+							liveChange="onInputChange"
+						/>
+						<Label
+							text="{i18n>salePrice}"
+							required="true"
+						/>
+						<Input
+							type="Number"
+							value="{
+								path: 'localModel>/editProduct/salePrice'
+							}"
+							maxLength="4"
+							liveChange="onNumberInput"
+						/>
+						<Label
+							text="{i18n>purchasePrice}"
+							required="true"
+						/>
+						<Input
+							type="Number"
+							value="{
+								path: 'localModel>/editProduct/purchasePrice'
+							}"
+							maxLength="4"
+							liveChange="onNumberInput"
+						/>
+						<Label
+							text="{i18n>stock}"
+							required="true"
+						/>
+						<Input
+							type="Number"
+							value="{
+								path: 'localModel>/editProduct/stock'
+							}"
+							maxLength="4"
+							liveChange="onNumberInput"
+						/>
+						<Label
+							text="{i18n>unitOfMeasurementName}"
+							required="true"
+						/>
+						<Select
+							id="idUnitEdit"
+							items="{
+								path: 'localModel>/ListunitOfMeasurementName'
+							}"
+							selectedKey="{
+								path: 'localModel>/selectUnitOfMeasurementName'
+							}"
+						>
+							<core:ListItem
+								key="{localModel>id}"
+								text="{localModel>name}"
+								enabled="{= ${localModel>id} === '0' ? false : true }"
+							/>
 						</Select>
-					<Label text="{i18n>statusName}" required="true"/>
-						<Select id="idStatusEdit" items="{path: 'localModel>/activo'}" selectedKey="{path: 'localModel>/selectStateName'}">
-							<core:ListItem key="{localModel>id}" text="{localModel>name}" enabled="{= ${localModel>id} === '0' ? false : true }"/>
+						<Label
+							text="{i18n>supplierName}"
+							required="true"
+						/>
+						<Select
+							id="idSupplierEdit"
+							items="{
+								path: 'localModel>/listSupplierName'
+							}"
+							selectedKey="{
+								path: 'localModel>/selectSupplierName'
+							}"
+						>
+							<core:ListItem
+								key="{localModel>id}"
+								text="{localModel>name}"
+								enabled="{= ${localModel>id} === '0' ? false : true }"
+							/>
 						</Select>
-						
-					<Label text="{i18n>image}" required="true"/>
-					<Input  value="{path:  'localModel>/editProduct/image'}" valueLiveUpdate="true" />
-					<Image src="{path : 'localModel>/editProduct/image' }" width="14rem" />
-				</f:content>
-			</f:SimpleForm>
-		</VBox>
-	</content>
-	<footer>
-		<Toolbar justifyContent="End">
-			<content>
-				<Button text="Actualizar" icon="sap-icon://add-activity" type="Accept" press="onPressEditTabla" ariaHasPopup="Dialog"/>
-
-				<Button text="Limpiar" icon="sap-icon://clear-filter" press="onClearInputs"/>
-				<ToolbarSpacer/>
-				<Button text="Cerrar" type="Reject" press="closeProducts" ariaHasPopup="Dialog"/>
-			</content>
-		</Toolbar>
-	</footer>
-</Dialog>
-
+						<Label text="{i18n>datepicker}"/>
+						<DatePicker
+							value="{
+								path: 'localModel>/addProduct/datepicker'
+							}"
+							displayFormat="dd.MM.yyyy"
+							valueFormat="yyyy-MM-dd"
+						/>
+						<Label
+							text="{i18n>statusName}"
+							required="true"
+						/>
+						<Select
+							id="idStatusEdit"
+							items="{
+								path: 'localModel>/activo'
+							}"
+							selectedKey="{
+								path: 'localModel>/selectStateName'
+							}"
+						>
+							<core:ListItem
+								key="{localModel>id}"
+								text="{localModel>name}"
+								enabled="{= ${localModel>id} === '0' ? false : true }"
+							/>
+						</Select>
+						<Label
+							text="{i18n>image}"
+							required="true"
+						/>
+						<Input
+							value="{
+								path: 'localModel>/editProduct/image'
+							}"
+							valueLiveUpdate="true"
+						/>
+						<Image
+							src="{
+								path: 'localModel>/editProduct/image'
+							}"
+							width="14rem"
+						/>
+					</f:content>
+				</f:SimpleForm>
+			</VBox>
+		</content>
+		<footer>
+			<Toolbar justifyContent="End">
+				<content>
+					<Button
+						text="Actualizar"
+						icon="sap-icon://add-activity"
+						type="Accept"
+						press="onPressEditTabla"
+						ariaHasPopup="Dialog"
+					/>
+					<Button
+						text="Limpiar"
+						icon="sap-icon://clear-filter"
+						press="onClearInputs"
+					/>
+					<ToolbarSpacer/>
+					<Button
+						text="Cerrar"
+						type="Reject"
+						press="closeProducts"
+						ariaHasPopup="Dialog"
+					/>
+				</content>
+			</Toolbar>
+		</footer>
+	</Dialog>
 </core:FragmentDefinition>

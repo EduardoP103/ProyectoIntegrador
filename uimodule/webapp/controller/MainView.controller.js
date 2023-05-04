@@ -499,19 +499,20 @@ sap.ui.define(
                         oExport.destroy();
                     });
             },
+            
             // FILTRO ASCENDENTE Y DESCENTENTE
             onSortAscending: function() {
-                var oTable = this.byId("idProductsTable");
-                var oBinding = oTable.getBinding("items");
-                var aSorters = [];
+                let oTable = this.byId("idProductsTable");
+                let oBinding = oTable.getBinding("items");
+                let aSorters = [];
                 aSorters.push(new sap.ui.model.Sorter("salePrice", false));
                 oBinding.sort(aSorters);
               },
               
               onSortDescending: function() {
-                var oTable = this.byId("idProductsTable");
-                var oBinding = oTable.getBinding("items");
-                var aSorters = [];
+                let oTable = this.byId("idProductsTable");
+                let oBinding = oTable.getBinding("items");
+                let aSorters = [];
                 aSorters.push(new sap.ui.model.Sorter("salePrice", true));
                 oBinding.sort(aSorters);
               },
@@ -556,8 +557,7 @@ sap.ui.define(
                 }.bind(this));
 
             },
-            closeProducts: function () {
-                debugger;
+           closeDialogProducto : function () {
                 this.oDialogProducto.close();
                 this.onClearInputs();
             },
@@ -579,7 +579,7 @@ sap.ui.define(
                 );
 
             },
-            closeProducts: function () {
+            closeDialogProducto: function () {
                 this.oDialogProducts.close();
                 this.onClearInputs();
             },
@@ -812,7 +812,7 @@ sap.ui.define(
                 this.getView().getModel("localModel").setProperty("/listOfProducts", finalProducts);
                 this.getView().getModel("localModel").refresh(true);
                 MessageBox.success("Producto actualizado");
-                this.closeProducts();
+                this.closeDialogProducto();
             },
 
 
