@@ -30,7 +30,7 @@
 					</headerToolbar>
 					<columns>
 						<Column>
-							<Text text="Nombre" />
+							<Text text="Columnas" />
 						</Column>
 						<!-- <Column>
 							<Text text="Category" />
@@ -71,7 +71,7 @@
 					path: '/ProductCollection',
 					filters: {path: 'Rank', operator: 'GT', value1: '0'},
 					sorter: {path: 'Rank', descending: true}
-				}" noDataText="Porfavor, Drag-and-Drop las columnas a visualizar.">
+				}" noDataText="Elija que columnas desea visualizar.">
 							<contextMenu>
 								<Menu>
 									<MenuItem text="Move to Available Products" press="moveToAvailableProductsTable" />
@@ -89,7 +89,7 @@
 							</headerToolbar>
 							<columns>
 								<Column>
-									<Text text="Nombre" />
+									<Text text="Columnas" />
 								</Column>
 								<!-- <Column>
 									<Text text="Category" />
