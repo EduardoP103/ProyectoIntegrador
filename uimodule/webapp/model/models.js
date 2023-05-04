@@ -88,7 +88,7 @@ sap.ui.define(
                             statusName: "Activo",
                             statusIcon: "sap-icon://sys-enter-2",
                             statusState: "Success",
-                            datepicker: "4/05/2023"
+                            datepicker: "2023-05-04	"
                         },
                         {
                             id: 1,
@@ -108,7 +108,7 @@ sap.ui.define(
                             statusName: "Activo",
                             statusIcon: "sap-icon://sys-enter-2",
                             statusState: "Success",
-                            datepicker: "4/05/2023"
+                            datepicker: "2023-05-04"
                         },
                         {
                             id: 2,
@@ -128,7 +128,7 @@ sap.ui.define(
                             statusName: "Activo",
                             statusIcon: "sap-icon://sys-enter-2",
                             statusState: "Success",
-                            datepicker: "4/05/2023"
+                            datepicker: "2023-05-04"
                         },
                         {
                             id: 3,
@@ -148,7 +148,7 @@ sap.ui.define(
                             statusName: "Activo",
                             statusIcon: "sap-icon://sys-enter-2",
                             statusState: "Success",
-                            datepicker: "4/05/2023"
+                            datepicker: "2023-05-04	"
                         },
                     ],
                     listOfSuppliers: [

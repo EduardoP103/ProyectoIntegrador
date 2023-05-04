@@ -112,14 +112,13 @@
 								enabled="{= ${localModel>id} === '0' ? false : true }"
 							/>
 						</Select>
-						<Label text="{i18n>datepicker}"/>
-						<DatePicker
-							value="{
-								path: 'localModel>/addProduct/datepicker'
-							}"
-							displayFormat="dd.MM.yyyy"
-							valueFormat="yyyy-MM-dd"
-						/>
+						<Label text="{i18n>datepicker}" />
+							<DatePicker
+							  value="{path: 'localModel>/editProduct/datepicker'}"
+							  displayFormat="dd.MM.yyyy"
+							  valueFormat="yyyy-MM-dd"
+							/>
+							
 						<Label
 							text="{i18n>statusName}"
 							required="true"

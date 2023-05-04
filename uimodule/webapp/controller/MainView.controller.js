@@ -598,7 +598,8 @@ sap.ui.define(
                         "stock": "",
                         "unitOfMeasurementName": "",
                         "supplierName": "",
-                        "statusName": ""
+                        "statusName": "",
+                        "datepicker": ""
                     });
 
                 this.getView().getModel("localModel").setProperty("/selectSupplierName", "0");
@@ -614,7 +615,6 @@ sap.ui.define(
                     "address": "",
                     "state": ""
                 });
-
                 this.getView().getModel("localModel").setProperty("/editProduct",
                     {
                         "name": "",
@@ -625,7 +625,8 @@ sap.ui.define(
                         "stock": "",
                         "unitOfMeasurementName": "",
                         "supplierName": "",
-                        "statusName": ""
+                        "statusName": "",
+                        "datepicker": "",
                     });
             },
             onConfirmDeletion: function (oEvent) {
@@ -682,7 +683,8 @@ sap.ui.define(
                   stock,
                   unitOfMeasurementName,
                   supplierName,
-                  statusName
+                  statusName,
+                  datepicker,
                 } = this.getView().getModel("localModel").getProperty("/addProduct");
               
                 // Validar que los campos requeridos estén completos
@@ -717,7 +719,8 @@ sap.ui.define(
                   "statusName": this.getView().byId("idStatus").getSelectedItem().getProperty("text"),
                   "idUnitOfmeasurment": selectUnitOfMeasurementName,
                   "idSupplier": selectSupplierName,
-                  "idStatus": selectStateName
+                  "idStatus": selectStateName,
+                  "datepicker": datepicker
                 }
               
                 let listOfProducts = this.getView().getModel("localModel").getProperty("/listOfProducts");
@@ -733,8 +736,7 @@ sap.ui.define(
             onPressEditTabla: function () {
                 debugger
                 // let id = this.getView().getModel("localModel").getProperty("/editProduct").id;
-                const { id, name: nameProduct, description: descriptionProduct, image: imageProduct, salePrice, purchasePrice, stock, unitOfMeasurementName, supplierName, statusName } = this.getView().getModel("localModel").getProperty("/editProduct")
-                // let nameProduct = this.getView().getModel("localModel").getProperty("/editProduct").name;
+                const { id, name: nameProduct, description: descriptionProduct, image: imageProduct, salePrice, purchasePrice, stock, unitOfMeasurementName, supplierName, statusName, datepicker } = this.getView().getModel("localModel").getProperty("/editProduct")
 
                 const { selectStateName, selectUnitOfMeasurementName, selectSupplierName } = this.getView().getModel("localModel").getData()
 
@@ -764,6 +766,7 @@ sap.ui.define(
                     "idUnitOfmeasurment": selectUnitOfMeasurementName,
                     "idsupplierName": selectSupplierName,
                     "idstatusName": selectStateName,
+                    "datepicker": datepicker
 
                 }
                 let oResp = {
@@ -839,11 +842,11 @@ sap.ui.define(
             },
             onInputChange: function (oEvent) {
                 const oInput = oEvent.getSource();
-                let sValue = oInput.getValue().trim(); // Se elimina cualquier espacio en blanco al principio o al final
-                const regex = /^[a-zA-Z]+(\s[a-zA-Z]+)*$/; // Expresión regular para permitir solo letras y un solo espacio entre cada palabra
+                let sValue = oInput.getValue().trim();
+                const regex = /^[a-zA-Z]+(\s[a-zA-Z]+)*$/; 
                 if (!regex.test(sValue)) {
                     oInput.setValueState("Error");
-                    sValue = sValue.replace(/[^\sa-zA-Z]/g, ''); // Se eliminan todos los caracteres que no son letras o espacios
+                    sValue = sValue.replace(/[^\sa-zA-Z]/g, ''); 
                     oInput.setValue(sValue);
                 } else {
                     oInput.setValueState("None");
@@ -880,7 +883,7 @@ sap.ui.define(
                     oInput.setValueState("None");
                 }
             },
-
+            
             // FILTROS
 
             // _filter: function(){
