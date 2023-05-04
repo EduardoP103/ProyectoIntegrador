@@ -85,8 +85,6 @@ sap.ui.define(
             },
 
             oCloseImage: function (oEvent) {
-                // note: We don't need to chain to the _pPopover promise, since this event-handler
-                // is only called from within the loaded dialog itself.
                 this.byId("myPopover").close();
             },
 
@@ -542,49 +540,43 @@ sap.ui.define(
                 
                 oBinding.filter(allFilters);
               },
-              
-            onAddProduct: function () {
-
-                if (!this.oMPProducto) {
-                    this.oMPProducto = this.loadFragment({
-                        name: "com.pe.proyectoIntegrador.view.fragment.AddProduct"
-                    });
-                }
-                this.oMPProducto.then(function (oDialog) {
+        onAddProduct: function () {
+            if (!this.oMPAddProduct) {
+                this.oMPAddProduct = this.loadFragment({
+                    name: "com.pe.proyectoIntegrador.view.fragment.AddProduct"
+                });
+            }
+            this.oMPAddProduct.then(
+                function (oDialog) {
                     this.oDialogProducto = oDialog;
                     this.oDialogProducto.open();
+                }.bind(this)
+            );
+        },
+        closeDialogProducto: function () {
+            this.oDialogProducto.close();
+            this.onClearInputs();
+        },
 
-                }.bind(this));
-
-            },
-           closeDialogProducto : function () {
-                this.oDialogProducto.close();
-                this.onClearInputs();
-            },
-
-            // Editar Producto
-            onEditarProducto: function () {
-
-                if (!this.oMPProductos) {
-                    this.oMPProductos = this.loadFragment({
-                        name: "com.pe.proyectoIntegrador.view.fragment.EditProduct"
-                    });
-                }
-                this.oMPProductos.then(
-                    function (oDialog) {
-                        this.oDialogProducts = oDialog;
-                        this.oDialogProducts.open();
-
-                    }.bind(this)
-                );
-
-            },
-            closeDialogProducto: function () {
-                this.oDialogProducts.close();
-                this.onClearInputs();
-            },
-
-
+        onEditProduct: function () {
+            if (!this.oMPEditProduct) {
+                this.oMPEditProduct = this.loadFragment({
+                    name: "com.pe.proyectoIntegrador.view.fragment.EditProduct"
+                });
+            }
+            this.oMPEditProduct.then(
+                function (oDialog) {
+                    this.oDialogEditProduct = oDialog;
+                    this.oDialogEditProduct.open();
+                }.bind(this)
+            );
+        },
+        closeDialogProductoe: function () {
+            // this.getView().getModel("formularioSimple").setProperty("/search", "");
+            // this.onLimpiarCamposDialogo();
+            this.oDialogEditProduct.close();
+            this.onClearInputs();
+        },
 
             // REVISAR ESTO 
             onClearInputs: function () {
@@ -837,7 +829,7 @@ sap.ui.define(
                 this.getView().getModel("localModel").setProperty("/selectSupplierName", oSelectObj.idSupplier);
                 this.getView().getModel("localModel").setProperty("/selectStateName", oSelectObj.idStatus);
                 this.getView().getModel("localModel").setProperty("/editProduct", oSelectObj);
-                this.onEditarProducto();
+                this.onEditProduct();
 
             },
             onInputChange: function (oEvent) {

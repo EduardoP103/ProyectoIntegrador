@@ -157,7 +157,7 @@
 					<Button
 						text="Cerrar"
 						type="Reject"
-						press="closeAddProducts"
+						press="closeDialogProducto"
 						ariaHasPopup="Dialog"
 					/>
 				</content>
