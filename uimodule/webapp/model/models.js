@@ -222,7 +222,13 @@ sap.ui.define(
                         phone: "",
                         address: "",
                         state: "",
-                    }
+                    },
+                    editSupplierName: {
+                        name: "",
+                        phone: "",
+                        address: "",
+                        state: "",
+                    },
 
                 };
                 const oModel = new JSONModel(oParam);

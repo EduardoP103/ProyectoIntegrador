@@ -5,14 +5,11 @@
 	xmlns:core="sap.ui.core"
 >
 	<Dialog
-		id="Agregar"
-		title="Agregar Proveedores"
+		id="DialogEditSupplierName"
+		title="Editar Proveedor"
 	>
 		<content>
-			<VBox
-				class="sapUiSmallMargin"
-				id="formContainerEmployment1"
-			>
+			<VBox class="sapUiSmallMargin">
 				<f:SimpleForm
 					editable="true"
 					layout="ColumnLayout"
@@ -22,37 +19,47 @@
 				>
 					<f:content>
 						<Label
-							required="true"
 							text="{i18n>name}"
+							required="true"
 						/>
 						<Input
 							value="{
-								path: 'localModel>/addSupplierName/name'
+								path: 'localModel>/editSupplierName/name'
 							}"
 							liveChange="onInputChange"
 						/>
-                        <Label
-							required="true"
+						<Label
 							text="{i18n>phone}"
-						/>
-						<Input
-							value="{
-								path: 'localModel>/addSupplierName/phone'
-							}"
-							liveChange="onNumberInput"
-						/>
-                        <Label
 							required="true"
-							text="{i18n>address}"
 						/>
 						<Input
 							value="{
-								path: 'localModel>/addSupplierName/address'
+								path: 'localModel>/editSupplierName/phone'
 							}"
+							liveChange="onInputChange"
 						/>
-						<Label text="{i18n>statusName}"/>
 						<Select
-							id="idStatus"
+							id="idUnitEdit"
+							items="{
+								path: 'localModel>/ListunitOfMeasurementName'
+							}"
+							selectedKey="{
+								path: 'localModel>/selectUnitOfMeasurementName'
+							}"
+						>
+							<core:ListItem
+								key="{localModel>id}"
+								text="{localModel>name}"
+								enabled="{= ${localModel>id} === '0' ? false : true }"
+							/>
+						</Select>
+							
+						<Label
+							text="{i18n>statusName}"
+							required="true"
+						/>
+						<Select
+							id="idStatusEdit"
 							items="{
 								path: 'localModel>/activo'
 							}"
@@ -66,6 +73,7 @@
 								enabled="{= ${localModel>id} === '0' ? false : true }"
 							/>
 						</Select>
+						
 					</f:content>
 				</f:SimpleForm>
 			</VBox>
@@ -74,10 +82,10 @@
 			<Toolbar justifyContent="End">
 				<content>
 					<Button
-						text="Agregar"
+						text="Actualizar"
 						icon="sap-icon://add-activity"
 						type="Accept"
-						press="onAddProductTable"
+						press="onPressEditProduct"
 						ariaHasPopup="Dialog"
 					/>
 					<Button
@@ -89,7 +97,7 @@
 					<Button
 						text="Cerrar"
 						type="Reject"
-						press="closeDialogAddSupplierName"
+						press="closeEditDialogSupplierName"
 						ariaHasPopup="Dialog"
 					/>
 				</content>
