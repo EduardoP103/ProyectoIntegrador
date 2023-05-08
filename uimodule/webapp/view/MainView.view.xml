@@ -54,9 +54,9 @@
 
                         <layout:VerticalLayout class="sapUiMediumMarginEnd">
 
-                            <Image class="sans" src="https://www.memorykings.pe/files_noticias/listado/memorykings-listado.png" width="180px" />
+                            <Image src="https://www.memorykings.pe/files_noticias/listado/memorykings-listado.png" width="180px" press="clickMemorykings"/>
 
-							<Image class="sans" src="https://aerocool.io/wp-content/uploads/2019/07/CYC-logo.png" width="180px" />
+							<Image src="https://aerocool.io/wp-content/uploads/2019/07/CYC-logo.png" width="180px" press="clickCyC"/>
                         
 						</layout:VerticalLayout>
 
@@ -67,7 +67,7 @@
                             <ObjectAttribute title="{i18n>cargoobj}"/>
 							<Button text="{i18n>cargonombreobj}"  type="Transparent" icon="sap-icon://employee" enabled="false"/>
 							
-							<Image class="seidor" src="https://www.seidor.com/icons/seidor.jpeg" width="110px" />
+							<Image src="https://www.seidor.com/icons/seidor.jpeg" width="120px" press="clicSeidor"/>
 
 						</layout:VerticalLayout>
 						
@@ -76,7 +76,8 @@
 						<layout:VerticalLayout class="sapUiMediumMarginEnd">
 						
 							<Text text="Patrocinado por: "></Text>
-                            <Image class="sans" src="https://logodownload.org/wp-content/uploads/2018/03/logitech-logo-3.png" width="100px" />
+                            <Image src="https://logodownload.org/wp-content/uploads/2018/03/logitech-logo-3.png" width="100px" press="clicLogitech"/>
+							
                         
 						</layout:VerticalLayout>
 
@@ -469,6 +470,7 @@
 
 				<Button type="Accept" text="Exportar CSV" icon="sap-icon://documents" press="onDataExport"/>
 				<Button type="Accept" text="Exportar Excel" icon="sap-icon://excel-attachment" press="onExportSpreadSheetXLSX"/>
+				<Button type="Critical" text="Exportar PDF" icon="sap-icon://pdf-attachment" press="onExportPDF"/>
 
 			</OverflowToolbar>
 

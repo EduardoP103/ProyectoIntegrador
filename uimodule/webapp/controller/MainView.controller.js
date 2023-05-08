@@ -76,9 +76,9 @@ sap.ui.define(
             },
 
             onInfo: function () {
-                MessageBox.information("Los botones Exportar CSV y Exportar Excel crearán los archivos en base al TAB en el que se encuentre");
+                MessageBox.information("Los botones Exportar CSV, Exportar Excel y Exportar PDF crearán los archivos en base al TAB en el que se encuentre");
             },
-
+            
             // ----------------------------Card Créditos -------------------------//
 
             onPressOpenPopover: function (oEvent) {
@@ -119,6 +119,32 @@ sap.ui.define(
                 this._pPopover2.then(function (oPopover2) {
                     oPopover2.openBy(oSourceControl1);
                 });
+            },
+
+            // ----------------------------Abrir páginas web auspiciadoras -------------------------//
+
+            clickMemorykings: function(){
+                var link= "https://www.memorykings.pe"
+                window.open(link);
+                //sap.m.URLHelper.redirect(link,true);
+            },
+
+            clickCyC: function(){
+                var link= "https://cyccomputer.pe"
+                window.open(link);
+                //sap.m.URLHelper.redirect(link,true);
+            },
+
+            clicLogitech: function(){
+                var link= "https://www.logitech.com/es-roam"
+                window.open(link);
+                //sap.m.URLHelper.redirect(link,true);
+            },
+
+            clicSeidor: function(){
+                var link= "https://www.seidor.com/es-pe"
+                window.open(link);
+                //sap.m.URLHelper.redirect(link,true);
             },
 
             // ----------------------------Popover imagen -------------------------//
