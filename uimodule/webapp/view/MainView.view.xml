@@ -2,11 +2,11 @@
 	controllerName="com.pe.proyectoIntegrador.controller.MainView"
 	xmlns:mvc="sap.ui.core.mvc"
 	xmlns="sap.m"
-	xmlns:c="sap.ui.core"
 	xmlns:f="sap.f"
 	xmlns:layout="sap.ui.layout"
 	height="100%"
 >
+
 	<f:DynamicPage
 		id="dynamicPageId"
 		showFooter="true"
@@ -28,6 +28,7 @@
 		</f:title>
 		<!-- DynamicPage Header -->
 		<f:header>
+			
 			<f:DynamicPageHeader pinnable="true">
 				<layout:HorizontalLayout allowWrapping="true">
 					<layout:VerticalLayout class="sapUiMediumMarginEnd">
@@ -73,6 +74,7 @@
 						path: 'localModel>/search'
 					}"
 					></SearchField>
+					
 						<!-- TABLA -->
 						<Table
 							id="idProductsTable"
@@ -250,7 +252,7 @@
 											type="Transparent"
 											text="{i18n>add}"
 											icon="sap-icon://add"
-											press="onaddSupplierName"
+											press="onAddSupplierName"
 										/>
 										<Button
 											text="{i18n>config}"

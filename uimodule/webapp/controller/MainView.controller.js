@@ -3,8 +3,6 @@ sap.ui.define(
         "sap/ui/core/mvc/Controller",
         "sap/ui/model/json/JSONModel",
         "sap/f/library",
-        // "sap/ui/core/util/PDFDocument",
-        // "jspdf",
         "sap/ui/core/Fragment",
         "sap/m/MessagePopover",
         "sap/m/MessageBox",
@@ -27,19 +25,15 @@ sap.ui.define(
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      * @param {typeof sap.ui.model.json.JSONModel} JSONModel 
-    * @param {typeof sap.f.library} library 
     * @param {typeof sap.ui.core.Fragment} Fragment 
     * @param {typeof sap.m.MessagePopover} MessagePopover 
     * @param {typeof sap.m.MessageBox} MessageBox 
     * @param {typeof sap.m.MessageToast} MessageToast 
     * @param {typeof sap.m.MessageItem} MessageItem 
     * @param {typeof sap.ui.core.message.Message} Message 
-    * @param {typeof sap.ui.core.library} coreLibrary 
     * @param {typeof sap.ui.core.Core} Core 
  */
     function (
-        // PDFDocument,
-        // jsPDF,
         Controller,
         JSONModel,
         library,
@@ -87,36 +81,6 @@ sap.ui.define(
             oCloseImage: function (oEvent) {
                 this.byId("myPopover").close();
             },
-
-            // PDF
-            onExportToPDF: function() {
-                debugger;
-                const oTable = this.getView().byId("idProductsTable"); 
-                const aColumns = oTable.getColumns();
-                const aColumnData = aColumns.map(function(column) {
-                    return {
-                        label: column.getHeader(),
-                        template: {
-                            content: `{$ {column.getAggregation("template").getBindingInfo("text").parts[0].path}}`
-                        }
-                    };
-                });
-                const oSettings = {
-                    workbook: {
-                        columns: aColumnData,
-                        context: {
-                            application: "SAPUI5 Demo App"
-                        }
-                    },
-                    dataSource: oTable.getModel().getProperty("/selectedIconTabBar"),
-                    fileName: "ListaProductosEnStock.pdf"
-                };
-                const oSheet = new Spreadsheet(oSettings);
-                oSheet.build().finally(function() {
-                    oSheet.destroy();
-                });
-            },
-            
             // XLSX
 
             createColumnConfigTableProducts: function () {
@@ -293,6 +257,7 @@ sap.ui.define(
                     oSheet.destroy();
                 });
             },
+                        // EXPORTAR TABLAS EN PDF
             onExportPDF: function() {
                 debugger;
                 const selectedTab = this.getView().getModel("localModel").getProperty("/selectedIconTabBar");
@@ -318,7 +283,6 @@ sap.ui.define(
                     MessageBox.warning("No existen datos, no se puede crear el documento");
                     return;
                 }
-              
                 const oRowBinding = oTable.getBinding("items");
                 if (!oRowBinding || !oRowBinding.getLength()) {
                   MessageBox.warning("No existen datos, no se puede crear el documento");
@@ -497,7 +461,6 @@ sap.ui.define(
                         oExport.destroy();
                     });
             },
-            
             // FILTRO ASCENDENTE Y DESCENTENTE
             onSortAscending: function() {
                 let oTable = this.byId("idProductsTable");
@@ -515,7 +478,7 @@ sap.ui.define(
                 oBinding.sort(aSorters);
               },
               
-            // Filtrar
+            // FILTRAR PRODUCTOS
             onSearch: function(oEvent) {
                 const newValue = oEvent.getSource().getValue();
                 this.filter(newValue);
@@ -540,6 +503,8 @@ sap.ui.define(
                 
                 oBinding.filter(allFilters);
               },
+
+            //   AGREGAR PRODUCTO
         onAddProduct: function () {
             if (!this.oMPAddProduct) {
                 this.oMPAddProduct = this.loadFragment({
@@ -555,6 +520,25 @@ sap.ui.define(
         },
         closeDialogProducto: function () {
             this.oDialogProducto.close();
+            this.onClearInputs();
+        },
+        // AGREGAR PROVEEDORES
+        onAddSupplierName: function () {
+            debugger
+            if (!this.oMPAddSuplierName) {
+                this.oMPAddSuplierName = this.loadFragment({
+                    name: "com.pe.proyectoIntegrador.view.fragment.AddSupplierName"
+                });
+            }
+            this.oMPAddSuplierName.then(
+                function (oDialog) {
+                    this.oDialogSupplierName = oDialog;
+                    this.oDialogSupplierName.open();
+                }.bind(this)
+            );
+        },
+        closeDialogSupplierName: function () {
+            this.oDialogSupplierName.close();
             this.onClearInputs();
         },
 
@@ -578,7 +562,6 @@ sap.ui.define(
             this.onClearInputs();
         },
 
-            // REVISAR ESTO 
             onClearInputs: function () {
                 this.getView().getModel("localModel").setProperty("/addProduct",
                     {
@@ -621,6 +604,7 @@ sap.ui.define(
                         "datepicker": "",
                     });
             },
+            // ELIMINAR PRODUCTO
             onConfirmDeletion: function (oEvent) {
 
                 debugger;
@@ -875,130 +859,6 @@ sap.ui.define(
                     oInput.setValueState("None");
                 }
             },
-            
-            // FILTROS
-
-            // _filter: function(){
-            //     debugger
-            //     let oFilter = null;
-
-            //     if(this._oGlobalFilter && this.oPriceFilter){
-            //         oFilter = new Filter([this.oGlobalFilter, this.oPriceFilter], true);
-            //     } else if(this._oGlobalFilter){
-            //         oFilter = this._oGlobalFilter;
-            //     } else if (this._oPriceFilter){
-            //         oFilter = this._oPriceFilter;
-            //     }
-            //     this.byId("table").getBinding().filter(oFilter, "Application");
-            // },
-            // filterGlobally: function(oEvent){
-            //     debugger
-            //     let sQuery = oEvent.getParameter("query");
-            //     this._oGlobalFilter = null;
-
-            //     if(sQuery) {
-            //         this._oGlobalFilter = new Filter([
-            //             new Filter("Name", FilterOperator.Contains, sQuery),
-            //             new Filter("Category", FilterOperator.Contains, sQuery)
-            //         ], false);
-            //     }
-            //     this._filter();
-            // },
-            // filterPrice: function(oEvent){
-            //     debugger
-            //     let oColumn = oEvent.getParameter("column");
-            //     if(oColumn != this.byId("price")){
-            //         return; 
-            //     }
-            //     oEvent.preventDefault();
-
-            //     let sValue = oEvent.getParameter("value");
-            //     function clear(){
-            //         this._oPriceFilter = null;
-            //         oColumn.setFiltered(false);
-            //         this._filter();
-            //     }
-            //     if (!sValue){
-            //         clear.apply(this);
-            //         return;
-            //     }
-            //     let fValue = null;
-            //     try {
-            //         fValue = parseFloat(sValue, 10);
-            //     } catch (e){
-            //     }
-            //     if(!isNaN(fValue)){
-            //         this._oPriceFilter = new Filter("Price", FilterOperator.BT, fValue - 20, fValue + 20);
-            //         oColumn.setFiltered(true);
-            //         this._filter();
-            //     }else{
-            //         clear.apply(this);
-            //     }
-            // },
-
-            // clearAllFilters: function(oEvent){
-            //     debugger
-            //     let oTable = this.byId("table");
-            //     let oUiModel = this.getView().getModel("ui");
-            //     oUiModel.setProperty("/globalFilter", "");
-			//     oUiModel.setProperty("/availabilityFilterOn", false);
-
-            //     this._oGlobalFilter = null;
-            //     this._PriceFilter = null;
-            //     this._filter();
-
-            //     let oColumns = oTable.getColumns();
-            //     for(let i = 0; i < aColumns.length; i++) {
-            //         oTable.fireValidationError(aColumns[i], null);
-
-            //     }
-            // },
-            // toggleAvailabilityFilter: function(oEvent) {
-            //     debugger
-            //     this.byId("availability").filter(oEvent.getParameter("pressed") ? "X" : "");
-            // },
-
-            // formatAvailableToObjectState: function(bAvailable) {
-            //     debugger
-            //     return bAvailable ? "Success" : "Error";
-            // },
-  
-
-            // onaddSupplierNameTabla: function () {
-            //     let name = this.getView().getModel("localModel").getProperty("/addSupplierName").name;
-            //     let phone = this.getView().getModel("localModel").getProperty("/addSupplierName").phone;
-            //     let address = this.getView().getModel("localModel").getProperty("/addSupplierName").address;
-            //     let est = this.getView().getModel("localModel").getProperty("/addSupplierName").state;
-
-            //     let osupplierName = {
-            //         "id": this.getView().getModel("localModel").getProperty("/listOfSuppliers").length + 1,
-            //         "name": name,
-            //         "phone": phone,
-            //         "address": address,
-            //         "state": this.getView().byId("idstatusName2").getSelectedItem().getProperty("text")
-
-            //     }
-            //     let oResp = {
-            //         valid: true,
-            //         mensaje: ""
-            //     };
-            //     if (name.trim().length == 0 ||
-            //         address.trim().length == 0 ||
-            //         phone <= 0 ||
-            //         this.getView().getModel("localModel").getProperty("/selectStateName") == "0"
-
-            //     ) {
-            //         oResp.valid = false;
-            //         oResp.mensaje = "llena los campos";
-            //         MessageBox.warning("Ingresa todos los campos");
-            //         return oResp;
-            //     }
-            //     let listOfSuppliers = this.getView().getModel("localModel").getProperty("/listOfSuppliers");
-            //     listOfSuppliers.push(osupplierName);
-            //     this.getView().getModel("localModel").refresh();
-            //     MessageBox.success("Datos ingresados correctamente");
-            //     this.closeDialogsupplierName();
-            // },
         });
     }
 );
