@@ -91,7 +91,7 @@
 
 				<content>
 
-					<Button text="Agregar" type="Accept" press="onAddProductoTabla" ariaHasPopup="Dialog" />
+					<Button text="Agregar" type="Accept" press="onAddProductoTabla" ariaHasPopup="Dialog" icon="sap-icon://add-product"/>
 
 					<ToolbarSpacer/>
 
@@ -99,7 +99,7 @@
 
 					<ToolbarSpacer/>
 
-					<Button text="Cerrar" type="Reject" press="closeDialogProducto" ariaHasPopup="Dialog" />
+					<Button text="Cerrar" type="Reject" press="closeDialogProducto" ariaHasPopup="Dialog" icon="sap-icon://decline"/>
 
 				</content>
 

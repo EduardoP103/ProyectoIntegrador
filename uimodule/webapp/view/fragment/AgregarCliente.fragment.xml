@@ -91,7 +91,7 @@
 
 				<content>
 
-					<Button text="Agregar" type="Accept" press="onAddClienteTabla" ariaHasPopup="Dialog" />
+					<Button text="Agregar" type="Accept" press="onAddClienteTabla" ariaHasPopup="Dialog" icon="sap-icon://add-contact"/>
 
 					<ToolbarSpacer/>
 
@@ -99,7 +99,7 @@
 
 					<ToolbarSpacer/>
 
-					<Button text="Cerrar" type="Reject" press="closeDialogCliente" ariaHasPopup="Dialog" />
+					<Button text="Cerrar" type="Reject" press="closeDialogCliente" ariaHasPopup="Dialog" icon="sap-icon://decline"/>
 
 				</content>
 

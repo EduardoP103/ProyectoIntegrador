@@ -67,7 +67,7 @@
                             <ObjectAttribute title="{i18n>cargoobj}"/>
 							<Button text="{i18n>cargonombreobj}"  type="Transparent" icon="sap-icon://employee" enabled="false"/>
 							
-							<Image src="https://www.seidor.com/icons/seidor.jpeg" width="120px" press="clicSeidor"/>
+							<Image src="https://aslan.es/wp-content/uploads/2022/07/Seidor.png" width="120px" press="clicSeidor"/>
 
 						</layout:VerticalLayout>
 						

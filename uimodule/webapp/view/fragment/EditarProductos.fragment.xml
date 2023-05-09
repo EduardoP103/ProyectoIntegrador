@@ -91,11 +91,11 @@
 
 				<content>
 
-					<Button text="Editar" type="Accept" press="onEditProductoTabla" ariaHasPopup="Dialog" />
+					<Button text="Editar" type="Accept" press="onEditProductoTabla" ariaHasPopup="Dialog" icon="sap-icon://edit"/>
 
 					<ToolbarSpacer/>
 
-					<Button text="Cerrar" type="Reject" press="closeDialogProductoe" ariaHasPopup="Dialog" />
+					<Button text="Cerrar" type="Reject" press="closeDialogProductoe" ariaHasPopup="Dialog" icon="sap-icon://decline"/>
 
 				</content>
 

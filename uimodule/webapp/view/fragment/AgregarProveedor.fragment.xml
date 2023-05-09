@@ -57,7 +57,7 @@
 
 				<content>
 
-					<Button text="Agregar" type="Accept" press="onAddProveedorTabla" ariaHasPopup="Dialog" />
+					<Button text="Agregar" type="Accept" press="onAddProveedorTabla" ariaHasPopup="Dialog" icon="sap-icon://supplier"/>
 
 					<ToolbarSpacer/>
 
@@ -65,7 +65,7 @@
 
 					<ToolbarSpacer/>
 
-					<Button text="Cerrar" type="Reject" press="closeDialogProveedor" ariaHasPopup="Dialog" />
+					<Button text="Cerrar" type="Reject" press="closeDialogProveedor" ariaHasPopup="Dialog" icon="sap-icon://decline"/>
 
 				</content>
 

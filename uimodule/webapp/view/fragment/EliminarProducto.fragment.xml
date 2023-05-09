@@ -50,7 +50,8 @@
 						text="Cerrar"
 						type="Reject"
 						press="closeDialogEliminarProducto"
-						ariaHasPopup="Dialog" />
+						ariaHasPopup="Dialog" 
+						icon="sap-icon://decline"/>
 				</content>
 			</Toolbar>
 		</footer>
