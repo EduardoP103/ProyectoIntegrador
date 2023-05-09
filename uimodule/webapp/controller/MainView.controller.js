@@ -269,23 +269,26 @@ sap.ui.define(
             onExportPDF: function () {
                 debugger;
                 const selectedTab = this.getView().getModel("localModel").getProperty("/selectedIconTabBar");
-                let oTable, aCols, fileName;
-
+                let oTable, aCols, fileName, title;
                 switch (selectedTab) {
                     case "0":
                         oTable = this.getView().byId("idProductsTable");
                         aCols = this.createColumnConfigTableProducts();
                         fileName = "ListaProductosEnStock.pdf";
+                        title = "Productos";
+                        // text="{i18n>products} ({= ${localModel>/listOfProducts}.length })"
                         break;
                     case "1":
                         oTable = this.getView().byId("listOfSuppliers");
                         aCols = this.createColumnConfigTableSupplier();
                         fileName = "ListaProveedores.pdf";
+                        title = "Proveedores";
                         break;
                     case "2":
                         oTable = this.getView().byId("listOfUnitOfMeasurement");
                         aCols = this.createColumnConfigTableUnitOfMeasurement();
                         fileName = "ListaUnidadMedida.pdf";
+                        title = "Unidades de Medida";
                         break;
                     default:
                         MessageBox.warning("No existen datos, no se puede crear el documento");
@@ -304,8 +307,8 @@ sap.ui.define(
                         "com/pe/proyectoIntegrador/lib/jsPDF/autotable"
                     );
                 } catch (e) { }
-
                 const doc = new jsPDF();
+                doc.text(title, 14, 10);
                 const tableData = oRowBinding.getCurrentContexts().map(function (oContext) {
                     return aCols.map(function (column) {
                         const property = column.property[0];
@@ -317,7 +320,8 @@ sap.ui.define(
                         return column.label;
                     })],
                     body: tableData,
-                    //margin: {top: 10, bottom: 10, left: 10, right: 10}
+                    margin: { top: 20, left: 10, right: 10, bottom: 10 },
+                    startY: 20
                 });
                 doc.save(fileName);
             },
