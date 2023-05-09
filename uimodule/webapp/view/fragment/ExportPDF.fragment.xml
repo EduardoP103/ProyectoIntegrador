@@ -1,0 +1,10 @@
+<c:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:c="sap.ui.core"
+>
+	<VBox>
+		<Button text="PDF Vertical" press="onExportVertical"/>
+		<Button text="PDF Horizontal" press="onExportHorizontal"/>
+		<Button text="Cancelar" press="onCancel"/>
+	</VBox>
+</c:FragmentDefinition>
