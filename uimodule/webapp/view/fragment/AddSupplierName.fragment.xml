@@ -51,8 +51,9 @@
 							}"
 						/>
 						<Label text="{i18n>statusName}"/>
-						<Select
+						<Select 
 							id="idStatus"
+							required="true"
 							items="{
 								path: 'localModel>/activo'
 							}"
@@ -77,7 +78,7 @@
 						text="Agregar"
 						icon="sap-icon://add-activity"
 						type="Accept"
-						press="onAddProductTable"
+						press="onAddSupplierNameTable"
 						ariaHasPopup="Dialog"
 					/>
 					<Button

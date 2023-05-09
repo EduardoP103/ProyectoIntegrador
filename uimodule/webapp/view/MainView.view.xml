@@ -181,7 +181,6 @@
 								<Column hAlign="Center">
 									<Text text=""/>
 								</Column>
-								
 							</columns>
 							<items>
 								<ColumnListItem vAlign="Middle">
@@ -213,7 +212,7 @@
 											<Button
 												icon="sap-icon://delete"
 												type="Ghost"
-												press="onConfirmDeletion"
+												press="onConfirmDeletionProduct"
 												ariaHasPopup="Dialog"
 											/>
 										</HBox>
@@ -283,6 +282,9 @@
 								>
 									<Text text="{i18n>statusName}"/>
 								</Column>
+								<!-- <Column hAlign="Center">
+									<Text text=""/>
+								</Column> -->
 							</columns>
 							<items>
 								<ColumnListItem vAlign="Middle">
@@ -295,6 +297,19 @@
 											state="Success"
 											icon="sap-icon://message-success"
 										/>
+										<HBox class="contenRowIconTable">
+											<Button
+												icon="sap-icon://edit"
+												type="Ghost"
+												press="onEditSupplierName"
+											/>
+											<Button
+												icon="sap-icon://delete"
+												type="Ghost"
+												press="onConfirmDeletionProduct"
+												ariaHasPopup="Dialog"
+											/>
+										</HBox>
 									</cells>
 								</ColumnListItem>
 							</items>

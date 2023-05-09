@@ -38,22 +38,16 @@
 							}"
 							liveChange="onInputChange"
 						/>
-						<Select
-							id="idUnitEdit"
-							items="{
-								path: 'localModel>/ListunitOfMeasurementName'
+						<Label
+							text="{i18n>address}"
+							required="true"
+						/>
+						<Input
+							value="{
+								path: 'localModel>/editSupplierName/address'
 							}"
-							selectedKey="{
-								path: 'localModel>/selectUnitOfMeasurementName'
-							}"
-						>
-							<core:ListItem
-								key="{localModel>id}"
-								text="{localModel>name}"
-								enabled="{= ${localModel>id} === '0' ? false : true }"
-							/>
-						</Select>
-							
+							liveChange="onInputChange"
+						/>	
 						<Label
 							text="{i18n>statusName}"
 							required="true"
@@ -73,7 +67,6 @@
 								enabled="{= ${localModel>id} === '0' ? false : true }"
 							/>
 						</Select>
-						
 					</f:content>
 				</f:SimpleForm>
 			</VBox>
@@ -85,7 +78,7 @@
 						text="Actualizar"
 						icon="sap-icon://add-activity"
 						type="Accept"
-						press="onPressEditProduct"
+						press="onPressEditSupplierName"
 						ariaHasPopup="Dialog"
 					/>
 					<Button
@@ -97,7 +90,7 @@
 					<Button
 						text="Cerrar"
 						type="Reject"
-						press="closeEditDialogSupplierName"
+						press="closeDialogEditSupplierName"
 						ariaHasPopup="Dialog"
 					/>
 				</content>
