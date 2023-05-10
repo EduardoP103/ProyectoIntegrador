@@ -6,7 +6,6 @@
 	xmlns:layout="sap.ui.layout"
 	height="100%"
 >
-
 	<f:DynamicPage
 		id="dynamicPageId"
 		showFooter="true"
@@ -28,7 +27,6 @@
 		</f:title>
 		<!-- DynamicPage Header -->
 		<f:header>
-			
 			<f:DynamicPageHeader pinnable="true">
 				<layout:HorizontalLayout allowWrapping="true">
 					<layout:VerticalLayout class="sapUiMediumMarginEnd">
@@ -51,11 +49,8 @@
 					</layout:VerticalLayout>
 				</layout:HorizontalLayout>
 			</f:DynamicPageHeader>
-			
 		</f:header>
-		
 		<f:content>
-			
 			<IconTabBar
 				id="iconTabBar"
 				class="sapUiResponsiveContentPadding"
@@ -63,23 +58,28 @@
 					path: 'localModel>/selectedIconTabBar'
 				}"
 			>
-			
 				<items>
 					<IconTabFilter
 						key="0"
 						id="tabproductos"
 						text="{i18n>products}"
 					>
-					<SearchField enableSuggestions="true" id="searchField" placeholder="Filtrar" width="auto" liveChange="onSearch" value="{
-						path: 'localModel>/search'
-					}"
-					></SearchField>
-					
+						<SearchField
+							enableSuggestions="true"
+							id="searchField"
+							placeholder="Filtrar"
+							width="auto"
+							liveChange="onSearch"
+							value="{
+								path: 'localModel>/search'
+							}"
+						/>
 						<!-- TABLA -->
 						<Table
 							id="idProductsTable"
 							sticky="HeaderToolbar,ColumnHeaders"
 							inset="false"
+							mode="MultiSelect"
 							items="{
 								path: 'localModel>/listOfProducts',
 								sorter: {
@@ -98,13 +98,13 @@
 										/>
 										<ToolbarSpacer/>
 										<Button
-										press="onSortAscending"
-										icon="sap-icon://sort-ascending"
-									  />
-									  <Button
-										press="onSortDescending"
-										icon="sap-icon://sort-descending"
-									  />
+											press="onSortAscending"
+											icon="sap-icon://sort-ascending"
+										/>
+										<Button
+											press="onSortDescending"
+											icon="sap-icon://sort-descending"
+										/>
 										<Button
 											text="{i18n>add}"
 											icon="sap-icon://add"
@@ -165,7 +165,7 @@
 								>
 									<Text text="{i18n>supplierName}"/>
 								</Column>
-								<Column 
+								<Column
 									minScreenWidth="Tablet"
 									demandPopin="true"
 								>
@@ -197,7 +197,7 @@
 										<Text text="{localModel>stock}"/>
 										<Text text="{localModel>unitOfMeasurementName}"/>
 										<Text text="{localModel>supplierName}"/>
-											<Text text="{localModel>datepicker}"/>
+										<Text text="{localModel>datepicker}"/>
 										<ObjectStatus
 											text="{localModel>statusName}"
 											icon="sap-icon://message-success"
@@ -390,12 +390,37 @@
 		<f:footer>
 			<OverflowToolbar>
 				<ToolbarSpacer/>
+				<MenuButton
+					text="Exportar PDF"
+					icon="sap-icon://pdf-attachment"
+				>
+					<menu>
+						<Menu itemSelected="onMenuAction">
+							<MenuItem
+								text="PDF Vertical"
+								icon="sap-icon://pdf-attachment"
+								press="onExportPDFVertical"
+							/>
+							<MenuItem
+								text="PDF Horizontal"
+								icon="sap-icon://pdf-attachment"
+								press="onExportPDFHorizontal"
+							/>
+						</Menu>
+					</menu>
+				</MenuButton>
+				<!-- <Button
+					icon="sap-icon://pdf-attachment"
+					type="Transparent"
+					press="onExportPDF"
+					text="Exportar PDF VERTICAL"
+				/>
 				<Button
 					icon="sap-icon://pdf-attachment"
 					type="Transparent"
 					press="onExportPDF"
-					text="Exportar PDF"
-				/>
+					text="Exportar PDF HORIZONTAL"
+				/> -->
 				<Button
 					icon="sap-icon://excel-attachment"
 					press="onDataExport"

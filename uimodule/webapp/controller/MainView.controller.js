@@ -266,7 +266,7 @@ sap.ui.define(
             },
 
             // EXPORTAR TABLAS EN PDF
-            onExportPDF: function () {
+            onExportPDFVertical: function () {
                 debugger;
                 const selectedTab = this.getView().getModel("localModel").getProperty("/selectedIconTabBar");
                 let oTable, aCols, fileName, title;
@@ -308,6 +308,7 @@ sap.ui.define(
                     );
                 } catch (e) { }
                 const doc = new jsPDF();
+                doc.setFontSize(18);
                 doc.text(title, 14, 10);
                 const tableData = oRowBinding.getCurrentContexts().map(function (oContext) {
                     return aCols.map(function (column) {
@@ -321,11 +322,70 @@ sap.ui.define(
                     })],
                     body: tableData,
                     margin: { top: 20, left: 10, right: 10, bottom: 10 },
-                    startY: 20
+                    startY: 20,
+                    styles: { fontSize: 10},
                 });
                 doc.save(fileName);
             },
-
+            onExportPDFHorizontal: function() {
+                debugger;
+                const selectedTab = this.getView().getModel("localModel").getProperty("/selectedIconTabBar");
+                let oTable, aCols, fileName, title;
+                switch (selectedTab) {
+                    case "0":
+                        oTable = this.getView().byId("idProductsTable");
+                        aCols = this.createColumnConfigTableProducts();
+                        fileName = "ListaProductosEnStock.pdf";
+                        title = "Productos";
+                        break;
+                    case "1":
+                        oTable = this.getView().byId("listOfSuppliers");
+                        aCols = this.createColumnConfigTableSupplier();
+                        fileName = "ListaProveedores.pdf";
+                        title = "Proveedores";
+                        break;
+                    case "2":
+                        oTable = this.getView().byId("listOfUnitOfMeasurement");
+                        aCols = this.createColumnConfigTableUnitOfMeasurement();
+                        fileName = "ListaUnidadMedida.pdf";
+                        title = "Unidades de Medida";
+                        break;
+                    default:
+                        MessageBox.warning("No existen datos, no se puede crear el documento");
+                        return;
+                }
+                const oRowBinding = oTable.getBinding("items");
+                if (!oRowBinding || !oRowBinding.getLength()) {
+                    MessageBox.warning("No existen datos, no se puede crear el documento");
+                    return;
+                }
+                try {
+                    let test1 = jQuery.sap.require(
+                        "com/pe/proyectoIntegrador/lib/jsPDF/jspdf"
+                    );
+                    let test = jQuery.sap.require(
+                        "com/pe/proyectoIntegrador/lib/jsPDF/autotable"
+                    );
+                } catch (e) { }
+                const doc = new jsPDF("l", "pt");   
+                doc.setFontSize(18);
+                doc.text(title, 14, 20);
+                const tableData = oRowBinding.getCurrentContexts().map(function(oContext) {
+                    return aCols.map(function(column) {
+                        const property = column.property[0];
+                        return oContext.getProperty(property);
+                    });
+                });
+                doc.autoTable({
+                    head: [aCols.map(function(column) { return column.label; })],
+                    body: tableData,
+                    margin: { top: 60, left: 10, right: 10, bottom: 10 },
+                    startY: 60,
+                    tableWidth: "auto",
+                    styles: { fontSize: 10 },
+                });
+                doc.save(fileName);
+            }, 
             // CSV
             onDataExport: function (oEvent) {
                 debugger;
