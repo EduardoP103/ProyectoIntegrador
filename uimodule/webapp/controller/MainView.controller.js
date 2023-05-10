@@ -81,8 +81,11 @@ sap.ui.define(
             oCloseImage: function (oEvent) {
                 this.byId("myPopover").close();
             },
-            // XLSX
-
+            oSelectCheckBox: function() {
+                let oTable = this.getView().byId("idProductsTable");
+                let oMultiSelectMode = oTable.getMode() === "MultiSelect";
+                oTable.setMode(oMultiSelectMode ? "None" : "MultiSelect");
+              },
             createColumnConfigTableProducts: function () {
                 let aCols = [];
 
@@ -210,7 +213,7 @@ sap.ui.define(
 
                 aCols.push({
                     label: "Abreviatura",
-                    property: ["abreviatura"],
+                    property: ["abbreviation"],
                     type: EdmType.String,
                     template: "{0}",
                 });
@@ -222,6 +225,7 @@ sap.ui.define(
                     template: "{0}",
                 });
 
+                
                 return aCols;
             },
 
@@ -307,7 +311,7 @@ sap.ui.define(
                         "com/pe/proyectoIntegrador/lib/jsPDF/autotable"
                     );
                 } catch (e) { }
-                const doc = new jsPDF();
+                const doc = new jsPDF("p", "mm", "a4");
                 doc.setFontSize(18);
                 doc.text(title, 14, 10);
                 const tableData = oRowBinding.getCurrentContexts().map(function (oContext) {
@@ -323,11 +327,12 @@ sap.ui.define(
                     body: tableData,
                     margin: { top: 20, left: 10, right: 10, bottom: 10 },
                     startY: 20,
-                    styles: { fontSize: 10},
+                    tableWidth: "auto",
+                    styles: { fontSize: 10 },
                 });
                 doc.save(fileName);
             },
-            onExportPDFHorizontal: function() {
+            onExportPDFHorizontal: function () {
                 debugger;
                 const selectedTab = this.getView().getModel("localModel").getProperty("/selectedIconTabBar");
                 let oTable, aCols, fileName, title;
@@ -367,17 +372,17 @@ sap.ui.define(
                         "com/pe/proyectoIntegrador/lib/jsPDF/autotable"
                     );
                 } catch (e) { }
-                const doc = new jsPDF("l", "pt");   
+                const doc = new jsPDF("l", "pt");
                 doc.setFontSize(18);
                 doc.text(title, 14, 20);
-                const tableData = oRowBinding.getCurrentContexts().map(function(oContext) {
-                    return aCols.map(function(column) {
+                const tableData = oRowBinding.getCurrentContexts().map(function (oContext) {
+                    return aCols.map(function (column) {
                         const property = column.property[0];
                         return oContext.getProperty(property);
                     });
                 });
                 doc.autoTable({
-                    head: [aCols.map(function(column) { return column.label; })],
+                    head: [aCols.map(function (column) { return column.label; })],
                     body: tableData,
                     margin: { top: 60, left: 10, right: 10, bottom: 10 },
                     startY: 60,
@@ -385,141 +390,165 @@ sap.ui.define(
                     styles: { fontSize: 10 },
                 });
                 doc.save(fileName);
-            }, 
+            },
             // CSV
-            onDataExport: function (oEvent) {
+            onExportSpreadSheetCSV: function (oEvent) {
                 debugger;
-                let selectedTab = this.getView().getModel("localModel").getProperty("/selectedIconTabBar");
-                if (selectedTab == "0") {
-                    let oExport = new Export({
-                        exportType: new ExportTypeCSV({
-                            separatorChar: ","
-                        }),
-                        models: this.getView().getModel("localModel"),
-                        rows: {
-                            path: "/listOfProducts"
-                        },
-                        columns: [{
-                            name: "Nombre",
-                            template: {
-                                content: "{name}"
-                            }
-                        }, {
-                            name: "Descripcion",
-                            template: {
-                                content: "{description}"
-                            }
-                        }, {
-                            name: "Imagenes",
-                            template: {
-                                content: "{image}"
-                            }
-                        }, {
-                            name: "Precio V.",
-                            template: {
-                                content: "{salePrice}"
-                            }
-                        }, {
-                            name: "Precio C.",
-                            template: {
-                                content: "{purchasePrice}"
-                            }
-                        }, {
-                            name: "Stock",
-                            template: {
-                                content: "{stock}"
-                            }
-                        }, {
-                            name: "Unidad M.",
-                            template: {
-                                content: "{unitOfMeasurementName}"
-                            }
-                        }, {
-                            name: "Proveedores",
-                            template: {
-                                content: "{supplierName}"
-                            }
-                        }, {
-                            name: "Estado",
-                            template: {
-                                content: "{statusName}"
-                            }
-                        }, {
-                            name: "Fecha de envio",
-                            template: {
-                                content: "{datepicker}"
-                            }
-                        }]
-                    });
-
-                } else if (selectedTab == "1") {
-
-                    let oExport = new Export({
-                        exportType: new ExportTypeCSV({
-                            separatorChar: ","
-                        }),
-                        models: this.getView().getModel("localModel"),
-                        rows: {
-                            path: "/listOfSuppliers"
-                        },
-                        columns: [{
-                            name: "Name",
-                            template: {
-                                content: "{name}"
-                            }
-                        }, {
-                            name: "Telefono",
-                            template: {
-                                content: "{phone}"
-                            }
-                        }, {
-                            name: "Dirección",
-                            template: {
-                                content: "{address}"
-                            }
-                        }, {
-                            name: "Estado",
-                            template: {
-                                content: "{statusName}"
-                            }
-                        }]
-                    });
-
-                } else if (selectedTab == "2") {
-                    debugger;
-
-                    let oExport = new Export({
-                        exportType: new ExportTypeCSV({
-                            separatorChar: ","
-                        }),
-                        models: this.getView().getModel("localModel"),
-                        rows: {
-                            path: "/listOfUnitOfMeasurement"
-                        },
-                        columns: [{
-                            name: "Nombres",
-                            template: {
-                                content: "{name}"
-                            }
-                        }, {
-                            name: "Descripcion",
-                            template: {
-                                content: "{description}"
-                            }
-                        }, {
-                            name: "Abreviatura",
-                            template: {
-                                content: "{abbreviation}"
-                            }
-                        }, {
-                            name: "state",
-                            template: {
-                                content: "{statusName}"
-                            }
-                        }]
-                    });
-
+                const selectedTab = this.getView().getModel("localModel").getProperty("/selectedIconTabBar");
+                // let fileName;
+                switch (selectedTab) {
+                    case "0":
+                        // fileName = "ListaProductosEnStock.csv";
+                        var oExport = new Export({
+                            exportType: new ExportTypeCSV({
+                                separatorChar: ",",
+                            }),
+                            models: this.getView().getModel("localModel"),
+                            rows: {
+                                path: "/listOfProducts",
+                            },
+                            columns: [
+                                {
+                                    name: "Nombre",
+                                    template: {
+                                        content: "{name}",
+                                    },
+                                },
+                                {
+                                    name: "Descripcion",
+                                    template: {
+                                        content: "{description}",
+                                    },
+                                },
+                                {
+                                    name: "Imagen URL",
+                                    template: {
+                                        content: "{image}",
+                                    },
+                                },
+                                {
+                                    name: "Precio V.",
+                                    template: {
+                                        content: "{salePrice}",
+                                    },
+                                },
+                                {
+                                    name: "Precio C.",
+                                    template: {
+                                        content: "{purchasePrice}",
+                                    },
+                                },
+                                {
+                                    name: "Stock",
+                                    template: {
+                                        content: "{stock}",
+                                    },
+                                },
+                                {
+                                    name: "Unidad M.",
+                                    template: {
+                                        content: "{unitOfMeasurementName}",
+                                    },
+                                },
+                                {
+                                    name: "Proveedor",
+                                    template: {
+                                        content: "{supplierName}",
+                                    },
+                                },
+                                {
+                                    name: "Activo",
+                                    template: {
+                                        content: "{statusName}",
+                                    },
+                                },
+                                {
+                                    name: "Fecha de envio",
+                                    template: {
+                                        content: "{datepicker}"
+                                    }
+                                }
+                            ],
+                        });
+                        break;
+                    case "1":
+                        var oExport = new Export({
+                            exportType: new ExportTypeCSV({
+                                separatorChar: ",",
+                            }),
+                            models: this.getView().getModel("localModel"),
+                            rows: {
+                                path: "/listOfSuppliers",
+                            },
+                            columns: [
+                                {
+                                    name: "Nombre",
+                                    template: {
+                                        content: "{name}",
+                                    },
+                                },
+                                {
+                                    name: "Telefono",
+                                    template: {
+                                        content: "{phone}",
+                                    },
+                                },
+                                {
+                                    name: "Direccion",
+                                    template: {
+                                        content: "{address}",
+                                    },
+                                },
+                                {
+                                    name: "Estado",
+                                    template: {
+                                        content: "{statusName}",
+                                    },
+                                },
+                            ],
+                        });
+                        break;
+                    case "2":
+                        var oExport = new Export({
+                            exportType: new ExportTypeCSV({
+                                separatorChar: ",",
+                            }),
+                            models: this.getView().getModel("localModel"),
+                            rows: {
+                                path: "/listOfUnitOfMeasurement",
+                            },
+                            columns: [
+                                {
+                                    name: "Nombres",
+                                    template: {
+                                        content: "{name}",
+                                    },
+                                },
+                                {
+                                    name: "Descripcion",
+                                    template: {
+                                        content: "{description}",
+                                    },
+                                },
+                                {
+                                    name: "Abreviatura",
+                                    template: {
+                                        content: "{abbreviation}",
+                                    },
+                                },
+                                {
+                                    name: "state",
+                                    template: {
+                                        content: "{statusName}",
+                                    },
+                                }]
+                        });
+                        break;
+                    default:
+                        console.log("Invalid tab selected");
+                        return;
                 }
+            
                 oExport
                     .saveFile()
                     .catch(function (oError) {
@@ -528,6 +557,42 @@ sap.ui.define(
                     .then(function () {
                         oExport.destroy();
                     });
+            },
+            
+            // ELIMINAR SELECCIONADOS
+            onConfirmDeletionProduct: function (oEvent) {
+                const oButton = oEvent.getSource(),
+                    oView = this.getView();
+                const aSelectedProducts = oView
+                    .byId("table")
+                    .getSelectedItems()
+                    .map(item => item.getBindingContext("localModel").getObject());
+
+                if (!this.oMPProductRemoved) {
+                    this.oMPProductRemoved = this.loadFragment({
+                        name: "com.pe.proyectoIntegrador.view.fragment.DeleteMultipleProducts",
+                    });
+                }
+
+                this.oMPProductRemoved.then(function (oDialogProductDeleted) {
+                    this.oDialogProductDeleted = oDialogProductDeleted;
+                    this.oDialogProductDeleted.open();
+                }.bind(this));
+            },
+
+            onPressDeleteProduct: function () {
+                const aSelectedProducts = this.getView()
+                    .byId("table")
+                    .getSelectedItems()
+                    .map(item => item.getBindingContext("localModel").getObject());
+                const aAllProducts = this.getView().getModel("localModel").getProperty("/listOfProducts");
+                const aFinalProducts = aAllProducts.filter(product => !aSelectedProducts.includes(product));
+
+                this.getView().getModel("localModel").setProperty("/listOfProducts", aFinalProducts);
+                this.getView().getModel("localModel").refresh();
+
+                MessageBox.success("Productos eliminados");
+                this.closeDialogRemoveProduct();
             },
 
             // FILTRO ASCENDENTE Y DESCENTENTE
@@ -645,6 +710,46 @@ sap.ui.define(
                         "datepicker": "",
                     });
             },
+            // ELIMINAR PRODUCTOS SELECTIONADOS 
+            onRemoveSelected: function () {
+                const oTable = this.byId("idProductsTable");
+                const aSelectedItems = oTable.getSelectedItems();
+                const aSelectedProducts = [];
+                aSelectedItems.forEach(function (oItem) {
+                    const oProduct = oItem.getBindingContext("localModel").getObject();
+                    aSelectedProducts.push(oProduct);
+                });
+                if (aSelectedProducts.length === 0) {
+                    MessageBox.warning("Seleccione uno o más productos para eliminar");
+                    return;
+                }
+                MessageBox.confirm("¿Está seguro que desea eliminar los productos seleccionados?", {
+                    onClose: function (oAction) {
+                        if (oAction === MessageBox.Action.OK) {
+                            const oModel = this.getView().getModel("localModel");
+                            aSelectedProducts.forEach(function (oProduct) {
+                                const iIndex = oModel.getProperty("/listOfProducts").indexOf(oProduct);
+                                oModel.getProperty("/listOfProducts").splice(iIndex, 1);
+                            });
+                            oTable.removeSelections();
+                            oModel.updateBindings();
+                        }
+                    }.bind(this)
+                });
+            },
+            //   onConfirmDeletionSelected: function (oEvent) {
+            //     const oTable = this.byId("idProductsTable");
+            //     const aSelectedItems = oTable.getSelectedItems();
+            //     if (aSelectedItems.length === 0) {
+            //         MessageToast.show(this.getView().getModel("i18n").getResourceBundle().getText("noItemSelected"));
+            //         return;
+            //     }
+            //     const aProductsToDelete = [];
+            //     aSelectedItems.forEach(function (oSelectedItem) {
+            //         const oProduct = oSelectedItem.getBindingContext("localModel").getObject();
+            //         aProductsToDelete.push(oProduct);
+            //     });
+            // },   
 
             // ELIMINAR PRODUCTO
             onConfirmDeletionProduct: function (oEvent) {
@@ -736,6 +841,7 @@ sap.ui.define(
                 listOfProducts.push(oProducto);
                 this.getView().getModel("localModel").refresh();
                 MessageBox.success("Producto guardado");
+                confetti(); 
                 this.closeDialogProducto();
             },
             // DEBUGGER
@@ -868,7 +974,7 @@ sap.ui.define(
                 const extension = sValue.split('.').pop();
                 const allowedExtensions = ['jpg', 'jpeg', 'png', 'gif'];
                 if (allowedExtensions.indexOf(extension.toLowerCase()) === -1) {
-                    oInput.setValue(''); // Limpia el valor del input
+                    oInput.setValue('');
                     oInput.setValueState("Error");
                     oInput.setValueStateText("La imagen debe tener una extensión válida (jpg, jpeg, png, gif).");
                 } else {

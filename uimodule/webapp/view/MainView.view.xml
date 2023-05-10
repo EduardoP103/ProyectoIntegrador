@@ -98,23 +98,38 @@
 										/>
 										<ToolbarSpacer/>
 										<Button
-											press="onSortAscending"
-											icon="sap-icon://sort-ascending"
-										/>
-										<Button
-											press="onSortDescending"
-											icon="sap-icon://sort-descending"
-										/>
-										<Button
 											text="{i18n>add}"
+											class="jello-horizontal"
 											icon="sap-icon://add"
 											type="Transparent"
 											press="onAddProduct"
 										/>
 										<Button
+											icon="sap-icon://delete"
+											type="Transparent"
+											press="onRemoveSelected"
+											class="jello-horizontal"
+										/>
+										<Button
+											press="onSortAscending"
+											class="jello-horizontal"
+											icon="sap-icon://sort-ascending"
+										/>
+										<Button
+											press="onSortDescending"
+											class="jello-horizontal"
+											icon="sap-icon://sort-descending"
+										/>
+										<!-- <Button
 											text="{i18n>config}"
+											class="jello-horizontal"
 											icon="sap-icon://action-settings"
 											type="Transparent"
+										/> -->
+										<Button
+											class="jello-horizontal"
+											icon="sap-icon://multi-select"
+											press="oSelectCheckBox"
 										/>
 									</content>
 								</OverflowToolbar>
@@ -393,42 +408,35 @@
 				<MenuButton
 					text="Exportar PDF"
 					icon="sap-icon://pdf-attachment"
+					class="jello-horizontal"
 				>
 					<menu>
 						<Menu itemSelected="onMenuAction">
 							<MenuItem
-								text="PDF Vertical"
+								text="Vertical"
+								class="jello-horizontal"
 								icon="sap-icon://pdf-attachment"
 								press="onExportPDFVertical"
 							/>
 							<MenuItem
-								text="PDF Horizontal"
+								text="Horizontal"
+								class="jello-horizontal"
 								icon="sap-icon://pdf-attachment"
 								press="onExportPDFHorizontal"
 							/>
 						</Menu>
 					</menu>
 				</MenuButton>
-				<!-- <Button
-					icon="sap-icon://pdf-attachment"
-					type="Transparent"
-					press="onExportPDF"
-					text="Exportar PDF VERTICAL"
-				/>
-				<Button
-					icon="sap-icon://pdf-attachment"
-					type="Transparent"
-					press="onExportPDF"
-					text="Exportar PDF HORIZONTAL"
-				/> -->
 				<Button
 					icon="sap-icon://excel-attachment"
-					press="onDataExport"
+					class="jello-horizontal"
+					press="onExportSpreadSheetCSV"
 					type="Accept"
 					text="Exportar CSV"
 				/>
 				<Button
 					icon="sap-icon://excel-attachment"
+					class="jello-horizontal"
 					press="onExportSpreadSheetXLSX"
 					type="Accept"
 					text="Exporta Excel"
