@@ -1,0 +1,61 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core">
+	<Dialog
+		id="EliminarProductoMasaFragment"
+		title="Alerta">
+
+		<content>
+
+            <VBox alignItems="Center">
+				<Image
+				src="https://static.vecteezy.com/system/resources/previews/012/042/292/original/warning-sign-icon-transparent-background-free-png.png"
+				mode="{/imageMode}"
+				height="120px"
+				backgroundSize="5em 5em"
+				backgroundPosition="center"
+				width="auto"
+                class="img" >
+                    <layoutData>
+                        <FlexItemData growFactor="0.5" />
+                    </layoutData>
+				</Image>
+			</VBox>
+
+			<VBox class="sapUiSmallMargin" id="formContainerEmployment6">
+				<f:SimpleForm editable="true"
+					layout="ColumnLayout"
+					columnsM="2"
+					columnsL="2"
+					columnsXL="2">
+					<f:content>
+						<core:Title  text="¿Está seguro que desea eliminar los produtos seleccionados?" />
+					</f:content>
+				</f:SimpleForm>
+			</VBox>
+		</content>
+		<footer>
+			<Toolbar>
+				<content>
+					
+					<Button type="Critical"
+							text="Eliminar"
+							press="onPressEliminarProductoMasa" />
+
+                            <ToolbarSpacer/>
+
+					<Button
+						text="Cerrar"
+						type="Reject"
+						press="closeDialogEliminarProductoMasa"
+						ariaHasPopup="Dialog" 
+						icon="sap-icon://decline"/>
+				</content>
+			</Toolbar>
+		</footer>
+
+        
+	</Dialog>
+</core:FragmentDefinition>

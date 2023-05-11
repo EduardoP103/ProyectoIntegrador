@@ -1,0 +1,100 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core">
+	<Dialog
+		id="ImprimirPDFFragment"
+		title="Elección">
+
+		<content>
+
+            <HBox alignItems="Center">
+
+				<Image
+				src="https://cdn1.iconfinder.com/data/icons/pixel-perfect-at-16px-volume-2/16/1034-512.png"
+				mode="{/imageMode}"
+				height="120px"
+				backgroundSize="5em 5em"
+				backgroundPosition="center"
+				width="auto"
+                class="img" >
+                    <layoutData>
+                        <FlexItemData growFactor="0.5" />
+                    </layoutData>
+				</Image>
+
+				<Image
+				src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/38/Icon_pdf_file.svg/898px-Icon_pdf_file.svg.png"
+				mode="{/imageMode}"
+				height="120px"
+				backgroundSize="5em 5em"
+				backgroundPosition="center"
+				width="auto"
+                class="img" >
+                    <layoutData>
+                        <FlexItemData growFactor="0.5" />
+                    </layoutData>
+				</Image>
+
+				<Image
+				src="https://cdn1.iconfinder.com/data/icons/pixel-perfect-at-16px-volume-2/16/1035-512.png"
+				mode="{/imageMode}"
+				height="120px"
+				backgroundSize="5em 5em"
+				backgroundPosition="center"
+				width="auto"
+                class="img" >
+                    <layoutData>
+                        <FlexItemData growFactor="0.5" />
+                    </layoutData>
+				</Image>
+			</HBox>
+
+			<VBox class="sapUiSmallMargin" id="formContainerEmployment5">
+				<f:SimpleForm editable="true"
+					layout="ColumnLayout"
+					columnsM="2"
+					columnsL="2"
+					columnsXL="2">
+					<f:content>
+						<core:Title  text="¿Desea imprimir el documento PDF en Vertical u Horizontal?" />
+					</f:content>
+				</f:SimpleForm>
+			</VBox>
+		</content>
+		<footer>
+			<Toolbar>
+				<content>
+					
+					<Button type="Emphasized"
+							text="Vertical"
+							press="onExportPDFVertical"
+							icon="sap-icon://vertical-grip" />
+
+							<ToolbarSpacer/>
+
+					
+					<Button id="ImprimirPDFCerrarBoton"
+						text="Cerrar"
+						type="Reject"
+						press="closeExportPDFOrientacion"
+						ariaHasPopup="Dialog" 
+						icon="sap-icon://decline"/>
+
+                            <ToolbarSpacer/>
+
+					<Button type="Emphasized"
+							text="Horizontal"
+							press="onExportPDFHorizontal"
+							icon="sap-icon://horizontal-grip" />
+
+                            
+
+				</content>
+			</Toolbar>
+		</footer>
+
+        
+	</Dialog>
+</core:FragmentDefinition>
