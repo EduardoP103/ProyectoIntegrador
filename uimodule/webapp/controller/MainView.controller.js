@@ -564,11 +564,13 @@ sap.ui.define(
                         break;
                     default:
                         MessageBox.warning("No existen datos, no se puede crear el documento");
+                        this.closeExportPDFOrientacion();
                         return;
                 }
                 const oRowBinding = oTable.getBinding("items");
                 if (!oRowBinding || !oRowBinding.getLength()) {
                     MessageBox.warning("No existen datos, no se puede crear el documento");
+                    this.closeExportPDFOrientacion();
                     return;
                 }
                 try {
@@ -698,11 +700,13 @@ sap.ui.define(
                         break;
                     default:
                         MessageBox.warning("No existen datos, no se puede crear el documento");
+                        this.closeExportPDFOrientacion();
                         return;
                 }
                 const oRowBinding = oTable.getBinding("items");
                 if (!oRowBinding || !oRowBinding.getLength()) {
                     MessageBox.warning("No existen datos, no se puede crear el documento");
+                    this.closeExportPDFOrientacion();
                     return;
                 }
                 try {
@@ -1118,7 +1122,7 @@ sap.ui.define(
 
             onPressEliminarProductoMasa: function (oEvent) {
 
-                var oModel = this.getView().getModel("formularioSimple");
+                /*var oModel = this.getView().getModel("formularioSimple");
 
                 var data = oModel.getData();
 
@@ -1151,8 +1155,34 @@ sap.ui.define(
 
                 }
 
-                oTable.removeSelections();
+                oTable.removeSelections();*/
 
+                const selectedItems = this.byId("idProductsTable1").getSelectedItems();
+                const selectedProducts = [];
+                
+                selectedItems.forEach(function(products){
+                    const product = products.getBindingContext("formularioSimple").getObject();
+                    selectedProducts.push(product);
+                });
+                if (this.getView().getModel("formularioSimple").getProperty("/listaTabla1").length === 0){
+                    MessageBox.warning("No hay datos para eliminar");
+                    this.closeDialogEliminarProductoMasa();
+                    return;
+                }
+                if (selectedProducts.length === 0){
+                    MessageBox.warning("Por favor, elija un producto para eliminar");
+                    this.closeDialogEliminarProductoMasa();
+                    return;
+                }
+                const updateList = this.getView().getModel("formularioSimple").getProperty("/listaTabla1");
+                const product = updateList.filter(Items => !selectedProducts.includes(Items));
+                this.getView().getModel("formularioSimple").setProperty("/listaTabla1", product);
+                this.getView().getModel("formularioSimple").updateBindings();
+
+
+                this.getView().byId("idProductsTable1").removeSelections();
+
+                MessageBox.success("Datos eliminados correctamente");
 
                 this.closeDialogEliminarProductoMasa();
 

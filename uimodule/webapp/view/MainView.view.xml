@@ -99,13 +99,15 @@
 
 						<IconTabFilter key="0" id="tabproductos" text="Productos">
 
-							<Table id="idProductsTable1" backgroundDesign="Solid" mode="MultiSelect" sticky="HeaderToolbar,ColumnHeaders" inset="false" class="sapUiSmallNegativeMarginBeginEnd" width="auto"
+							<Table id="idProductsTable1" multiSelectMode="Default" backgroundDesign="Solid" mode="MultiSelect" sticky="HeaderToolbar,ColumnHeaders" inset="false" 
+									class="sapUiSmallNegativeMarginBeginEnd"
+									footerText="Cantidad total de Productos: ({= ${formularioSimple>/listaTabla1}.length })"
 									items="{ path: 'formularioSimple>/listaTabla1',	sorter: { path: 'id' }
 									}" >
 
 								<headerToolbar>
 
-									<Toolbar>
+									<OverflowToolbar>
 
 										<Title text="Productos ({= ${formularioSimple>/listaTabla1}.length })" level="H2"/>
 										<ToolbarSpacer/>
@@ -113,7 +115,7 @@
 										<Button type="Transparent" text="Eliminar" icon="sap-icon://clear-all" press="onEliminarEnMasa"/>
 										<Button type="Transparent" text="Configuración" icon="sap-icon://action-settings" press="onConfig"/>
 
-									</Toolbar>
+									</OverflowToolbar>
 
 								</headerToolbar>
 
