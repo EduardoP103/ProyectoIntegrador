@@ -6,7 +6,7 @@
     "platform": "Application Router @ Cloud Foundry",
     "viewtype": "XML",
     "ui5libs": "Content delivery network (SAPUI5)",
-    "newdir": false,
+    "newdir": true,
     "codeassist": true,
     "initrepo": false,
     "namespaceURI": "com/pe",

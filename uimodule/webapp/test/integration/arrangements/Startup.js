@@ -12,10 +12,10 @@ sap.ui.define(
                     componentConfig: {
                         name: "com.pe.proyectoIntegrador",
                         async: true,
-                        manifest: true
-                    }
+                        manifest: true,
+                    },
                 });
-            }
+            },
         });
     }
 );

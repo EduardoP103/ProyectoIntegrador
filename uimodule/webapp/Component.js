@@ -2,17 +2,20 @@
  * eslint-disable @sap/ui5-jsdocs/no-jsdoc
  */
 
-sap.ui.define([
-        "sap/ui/core/UIComponent",
-        "sap/ui/Device",
-        "com/pe/proyectoIntegrador/model/models"
-    ],
+sap.ui.define(
+    ["sap/ui/core/UIComponent", 
+    "sap/ui/Device", 
+    "com/pe/proyectoIntegrador/model/models"],
+    /**
+     * @param {typeof sap.ui.core.UIComponent} UIComponent
+     * @param {typeof sap.ui.Device} Device
+     */
     function (UIComponent, Device, models) {
         "use strict";
 
         return UIComponent.extend("com.pe.proyectoIntegrador.Component", {
             metadata: {
-                manifest: "json"
+                manifest: "json",
             },
 
             /**
@@ -29,8 +32,9 @@ sap.ui.define([
 
                 // set the device model
                 this.setModel(models.createDeviceModel(), "device");
+                //Modelo del formulario
                 this.setModel(models.formModel(), "formModel");
-            }
+            },
         });
     }
 );

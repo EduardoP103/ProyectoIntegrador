@@ -26,10 +26,26 @@ sap.ui.define(
                             "idProduct" : 1,
                             "productName" : "SSD",
                             "productDescription" : "Disco Sólido",
-                            "productPriceV" : "18.0",
-                            "productPriceC" : "18.0",
-                            "productStock" : "30.0",
-                            "idMeasurement" : 1,
+                            "productPriceV" : "18.00",
+                            "productPriceC" : "18.00",
+                            "productStock" : "30",
+                            "idUnit" : 1,
+                            "productUnitM" : "Unidades",
+                            "idProvider" : 1,
+                            "productProvider" : "Pepito",
+                            "idStatus" : 1,
+                            "productActive" : "Activo",
+                            "imgUrl" : "https://img.unocero.com/2021/08/rickroll_4k.jpeg"
+
+                        },
+                        {   
+                            "idProduct" : 2,
+                            "productName" : "SSD",
+                            "productDescription" : "Disco Sólido",
+                            "productPriceV" : "18.00",
+                            "productPriceC" : "18.00",
+                            "productStock" : "30",
+                            "idUnit" : 1,
                             "productUnitM" : "Unidades",
                             "idProvider" : 1,
                             "productProvider" : "Pepito",
@@ -46,7 +62,7 @@ sap.ui.define(
                         "productPriceV" : "",
                         "productPriceC" : "",
                         "productStock" : "",
-                        "idMeasurement" : "0",
+                        "idUnit" : "0",
                         "productUnitM" : "",
                         "idProvider" : "0",
                         "productProvider" : "",
@@ -61,7 +77,7 @@ sap.ui.define(
                         "productPriceV" : "",
                         "productPriceC" : "",
                         "productStock" : "",
-                        "idMeasurement" : "0",
+                        "idUnit" : "0",
                         "productUnitM" : "",
                         "idProvider" : "0",
                         "productProvider" : "",
@@ -83,7 +99,29 @@ sap.ui.define(
                         }
                     ],
 
-                    measurementList : [
+                    addProvider : {
+                            "idProvider": null,
+                            "providerName": "",
+                            "providerPhone": "",
+                            "providerAddress": "",
+                            "idStatus": "0",
+                            "providerActive": "",
+                            "providerStatusIcon": "",
+                            "providerStatusState": "",
+                        },
+
+                    editProvider : {
+                            "idProvider": null,
+                            "providerName": "",
+                            "providerPhone": "",
+                            "providerAddress": "",
+                            "idStatus": "",
+                            "providerActive": "",
+                            "providerStatusIcon": "",
+                            "providerStatusState": "",
+                        },
+
+                    unitList : [
                         {  
                             "idUnit": 1,
                             "unitName": "Unidades",
@@ -97,15 +135,27 @@ sap.ui.define(
                             "unitAbbreviation": "m"
                         }
                     ],
+
+                    addUnit :{  
+                            "idUnit": null,
+                            "unitName": "",
+                            "unitDescription": "",
+                            "unitAbbreviation": ""
+                        },
                     
+                    editUnit :{  
+                            "idUnit": null,
+                            "unitName": "",
+                            "unitDescription": "",
+                            "unitAbbreviation": ""
+                        },
                     //Desplegable de los combos para el agregar y el editar
                     selectProviderList : [{
                         "key" : "0",
                         "text" : "--Seleccione proveedor---"
-                    },
+                    }],
 
-                ],
-                    selectMeasurementList : [{
+                    selectUnitList : [{
                         "key" : "0",
                         "text" : "--Seleccione medida---"
                     }],

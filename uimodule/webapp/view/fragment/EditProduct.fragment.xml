@@ -10,31 +10,31 @@
 						<core:Title text="{i18n>editProductDialogTitle2}" />
 
 						<Label text="{i18n>tab1TableC1}" />
-						<Input required="true" placeholder="{i18n>addProductDialogPH1}" value="{path : 'formModel>/editProduct/productName' }" />
+						<Input required="true" placeholder="{i18n>addProductDialogPH1}" value="{path : 'formModel>/editProduct/productName' }" id="lcepNameId" liveChange="lcepName"/>
 
 						<Label text="{i18n>tab1TableC2}" />
-						<Input required="true" placeholder="{i18n>addProductDialogPH2}" value="{path : 'formModel>/editProduct/productDescription' }" />
+						<Input required="true" placeholder="{i18n>addProductDialogPH2}" value="{path : 'formModel>/editProduct/productDescription' }" id="lcapDescriptionId" liveChange="lcapDescription"/>
 						
 						<Label text="{i18n>tab1TableC3}" required="true" />
 						<Input value="{path : 'formModel>/editProduct/imgUrl' }" placeholder="{i18n>addProductDialogPH3}" valueLiveUpdate="true" />
 						<Image src="{path : 'formModel>/editProduct/imgUrl' }" width="100px" />
 						
 						<Label text="{i18n>tab1TableC4}" />
-						<Input required="true" placeholder="{i18n>addProductDialogPH4}" value="{path : 'formModel>/editProduct/productPriceV' }" />
+						<Input required="true" placeholder="{i18n>addProductDialogPH4}" value="{path : 'formModel>/editProduct/productPriceV' }" id="lcapPriceVId" liveChange="lcapPriceV"/>
 
 						<Label text="{i18n>tab1TableC5}" />
-						<Input required="true" placeholder="{i18n>addProductDialogPH5}" value="{path : 'formModel>/editProduct/productPriceC' }" />
+						<Input required="true" placeholder="{i18n>addProductDialogPH5}" value="{path : 'formModel>/editProduct/productPriceC' }" id="lcapPriceCId" liveChange="lcapPriceC"/>
 
 						<Label text="{i18n>tab1TableC6}" />
-						<Input required="true" placeholder="{i18n>addProductDialogPH6}" value="{path : 'formModel>/editProduct/productStock' }" />
+						<Input required="true" placeholder="{i18n>addProductDialogPH6}" value="{path : 'formModel>/editProduct/productStock' }" id="lcapStockId" liveChange="lcapStock"/>
 
 						<Label text="{i18n>tab1TableC7}" />
 						<Select required="true" items="{
-						path: 'formModel>/selectMeasurementList'
+						path: 'formModel>/selectUnitList'
 					    }" selectedKey="{
-                            path: 'formModel>/editProduct/idMeasurement'
+                            path: 'formModel>/editProduct/idUnit'
                         }"
-						change="onChangeMeasurementEdit"
+						change="onChangeUnitEdit"
 						>
 							<core:ListItem key="{formModel>key}" text="{formModel>text}" enabled="{= ${formModel>key} === '0' ? false : true }" />
 						</Select>

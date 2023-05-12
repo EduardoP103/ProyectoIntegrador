@@ -83,6 +83,7 @@
                 <items>
                     <IconTabFilter key="0" text="{i18n>tab1Title}">
                         <Table id="idProductsTable"
+                            mode="MultiSelect"
                             inset="false"
                             sticky="HeaderToolbar,ColumnHeaders"
                             items="{
@@ -97,8 +98,10 @@
                                 <OverflowToolbar>
                                     <Title text="Productos ({=${formModel>/productList}.length})" level="H2" />
                                     <ToolbarSpacer></ToolbarSpacer>
+                                    <Button icon="sap-icon://delete" text="{i18n>deleteMultipleProducts}"
+                                        press="onDeleteMultipleProducts" />
                                     <Button icon="sap-icon://add" text="{i18n>addButtonText}"
-                                        press="onAddButton" />
+                                        press="onAddProductButton" />
                                     <Button icon="sap-icon://settings"
                                         text="{i18n>settingsButtonText}" press="onSettingsButton" />
                                 </OverflowToolbar>
@@ -179,6 +182,7 @@
                     </IconTabFilter>
                     <IconTabFilter key="1" text="{i18n>tab2Title}">
                         <Table id="idProviderTable"
+                            mode="MultiSelect"
                             inset="false"
                             sticky="HeaderToolbar,ColumnHeaders"
                             items="{
@@ -193,8 +197,8 @@
                                 <OverflowToolbar>
                                     <Title text="Proveedores({=${formModel>/providerList}.length})" level="H2" />
                                     <ToolbarSpacer></ToolbarSpacer>
-                                    <Button icon="sap-icon://add" text="{i18n>addUnitButtonText}"
-                                        press="onAddUnitButton" />
+                                    <Button icon="sap-icon://add" text="{i18n>addProviderButtonText}"
+                                        press="onAddProviderButton" />
                                     <Button icon="sap-icon://settings"
                                         text="{i18n>settingsButtonText}" press="onSettingProviderButton" />
                                 </OverflowToolbar>
@@ -249,11 +253,12 @@
                         </Table>
                     </IconTabFilter>
                     <IconTabFilter key="2" text="{i18n>tab3Title}">
-                        <Table id="idUnitOfMeasurementTable"
+                        <Table id="idUnitTable"
+                            mode="MultiSelect"
                             inset="false"
                             sticky="HeaderToolbar,ColumnHeaders"
                             items="{
-                                path: 'formModel>/measurementList'
+                                path: 'formModel>/unitList'
                             }"
                             class="sapUiSmallNegativeMarginBeginEnd"
                             width="auto">
@@ -262,7 +267,7 @@
                                     <Label text="{i18n>tab3TableTitle}"></Label>
                                 </Toolbar>
                                 <OverflowToolbar>
-                                    <Title text="Unidades ({=${formModel>/measurementList}.length})" level="H2" />
+                                    <Title text="Unidades ({=${formModel>/unitList}.length})" level="H2" />
                                     <ToolbarSpacer></ToolbarSpacer>
                                     <Button icon="sap-icon://add" text="{i18n>addUnitButtonText}"
                                         press="onAddUnitButton" />
@@ -322,6 +327,7 @@
             <OverflowToolbar>
                 <Button icon="sap-icon://message-popup" press="onPressPopup" text="{i18n>popupButton}"/>
                 <ToolbarSpacer/>
+                <Button icon="sap-icon://pdf-attachment" press="onExportPDF" text="Exportar PDF"/>
                  <Button icon="sap-icon://excel-attachment" press="onExportSpreadSheetCSV" type="Accept" text="Exportar CSV"/>
                 <Button icon="sap-icon://excel-attachment" press="onExportSpreadSheetXLSX" type="Accept" text="Exportar Excel"/>
             </OverflowToolbar>

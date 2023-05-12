@@ -1,0 +1,47 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core">
+	<Dialog id="idAddProviderDialog" title="{i18n>addProviderDialogTitle}">
+		<content>
+			<VBox class="sapUiSmallMargin">
+				<f:SimpleForm editable="true" layout="ColumnLayout" columnsM="2" columnsL="3" columnsXL="3">
+					<f:content>
+						<core:Title text="{i18n>addProviderDialogTitle2}" />
+
+						<Label text="{i18n>tab2TableC1}" />
+						<Input required="true" placeholder="{i18n>addProviderDialogPH1}" value="{path : 'formModel>/addProvider/providerName' }" id="lcaprNameId" liveChange="lcaprName"/>
+
+						<Label text="{i18n>tab2TableC2}" />
+						<Input required="true" placeholder="{i18n>addProviderDialogPH2}" value="{path : 'formModel>/addProvider/providerPhone' }" id="lcaprPhoneId" liveChange="lcaprPhone" />
+						
+						<Label text="{i18n>tab2TableC3}" />
+						<Input required="true" placeholder="{i18n>addProviderDialogPH3}" value="{path : 'formModel>/addProvider/providerAddress' }"   id="lcaprAddressId" liveChange="lcaprAddress" />
+
+						<Label text="{i18n>tab2TableC4}" />
+						<Select required="true" items="{
+						path: 'formModel>/selectStatusList'
+					    }" selectedKey="{
+                            path: 'formModel>/addProvider/idStatus'
+                        }"
+						change="onChangeStatusAddProv"
+						>
+							<core:ListItem key="{formModel>key}" text="{formModel>text}" enabled="{= ${formModel>key} === '0' ? false : true }" />
+						</Select>
+
+
+					</f:content>
+
+				</f:SimpleForm>
+			</VBox>
+		</content>
+		<footer>
+			<Toolbar>
+				<content>
+					<Button type="Accept" text="{i18n>dialogAcceptProvButton}" press="onAddProviderSave" />
+					<Button text="{i18n>dialogRejectProvButton}" type="Reject" press="onAddProviderClose" ariaHasPopup="Dialog" />
+				</content>
+			</Toolbar>
+		</footer>
+	</Dialog>
+</core:FragmentDefinition>

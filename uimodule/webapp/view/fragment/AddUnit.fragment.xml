@@ -1,0 +1,36 @@
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core">
+	<Dialog id="idAddUnitDialog" title="{i18n>addUnitDialogTitle}">
+		<content>
+			<VBox class="sapUiSmallMargin">
+				<f:SimpleForm editable="true" layout="ColumnLayout" columnsM="2" columnsL="3" columnsXL="3">
+					<f:content>
+						<core:Title text="{i18n>addUnitDialogTitle2}" />
+
+						<Label text="{i18n>tab3TableC1}" />
+						<Input required="true" placeholder="{i18n>addUnitDialogPH1}" value="{path : 'formModel>/addUnit/unitName' }" id="lcauNameId" liveChange="lcauName"/>
+
+						<Label text="{i18n>tab3TableC2}" />
+						<Input required="true" placeholder="{i18n>addUnitDialogPH2}" value="{path : 'formModel>/addUnit/unitDescription' }" id="lcauDescriptionId" liveChange="lcauDescription" />
+						
+						<Label text="{i18n>tab3TableC3}" />
+						<Input required="true" placeholder="{i18n>addUnitDialogPH3}" value="{path : 'formModel>/addUnit/unitAbbreviation' }"  id="lcauAbbreviationId" liveChange="lcauAbbreviation" />
+
+
+					</f:content>
+
+				</f:SimpleForm>
+			</VBox>
+		</content>
+		<footer>
+			<Toolbar>
+				<content>
+					<Button type="Accept" text="{i18n>dialogAcceptUnitButton}" press="onAddUnitSave" />
+					<Button text="{i18n>dialogRejectUnitButton}" type="Reject" press="onAddUnitClose" ariaHasPopup="Dialog" />
+				</content>
+			</Toolbar>
+		</footer>
+	</Dialog>
+</core:FragmentDefinition>
