@@ -5,6 +5,8 @@
     xmlns:f="sap.f"
     xmlns:layout="sap.ui.layout"
 	xmlns:core="sap.ui.core"
+	xmlns:u="sap.ui.unified"
+	xmlns:ui="sap.ui.unified"
 	xmlns:smartTable="sap.ui.comp.smarttable"
 	height="100%">
     <f:DynamicPage id="dynamicPageId" class="sapUiNoContentPadding" headerExpanded="{/headerExpanded}" toggleHeaderOnTitleClick="{/titleClickable}">
@@ -452,6 +454,83 @@
 								</items>
 							</Table>
 
+						</IconTabFilter>
+
+						<IconTabFilter key="4" text="Subida de Excel">
+
+							<Table id="idProductsTable5" sticky="HeaderToolbar,ColumnHeaders" inset="false" class="sapUiSmallNegativeMarginBeginEnd" width="auto"
+									items="{formularioSimple>/items}" >
+
+								<headerToolbar>
+
+									<Toolbar>
+
+										<Title text="Items ({= ${formularioSimple>/items}.length })" level="H2"/>
+										
+										<ToolbarSpacer/>
+										<u:FileUploader id="FileUploaderId" sameFilenameAllowed="true" iconOnly="false" buttonOnly="true" fileType="XLSX,xlsx"
+									icon="sap-icon://upload" iconFirst="true" style="Emphasized" change="onUpload" 
+									multiple="false" buttonText="Exportar Archivo XLSX"/> 
+									
+										<!-- <ui:FileUploader id="fileUploaderFS" multiple="false" buttonText="Exportar Archivo XLSX"/>
+
+ 										<Button text="Subir Archivo" type="Accept" press="onUploadFile" icon="sap-icon://upload"/>-->
+
+									</Toolbar>
+
+								</headerToolbar>
+
+								<columns>
+
+									<Column>
+
+										<Label text="Name"/>
+
+									</Column>
+
+									<Column>
+
+										<Label text="Age"/>
+
+									</Column>
+
+									<Column>
+
+										<Label text="Job"/>
+
+									</Column>
+
+									<Column>
+
+										<Label text="Address"/>
+
+									</Column>									
+
+								</columns>
+
+								<items>
+
+									<ColumnListItem>
+
+										<cells>
+
+											<Text text="{formularioSimple>Name}"/>
+
+											<Text text="{formularioSimple>Age}"/>
+
+											<Text text="{formularioSimple>Job}"/>
+
+											<Text text="{formularioSimple>Address}"/>
+											
+										</cells>
+
+									</ColumnListItem>
+
+								</items>
+
+							</Table>
+						
+						
 						</IconTabFilter>
 
 					</items>

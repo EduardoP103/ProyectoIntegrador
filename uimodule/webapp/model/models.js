@@ -448,6 +448,9 @@ sap.ui.define(
                             "estado": "Activo"
                         }
                     ],
+                    items: [
+
+                    ],
                     addProducto : {
                         "id": "",
                         "nombre": "",

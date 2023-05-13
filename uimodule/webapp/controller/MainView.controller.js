@@ -61,7 +61,10 @@ sap.ui.define(
         const DynamicPageTitleArea = library.DynamicPageTitleArea;
 
         return Controller.extend("com.pe.proyectoIntegrador.controller.MainView", {
-            onInit: function () {},
+            onInit: function () {
+                /*this.formularioSimple = new sap.ui.model.json.JSONModel();
+			    this.getView().setModel(this.formularioSimple, "formularioSimple");*/
+            },
 
             // ----------------------------Dynamic Page -------------------------//
 
@@ -250,6 +253,41 @@ sap.ui.define(
 
                 
              },
+
+             // ----------------------------Cargar datos desde XLSX -------------------------//
+
+            /*onUpload: function (e) {
+                this._import(e.getParameter("files") && e.getParameter("files")[0]);
+            },
+    
+            _import: function (file) {
+
+                /*var that = this;
+                var excelData = {};
+                if (file && window.FileReader) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        var data = e.target.result;
+                        var workbook = XLSX.read(data, {
+                            type: 'binary'
+                        });
+                        workbook.SheetNames.forEach(function (sheetName) {
+                            // Here is your object for every sheet in workbook
+                            excelData = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName]);
+
+                        });
+                        // Setting the data to the local model 
+                        that.formularioSimple.setData({
+                            items: excelData
+                        });
+                        that.formularioSimple.refresh(true);
+                    };
+                    reader.onerror = function (ex) {
+                        console.log(ex);
+                    };
+                    reader.readAsBinaryString(file);
+                
+            }*/  
 
             // ----------------------------Creación de columnas para exportar datos en XLSX -------------------------//
 
