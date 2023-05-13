@@ -1,17 +1,49 @@
 sap.ui.define(
     ["sap/ui/core/mvc/Controller",
+    "sap/ui/model/json/JSONModel",
+    "sap/f/library",
+    "sap/ui/core/Fragment",
+    "sap/m/MessagePopover",
+    "sap/m/MessageBox",
+    "sap/m/MessageToast",
+    "sap/m/MessageItem",
+    "sap/ui/core/message/Message",
+    "sap/ui/core/library",
+    "sap/ui/core/Core",
+    "sap/ui/core/Element",
     "sap/ui/core/util/Export",
     "sap/ui/core/util/ExportTypeCSV",
-    'sap/ui/export/Spreadsheet',
-    'sap/ui/export/library',
-    "sap/m/MessageBox",
+    "sap/ui/export/Spreadsheet",
+    "sap/ui/export/library",
+    "sap/base/util/deepExtend",
     "sap/m/ColumnListItem",
-    "sap/f/library"],
+    "sap/ui/vbm/Containers",
+    "sap/ui/model/FilterOperator",
+
+],
 
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-    function (Controller, Export, ExportTypeCSV, Spreadsheet, exportLibrary,MessageBox, ColumnListItem, library) {
+    function (Controller,
+        JSONModel,
+        library,
+        Fragment,
+        MessagePopover,
+        MessageBox,
+        MessageToast,
+        MessageItem,
+        Message,
+        coreLibrary,
+        Core,
+        Element,
+        Export,
+        ExportTypeCSV,
+        Spreadsheet,
+        exportLibrary,
+        deepExtend,
+        ColumnListItem,
+        ) {
         "use strict";
         const EdmType = exportLibrary.EdmType;
         const DynamicPageTitleArea = library.DynamicPageTitleArea;
@@ -443,6 +475,67 @@ sap.ui.define(
                 });
             },
 
+            //export pdf
+            onExportPDF: function () {
+                debugger;
+                   const selectedTab = this.getView().getModel("formularioSimple").getProperty("/selectedIconTabBar");
+                   let oTable, aCols, fileName, title;
+                   switch (selectedTab) {
+                       case "0":
+                           oTable = this.getView().byId("idProductsTable");
+                           aCols = this.createColumnConfigTableProducts();
+                           fileName = "ListaProductos.pdf";
+                           title = "Productos";
+                           
+                           break;
+                       case "1":
+                           oTable = this.getView().byId("idProveedores");
+                           aCols = this.createColumnConfigTableProviders();
+                           fileName = "ListaProveedores.pdf";
+                           title = "Proveedores";
+                           break;
+                       case "2":
+                           oTable = this.getView().byId("idUnidades");
+                           aCols = this.createColumnConfigTableUnitOfMeasurement();
+                           fileName = "ListaUnidadMedida.pdf";
+                           title = "Unidades de Medida";
+                           break;
+                       default:
+                           MessageBox.warning("No existen datos, no se puede crear el documento");
+                           return;
+                   }
+                   const oRowBinding = oTable.getBinding("items");
+                   if (!oRowBinding || !oRowBinding.getLength()) {
+                       MessageBox.warning("No existen datos, no se puede crear el documento");
+                       return;
+                   }
+                   try {
+                       let test1 = jQuery.sap.require(
+                           "com/pe/proyectoIntegrador/lib/jsPDF/jspdf"
+                       );
+                       let test = jQuery.sap.require(
+                           "com/pe/proyectoIntegrador/lib/jsPDF/autotable"
+                       )
+                   } catch (e) { }
+                   const doc = new jsPDF();
+                   doc.text(title, 14, 10);
+                   const tableData = oRowBinding.getCurrentContexts().map(function (oContext) {
+                       return aCols.map(function (column) {
+                           const property = column.property[0];
+                           return oContext.getProperty(property);
+                       });
+                   });
+                   doc.autoTable({
+                       head: [aCols.map(function (column) {
+                           return column.label;
+                       })],
+                       body: tableData,
+                       margin: { top: 20, left: 10, right: 10, bottom: 10 },
+                       startY: 20
+                   });
+                   doc.save(fileName);
+               },
+
 
             //registar
             registarProducto: function () {
@@ -473,9 +566,21 @@ sap.ui.define(
                 let selectProveedor = this.getView().getModel("formularioSimple").getProperty("/selectKeyProveedor")
                 let selectActivo = this.getView().getModel("formularioSimple").getProperty("/selectKeyActivo")
 
+                let id
+                if(this.getView().getModel("formularioSimple").getProperty("/listaProductos").length==0){
+                    id= 1
+                }else{
+                    let listaTabla1OrdenadoDesc = this.getView().getModel("formularioSimple").getProperty("/listaProductos").sort(function(a, b){
+
+                        return b.id - a.id;
+                            
+                        });
+                        id =  listaTabla1OrdenadoDesc[0].id + 1
+                }
+
                 //almacenar datos
                 const oProducto = {
-                    id: this.getView().getModel("formularioSimple").getProperty("/listaProductos").length,
+                    id:id,
                     nombre: n,
                     descripcion: d,
                     imagen:urlImage,
@@ -484,6 +589,10 @@ sap.ui.define(
                     unidadm:  this.getView().byId("idUnidad").getSelectedItem().getProperty("text") ,
                     proveedor:  this.getView().byId("proveedor").getSelectedItem().getProperty("text"),
                     activo: this.getView().byId("activo").getSelectedItem().getProperty("text"),
+                    idunidad: selectUnidadMedida,
+                    idproveedor: selectProveedor,
+                    idactivo: selectActivo
+
                 };
 
                     if ( n.trim().length == 0 ||
@@ -495,7 +604,7 @@ sap.ui.define(
                     this.getView().getModel("formularioSimple").getProperty("/selectKeyUnidad") == "0"
 
                     ){
-                    MessageBox.warning("Todos los campos son obligatorios y no se pueden ingresar números menores o iguales a 0");
+                    MessageBox.warning("Todos los campos son obligatorios ");
                     return;
                     }
                     
@@ -631,7 +740,175 @@ sap.ui.define(
                 this.getView().getModel("formularioSimple").refresh(true);
                 MessageBox.success("Datos editados");
                 this.closeDialog2();
-            }
+            },
+
+
+            //busqueda onSearch
+            onSearch : function(oEvent) {
+                var newValue = oEvent.getSource().getValue();
+                
+                this.filtering(newValue);
+            },
+            filtering : function(value) {
+                var oFilter1 = new sap.ui.model.Filter("nombre", sap.ui.model.FilterOperator.Contains, value);
+                var oFilter2 = new sap.ui.model.Filter("descripcion", sap.ui.model.FilterOperator.Contains, value);
+                var oFilter3 = new sap.ui.model.Filter("imagen", sap.ui.model.FilterOperator.Contains, value);
+                var oFilter4 = new sap.ui.model.Filter("preciov", sap.ui.model.FilterOperator.Contains, value);
+                var oFilter5 = new sap.ui.model.Filter("precioc", sap.ui.model.FilterOperator.Contains, value);
+                var allFilter = new sap.ui.model.Filter([oFilter1, oFilter2, oFilter3, oFilter4,oFilter5], false); 
+            
+                var oBinding = this.getView().byId("idProductsTable").getBinding("items");
+                oBinding.filter(allFilter);
+            },
+
+            onSuggest: function (event) {
+                
+                var sValue = event.getParameter("suggestValue"),
+                    aFilters = [];
+                    var oView = this.getView();
+                    oView.setModel(this.oModel);
+                    this.oSF = oView.byId("searchField");
+                if (sValue) {
+                    
+                    var oFilter1 = new sap.ui.model.Filter("nombre", sap.ui.model.FilterOperator.Contains, sValue);
+                    var oFilter2 = new sap.ui.model.Filter("descripcion", sap.ui.model.FilterOperator.Contains, sValue);
+                    aFilters = new sap.ui.model.Filter([oFilter1, oFilter2], false); 
+                }else{
+                    var oBindingTable = this.getView().byId("idProductsTable").getBinding("items");
+                    oBindingTable.filter([]);
+                }
+                
+                this.oSF.getBinding("suggestionItems").filter(aFilters);
+                this.oSF.suggest();
+            },
+
+            //-----------------------eliminar Producto------------------------//
+            eliminarProducto: function (oEvent) {
+
+                
+            
+                const oButton = oEvent.getSource(),
+                    oView = this.getView();
+                const oProduct = oButton.getParent().getBindingContext("formularioSimple");
+                const oSelectObj = oProduct.getObject();
+                this.getView().getModel("formularioSimple").setProperty("/selectedRowEliminar", oSelectObj);
+                
+
+                if (!this.oMPProductoEliminado) {
+                    this.oMPProductoEliminado = this.loadFragment({
+                        name: "com.pe.proyectoIntegrador.view.fragment.EliminarProducto",
+                    });
+                }
+                this.oMPProductoEliminado.then(
+                    function (oDialogProductoEliminado) {
+                        this.oDialogProductoEliminado = oDialogProductoEliminado;
+                        this.oDialogProductoEliminado.open();
+                    }.bind(this)
+                );
+            },
+
+            closeDialogEliminarProducto: function () {
+                this.oDialogProductoEliminado.close();
+            },
+
+            onPressEliminarProducto: function () {
+                let selectedRowEliminar =  this.getView().getModel("formularioSimple").getProperty("/selectedRowEliminar");
+                 let listaTabla1 = this.getView().getModel("formularioSimple").getProperty("/listaProductos");
+ 
+                 let listaFinal = [];
+                 
+                 for (let index = 0; index < listaTabla1.length; index++){
+                     const element = listaTabla1[index];
+                     if (element.id != selectedRowEliminar.id){
+                         listaFinal.push(element);
+                     }
+                 }
+                 this.getView().getModel("formularioSimple").setProperty("/listaProductos", listaFinal);
+                 this.getView().getModel("formularioSimple").refresh();
+                 MessageBox.success("Producto Eliminado Correctamente");
+                 this.closeDialogEliminarProducto();
+             },
+
+
+             
+        
+              //validaciones
+              filterText: function(data) {
+                let newValue = ";" + data;
+                let validationCondition = /[^a-zA-Z ]/gi;
+                let validationArray = [0];
+                let tempValidationArray = newValue.match(validationCondition);
+                validationArray.push(...tempValidationArray);
+                let validationResult = validationArray.length;
+                if(validationResult>2) {
+                    newValue = newValue.slice(0, -1);
+                }else {
+
+                }
+                newValue = newValue.slice(1);
+                return newValue;
+
+              },
+
+
+              onLiveChange: function(oEvent) {
+                let newValue = oEvent.getParameter("newValue");
+                newValue = this.filterText(newValue);
+                this.getView().byId("valNombre").setValue(newValue);
+              },
+
+              //fragment eliminar producto multiple
+              onAbrirEliminacionMultiple: function () {
+                if (!this.oMPEliminarM) {
+                    this.oMPEliminarM = this.loadFragment({
+                        name: "com.pe.proyectoIntegrador.view.fragment.EliminarProductoMultiple",
+                    });
+                }
+                this.oMPEliminarM.then(
+                    function (oDialogElM) {
+                        this.oDialogEliminarMasa = oDialogElM;
+                        this.oDialogEliminarMasa.open();
+                    }.bind(this)
+                );
+            },
+            closeDialogEliminarProductoMultiple: function () {
+                
+                this.oDialogEliminarMasa.close();
+            },
+
+            //eliminar producto multiple
+            onEliminarProductoMultiple: function (oEvent) {
+
+                const selectedItems = this.byId("idProductsTable").getSelectedItems();
+                const selectedProducts = [];
+                
+                selectedItems.forEach(function(products){
+                    const product = products.getBindingContext("formularioSimple").getObject();
+                    selectedProducts.push(product);
+                });
+                if (this.getView().getModel("formularioSimple").getProperty("/listaProductos").length === 0){
+                    MessageBox.warning("No hay datos para eliminar");
+                    this.closeDialogEliminarProductoMultiple();
+                    return;
+                }
+                if (selectedProducts.length === 0){
+                    MessageBox.warning("Por favor, elija un producto para eliminar");
+                    this.closeDialogEliminarProductoMultiple();
+                    return;
+                }
+                const updateList = this.getView().getModel("formularioSimple").getProperty("/listaProductos");
+                const product = updateList.filter(Items => !selectedProducts.includes(Items));
+                this.getView().getModel("formularioSimple").setProperty("/listaProductos", product);
+                this.getView().getModel("formularioSimple").updateBindings();
+
+
+                this.getView().byId("idProductsTable").removeSelections();
+
+                MessageBox.success("Datos eliminados correctamente");
+
+                this.closeDialogEliminarProductoMultiple();
+
+            },
 
 
         });

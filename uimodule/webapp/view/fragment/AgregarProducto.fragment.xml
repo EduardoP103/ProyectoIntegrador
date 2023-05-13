@@ -17,21 +17,21 @@
 					columnsXL="2">
 					<f:content>
 						<c:Title text="Product" />
-						<Label text="Nombre: " />
-						<Input value="{path : 'formularioSimple>/agregarProducto/nombre' }" />
-						<Label text="Descripción: " />
-						<Input value="{path : 'formularioSimple>/agregarProducto/descripcion' }" />
+						<Label text="Nombre " />
+						<Input id="valNombre" value="{path : 'formularioSimple>/agregarProducto/nombre' }" required="true" liveChange="onLiveChange" />
+						<Label text="Descripción " />
+						<Input value="{path : 'formularioSimple>/agregarProducto/descripcion' }" required="true" />
 						<Label text="Imagen" />
-						<Input value="{path : 'formularioSimple>/agregarProducto/urlImage' }" />
+						<Input value="{path : 'formularioSimple>/agregarProducto/urlImage' }"  />
 						<Label text="Precio V." />
-						<Input type="Number" value="{path : 'formularioSimple>/agregarProducto/preciov' }" />
+						<Input type="Number" value="{path : 'formularioSimple>/agregarProducto/preciov' }" required="true" />
                         <c:Title text="" />
 						<Label text="Precio C." />
-						<Input type="Number" value="{path : 'formularioSimple>/agregarProducto/precioc' }" />
+						<Input type="Number" value="{path : 'formularioSimple>/agregarProducto/precioc' }" required="true" />
 
                         <!--Combo unidad m.-->
 						<Label text="Unidad Medida:" />
-                        <Select
+                        <Select required="true"
                          id="idUnidad" 
                         items="{
 						path: 'formularioSimple>/unidadMedida'
@@ -60,7 +60,7 @@
 
                         <!--Combo Activo-->
                         <Label text="Activo" />
-                        <Select id="activo" items="{
+                        <Select required="true" id="activo" items="{
 						path: 'formularioSimple>/activo'
 					    }" selectedKey="{
                             path: 'formularioSimple>/selectKeyActivo'

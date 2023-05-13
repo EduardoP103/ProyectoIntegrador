@@ -39,8 +39,20 @@ height="100%">
 			selectedKey="{path: 'formularioSimple>/selectedIconTabBar'}">
 				<items>
 					<IconTabFilter key="0" text="Productos">
+					 <SearchField
+						id="searchField"
+						width="50%"
+						placeholder="Buscar Sugerencias..."
+						enableSuggestions="true"
+						search="onSearch"
+						suggest="onSuggest"
+						suggestionItems="{path: 'formularioSimple>/listaProductos'}">
+						<SuggestionItem text="{formularioSimple>nombre}" description="{formularioSimple>descripcion}" key="{formularioSimple>id}"/>
+					</SearchField>
 						<Table id="idProductsTable" 
+						multiSelectMode="Default"
 						inset="false" 
+						mode="MultiSelect"
 						items="{path: 'formularioSimple>/listaProductos'}">
 							<headerToolbar>
 									<Toolbar>
@@ -48,6 +60,7 @@ height="100%">
 										<ToolbarSpacer/>
 										<Button text="Agregar" icon="sap-icon://add" press="registarProducto"></Button>
 										<Button text="Configuración" icon="sap-icon://action-settings"></Button>
+										<Button text="Eliminar" icon="sap-icon://clear-all" press="onAbrirEliminacionMultiple"></Button>
 									</Toolbar>
 								</headerToolbar>
 							<columns>
@@ -105,7 +118,7 @@ height="100%">
 								
 								<HBox >
 								<Button id="boton-edit" icon="sap-icon://edit" press="editarProducto"></Button>
-								<Button id="boton-delete" icon="sap-icon://delete"></Button>
+								<Button id="boton-delete" icon="sap-icon://delete" press="eliminarProducto"></Button>
 								</HBox>
 							</cells>
 							</ColumnListItem>
@@ -138,6 +151,9 @@ height="100%">
 								<Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">
 									<Text text="Estado" />
 								</Column>
+								<Column hAlign="End">
+									
+								</Column>
 							</columns>
 							<items>
 							<ColumnListItem vAlign="Middle">
@@ -150,6 +166,11 @@ height="100%">
 								<Text text="{formularioSimple>direccion}" />
 
 								<ObjectStatus icon="sap-icon://message-success" text="Activo" state="Success" />
+
+								<HBox >
+								<Button id="boton-edit2" icon="sap-icon://edit" press="editarProducto"></Button>
+								<Button id="boton-delete2" icon="sap-icon://delete" press="eliminarProducto"></Button>
+								</HBox>
 
 							</cells>
 							</ColumnListItem>
@@ -184,6 +205,9 @@ height="100%">
 								<Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">
 									<Text text="Estado" />
 								</Column>
+								<Column hAlign="End">
+									
+								</Column>
 							</columns>
 							<items>
 							<ColumnListItem vAlign="Middle">
@@ -196,6 +220,11 @@ height="100%">
 								<Text text="{formularioSimple>abreviatura}" />
 
 								<ObjectStatus icon="sap-icon://message-success" text="Activo" state="Success" />
+
+								<HBox >
+								<Button id="boton-edit3" icon="sap-icon://edit" press="editarProducto"></Button>
+								<Button id="boton-delete3" icon="sap-icon://delete" press="eliminarProducto"></Button>
+								</HBox>
 								
 							</cells>
 							</ColumnListItem>
@@ -212,6 +241,7 @@ height="100%">
 					<ToolbarSpacer/>
 					<Button icon="sap-icon://excel-attachment" press="onExportCSV" text="Exportar CSV"/>
 					<Button icon="sap-icon://excel-attachment" press="onExportExcel" text="Exportar Excel"/>
+					<Button icon="sap-icon://excel-attachment" press="onExportPDF" text="Exportar PDF"/>
 				</OverflowToolbar>
 			</f:footer>
 

@@ -17,21 +17,21 @@
 					columnsXL="2">
 					<f:content>
 						<c:Title text="Product" />
-						<Label text="Nombre: " />
-						<Input value="{path : 'formularioSimple>/editarProducto/nombre' }" />
-						<Label text="Descripción: " />
-						<Input value="{path : 'formularioSimple>/editarProducto/descripcion' }" />
+						<Label text="Nombre " />
+						<Input value="{path : 'formularioSimple>/editarProducto/nombre' }" required="true" />
+						<Label text="Descripción " />
+						<Input value="{path : 'formularioSimple>/editarProducto/descripcion' }" required="true" />
 						<Label text="Imagen" />
 						<Input value="{path : 'formularioSimple>/editarProducto/urlImage' }" />
 						<Label text="Precio V." />
-						<Input type="Number" value="{path : 'formularioSimple>/editarProducto/preciov' }" />
+						<Input type="Number" value="{path : 'formularioSimple>/editarProducto/preciov' }" required="true" />
                         <c:Title text="" />
 						<Label text="Precio C." />
-						<Input type="Number" value="{path : 'formularioSimple>/editarProducto/precioc' }" />
+						<Input type="Number" value="{path : 'formularioSimple>/editarProducto/precioc' }" required="true" />
 
                         <!--Combo unidad m.-->
-						<Label text="Unidad Medida:" />
-                        <Select
+						<Label text="Unidad Medida" />
+                        <Select required="true"
                          id="idUnidad2" 
                         items="{
 						path: 'formularioSimple>/unidadMedida'
@@ -60,7 +60,7 @@
 
                         <!--Combo Activo-->
                         <Label text="Activo" />
-                        <Select id="activo2" items="{
+                        <Select required="true" id="activo2" items="{
 						path: 'formularioSimple>/activo'
 					    }" selectedKey="{
                             path: 'formularioSimple>/selectKeyActivo'

@@ -58,7 +58,7 @@ sap.ui.define(
                             "idactivo":"1"
                         },
                         {
-                            "id" : "3",
+                            "id" : 3,
                             "nombre": "Jabon liquido Aval",
                             "descripcion": "Jabon",
                             "imagen" : "https://corporacionliderperu.com/46605-large_default/aval-jabon-liquido-frasco-x-400-ml-antibac-frutos-rojos.jpg",
@@ -72,7 +72,7 @@ sap.ui.define(
                             "idactivo":"1"
                         },
                         {
-                            "id" : "4",
+                            "id" : 4,
                             "nombre": "Papel Toalla Elite",
                             "descripcion": "Papel",
                             "imagen" : "https://corporacionliderperu.com/47008-large_default/elite-papel-toalla-mega-rollo-rojo-x-106h.jpg",
@@ -86,7 +86,7 @@ sap.ui.define(
                             "idactivo":"1"
                         },
                         {
-                            "id" : "5",
+                            "id" : 5,
                             "nombre": "Suavitel",
                             "descripcion": "Suavizante",
                             "imagen" : "https://promart.vteximg.com.br/arquivos/ids/567787-1000-1000/120682.jpg?v=637393515659930000",
@@ -100,7 +100,7 @@ sap.ui.define(
                             "idactivo":"1"
                         },
                         {
-                            "id" : "6",
+                            "id" : 6,
                             "nombre": "Limpiavidrios Sapolio",
                             "descripcion": "Limpiavidrios",
                             "imagen" : "https://production-tailoy-repo-magento-statics.s3.amazonaws.com/imagenes/872x872/productos/i/l/i/limpiavidrios-lavanda-gatllo-x650ml-sapolio-14533-default-1.jpg",
@@ -114,7 +114,7 @@ sap.ui.define(
                             "idactivo":"1"
                         },
                         {
-                            "id" : "7",
+                            "id" : 7,
                             "nombre": "Ambientador Glade Lavanda",
                             "descripcion": "Ambientador",
                             "imagen" : "https://promart.vteximg.com.br/arquivos/ids/568243-1000-1000/116352.jpg?v=637393529653970000",
@@ -128,7 +128,7 @@ sap.ui.define(
                             "idactivo":"1"
                         },
                         {
-                            "id" : "8",
+                            "id" : 8,
                             "nombre": "Detergente en polvo Ace",
                             "descripcion": "detergente",
                             "imagen" : "https://plazavea.vteximg.com.br/arquivos/ids/14673266-512-512/20112024.jpg",
@@ -142,7 +142,7 @@ sap.ui.define(
                             "idactivo":"1"
                         },
                         {
-                            "id" : "9",
+                            "id" : 9,
                             "nombre": "Lejía Clorox",
                             "descripcion": "Lejía",
                             "imagen" : "https://vegaperu.vtexassets.com/arquivos/ids/158593/7756641003872.jpg?v=637660221588430000",
@@ -156,7 +156,7 @@ sap.ui.define(
                             "idactivo":"1"
                         },
                         {
-                            "id" : "10",
+                            "id" : 10,
                             "nombre": "SacaGrasa Sapolio",
                             "descripcion": "Saca grasa",
                             "imagen" : "https://plazavea.vteximg.com.br/arquivos/ids/22277544-512-512/1982354002-1.jpg",
@@ -170,7 +170,7 @@ sap.ui.define(
                             "idactivo":"1"
                         },
                         {
-                            "id" : "11",
+                            "id" : 11,
                             "nombre": "Cera en Pasta Sapolio Amarilla",
                             "descripcion": "Cera",
                             "imagen" : "https://plazavea.vteximg.com.br/arquivos/ids/22277890-450-450/32238.jpg?v=638049614224330000",
@@ -184,7 +184,7 @@ sap.ui.define(
                             "idactivo":"1"
                         },
                         {
-                            "id" : "12",
+                            "id" : 12,
                             "nombre": "Jabon Camay",
                             "descripcion": "Jabon",
                             "imagen" : "https://vegaperu.vtexassets.com/arquivos/ids/157202/7891150044500.jpg?v=637618918127670000",
@@ -198,7 +198,7 @@ sap.ui.define(
                             "idactivo":"1"
                         },
                         {
-                            "id" : "13",
+                            "id" : 13,
                             "nombre": "Jabon Bolivar",
                             "descripcion": "Jabon Ropa",
                             "imagen" : "https://plazavea.vteximg.com.br/arquivos/ids/22278960-450-450/20236877.jpg?v=638049620688130000",
@@ -212,7 +212,7 @@ sap.ui.define(
                             "idactivo":"1"
                         },
                         {
-                            "id" : "14",
+                            "id" : 14,
                             "nombre": "Jabon Protex",
                             "descripcion": "Jabon Rostro",
                             "imagen" : "https://www.protex-soap.com/content/dam/cp-sites/personal-care/protex-relaunch/latam/products/protex-avena-2022.jpg",
@@ -231,21 +231,21 @@ sap.ui.define(
                     listaProveedores :
                     [
                         {
-                            "id" : "1",
+                            "id" : 1,
                             "nombre": "Carmen",
                             "telefono": "923754061",
                             "direccion" : "Santa Teodosia 475",
                             "estado" : "activo"
                         },
                         {
-                            "id" : "2",
+                            "id" : 2,
                             "nombre": "Jhon",
                             "telefono": "923754061",
                             "direccion" : "Santa Teodosia 475",
                             "estado" : "activo"
                         },
                         {
-                            "id" : "3",
+                            "id" : 3,
                             "nombre": "Karla",
                             "telefono": "923754061",
                             "direccion" : "Santa Teodosia 475",
@@ -260,21 +260,21 @@ sap.ui.define(
                     [
                        
                         {
-                            "id" : "1",
+                            "id" : 1,
                             "nombre": "Litros",
                             "descripcion": "Litros",
                             "abreviatura" : "LT",
                             "estado" : "activo"
                         },
                         {
-                            "id" : "2",
+                            "id" : 2,
                             "nombre": "Mililitros",
                             "descripcion": "Mililitros",
                             "abreviatura" : "ML",
                             "estado" : "activo"
                         },
                         {
-                            "id" : "3",
+                            "id" : 3,
                             "nombre": "Gramos",
                             "descripcion": "Gramos",
                             "abreviatura" : "GR",
