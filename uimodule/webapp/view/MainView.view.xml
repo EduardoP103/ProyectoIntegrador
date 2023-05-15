@@ -4,6 +4,7 @@
 	xmlns="sap.m"
 	xmlns:f="sap.f"
 	xmlns:layout="sap.ui.layout"
+	xmlns:u="sap.ui.unified"
 	height="100%"
 >
 	<f:DynamicPage
@@ -97,6 +98,8 @@
 											level="H2"
 										/>
 										<ToolbarSpacer/>
+											<u:FileUploader id="FileUploaderId" class="jello-horizontal" sameFilenameAllowed="true" iconOnly="false" buttonOnly="true" fileType="xlsx"
+												icon="sap-icon://upload" iconFirst="true" style="Emphasized" change="onUpload"/>
 										<Button
 											text="{i18n>add}"
 											class="jello-horizontal"
@@ -107,7 +110,7 @@
 										<Button
 											icon="sap-icon://delete"
 											type="Transparent"
-											press="onRemoveSelected"
+											press="onDeleteSelected"
 											class="jello-horizontal"
 										/>
 										<Button
@@ -397,6 +400,24 @@
 								</ColumnListItem>
 							</items>
 						</Table>
+					</IconTabFilter>
+					<IconTabFilter key="4" text="Productos Excel"> 
+						<Table 
+						id="ProductsExcel"
+						sticky="HeaderToolbar,ColumnHeaders"
+						inset="false"
+						class="sapUiSmallNegativeMarginBeginEnd"
+						width="auto"
+						
+						>
+						<headerToolbar>
+							<Toolbar >
+								<Title text="Items"/>
+								<ToolbarSpacer/>
+							</Toolbar>
+						</headerToolbar>
+					</Table>
+
 					</IconTabFilter>
 				</items>
 			</IconTabBar>

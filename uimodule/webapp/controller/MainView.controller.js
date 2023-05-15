@@ -59,7 +59,9 @@ sap.ui.define(
         let DynamicPageTitleArea = library.DynamicPageTitleArea;
 
         return Controller.extend("com.pe.proyectoIntegrador.controller.MainView", {
-            onInit: function () { },
+            onInit: function () {
+            },
+            // IMAGEN POPOVER
             onOpenViewImage: function (oEvent) {
                 const oButton = oEvent.getSource();
                 const oView = this.getView();
@@ -77,7 +79,6 @@ sap.ui.define(
                     oPop.openBy(oButton);
                 }.bind(this));
             },
-
             oCloseImage: function (oEvent) {
                 this.byId("myPopover").close();
             },
@@ -90,14 +91,21 @@ sap.ui.define(
                 let aCols = [];
 
                 aCols.push({
-                    label: "Producto",
+                    label: "Id",
+                    property: ["id"],
+                    type: EdmType.String,
+                    template: "{0}"
+                });
+
+                aCols.push({
+                    label: "name",
                     property: ["name"],
                     type: EdmType.String,
                     template: "{0}",
                 });
 
                 aCols.push({
-                    label: "Descripción",
+                    label: "description",
                     property: ["description"],
                     type: EdmType.String,
                     template: "{0}",
@@ -111,7 +119,7 @@ sap.ui.define(
                 });
 
                 aCols.push({
-                    label: "PrecioV",
+                    label: "salePrice",
                     property: ["salePrice"],
                     type: EdmType.String,
                     template: "{0}",
@@ -125,14 +133,14 @@ sap.ui.define(
                 });
 
                 aCols.push({
-                    label: "Stock",
+                    label: "stock",
                     property: ["stock"],
                     type: EdmType.String,
                     template: "{0}",
                 });
 
                 aCols.push({
-                    label: "Unidad M.",
+                    label: "unitOfMeasurementName",
                     property: ["unitOfMeasurementName"],
                     type: EdmType.String,
                     template: "{0}",
@@ -151,11 +159,10 @@ sap.ui.define(
                     type: EdmType.String,
                     template: "{0}",
                 });
-
                 aCols.push({
                     label: "datepicker",
                     property: ["datepicker"],
-                    type: EdmType.Date,
+                    type: EdmType.String,
                     template: "{0}",
                 })
 
@@ -224,8 +231,6 @@ sap.ui.define(
                     type: EdmType.String,
                     template: "{0}",
                 });
-
-                
                 return aCols;
             },
 
@@ -278,20 +283,20 @@ sap.ui.define(
                     case "0":
                         oTable = this.getView().byId("idProductsTable");
                         aCols = this.createColumnConfigTableProducts();
-                        fileName = "ListaProductosEnStock.pdf";
+                        fileName = "ListaProductosEnStockVertical.pdf";
                         title = "Productos";
                         // text="{i18n>products} ({= ${localModel>/listOfProducts}.length })"
                         break;
                     case "1":
                         oTable = this.getView().byId("listOfSuppliers");
                         aCols = this.createColumnConfigTableSupplier();
-                        fileName = "ListaProveedores.pdf";
+                        fileName = "ListaProveedoresVertical.pdf";
                         title = "Proveedores";
                         break;
                     case "2":
                         oTable = this.getView().byId("listOfUnitOfMeasurement");
                         aCols = this.createColumnConfigTableUnitOfMeasurement();
-                        fileName = "ListaUnidadMedida.pdf";
+                        fileName = "ListaUnidadMedidaVertical.pdf";
                         title = "Unidades de Medida";
                         break;
                     default:
@@ -329,9 +334,34 @@ sap.ui.define(
                     startY: 20,
                     tableWidth: "auto",
                     styles: { fontSize: 10 },
+                    headStyles: {
+                        valign: 'middle',
+                        halign: 'center',
+                        fillColor: [30, 144, 255],
+                    },
+                    columnStyles: {
+                        1: {
+                            halign: 'center',
+                            cellWidth: 50,
+                            fillColor: [255, 255, 255],
+                            fontStyle: 'bold',
+                            valign: 'middle',
+                            textColor: 0
+                        },
+                        3: { // columna 4
+                            halign: 'center',
+                            cellWidth: 25,
+                            fillColor: [255, 255, 255],
+                            fontStyle: 'normal',
+                            valign: 'middle',
+                            textColor: 0
+                        }
+                    },
+                    columnWidth: "auto"
                 });
                 doc.save(fileName);
             },
+
             onExportPDFHorizontal: function () {
                 debugger;
                 const selectedTab = this.getView().getModel("localModel").getProperty("/selectedIconTabBar");
@@ -340,19 +370,19 @@ sap.ui.define(
                     case "0":
                         oTable = this.getView().byId("idProductsTable");
                         aCols = this.createColumnConfigTableProducts();
-                        fileName = "ListaProductosEnStock.pdf";
+                        fileName = "ListaProductosEnStockHorizontal.pdf";
                         title = "Productos";
                         break;
                     case "1":
                         oTable = this.getView().byId("listOfSuppliers");
                         aCols = this.createColumnConfigTableSupplier();
-                        fileName = "ListaProveedores.pdf";
+                        fileName = "ListaProveedoresHorizontal.pdf";
                         title = "Proveedores";
                         break;
                     case "2":
                         oTable = this.getView().byId("listOfUnitOfMeasurement");
                         aCols = this.createColumnConfigTableUnitOfMeasurement();
-                        fileName = "ListaUnidadMedida.pdf";
+                        fileName = "ListaUnidadMedidaHorizontal.pdf";
                         title = "Unidades de Medida";
                         break;
                     default:
@@ -388,6 +418,22 @@ sap.ui.define(
                     startY: 60,
                     tableWidth: "auto",
                     styles: { fontSize: 10 },
+                    headStyles: {
+                        valign: 'middle',
+                        haling: 'center',
+                        fillColor: [30, 144, 255],
+                    },
+                    columnStyles: {
+                        0: {
+                            halign: 'center',
+                            cellWidth: 50,
+                            fillColor: [255, 255, 255],
+                            fontStyle: 'bold',
+                            valign: 'middle',
+                            textColor: 0
+                        },
+                    },
+                    columnWidth: "auto"
                 });
                 doc.save(fileName);
             },
@@ -398,6 +444,10 @@ sap.ui.define(
                 // let fileName;
                 switch (selectedTab) {
                     case "0":
+                        if (this.getView().getModel("localModel").getProperty("/listOfProducts").length === 0) {
+                            MessageBox.warning("No existen datos, no se puede crear el documento");
+                            return;
+                            }
                         // fileName = "ListaProductosEnStock.csv";
                         var oExport = new Export({
                             exportType: new ExportTypeCSV({
@@ -409,61 +459,61 @@ sap.ui.define(
                             },
                             columns: [
                                 {
-                                    name: "Nombre",
+                                    name: "name",
                                     template: {
                                         content: "{name}",
                                     },
                                 },
                                 {
-                                    name: "Descripcion",
+                                    name: "description",
                                     template: {
                                         content: "{description}",
                                     },
                                 },
                                 {
-                                    name: "Imagen URL",
+                                    name: "image",
                                     template: {
                                         content: "{image}",
                                     },
                                 },
                                 {
-                                    name: "Precio V.",
+                                    name: "salePrice",
                                     template: {
                                         content: "{salePrice}",
                                     },
                                 },
                                 {
-                                    name: "Precio C.",
+                                    name: "purchasePrice",
                                     template: {
                                         content: "{purchasePrice}",
                                     },
                                 },
                                 {
-                                    name: "Stock",
+                                    name: "stock",
                                     template: {
                                         content: "{stock}",
                                     },
                                 },
                                 {
-                                    name: "Unidad M.",
+                                    name: "unitOfMeasurementName",
                                     template: {
                                         content: "{unitOfMeasurementName}",
                                     },
                                 },
                                 {
-                                    name: "Proveedor",
+                                    name: "supplierName",
                                     template: {
                                         content: "{supplierName}",
                                     },
                                 },
                                 {
-                                    name: "Activo",
+                                    name: "statusName",
                                     template: {
                                         content: "{statusName}",
                                     },
                                 },
                                 {
-                                    name: "Fecha de envio",
+                                    name: "datepicker",
                                     template: {
                                         content: "{datepicker}"
                                     }
@@ -548,7 +598,6 @@ sap.ui.define(
                         console.log("Invalid tab selected");
                         return;
                 }
-            
                 oExport
                     .saveFile()
                     .catch(function (oError) {
@@ -558,43 +607,46 @@ sap.ui.define(
                         oExport.destroy();
                     });
             },
-            
-            // ELIMINAR SELECCIONADOS
-            onConfirmDeletionProduct: function (oEvent) {
-                const oButton = oEvent.getSource(),
-                    oView = this.getView();
-                const aSelectedProducts = oView
-                    .byId("table")
-                    .getSelectedItems()
-                    .map(item => item.getBindingContext("localModel").getObject());
-
-                if (!this.oMPProductRemoved) {
-                    this.oMPProductRemoved = this.loadFragment({
-                        name: "com.pe.proyectoIntegrador.view.fragment.DeleteMultipleProducts",
+            // onInit: function () {
+            //      this.localModel = new sap.ui.model.json.JSONModel();
+            //      this.getView().setModel(this.localModel, "listOfProducts");
+            //     //  this.getView().setModel(this.localModel, "localModel");
+            // },
+            onInit: function () {
+                this.localModel = new sap.ui.model.json.JSONModel();     
+                 this.getView().setModel(this.localModel, "localModel");
+           },
+           onUpload: function (e) {
+               debugger
+               this._import(e.getParameter("files") && e.getParameter("files")[0]);
+           },
+           _import: function (file) {
+            let that = this;
+            let excelData = {};
+            if (file && window.FileReader) {
+                let reader = new FileReader();
+                reader.onload = function (e) {
+                    let data = e.target.result;
+                    let workbook = XLSX.read(data, {
+                        type: 'binary'
                     });
-                }
-
-                this.oMPProductRemoved.then(function (oDialogProductDeleted) {
-                    this.oDialogProductDeleted = oDialogProductDeleted;
-                    this.oDialogProductDeleted.open();
-                }.bind(this));
-            },
-
-            onPressDeleteProduct: function () {
-                const aSelectedProducts = this.getView()
-                    .byId("table")
-                    .getSelectedItems()
-                    .map(item => item.getBindingContext("localModel").getObject());
-                const aAllProducts = this.getView().getModel("localModel").getProperty("/listOfProducts");
-                const aFinalProducts = aAllProducts.filter(product => !aSelectedProducts.includes(product));
-
-                this.getView().getModel("localModel").setProperty("/listOfProducts", aFinalProducts);
-                this.getView().getModel("localModel").refresh();
-
-                MessageBox.success("Productos eliminados");
-                this.closeDialogRemoveProduct();
-            },
-
+                    workbook.SheetNames.forEach(function (sheetName) {
+                        // Here is your object for every sheet in workbook
+                        excelData = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName]);
+                    });
+                    // Merge the existing data with the imported data
+                    let currentData = that.localModel.getData();
+                    let mergedData = Object.assign({}, currentData, {listOfProducts: excelData});
+                    // Update the local model with the merged data
+                    that.localModel.setData(mergedData);
+                    that.localModel.refresh(true);
+                };
+                reader.onerror = function (ex) {
+                    console.log(ex);
+                };
+                reader.readAsBinaryString(file);
+            }
+        },
             // FILTRO ASCENDENTE Y DESCENTENTE
             onSortAscending: function () {
                 let oTable = this.byId("idProductsTable");
@@ -603,7 +655,6 @@ sap.ui.define(
                 aSorters.push(new sap.ui.model.Sorter("salePrice", false));
                 oBinding.sort(aSorters);
             },
-
             onSortDescending: function () {
                 let oTable = this.byId("idProductsTable");
                 let oBinding = oTable.getBinding("items");
@@ -611,7 +662,6 @@ sap.ui.define(
                 aSorters.push(new sap.ui.model.Sorter("salePrice", true));
                 oBinding.sort(aSorters);
             },
-
             // FILTRAR PRODUCTOS
             onSearch: function (oEvent) {
                 const newValue = oEvent.getSource().getValue();
@@ -632,7 +682,6 @@ sap.ui.define(
                     : this.getView().byId("listOfSuppliers").getBinding("items");
                 oBinding.filter(allFilters);
             },
-
             //   AGREGAR PRODUCTO
             onAddProduct: function () {
                 if (!this.oMPAddProduct) {
@@ -651,7 +700,6 @@ sap.ui.define(
                 this.oDialogProducto.close();
                 this.onClearInputs();
             },
-
             onEditProduct: function () {
                 if (!this.oMPEditProduct) {
                     this.oMPEditProduct = this.loadFragment({
@@ -711,49 +759,56 @@ sap.ui.define(
                     });
             },
             // ELIMINAR PRODUCTOS SELECTIONADOS 
-            onRemoveSelected: function () {
+            onDeleteSelected: function () {
+                debugger;
                 const oTable = this.byId("idProductsTable");
                 const aSelectedItems = oTable.getSelectedItems();
                 const aSelectedProducts = [];
+                const iNumSelectedProducts = aSelectedItems.length;
                 aSelectedItems.forEach(function (oItem) {
-                    const oProduct = oItem.getBindingContext("localModel").getObject();
-                    aSelectedProducts.push(oProduct);
-                });
+                  const oProduct = oItem.getBindingContext("localModel").getObject();
+                  aSelectedProducts.push(oProduct);
+                } );
                 if (aSelectedProducts.length === 0) {
-                    MessageBox.warning("Seleccione uno o más productos para eliminar");
-                    return;
+                  MessageBox.warning("Seleccione uno o más productos para eliminar");
+                  return;
                 }
-                MessageBox.confirm("¿Está seguro que desea eliminar los productos seleccionados?", {
-                    onClose: function (oAction) {
-                        if (oAction === MessageBox.Action.OK) {
-                            const oModel = this.getView().getModel("localModel");
-                            aSelectedProducts.forEach(function (oProduct) {
-                                const iIndex = oModel.getProperty("/listOfProducts").indexOf(oProduct);
-                                oModel.getProperty("/listOfProducts").splice(iIndex, 1);
-                            });
-                            oTable.removeSelections();
-                            oModel.updateBindings();
-                        }
-                    }.bind(this)
+                MessageBox.confirm(`¿Está seguro que desea eliminar  ${iNumSelectedProducts} productos seleccionados?`, {
+                  onClose: function (oAction) {
+                    debugger
+                    if (oAction === MessageBox.Action.OK) {
+                      const oModel = this.getView().getModel("localModel");
+                      const aAllProducts = oModel.getProperty("/listOfProducts");
+                      const aProducts = aAllProducts.filter(product => !aSelectedProducts.includes(product));
+                      oModel.setProperty("/listOfProducts", aProducts);
+                      oModel.setProperty("/totalProducts", aProducts.length);
+                    //   oTable.removeSelections();
+                    oModel.updateBindings();
+                    }
+                  }.bind(this)
                 });
+              },
+              
+            closeDialogRemoveProduct: function () {
+                this.oDialogProductDeleted.close();
             },
-            //   onConfirmDeletionSelected: function (oEvent) {
-            //     const oTable = this.byId("idProductsTable");
-            //     const aSelectedItems = oTable.getSelectedItems();
-            //     if (aSelectedItems.length === 0) {
-            //         MessageToast.show(this.getView().getModel("i18n").getResourceBundle().getText("noItemSelected"));
-            //         return;
-            //     }
-            //     const aProductsToDelete = [];
-            //     aSelectedItems.forEach(function (oSelectedItem) {
-            //         const oProduct = oSelectedItem.getBindingContext("localModel").getObject();
-            //         aProductsToDelete.push(oProduct);
-            //     });
-            // },   
-
             // ELIMINAR PRODUCTO
+            onPressDeleteProduct: function () {
+                debugger
+                const aSelectedProducts = this.getView()
+                    .byId("table")
+                    .getSelectedItems()
+                    .map(item => item.getBindingContext("localModel").getObject());
+                const aAllProducts = this.getView().getModel("localModel").getProperty("/listOfProducts");
+                const aFinalProducts = aAllProducts.filter(product => !aSelectedProducts.includes(product));
+
+                this.getView().getModel("localModel").setProperty("/listOfProducts", aFinalProducts);
+                this.getView().getModel("localModel").refresh();
+
+                MessageBox.success("Productos eliminados");
+                this.closeDialogRemoveProduct();
+            },
             onConfirmDeletionProduct: function (oEvent) {
-                debugger;
                 const oButton = oEvent.getSource(),
                     oView = this.getView();
                 const oProduct = oButton.getParent().getBindingContext("localModel");
@@ -771,14 +826,10 @@ sap.ui.define(
                     }.bind(this)
                 );
             },
-            closeDialogRemoveProduct: function () {
-                this.oDialogProductDeleted.close();
-            },
             onPressDeleteProduct: function () {
                 let selectRowDelete = this.getView().getModel("localModel").getProperty("/selectRowDelete");
                 let listOfProducts = this.getView().getModel("localModel").getProperty("/listOfProducts");
                 let finalProducts = [];
-
                 for (let index = 0; index < listOfProducts.length; index++) {
                     const element = listOfProducts[index];
                     if (element.id != selectRowDelete.id) {
@@ -804,7 +855,6 @@ sap.ui.define(
                     statusName,
                     datepicker,
                 } = this.getView().getModel("localModel").getProperty("/addProduct");
-                // Validar que los campos requeridos estén completos
                 if (!name || !description || !image || !stock || !salePrice || !purchasePrice) {
                     MessageBox.warning("Es necesario saber el Nombre, Descripcion y la imagen del Producto");
                     return;
@@ -841,29 +891,24 @@ sap.ui.define(
                 listOfProducts.push(oProducto);
                 this.getView().getModel("localModel").refresh();
                 MessageBox.success("Producto guardado");
-                confetti(); 
                 this.closeDialogProducto();
             },
+            
             // DEBUGGER
             onPressEditTabla: function () {
                 debugger
                 // let id = this.getView().getModel("localModel").getProperty("/editProduct").id;
                 const { id, name: nameProduct, description: descriptionProduct, image: imageProduct, salePrice, purchasePrice, stock, unitOfMeasurementName, supplierName, statusName, datepicker } = this.getView().getModel("localModel").getProperty("/editProduct")
-
                 const { selectStateName, selectUnitOfMeasurementName, selectSupplierName } = this.getView().getModel("localModel").getData()
-
                 let oSearchUnit = this.getView().getModel("localModel").getProperty("/ListunitOfMeasurementName").filter(function (item, index) {
                     return item.id == selectUnitOfMeasurementName;
                 })
-
                 let oSearchSupplierName = this.getView().getModel("localModel").getProperty("/listSupplierName").filter(function (item, index) {
                     return item.id == selectSupplierName;
                 })
-
                 let oSearchStatusName = this.getView().getModel("localModel").getProperty("/activo").filter(function (item, index) {
                     return item.id == selectStateName;
                 })
-
                 let oProducto1 = {
                     "id": id,
                     "name": nameProduct,
@@ -879,12 +924,10 @@ sap.ui.define(
                     "idsupplierName": selectSupplierName,
                     "idstatusName": selectStateName,
                     "datepicker": datepicker
-
                 }
                 let oResp = {
                     valid: false,
                     mensaje: "",
-
                 };
                 if (
                     nameProduct.trim().length == 0 ||
@@ -898,8 +941,6 @@ sap.ui.define(
                 ) {
                     oRespuesta2.valid = false;
                     oRespuesta2.mensaje = "llena los campos";
-
-                    // Agregar la condición para mostrar el MessageBox solo si hay campos vacíos
                     if (nameProd.trim().length == 0 ||
                         descProd.trim().length == 0 ||
                         pvProd <= 0 ||
@@ -913,7 +954,6 @@ sap.ui.define(
                     }
                     return oRespuesta;
                 }
-
                 let listOfProducts = this.getView().getModel("localModel").getProperty("/listOfProducts");
                 let finalProducts = [];
                 for (let index = 0; index < listOfProducts.length; index++) {
@@ -943,6 +983,7 @@ sap.ui.define(
                 this.getView().getModel("localModel").setProperty("/editProduct", oSelectObj);
                 this.onEditProduct();
             },
+            // VALIDACIONES DE INPUTS TEXT
             onInputChange: function (oEvent) {
                 const oInput = oEvent.getSource();
                 let sValue = oInput.getValue().trim();
@@ -955,19 +996,19 @@ sap.ui.define(
                     oInput.setValueState("None");
                 }
             },
-
+            // VALIDACIONES DE INPUTS NUMBER
             onNumberInput: function (oEvent) {
                 const oInput = oEvent.getSource();
                 const sValue = oInput.getValue();
                 debugger;
                 const edadPattern = /[^0-9]/;
                 if (edadPattern.test(sValue)) {
-                    //oInput.setValueState("Error");
                     oInput.setValue(sValue.replace(/[^0-9]/g, ''));
                 } else {
                     oInput.setValueState("None");
                 }
             },
+            // VALIDACION DE IMAGEN
             onImageChange: function (oEvent) {
                 const oInput = oEvent.getSource();
                 const sValue = oInput.getValue();

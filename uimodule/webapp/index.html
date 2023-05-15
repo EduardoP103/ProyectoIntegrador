@@ -1,48 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Sistema de Gestion de Inventario</title>
-        <link rel="shortcut icon" type="image/png" href="assets/ventas.png"/>
+    <link rel="shortcut icon" type="image/png" href="assets/ventas.png" />
     <style>
-        html, body, body > div, #container, #container-uiarea {
+        html,
+        body,
+        body>div,
+        #container,
+        #container-uiarea {
             height: 100%;
         }
     </style>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/confetti-js@0.0.24/confetti.min.js"></script>
-
-    <script
-        id="sap-ui-bootstrap"
-        src="https://ui5.sap.com/resources/sap-ui-core.js"
-
-        data-sap-ui-resourceroots='{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/confetti-js@0.0.24/confetti.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.10.0/jszip.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.10.0/xlsx.js"></script>
+    <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
+    <script id="sap-ui-bootstrap" src="https://ui5.sap.com/resources/sap-ui-core.js" data-sap-ui-resourceroots='{
             "com.pe.proyectoIntegrador": "./"
-        }'
-        data-sap-ui-oninit="module:sap/ui/core/ComponentSupport"
-
-        data-sap-ui-compatVersion="edge"
-
-        data-sap-ui-async="true"
-
-        data-sap-ui-frameOptions="trusted"
-
-        data-sap-ui-theme="sap_horizon"
-
-        data-sap-ui-xx-waitForTheme="true"
-
-
-    ></script>
+        }' data-sap-ui-oninit="module:sap/ui/core/ComponentSupport"         data-sap-ui-compatVersion="edge"        
+        data-sap-ui-async="true"         data-sap-ui-frameOptions="trusted"         data-sap-ui-theme="sap_horizon"
+                data-sap-ui-xx-waitForTheme="true"></script>
 </head>
+
 <body class="sapUiBody sapUiSizeCompact" id="content">
-    <div
-        data-sap-ui-component
-        data-name="com.pe.proyectoIntegrador"
-        data-id="container"
-        data-settings='{"id" : "com.pe.proyectoIntegrador"}'
-        data-handle-validation="true"
-    ></div>
+    <div data-sap-ui-component data-name="com.pe.proyectoIntegrador" data-id="container"
+        data-settings='{"id" : "com.pe.proyectoIntegrador"}' data-handle-validation="true"></div>
 </body>
+
 </html>

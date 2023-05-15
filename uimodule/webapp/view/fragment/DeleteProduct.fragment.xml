@@ -28,9 +28,7 @@
                     <Button type="Critical"
                         text="Eliminar"
                         press="onPressDeleteProduct" />
-
                     <ToolbarSpacer/>
-
                     <Button id="Delete"
                         text="Cerrar"
                         type="Reject"
