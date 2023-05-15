@@ -256,38 +256,70 @@ sap.ui.define(
 
              // ----------------------------Cargar datos desde XLSX -------------------------//
 
-            /*onUpload: function (e) {
-                this._import(e.getParameter("files") && e.getParameter("files")[0]);
+            onUpload: function (e) {
+                this._import(e.getParameter('files') && e.getParameter('files')[0]);
             },
     
             _import: function (file) {
 
-                /*var that = this;
-                var excelData = {};
+                let that = this;
+                let excelData = [];
                 if (file && window.FileReader) {
-                    var reader = new FileReader();
-                    reader.onload = function (e) {
-                        var data = e.target.result;
-                        var workbook = XLSX.read(data, {
-                            type: 'binary'
-                        });
-                        workbook.SheetNames.forEach(function (sheetName) {
-                            // Here is your object for every sheet in workbook
-                            excelData = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName]);
+                let reader = new FileReader();
+                reader.onload = function (e) {
+                let data = e.target.result;
+                let workbook = XLSX.read(data, {
+                type: 'binary',
+                });
+                workbook.SheetNames.forEach(function (sheetName) {
+                // Here is your object for every sheet in workbook
+                excelData = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName]);
+                });
+                let id = 1;
 
-                        });
-                        // Setting the data to the local model 
-                        that.formularioSimple.setData({
-                            items: excelData
-                        });
-                        that.formularioSimple.refresh(true);
-                    };
-                    reader.onerror = function (ex) {
-                        console.log(ex);
-                    };
-                    reader.readAsBinaryString(file);
+                let listalocales = [
+                ...that.getView().getModel('formularioSimple').getProperty('/locales'),
+                ];
+
+                const ids = listalocales.map((object) => {
+                return object.id;
+                });
+                console.log(ids);
+
+                let idsOrdenada = ids.sort(function (a, b) {
+                return b - a;
+                });
+                if (idsOrdenada.length > 0) {
+                    id = idsOrdenada[0] + 1;
+                }
+
+                excelData.forEach((element) => {
+                let obj = { ...element };
+                obj.id = id++;
+                listalocales.push(obj);
+                });
+
+                that.getView().getModel('formularioSimple').setProperty('/locales', listalocales);
+
+                that.getView().getModel('formularioSimple').refresh(true);
+
+                // that.getView().getModel('localModel').updateBindings();
+                // Merge the existing data with the imported data
+
+                // let currentData = that.localModel.getData();
+                // let mergedData = Object.assign({}, currentData, { listOfProducts: excelData });
+
+                // Update the local model with the merged data
+                // that.localModel.setData(mergedData);
+                // that.localModel.refresh(true);
+                };
+                reader.onerror = function (ex) {
+                    console.log(ex);
+                };
+                reader.readAsBinaryString(file);
+                }
                 
-            }*/  
+            },
 
             // ----------------------------Creación de columnas para exportar datos en XLSX -------------------------//
 

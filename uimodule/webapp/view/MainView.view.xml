@@ -456,21 +456,21 @@
 
 						</IconTabFilter>
 
-						<IconTabFilter key="4" text="Subida de Excel">
+						<IconTabFilter key="4" text="Locales">
 
 							<Table id="idProductsTable5" sticky="HeaderToolbar,ColumnHeaders" inset="false" class="sapUiSmallNegativeMarginBeginEnd" width="auto"
-									items="{formularioSimple>/items}" >
+									items="{formularioSimple>/locales}" >
 
 								<headerToolbar>
 
 									<Toolbar>
 
-										<Title text="Items ({= ${formularioSimple>/items}.length })" level="H2"/>
+										<Title text="Locales ({= ${formularioSimple>/locales}.length })" level="H2"/>
 										
 										<ToolbarSpacer/>
 										<u:FileUploader id="FileUploaderId" sameFilenameAllowed="true" iconOnly="false" buttonOnly="true" fileType="XLSX,xlsx"
 									icon="sap-icon://upload" iconFirst="true" style="Emphasized" change="onUpload" 
-									multiple="false" buttonText="Exportar Archivo XLSX"/> 
+									multiple="false" buttonText="Importar Locales Mediante XLSX"/> 
 									
 										<!-- <ui:FileUploader id="fileUploaderFS" multiple="false" buttonText="Exportar Archivo XLSX"/>
 
@@ -484,27 +484,33 @@
 
 									<Column>
 
-										<Label text="Name"/>
+										<Label text="Dirección"/>
 
 									</Column>
 
 									<Column>
 
-										<Label text="Age"/>
+										<Label text="Distrito"/>
 
 									</Column>
 
 									<Column>
 
-										<Label text="Job"/>
+										<Label text="Telefono"/>
 
 									</Column>
 
-									<Column>
+									<Column minScreenWidth="Tablet"	demandPopin="true" hAlign="Center">
 
-										<Label text="Address"/>
+										<Label text="Referencia"/>
 
-									</Column>									
+									</Column>			
+
+									<Column minScreenWidth="Desktop" demandPopin="true" hAlign="Center">
+
+										<Label text="Estado"/>
+
+									</Column>							
 
 								</columns>
 
@@ -514,13 +520,15 @@
 
 										<cells>
 
-											<Text text="{formularioSimple>Name}"/>
+											<Text text="{formularioSimple>direccion}"/>
 
-											<Text text="{formularioSimple>Age}"/>
+											<Text text="{formularioSimple>distrito}"/>
 
-											<Text text="{formularioSimple>Job}"/>
+											<Text text="{formularioSimple>telefono}"/>
 
-											<Text text="{formularioSimple>Address}"/>
+											<Text text="{formularioSimple>referencia}"/>
+
+											<ObjectStatus  text="{formularioSimple>estado}" state="Success" icon="sap-icon://message-success" />
 											
 										</cells>
 

@@ -448,7 +448,39 @@ sap.ui.define(
                             "estado": "Activo"
                         }
                     ],
-                    items: [
+                    locales: [
+                        {
+                            "id": 1,
+                            "direccion": "Avenida Uruguay 191 Tienda 607 Sótano L01",
+                            "distrito": "Cercado de Lima",
+                            "telefono": "977573051",
+                            "referencia": "Centro de Lima",
+                            "estado": "Activo"
+                        },
+                        {
+                            "id": 2,
+                            "direccion": "Avenida Inca Garcilaso de la Vega 1251 Tienda 404",
+                            "distrito": "Cercado de Lima",
+                            "telefono": "955402782",
+                            "referencia": "COMPUPLAZA",
+                            "estado": "Activo"
+                        },
+                        {
+                            "id": 3,
+                            "direccion": "Avenida Inca Garcilaso de la Vega 1348 Tienda 2B - 130",
+                            "distrito": "Cercado de Lima",
+                            "telefono": "981214308",
+                            "referencia": "CYBERPLAZA",
+                            "estado": "Activo"
+                        },
+                        {
+                            "id": 4,
+                            "direccion": "Avenida Industrial 3670 Tienda L6 - L7",
+                            "distrito": "Independencia",
+                            "telefono": "946009844",
+                            "referencia": "Viera Center",
+                            "estado": "Activo"
+                        }
 
                     ],
                     addProducto : {
