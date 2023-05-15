@@ -525,6 +525,46 @@ sap.ui.define(
 
                 return aCols4;
             },
+            createColumnConfig5: function () {
+                const aCols5 = [];
+
+                aCols5.push({
+                    label: "Dirección",
+                    property: ["direccion"],
+                    type: EdmType.String,
+                    template: "{0}",
+                });
+
+                aCols5.push({
+                    label: "Distrito",
+                    property: ["distrito"],
+                    type: EdmType.String,
+                    template: "{0}",
+                });
+
+                aCols5.push({
+                    label: "Telefono",
+                    property: ["telefono"],
+                    type: EdmType.String,
+                    template: "{0}",
+                });
+
+                aCols5.push({
+                    label: "Referencia",
+                    property: ["referencia"],
+                    type: EdmType.String,
+                    template: "{0}",
+                });
+
+                aCols5.push({
+                    label: "Estado",
+                    property: ["estado"],
+                    type: EdmType.String,
+                    template: "{0}",
+                });
+
+                return aCols5;
+            },
 
             // ----------------------------Exportar datos en XLSX -------------------------//
 
@@ -565,6 +605,15 @@ sap.ui.define(
                     if (oTable.getBinding("items").oList.length > 0) {
                         aCols = this.createColumnConfig4();
                         fileName = "ListaUnidadMedida.xlsx";
+                    } else {
+                        nodata = true;
+                    }
+                } else if (selectedTab === "4") {
+                    oTable = this.getView().byId("idProductsTable5");
+
+                    if (oTable.getBinding("items").oList.length > 0) {
+                        aCols = this.createColumnConfig5();
+                        fileName = "ListaLocales.xlsx";
                     } else {
                         nodata = true;
                     }
@@ -631,6 +680,12 @@ sap.ui.define(
                         aCols = this.createColumnConfig4();
                         fileName = "ListaUnidadMedidaVertical.pdf";
                         title = "Unidades de Medida";
+                        break;
+                    case "4":
+                        oTable = this.getView().byId("idProductsTable5");
+                        aCols = this.createColumnConfig5();
+                        fileName = "ListaLocalesVertical.pdf";
+                        title = "Locales";
                         break;
                     default:
                         MessageBox.warning("No existen datos, no se puede crear el documento");
@@ -745,7 +800,7 @@ sap.ui.define(
                     case "0":
                         oTable = this.getView().byId("idProductsTable1");
                         aCols = this.createColumnConfig();
-                        fileName = "ListaProductosEnStockVertical.pdf";
+                        fileName = "ListaProductosEnStockHorizontal.pdf";
                         title = "Productos";
                         // jsPDF = { unit: "in", format: "letter", orientation: "portrait" };
                         // orientation = portrait / landscape;
@@ -753,20 +808,26 @@ sap.ui.define(
                     case "1":
                         oTable = this.getView().byId("idProductsTable2");
                         aCols = this.createColumnConfig2();
-                        fileName = "ListaProveedoresVertical.pdf";
+                        fileName = "ListaProveedoresHorizontal.pdf";
                         title = "Proveedores";
                         break;
                     case "2":
                         oTable = this.getView().byId("idProductsTable3");
                         aCols = this.createColumnConfig3();
-                        fileName = "ListaClientesVertical.pdf";
+                        fileName = "ListaClientesHorizontal.pdf";
                         title = "Clientes";
                         break;
                     case "3":
                         oTable = this.getView().byId("idProductsTable4");
                         aCols = this.createColumnConfig4();
-                        fileName = "ListaUnidadMedidaVertical.pdf";
+                        fileName = "ListaUnidadMedidaHorizontal.pdf";
                         title = "Unidades de Medida";
+                        break;
+                    case "4":
+                        oTable = this.getView().byId("idProductsTable5");
+                        aCols = this.createColumnConfig5();
+                        fileName = "ListaLocalesHorizontal.pdf";
+                        title = "Lista locales";
                         break;
                     default:
                         MessageBox.warning("No existen datos, no se puede crear el documento");
@@ -1103,6 +1164,56 @@ sap.ui.define(
                                 name: "Abreviatura",
                                 template: {
                                     content: "{abreviatura}",
+                                },
+                            },
+                            {
+                                name: "Estado",
+                                template: {
+                                    content: "{estado}",
+                                },
+                            },
+                        ],
+                    });
+                } else if (selectedTab === "4") {
+                    var oExport = new Export({
+                        // Type that will be used to generate the content. Own ExportType's can be created to support other formats
+                        exportType: new ExportTypeCSV({
+                            separatorChar: ",",
+                        }),
+
+                        // Pass in the model created above
+                        models: this.getView().getModel("formularioSimple"),
+
+                        // binding information for the rows aggregation
+                        rows: {
+                            path: "/locales",
+                        },
+
+                        // column definitions with column name and binding info for the content
+
+                        columns: [
+                            {
+                                name: "Direccion",
+                                template: {
+                                    content: "{direccion}",
+                                },
+                            },
+                            {
+                                name: "Distrito",
+                                template: {
+                                    content: "{distrito}",
+                                },
+                            },
+                            {
+                                name: "Telefono",
+                                template: {
+                                    content: "{telefono}",
+                                },
+                            },
+                            {
+                                name: "Referencia",
+                                template: {
+                                    content: "{referencia}",
                                 },
                             },
                             {
