@@ -94,11 +94,11 @@
 								<OverflowToolbar>
 									<content>
 										<Title
-											text="{i18n>products} ({= ${localModel>/listOfProducts}.length })"
+											text="{i18n>products} ({= ${localModel>/listOfProducts}.length})"
 											level="H2"
 										/>
 										<ToolbarSpacer/>
-											<u:FileUploader id="FileUploaderId" class="jello-horizontal" sameFilenameAllowed="true" iconOnly="false" buttonOnly="true" fileType="xlsx"
+											<u:FileUploader buttonText="Importar Data" id="FileUploaderId" class="jello-horizontal" sameFilenameAllowed="true" iconOnly="false" buttonOnly="true" fileType="xlsx"
 												icon="sap-icon://upload" iconFirst="true" style="Emphasized" change="onUpload"/>
 										<Button
 											text="{i18n>add}"
