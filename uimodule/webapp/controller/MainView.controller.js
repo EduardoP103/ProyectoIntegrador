@@ -1,19 +1,31 @@
 sap.ui.define(
     [
-        "./BaseController",
-        "../util/util",
-        "sap/ui/model/json/JSONModel",
-        "sap/ui/core/Fragment",
-        "sap/f/library",
-        "sap/ui/core/util/Export",
-        "sap/ui/core/util/ExportTypeCSV",
-        "sap/m/MessageBox",
-        "sap/ui/export/library",
+        'sap/ui/core/mvc/Controller',
+        'sap/ui/model/json/JSONModel',
+        'sap/f/library',
+        'sap/ui/core/Fragment',
+        'sap/m/MessageBox',
+        'sap/ui/core/message/Message',
+        'sap/ui/core/library',
+        'sap/ui/core/Core',
+        'sap/ui/core/Element',
+        'sap/ui/core/util/Export',
+        'sap/ui/core/util/ExportTypeCSV',
+        'sap/ui/export/Spreadsheet',
+        'sap/ui/export/library',
+        'sap/base/util/deepExtend',
+        'sap/m/ColumnListItem',
+        '../util/util',
+        'sap/ui/vbm/Containers',
+        'sap/ui/model/FilterOperator',
+    
     ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
      */
-    function (Controller, util, JSONModel, Fragment, library, Export, ExportTypeCSV, MessageBox, exportLibrary) {
+    function (Controller, JSONModel, library, Fragment, MessageBox, coreLibrary, Core, Element, Export, ExportTypeCSV,
+        Spreadsheet, exportLibrary, deepExtend, ColumnListItem, util,
+    ) {
         "use strict";
         var EdmType = exportLibrary.EdmType;
         return Controller.extend("com.pe.proyectoIntegrador.controller.MainView", {
@@ -877,9 +889,9 @@ sap.ui.define(
                     return;
                 }
                 try {
-                    let test1=jQuery.sap.require("com/pe/proyectoIntegrador/lib/jsPDF/jspdf");
-                    let test=jQuery.sap.require("com/pe/proyectoIntegrador/lib/jsPDF/autotable");
-                } catch (e) {}
+                    let test1 = jQuery.sap.require("com/pe/proyectoIntegrador/lib/jsPDF/jspdf");
+                    let test = jQuery.sap.require("com/pe/proyectoIntegrador/lib/jsPDF/autotable");
+                } catch (e) { }
                 const doc = new jspdf();
                 doc.text(title, 14, 10);
                 const tableData = oRowBinding.getCurrentContexts().map(function (oContext) {
@@ -899,15 +911,15 @@ sap.ui.define(
                 doc.save(fileName);
 
             },
-            onDeleteMultipleProducts: function(){
+            onDeleteMultipleProducts: function () {
                 debugger;
-                const selectedItems =  this.byId("idProductsTable").getSelectedItems();
+                const selectedItems = this.byId("idProductsTable").getSelectedItems();
                 const selectedProducts = [];
-                selectedItems.forEach(function(products){
+                selectedItems.forEach(function (products) {
                     const product = products.getBindingContext("formModel").getObject();
                     selectedProducts.push(product);
                 });
-                if (selectedProducts.length === 0){
+                if (selectedProducts.length === 0) {
                     MessageBox.warning("No hay selección");
                     return;
                 }
@@ -916,7 +928,61 @@ sap.ui.define(
                 this.getView().getModel("formModel").setProperty("/productList", product);
                 this.getView().getModel("formModel").updateBindings();
             },
-            //},
+            onUploadProducts: function (e) {
+                debugger;
+                this._import(e.getParameter('files') && e.getParameter('files')[0]);
+              },
+              _import: function (file) {
+                let that = this;
+                let excelData = [];
+                if (file && window.FileReader) {
+                  let reader = new FileReader();
+                  reader.onload = function (e) {
+                    let data = e.target.result;
+                    let workbook = XLSX.read(data, {
+                      type: 'binary',
+                    });
+                    workbook.SheetNames.forEach(function (sheetName) {
+                      // Here is your object for every sheet in workbook
+                      excelData = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName]);
+                    });
+                    debugger;
+                    let id = 1;
+        
+                    let listOfProducts = [
+                      ...that.getView().getModel('formModel').getProperty('/productList'),
+                    ];
+        
+                    const ids = listOfProducts.map((object) => {
+                      return object.id;
+                    });
+                    console.log(ids);
+        
+                    let idsOrdenada = ids.sort(function (a, b) {
+                      return b - a;
+                    });
+                    if (idsOrdenada.length > 0) {
+                      id = idsOrdenada[0] + 1;
+                    }
+        
+                    excelData.forEach((element) => {
+                      let obj = { ...element };
+                      debugger;
+                      obj.id = id++;
+                      listOfProducts.push(obj);
+                    });
+        
+                    that.getView().getModel('formModel').setProperty('/productList', listOfProducts);
+        
+                    that.getView().getModel('formModel').refresh(true);
+                    
+                  };
+                  reader.onerror = function (ex) {
+                    console.log(ex);
+                  };
+                  reader.readAsBinaryString(file);
+                }
+              },
         });
     }
 );

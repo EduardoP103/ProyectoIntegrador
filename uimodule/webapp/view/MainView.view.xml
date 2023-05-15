@@ -4,6 +4,7 @@
     xmlns:f="sap.f"
     xmlns:layout="sap.ui.layout"
     xmlns:form="sap.ui.layout.form"
+    xmlns:u="sap.ui.unified"
     height="100%">
     <f:DynamicPage id="dynamicPageId"
         showFooter="true"
@@ -98,6 +99,8 @@
                                 <OverflowToolbar>
                                     <Title text="Productos ({=${formModel>/productList}.length})" level="H2" />
                                     <ToolbarSpacer></ToolbarSpacer>
+                                    <u:FileUploader buttonText="Cargar datos" id="FileUploaderId" class="jello-horizontal" sameFilenameAllowed="true" iconOnly="false" buttonOnly="true" fileType="XLSX,xlsx"
+									icon="sap-icon://upload" iconFirst="true" style="Emphasized" change="onUploadProducts"/>
                                     <Button icon="sap-icon://delete" text="{i18n>deleteMultipleProducts}"
                                         press="onDeleteMultipleProducts" />
                                     <Button icon="sap-icon://add" text="{i18n>addButtonText}"
