@@ -102,8 +102,7 @@
 						<IconTabFilter key="0" id="tabproductos" text="Productos">
 
 							<Table id="idProductsTable1" multiSelectMode="Default" backgroundDesign="Solid" mode="MultiSelect" sticky="HeaderToolbar,ColumnHeaders" inset="false" 
-									class="sapUiSmallNegativeMarginBeginEnd"
-									footerText="Cantidad total de Productos: ({= ${formularioSimple>/listaTabla1}.length })"
+									class="sapUiSmallNegativeMarginBeginEnd" alternateRowColors="true"
 									items="{ path: 'formularioSimple>/listaTabla1',	sorter: { path: 'id' }
 									}" >
 
@@ -224,7 +223,7 @@
 						<IconTabFilter key="1" id="tabproveedores" text="Proveedores">
 
 							<Table id="idProductsTable2" sticky="HeaderToolbar,ColumnHeaders" inset="false" class="sapUiSmallNegativeMarginBeginEnd" width="auto"
-									items="{ path: 'formularioSimple>/listaTabla2',	sorter: { path: 'id' }
+									alternateRowColors="true" items="{ path: 'formularioSimple>/listaTabla2',	sorter: { path: 'id' }
 									}" >
 
 								<headerToolbar>
@@ -290,7 +289,7 @@
 						<IconTabFilter key="2" text="Clientes">
 
 							<Table id="idProductsTable3" sticky="HeaderToolbar,ColumnHeaders" inset="false" class="sapUiSmallNegativeMarginBeginEnd" width="auto"
-									items="{ path: 'formularioSimple>/listaTabla3',	sorter: { path: 'id' }
+									alternateRowColors="true" items="{ path: 'formularioSimple>/listaTabla3',	sorter: { path: 'id' }
 									}" >
 
 								<headerToolbar>
@@ -392,7 +391,7 @@
 						<IconTabFilter key="3" text="Unidad de Medida">
 
 							<Table id="idProductsTable4" sticky="HeaderToolbar,ColumnHeaders" inset="false" class="sapUiSmallNegativeMarginBeginEnd" width="auto"
-									items="{ path: 'formularioSimple>/listaTabla4',	sorter: { path: 'id' }
+									alternateRowColors="true" items="{ path: 'formularioSimple>/listaTabla4',	sorter: { path: 'id' }
 									}" >
 
 								<headerToolbar>
@@ -459,7 +458,7 @@
 						<IconTabFilter key="4" text="Locales">
 
 							<Table id="idProductsTable5" sticky="HeaderToolbar,ColumnHeaders" inset="false" class="sapUiSmallNegativeMarginBeginEnd" width="auto"
-									items="{formularioSimple>/locales}" >
+									alternateRowColors="true" items="{formularioSimple>/locales}" >
 
 								<headerToolbar>
 
