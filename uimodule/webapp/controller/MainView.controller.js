@@ -21,6 +21,7 @@ sap.ui.define(
         "../util/util",
         "sap/ui/vbm/Containers",
         "sap/ui/model/FilterOperator",
+        "./formatter"
     ],
     /**
      * @param {typeof sap.ui.core.mvc.Controller} Controller
@@ -54,7 +55,8 @@ sap.ui.define(
         exportLibrary,
         deepExtend,
         ColumnListItem,
-        util
+        util,
+        formatter
     ) {
         "use strict";
         const EdmType = exportLibrary.EdmType;
@@ -1618,7 +1620,7 @@ sap.ui.define(
                 }
                 const listaTabla1 = this.getView().getModel("formularioSimple").getProperty("/listaTabla1");
                 listaTabla1.push(oProducto);
-                this.getView().getModel("formularioSimple").refresh();
+                this.getView().getModel("formularioSimple").refresh(true);
                 MessageBox.success("Datos ingresados correctamente");
                 this.closeDialogProducto();
             },
