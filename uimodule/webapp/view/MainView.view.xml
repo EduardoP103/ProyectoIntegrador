@@ -196,11 +196,9 @@
 													ariaHasPopup="Dialog"/>
 											<Text  text="S/. {formularioSimple>preciov}" />
 											<Text  text="S/. {formularioSimple>precioc}" />
-											<ObjectStatus  text="{formularioSimple>stock}" 
-											state="{
-												path: 'formularioSimple>/stock',
-												formatter: '.formatter.weightState'
-											}" />
+											<ObjectStatus 
+											text="{formularioSimple>stock}" state="{path:'formularioSimple>stock',formatter: '.formatter.statusText'}"
+											/>
 											<Text  text="{formularioSimple>unidadm}" />
 											<Text  text="{formularioSimple>proveedor}" />
 											<ObjectStatus  text="{formularioSimple>activo}" state="Success" icon="sap-icon://message-success" />
