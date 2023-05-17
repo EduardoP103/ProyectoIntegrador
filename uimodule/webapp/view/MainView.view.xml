@@ -102,7 +102,7 @@
 						<IconTabFilter key="0" id="tabproductos" text="Productos">
 
 							<Table id="idProductsTable1" multiSelectMode="Default" backgroundDesign="Solid" mode="MultiSelect" sticky="HeaderToolbar,ColumnHeaders" inset="false" 
-									class="sapUiSmallNegativeMarginBeginEnd" alternateRowColors="true"
+									class="sapUiSmallNegativeMarginBeginEnd" alternateRowColors="true" growing="true" growingThreshold="10"
 									items="{ path: 'formularioSimple>/listaTabla1',	sorter: { path: 'id' }
 									}" >
 
