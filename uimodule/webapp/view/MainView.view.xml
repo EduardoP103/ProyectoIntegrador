@@ -241,7 +241,7 @@ height="100%">
 					<ToolbarSpacer/>
 					<Button icon="sap-icon://excel-attachment" press="onExportCSV" text="Exportar CSV"/>
 					<Button icon="sap-icon://excel-attachment" press="onExportExcel" text="Exportar Excel"/>
-					<Button icon="sap-icon://excel-attachment" press="onExportPDF" text="Exportar PDF"/>
+					<Button icon="sap-icon://excel-attachment" press="imprimirPDF" text="Exportar PDF"/>
 				</OverflowToolbar>
 			</f:footer>
 

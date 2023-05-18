@@ -1,0 +1,55 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core">
+	<Dialog
+		id="ImprimirPDFFragment"
+		title="Elección">
+
+		<content>
+
+			<VBox class="sapUiSmallMargin" id="formContainerEmployment5">
+				<f:SimpleForm editable="true"
+					layout="ColumnLayout"
+					columnsM="2"
+					columnsL="2"
+					columnsXL="2">
+					<f:content>
+						<core:Title  text="¿Desea imprimir el documento PDF en Vertical u Horizontal?" />
+					</f:content>
+				</f:SimpleForm>
+			</VBox>
+		</content>
+		<footer>
+			<Toolbar>
+				<content>
+					
+					<Button type="Emphasized"
+							text="Vertical"
+							press="onExportPDFVertical"
+							icon="sap-icon://vertical-grip" />
+
+							<ToolbarSpacer/>
+
+					
+					<Button id="ImprimirPDFCerrarBoton"
+						text="Cerrar"
+						type="Reject"
+						press="closeExportPDFOrientacion"
+						ariaHasPopup="Dialog" 
+						icon="sap-icon://decline"/>
+
+                            <ToolbarSpacer/>
+
+					<Button type="Emphasized"
+							text="Horizontal"
+							press="onExportPDFHorizontal"
+							icon="sap-icon://horizontal-grip" />
+				</content>
+			</Toolbar>
+		</footer>
+
+        
+	</Dialog>
+</core:FragmentDefinition>
