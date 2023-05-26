@@ -39,8 +39,18 @@
 					</layout:VerticalLayout>
 					<layout:VerticalLayout>
 						<HBox class="contenRowIconTable">
-							<Button id="idDarkModeButton" text="🌙" class="jello-horizontal" press="onDarkModePress"/>
-							<Button id="idLightModeButton" text=" ☀️" class="jello-horizontal" press="onLightModePress"/>
+							<Button
+								id="idDarkModeButton"
+								text="🌙"
+								class="jello-horizontal"
+								press="onDarkModePress"
+							/>
+							<Button
+								id="idLightModeButton"
+								text=" ☀️"
+								class="jello-horizontal"
+								press="onLightModePress"
+							/>
 						</HBox>
 						<ObjectAttribute title="{i18n>name}"/>
 						<ObjectStatus
@@ -52,7 +62,7 @@
 							text="{i18n>position}"
 							state="Success"
 						/>
-					</layout:VerticalLayout >
+					</layout:VerticalLayout>
 				</layout:HorizontalLayout>
 			</f:DynamicPageHeader>
 		</f:header>
@@ -99,7 +109,7 @@
 								<OverflowToolbar>
 									<content>
 										<Title
-											text="{i18n>products} ({= ${localModel>/listOfProducts}.length })"
+											text="{i18n>products} ({= ${localModel>/listOfProducts}.length})"
 											level="H2"
 										/>
 										<ToolbarSpacer/>
@@ -115,6 +125,19 @@
 											style="Emphasized"
 											fileType="xlsx"
 											placeholder="Elija un archivo para cargar..."
+										/>
+										<u:FileUploader
+											buttonText="Importar Data"
+											id="FileUploaderId2"
+											class="jello-horizontal"
+											sameFilenameAllowed="true"
+											iconOnly="false"
+											buttonOnly="true"
+											fileType="xlsx"
+											icon="sap-icon://upload"
+											iconFirst="true"
+											style="Emphasized"
+											change="onUpload"
 										/>
 										<Button
 											text="{i18n>add}"
