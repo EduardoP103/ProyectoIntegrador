@@ -1167,6 +1167,55 @@ sap.ui.define(
         this.getView().getModel('localModel').refresh(true);
         this.closeDialogProveedor();
       },
+      /**
+       * @override
+       */
+      onAfterRendering: function () {
+        this.loadStatus();
+      },
+      loadStatus: async function () {
+        sap.ui.core.BusyIndicator.show(true);
+        debugger;
+        const rawResponse = await fetch('http://localhost:4004/status/listStatus');
+        debugger;
+        const content = await rawResponse.json();
+
+        sap.ui.core.BusyIndicator.hide();
+        let activo = [];
+        activo.push({
+          id: '0',
+          name: '--Seleccione--',
+        });
+        content.result.forEach((element) => {
+          let obj = { ...element };
+          let Estado = { id: obj.ID, name: obj.NAME };
+          activo.push(Estado);
+        });
+        this.getView().getModel('localModel').setProperty('/activo', activo);
+        debugger;
+        //         $.ajax({
+
+        //                     url:"http://localhost:4004/status/listStatus",
+
+        //                     method: "GET",
+
+        //                     contentType: "application/json;charset=UTF-8",
+
+        //                     success: function (result) {
+
+        //                         //console.log(path);
+        // debugger
+        //                         sap.ui.core.BusyIndicator.hide();
+
+        //                     },
+
+        //                     error: function (error) {
+        //                         debugger
+
+        //                     }
+
+        //                 });
+      },
     });
   },
 );
