@@ -147,6 +147,7 @@
 								path: 'localModel>/editProduct/image'
 							}"
 							valueLiveUpdate="true"
+							change="onImageChange"
 						/>
 						<Image
 							src="{

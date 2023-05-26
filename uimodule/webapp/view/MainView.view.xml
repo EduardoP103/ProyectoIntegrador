@@ -33,10 +33,15 @@
 					<layout:VerticalLayout class="sapUiMediumMarginEnd">
 						<Image
 							src="assets/yoshi.jpg"
+							class="jello-horizontal"
 							width="100px"
 						/>
 					</layout:VerticalLayout>
 					<layout:VerticalLayout>
+						<HBox class="contenRowIconTable">
+							<Button id="idDarkModeButton" text="🌙" class="jello-horizontal" press="onDarkModePress"/>
+							<Button id="idLightModeButton" text=" ☀️" class="jello-horizontal" press="onLightModePress"/>
+						</HBox>
 						<ObjectAttribute title="{i18n>name}"/>
 						<ObjectStatus
 							text="{i18n>user}"
@@ -47,7 +52,7 @@
 							text="{i18n>position}"
 							state="Success"
 						/>
-					</layout:VerticalLayout>
+					</layout:VerticalLayout >
 				</layout:HorizontalLayout>
 			</f:DynamicPageHeader>
 		</f:header>
@@ -98,8 +103,19 @@
 											level="H2"
 										/>
 										<ToolbarSpacer/>
-											<u:FileUploader id="FileUploaderId" class="jello-horizontal" sameFilenameAllowed="true" iconOnly="false" buttonOnly="true" fileType="xlsx"
-												icon="sap-icon://upload" iconFirst="true" style="Emphasized" change="onUpload"/>
+										<u:FileUploader
+											id="FileUploaderId"
+											icon="sap-icon://upload"
+											buttonText="Importar Data"
+											class="jello-horizontal"
+											sameFilenameAllowed="true"
+											uploadUrl="upload/"
+											tooltip="Sube tu archivo al servidor local"
+											change="onUpload"
+											style="Emphasized"
+											fileType="xlsx"
+											placeholder="Elija un archivo para cargar..."
+										/>
 										<Button
 											text="{i18n>add}"
 											class="jello-horizontal"
@@ -400,24 +416,6 @@
 								</ColumnListItem>
 							</items>
 						</Table>
-					</IconTabFilter>
-					<IconTabFilter key="4" text="Productos Excel"> 
-						<Table 
-						id="ProductsExcel"
-						sticky="HeaderToolbar,ColumnHeaders"
-						inset="false"
-						class="sapUiSmallNegativeMarginBeginEnd"
-						width="auto"
-						
-						>
-						<headerToolbar>
-							<Toolbar >
-								<Title text="Items"/>
-								<ToolbarSpacer/>
-							</Toolbar>
-						</headerToolbar>
-					</Table>
-
 					</IconTabFilter>
 				</items>
 			</IconTabBar>

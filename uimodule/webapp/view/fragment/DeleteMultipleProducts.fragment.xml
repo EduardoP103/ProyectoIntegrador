@@ -1,0 +1,44 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core">
+
+    <Dialog
+        id="deleteProductForm"
+        title="Confirmación"
+        contentWidth="auto"
+        class="customDialogClass">
+
+        <VBox class="sapUiSmallMargin" id="formContainerEmployment4">
+            <f:SimpleForm editable="true"
+                layout="ColumnLayout"
+                columnsM="2"
+                columnsL="2"
+                columnsXL="2">
+                <f:content>
+                    <core:Title text="¿Seguro que quiere eliminar el producto {= ${localModel>/selectRowDelete/name}}?" />
+                </f:content>
+            </f:SimpleForm>
+        </VBox>
+
+        <footer>
+            <Toolbar>
+                <content>
+                    <Button type="Critical"
+                        text="Eliminar"
+                        press="onPressDeleteProduct" />
+
+                    <ToolbarSpacer/>
+
+                    <Button id="Delete"
+                        text="Cerrar"
+                        type="Reject"
+                        press="closeDialogRemoveProduct"
+                        ariaHasPopup="Dialog" />
+                </content>
+            </Toolbar>
+        </footer>
+    </Dialog>
+
+</core:FragmentDefinition>
