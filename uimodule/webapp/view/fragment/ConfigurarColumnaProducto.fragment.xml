@@ -1,0 +1,75 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core">
+	<Dialog
+		id="ConfigurarColumnaProductoFragment"
+		title="Configuración">
+
+		<content>
+
+            <VBox alignItems="Center">
+				<Image
+				src="https://icons.veryicon.com/png/o/education-technology/radio-and-tv-cloud/column-management.png"
+				mode="{/imageMode}"
+				height="100px"
+				backgroundSize="2em 2em"
+				backgroundPosition="center"
+				width="auto"
+                class="img" >
+                    <layoutData>
+                        <FlexItemData growFactor="0.5" />
+                    </layoutData>
+				</Image>
+			</VBox>
+
+			<VBox alignItems="Baseline" justifyContent="SpaceBetween" class="vboxcolumnconfig">
+			
+				<CheckBox id="chkNombre" text="Nombre" selected="true" />
+				<CheckBox id="chkDescripcion" text="Descripcion" selected="true" />
+				<CheckBox id="chkImagen" text="Imagen" selected="true" />
+				<CheckBox id="chkPreciov" text="Precio V." selected="true" />
+				<CheckBox id="chkPrecioc" text="Precio C." selected="true" />
+				<CheckBox id="chkStock" text="Stock" selected="true" />
+				<CheckBox id="chkUnidadm" text="Unidad M." selected="true" />
+				<CheckBox id="chkProveedor" text="Proveedor" selected="true" />
+				<CheckBox id="chkActivo" text="Activo" selected="true" />
+				<CheckBox id="chkAcciones" text="Acciones" selected="true" enabled="false"/>
+			
+			</VBox>
+
+			
+		</content>
+		<footer>
+			<Toolbar>
+				<content>
+					
+					<Button type="Emphasized"
+							text="Aplicar"
+							press="onAplicarConfiguracion"
+							ariaHasPopup="Dialog" 
+							icon="sap-icon://accept" />
+
+                            <ToolbarSpacer/>
+
+					<Button type="Transparent"
+							text="Reset"
+							press="onResetColumnas"
+							ariaHasPopup="Dialog" 
+							icon="sap-icon://reset" />
+
+							<ToolbarSpacer/>
+
+					<Button	text="Cerrar"
+						type="Reject"
+						press="closeDialogConfigurarColumnaProducto"
+						ariaHasPopup="Dialog" 
+						icon="sap-icon://decline"/>
+				</content>
+			</Toolbar>
+		</footer>
+
+        
+	</Dialog>
+</core:FragmentDefinition>

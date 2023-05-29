@@ -102,7 +102,7 @@
 						<IconTabFilter key="0" id="tabproductos" text="Productos">
 
 							<Table id="idProductsTable1" multiSelectMode="Default" backgroundDesign="Solid" mode="MultiSelect" sticky="HeaderToolbar,ColumnHeaders" inset="false" 
-									class="sapUiSmallNegativeMarginBeginEnd" alternateRowColors="true" growing="true" growingThreshold="10"
+									class="sapUiSmallNegativeMarginBeginEnd" alternateRowColors="true" growing="true" growingThreshold="10" width="auto"
 									items="{ path: 'formularioSimple>/listaTabla1',	sorter: { path: 'id' }
 									}" >
 
@@ -122,61 +122,61 @@
 
 								<columns>
 
-									<Column	hAlign="Begin" width="15%">
+									<Column	id="nombreProd" hAlign="Begin" width="auto">
 
 										<Text text="Nombre" />
 
 									</Column>
 
-									<Column	minScreenWidth="Desktop" demandPopin="true" hAlign="Begin" width="15%">
+									<Column id="descProd" minScreenWidth="Desktop" demandPopin="true" hAlign="Begin" width="auto">
 
 										<Text text="Descripción" />
 
 									</Column>
 
-									<Column	minScreenWidth="Desktop" demandPopin="true" hAlign="Center" width="5%">
+									<Column id="imagenProd" minScreenWidth="Desktop" demandPopin="true" hAlign="Center" width="auto">
 
 										<Text text="Imagen" />
 
 									</Column>
 
-									<Column	hAlign="Center" width="10%">
+									<Column id="preciovProd" hAlign="Center" width="auto">
 
 										<Text text="Precio V." />
 
 									</Column>
 
-									<Column	minScreenWidth="Desktop" demandPopin="true" hAlign="Center" width="10%">
+									<Column id="preciocProd" minScreenWidth="Desktop" demandPopin="true" hAlign="Center" width="auto">
 
 										<Text text="Precio C." />
 
 									</Column>
 
-									<Column hAlign="Center" width="8%">
+									<Column id="stockProd" hAlign="Center" width="auto">
 
 										<Text text="Stock" />
 
 									</Column>
 
-									<Column	minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="10%">
+									<Column id="unidadmProd" minScreenWidth="Tablet" demandPopin="true" hAlign="Center" width="auto">
 
 										<Text text="Unidad M." />
 
 									</Column>
 
-									<Column	hAlign="Center" width="15%">
+									<Column id="proveedorProd" hAlign="Center" width="auto">
 
 										<Text text="Proveedor" />
 
 									</Column>
 
-									<Column	minScreenWidth="Desktop" demandPopin="true" hAlign="Center" width="10%">
+									<Column visible="true" id="activoProd" minScreenWidth="Desktop" demandPopin="true" hAlign="Center" width="auto">
 
 										<Text text="Activo" />
 
 									</Column>
 
-									<Column	hAlign="Center" width="5%" minScreenWidth="1450px" demandPopin="true">
+									<Column id="accionesProd" hAlign="Center" width="5%" minScreenWidth="1450px" demandPopin="true">
 
 										<Text text="Acciones" />
 

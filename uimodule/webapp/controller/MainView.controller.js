@@ -1354,12 +1354,12 @@ sap.ui.define(
                 this.closeDialogEliminarProducto();
             },
 
-            // ----------------------------Abrir Fragment Configuracion -------------------------//
+            // ----------------------------Abrir Fragment Configuracion Columnas Producto -------------------------//
 
             onConfig: function () {
                 if (!this.oMPConfig) {
                     this.oMPConfig = this.loadFragment({
-                        name: "com.pe.proyectoIntegrador.view.fragment.ConfiguradorColumnas",
+                        name: "com.pe.proyectoIntegrador.view.fragment.ConfigurarColumnaProducto",
                     });
                 }
                 this.oMPConfig.then(
@@ -1370,11 +1370,124 @@ sap.ui.define(
                 );
             },
 
-            closeDialogConfig: function () {
+            closeDialogConfigurarColumnaProducto: function () {
                 // this.getView().getModel("formularioSimple").setProperty("/search", "");
                 // this.onLimpiarCamposDialogo();
                 this.oDialogConfig.close();
                 this.onLimpiarCamposDialogos();
+            },
+
+            // ----------------------------Resetear checkboxs Configuracion Columnas Producto -------------------------//
+
+            onResetColumnas: function(){
+                let chkNombre = this.getView().byId("chkNombre");
+                let chkDescripcion = this.getView().byId("chkDescripcion");
+                let chkImagen = this.getView().byId("chkImagen");
+                let chkPreciov = this.getView().byId("chkPreciov");
+                let chkPrecioc = this.getView().byId("chkPrecioc");
+                var chkStock = this.getView().byId("chkStock");
+                let chkUnidadm = this.getView().byId("chkUnidadm");
+                let chkProveedor = this.getView().byId("chkProveedor");
+                let chkActivo = this.getView().byId("chkActivo");
+
+                chkNombre.setSelected(true);
+                chkDescripcion.setSelected(true);
+                chkImagen.setSelected(true);
+                chkPreciov.setSelected(true);
+                chkPrecioc.setSelected(true);
+                chkStock.setSelected(true);
+                chkUnidadm.setSelected(true);
+                chkProveedor.setSelected(true);
+                chkActivo.setSelected(true);
+            },
+
+            onAplicarConfiguracion: function(){
+
+                let chkNombre = this.getView().byId("chkNombre");
+                let chkDescripcion = this.getView().byId("chkDescripcion");
+                let chkImagen = this.getView().byId("chkImagen");
+                let chkPreciov = this.getView().byId("chkPreciov");
+                let chkPrecioc = this.getView().byId("chkPrecioc");
+                var chkStock = this.getView().byId("chkStock");
+                let chkUnidadm = this.getView().byId("chkUnidadm");
+                let chkProveedor = this.getView().byId("chkProveedor");
+                let chkActivo = this.getView().byId("chkActivo");
+
+                let nombreProd = this.getView().byId("nombreProd");
+                let descProd = this.getView().byId("descProd");
+                let imagenProd = this.getView().byId("imagenProd");
+                let preciovProd = this.getView().byId("preciovProd");
+                let preciocProd = this.getView().byId("preciocProd");
+                let stockProd = this.getView().byId("stockProd");
+                let unidadmProd = this.getView().byId("unidadmProd");
+                let proveedorProd = this.getView().byId("proveedorProd");
+                let activoProd = this.getView().byId("activoProd");
+
+                if(chkNombre.getSelected()==false){
+                    nombreProd.setVisible(false);
+                }
+                if(chkNombre.getSelected()==true){
+                    nombreProd.setVisible(true);
+                }
+
+                if(chkDescripcion.getSelected()==false){
+                    descProd.setVisible(false);
+                }
+                if(chkDescripcion.getSelected()==true){
+                    descProd.setVisible(true);
+                }
+
+                if(chkImagen.getSelected()==false){
+                    imagenProd.setVisible(false);
+                }
+                if(chkImagen.getSelected()==true){
+                    imagenProd.setVisible(true);
+                }
+
+                if(chkPreciov.getSelected()==false){
+                    preciovProd.setVisible(false);
+                }
+                if(chkPreciov.getSelected()==true){
+                    preciovProd.setVisible(true);
+                }
+
+                if(chkPrecioc.getSelected()==false){
+                    preciocProd.setVisible(false);
+                }
+                if(chkPrecioc.getSelected()==true){
+                    preciocProd.setVisible(true);
+                }
+
+                if(chkStock.getSelected()==false){
+                    stockProd.setVisible(false);
+                }
+                if(chkStock.getSelected()==true){
+                    stockProd.setVisible(true);
+                }
+
+                if(chkUnidadm.getSelected()==false){
+                    unidadmProd.setVisible(false);
+                }
+                if(chkUnidadm.getSelected()==true){
+                    unidadmProd.setVisible(true);
+                }
+
+                if(chkProveedor.getSelected()==false){
+                    proveedorProd.setVisible(false);
+                }
+                if(chkProveedor.getSelected()==true){
+                    proveedorProd.setVisible(true);
+                }
+
+                if(chkActivo.getSelected()==false){
+                    activoProd.setVisible(false);
+                }
+                if(chkActivo.getSelected()==true){
+                    activoProd.setVisible(true);
+                }
+
+                this.closeDialogConfigurarColumnaProducto();
+
             },
 
             // ----------------------------Abrir Fragment Agregar Proveedor -------------------------//
